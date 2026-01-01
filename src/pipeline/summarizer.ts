@@ -13,6 +13,7 @@ import { join, basename } from 'node:path';
 import { agent } from 'volcano-sdk';
 import type { LLMHandle } from 'volcano-sdk';
 import { listSourceFiles, loadSourceFile } from './source-store.js';
+import { loadPromptWithValues } from './prompt-loader.js';
 
 /**
  * Summary entry for a chapter
@@ -34,22 +35,6 @@ export interface ChapterSummaries {
     lastUpdated: string;
     entries: Map<string, ChapterSummary>;
 }
-
-const SUMMARY_PROMPT = `You are a knowledge extraction specialist. Analyze this source material and extract structured information that will help identify what methods and techniques are taught.
-
-SOURCE FILE: {filename}
-
-CONTENT:
-{content}
-
-OUTPUT the following in this exact format:
-
-**Methods:** List specific methods, techniques, or frameworks taught (comma separated)
-**Concepts:** List key concepts, principles, or terminology introduced (comma separated)  
-**Patterns:** List decision rules, processes, or step sequences described (comma separated)
-**Related:** List topics this connects to that might be in other chapters (comma separated)
-
-Keep each list concise (max 5-7 items). Focus on what's useful for knowledge extraction and method identification.`;
 
 /**
  * Parse a summary response into structured format
@@ -89,9 +74,11 @@ async function summarizeChapter(
         ? doc.content.slice(0, 15000) + '\n\n[... truncated ...]'
         : doc.content;
 
-    const prompt = SUMMARY_PROMPT
-        .replace('{filename}', filename)
-        .replace('{content}', content);
+    // Load prompt from external file
+    const prompt = loadPromptWithValues('SUMMARIZER', {
+        filename,
+        content,
+    });
 
     const results = await agent({ llm })
         .then({ prompt })

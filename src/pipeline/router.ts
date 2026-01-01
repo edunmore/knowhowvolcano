@@ -5,50 +5,13 @@
  * falls back to adjacent file selection otherwise.
  */
 
-import { readFileSync } from 'node:fs';
 import { basename } from 'node:path';
 import { agent } from 'volcano-sdk';
 import type { LLMHandle } from 'volcano-sdk';
 import type { RouterResult, CanonIndex } from './types.js';
 import { buildChapterIndex, getAdjacentFiles, loadSourceFile } from './source-store.js';
 import { loadChapterSummaries, formatSummariesForRouter, type ChapterSummaries } from './summarizer.js';
-
-const ROUTER_PROMPT = readFileSync(
-    new URL('../../PROMPTS/00_CHAPTER_ROUTER.md', import.meta.url),
-    'utf-8'
-);
-
-const SMART_ROUTER_PROMPT = `You are a knowledge extraction routing expert.
-
-TASK: Select the best chapters to include with the START chapter for extracting a complete method/technique.
-
-START FILE: {startFile}
-START FILE PREVIEW:
-{startPreview}
-
-CHAPTER SUMMARIES (filename: key info):
-{summaries}
-
-EXISTING CANON:
-{canonSummary}
-
-MAX_FILES: {maxFiles} (including start file)
-
-INSTRUCTIONS:
-1. Analyze what method/technique the START FILE teaches
-2. Find chapters with RELATED methods, concepts, or patterns that complete the picture
-3. Prefer chapters that share concepts/terminology with the start file
-4. Select {additionalFiles} additional chapters (total {maxFiles} including start)
-
-OUTPUT FORMAT:
-# Selected Files
-- {startFile} (START)
-- filename1.md (reason: shares X concept)
-- filename2.md (reason: extends Y pattern)
-- filename3.md (reason: related to Z method)
-
-# Mode
-DISCOVER or DELTA`;
+import { loadPrompt, loadPromptWithValues } from './prompt-loader.js';
 
 /**
  * Parse the LLM's router output into structured result
@@ -119,19 +82,21 @@ export async function routeChapters(
     let prompt: string;
 
     if (hasSmartSummaries) {
-        // Use smart routing with summaries
+        // Use smart routing with summaries - load from external file
         const summaryText = formatSummariesForRouter(summaries!);
-        prompt = SMART_ROUTER_PROMPT
-            .replace('{startFile}', startFileName)
-            .replace('{startPreview}', startDoc.content.slice(0, 800))
-            .replace('{summaries}', summaryText)
-            .replace('{canonSummary}', canonSummary)
-            .replace('{maxFiles}', String(maxFiles))
-            .replace('{additionalFiles}', String(maxFiles - 1));
+        prompt = loadPromptWithValues('SMART_ROUTER', {
+            startFile: startFileName,
+            startPreview: startDoc.content.slice(0, 800),
+            summaries: summaryText,
+            canonSummary,
+            maxFiles: String(maxFiles),
+            additionalFiles: String(maxFiles - 1),
+        });
     } else {
-        // Fall back to original prompt
+        // Fall back to original prompt - load from external file
         const chapterList = chapterIndex.map((f, i) => `${i + 1}. ${basename(f)}`).join('\n');
-        prompt = `${ROUTER_PROMPT}
+        const basePrompt = loadPrompt('CHAPTER_ROUTER');
+        prompt = `${basePrompt}
 
 CHAPTER INDEX:
 ${chapterList}

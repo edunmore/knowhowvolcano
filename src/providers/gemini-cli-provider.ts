@@ -171,7 +171,7 @@ function extractUsage(response: GeminiCLIResponse): TokenUsage | undefined {
  */
 export function llmGeminiCLI(cfg: GeminiCLIConfig = {}): LLMHandle {
     const config: Required<GeminiCLIConfig> = {
-        model: cfg.model || 'gemini-2.5-pro',
+        model: cfg.model || 'gemini-3-pro-preview',
         workingDir: cfg.workingDir || process.cwd(),
         timeout: cfg.timeout || 120000,
         yolo: cfg.yolo ?? true,

@@ -7,6 +7,7 @@ import { join, basename } from 'node:path';
 import { agent } from 'volcano-sdk';
 import type { LLMHandle } from 'volcano-sdk';
 import type { CanonIndex, CanonEntry, MatchResult, ExtractionDoc } from './types.js';
+import { loadPromptWithValues } from './prompt-loader.js';
 
 /**
  * Load the canon index from file
@@ -120,30 +121,16 @@ export async function matchCanon(
         };
     }
 
-    // Build matching prompt
+    // Build matching prompt using external prompt file
     const candidateSummary = canonIndex.entries
         .slice(0, maxCandidates)
         .map(e => `- ${e.method_id}: ${e.title}`)
         .join('\n');
 
-    const prompt = `You are a method matching expert.
-
-Given this EXTRACTION:
-${extraction.rawMarkdown.slice(0, 2000)}...
-
-And these EXISTING CANON METHODS:
-${candidateSummary}
-
-Does this extraction match any existing method? Consider:
-1. Core mechanism similarity
-2. Purpose/goal overlap
-3. Process step similarity
-
-Output format:
-MATCH: [method_id or NONE]
-CONFIDENCE: [0-100]
-RATIONALE: [explanation]
-MERGE_GUIDANCE: [if match, how to merge]`;
+    const prompt = loadPromptWithValues('CANON_MATCHER', {
+        extraction: extraction.rawMarkdown.slice(0, 2000) + '...',
+        canonMethods: candidateSummary,
+    });
 
     const results = await agent({ llm })
         .then({ prompt })
