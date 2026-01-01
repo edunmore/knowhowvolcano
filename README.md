@@ -12,17 +12,20 @@ Built with [Volcano SDK](https://volcano.dev) for multi-provider LLM orchestrati
 # Install dependencies
 npm install
 
-# Generate chapter summaries (one-time, uses DeepSeek by default)
+# Generate chapter summaries first (uses DeepSeek, ~3sec/chapter)
 npx tsx src/cli.ts summarize --sourceDir ./booksample
 
 # Run extraction on a chapter
 npx tsx src/cli.ts run --start ./booksample/016_9_the_grow_model_with_descriptions.md
+
+# With verbose logging (see all LLM prompts/responses in run.log)
+npx tsx src/cli.ts run --start ./booksample/016_...md --verbose
 ```
 
 **Output:**
-- `booksample/canon/methods/MTH-XXXXXXXX-XXXXXX.md` — Extracted method entry
+- `booksample/canon/methods/MTH-XXXXXXXX-XXXXXX.md` — Extracted method
 - `booksample/canon/METHODS-CANON-INDEX.md` — Updated index
-- `runs/XXXXXXXX-XXXXXX/` — Run artifacts (extraction, critic report, logs)
+- `runs/XXXXXXXX-XXXXXX/` — Run artifacts (extraction, critic, logs)
 
 ---
 
@@ -31,147 +34,49 @@ npx tsx src/cli.ts run --start ./booksample/016_9_the_grow_model_with_descriptio
 ```
 ┌─────────────┐     ┌───────────┐     ┌───────────┐     ┌────────────┐
 │   Source    │────▶│  Router   │────▶│ Extractor │────▶│   Critic   │
-│  Material   │     │ (smart)   │     │           │     │            │
+│  Material   │     │ (02/03)   │     │   (04)    │     │   (05)     │
 └─────────────┘     └───────────┘     └───────────┘     └────────────┘
-                          │                                    │
-                          ▼                                    ▼
-                 ┌─────────────────┐                 ┌─────────────────┐
-                 │ Chapter Summary │                 │    Scorecard    │
-                 │  (if missing)   │                 │  (faith/ready)  │
-                 └─────────────────┘                 └─────────────────┘
+       │                  │                                    │
+       ▼                  ▼                                    ▼
+┌─────────────┐  ┌─────────────────┐                 ┌─────────────────┐
+│ Summarizer  │  │ Chapter Summary │                 │    Scorecard    │
+│    (01)     │  │  (if missing)   │                 │                 │
+└─────────────┘  └─────────────────┘                 └─────────────────┘
                                                            │
                           ┌────────────────────────────────┘
                           ▼
-                 ┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
-                 │  Canon Matcher  │────▶│  Canon Updater  │────▶│  Canon Indexer  │
-                 │  (NEW/UPDATE?)  │     │ (write entry)   │     │ (regenerate)    │
-                 └─────────────────┘     └─────────────────┘     └─────────────────┘
+                 ┌─────────────────┐     ┌─────────────────┐
+                 │    Matcher      │────▶│  Canon Updater  │
+                 │     (06)        │     │                 │
+                 └─────────────────┘     └─────────────────┘
 ```
 
 ---
 
-## Detailed Pipeline Steps
+## Key Design Decisions
 
-### 1. Chapter Summarizer (optional pre-step)
+### 1. File-Reference Prompts (not embedded content)
+LLMs read source files directly using their file-reading tools. This:
+- Keeps prompts small (~2KB instead of 30-50KB)
+- Enables potential caching by LLM
+- Works with all providers (Gemini native, DeepSeek/Ollama via MCP)
 
-**Purpose:** Generate knowledge-extraction-oriented summaries for intelligent chapter selection.
+### 2. All Prompts Externalized
+**MANDATORY RULE:** All prompts in `PROMPTS/` folder, no hardcoded prompts.
+- See [PROMPTS/README.md](PROMPTS/README.md) for full documentation
+- Use `loadPromptWithValues('PROMPT_NAME', {...})` to load
+- Archive old versions to `PROMPTS/history/` before editing
 
-**Input:** All markdown files in source directory  
-**Output:** `{sourceDir}/canon/chaptersummary.md`
+### 3. Source-Relative Canon Storage
+Canon entries stored in `{sourceDir}/canon/` not a global `./canon/`:
+- `booksample/canon/methods/MTH-...md`
+- `webinarsample/canon/methods/MTH-...md`
 
-**Summary Format:**
-```markdown
-## 016_the_grow_model.md
-**Methods:** GROW coaching framework, goal-setting technique
-**Concepts:** awareness, responsibility, options generation
-**Patterns:** 4-stage sequence (G→R→O→W), SMART criteria
-**Related:** goal setting, reality checking, coaching questions
-```
-
-**Prompt:** [05_SUMMARIZER.md](PROMPTS/05_SUMMARIZER.md)
-
----
-
-### 2. Router
-
-**Purpose:** Select the best chapters to include for extracting a complete method.
-
-**Two Modes:**
-| Mode | Trigger | Strategy |
-|------|---------|----------|
-| **Smart** | `chaptersummary.md` exists | Thematic matching - finds chapters with related concepts |
-| **Fallback** | No summaries | Adjacent files with saturation rules |
-
-**Input:** Start file, chapter index, existing canon  
-**Output:** List of 1-4 files to process together
-
-**Prompts:** 
-- [00_CHAPTER_ROUTER.md](PROMPTS/00_CHAPTER_ROUTER.md) (fallback)
-- [01_SMART_ROUTER.md](PROMPTS/01_SMART_ROUTER.md) (smart)
-
----
-
-### 3. Extractor
-
-**Purpose:** Deep structure extraction from selected chapters.
-
-**Extracts:**
-- **Method Kernel** — Purpose, preconditions, roles, process, decision rules, success signals, failure modes
-- **Author Delivery Model** — How the author teaches (examples, Q&A patterns, etc.)
-- **Reuse Pack** — Templates, checklists, example scenarios
-
-**Input:** Selected chapter files  
-**Output:** Structured markdown with `[EXTRACTED]` anchors to source locations
-
-**Prompt:** [02_EXTRACTOR_MULTI.md](PROMPTS/02_EXTRACTOR_MULTI.md)
-
----
-
-### 4. Critic
-
-**Purpose:** Quality assessment and stress testing.
-
-**Tasks:**
-1. **Generation Stress Test** — Can a story generator use this extraction?
-2. **Faithfulness Audit** — Are claims grounded in source material?
-3. **Scorecard** — Rate operational completeness, decision rules clarity, teaching transfer, generator readiness, faithfulness, non-plagiarism safety
-
-**Input:** Extraction + source files  
-**Output:** Critic report with scorecard (each dimension 1-5)
-
-**Prompt:** [04_DOWNSTREAM_CRITIC.md](PROMPTS/04_DOWNSTREAM_CRITIC.md)
-
----
-
-### 5. Canon Matcher
-
-**Purpose:** Determine if extraction matches existing canon entries or is a new method.
-
-**Decision:**
-- **MATCH** → Update existing entry (merge guidance provided)
-- **NONE** → Create new entry
-
-**Input:** Extraction + canon index  
-**Output:** Match decision with confidence score and rationale
-
-**Prompt:** [06_CANON_MATCHER.md](PROMPTS/06_CANON_MATCHER.md)
-
----
-
-### 6. Canon Updater
-
-**Purpose:** Create or update canon method entries.
-
-**Canon Entry Structure:**
-```markdown
----
-method_id: MTH-20260101-143421
-title: "The GROW Model"
-provider: "GeminiCLI-gemini-2.5-flash"
-start_file: "016_the_grow_model.md"
-created: 2026-01-01T14:34:06.120
----
-
-# Method Kernel
-## Purpose
-...
-
-# Provenance
-## Source Material
-- **Start file:** 016_the_grow_model.md
-- **Selected chapters:** [list]
-
-# Changelog
-- date: 2026-01-01...
-```
-
----
-
-### 7. Canon Indexer
-
-**Purpose:** Regenerate the unified canon index from all method files.
-
-**Output:** `{sourceDir}/canon/METHODS-CANON-INDEX.md`
+### 4. Multi-Provider Support
+All providers work interchangeably:
+- **Gemini CLI** — `gemini-3-pro-preview` (native tools)
+- **DeepSeek V3.2** — Azure-hosted (MCP tools)
+- **Ollama** — `qwen3:8b` local (MCP tools)
 
 ---
 
@@ -179,35 +84,14 @@ created: 2026-01-01T14:34:06.120
 
 ```bash
 # Full pipeline
-npx tsx src/cli.ts run --start <file> [options]
+npx tsx src/cli.ts run --start <file> [--provider gemini|deepseek|ollama] [--verbose]
 
 # Individual steps
-npx tsx src/cli.ts summarize --sourceDir <dir> [--summaryProvider deepseek|gemini|ollama]
+npx tsx src/cli.ts summarize --sourceDir <dir> [--summaryProvider deepseek]
 npx tsx src/cli.ts route --sourceDir <dir> --start <file>
 npx tsx src/cli.ts extract --files <file1,file2,...>
 npx tsx src/cli.ts reindex --canonDir <dir>
 ```
-
-**Options:**
-| Option | Default | Description |
-|--------|---------|-------------|
-| `--provider` | `gemini` | LLM provider (gemini, deepseek, ollama) |
-| `--summaryProvider` | `deepseek` | Provider for summary generation |
-| `--sourceDir` | (from start file) | Source material directory |
-| `--canonDir` | `{sourceDir}/canon` | Canon output directory |
-| `--maxFiles` | `4` | Max chapters to select |
-
----
-
-## LLM Providers
-
-| Provider | Model | Best For |
-|----------|-------|----------|
-| **Gemini CLI** | gemini-3-pro-preview | Full pipeline (native tools) |
-| **DeepSeek V3.2** | deepseek-v3.2 | Summaries, matching (cost-effective) |
-| **Ollama** | qwen3:8b | Local testing, privacy |
-
-See [VOLCANO_SDK/NOTES.md](VOLCANO_SDK/NOTES.md) for provider setup.
 
 ---
 
@@ -215,36 +99,68 @@ See [VOLCANO_SDK/NOTES.md](VOLCANO_SDK/NOTES.md) for provider setup.
 
 ```
 ├── src/
-│   ├── cli.ts                 # CLI entry point
+│   ├── cli.ts                    # CLI entry point
 │   ├── pipeline/
-│   │   ├── types.ts           # TypeScript interfaces
-│   │   ├── prompt-loader.ts   # Centralized prompt loading
-│   │   ├── source-store.ts    # File loading & indexing
-│   │   ├── summarizer.ts      # Chapter summary generation
-│   │   ├── router.ts          # Chapter selection
-│   │   ├── extractor.ts       # Method extraction
-│   │   ├── critic.ts          # Quality assessment
-│   │   ├── canon-matcher.ts   # Canon matching
-│   │   ├── canon-updater.ts   # Entry creation/update
-│   │   ├── canon-indexer.ts   # Index regeneration
-│   │   └── orchestrator.ts    # Full pipeline coordination
+│   │   ├── prompt-loader.ts      # Centralized prompt loading
+│   │   ├── verbose-logger.ts     # Provider-level logging wrapper
+│   │   ├── summarizer.ts         # 01 - Chapter summaries
+│   │   ├── router.ts             # 02/03 - Chapter selection
+│   │   ├── extractor.ts          # 04 - Method extraction
+│   │   ├── critic.ts             # 05 - Quality scoring
+│   │   ├── canon-matcher.ts      # 06 - Match to canon
+│   │   ├── canon-updater.ts      # Create/update entries
+│   │   ├── canon-indexer.ts      # Regenerate index
+│   │   └── orchestrator.ts       # Full pipeline coordination
 │   └── providers/
 │       ├── gemini-cli-provider.ts
 │       ├── deepseek-tools-provider.ts
 │       └── ollama-provider.ts
-├── PROMPTS/                   # All LLM prompts (externalized)
-│   ├── README.md              # Prompt index
-│   └── history/               # Version tracking
-├── booksample/                # Example source material
-│   └── canon/                 # Generated canon (per-source)
-└── runs/                      # Pipeline run artifacts
+├── PROMPTS/                       # All LLM prompts (MANDATORY)
+│   ├── 01_SUMMARIZER.md
+│   ├── 02_CHAPTER_ROUTER.md
+│   ├── 03_SMART_ROUTER.md
+│   ├── 04_EXTRACTOR.md
+│   ├── 05_CRITIC.md
+│   ├── 06_MATCHER.md
+│   ├── 07_DELTA_EXTRACTOR.md
+│   ├── README.md                  # Prompt documentation
+│   └── history/                   # Version tracking
+├── booksample/                    # Example source material
+│   └── canon/                     # Generated canon
+│       ├── methods/               # Method entries
+│       ├── chaptersummary.md      # Chapter summaries
+│       └── METHODS-CANON-INDEX.md # Index
+└── runs/                          # Pipeline run artifacts
 ```
+
+---
+
+## Current Status
+
+**Branch:** `refactor/file-reference-prompts`
+
+**Recent Changes:**
+1. File-reference prompts (LLM reads files directly)
+2. Mandatory prompt management rules
+3. Prompts renumbered 01-07 to match pipeline order
+4. Verbose logging (`--verbose` flag)
+
+**What Works:**
+- ✅ Full extraction pipeline with all 3 providers
+- ✅ Smart chapter routing using summaries
+- ✅ Canon matching and updates
+- ✅ Verbose LLM call logging
+
+**TODO:**
+- [ ] Implement DELTA flow (07_DELTA_EXTRACTOR)
+- [ ] Iterative refinement loop
+- [ ] Merge refactor branch to main
 
 ---
 
 ## References
 
-- [PRD.md](PRD/PRD.md) — Product requirements
-- [ARCHITECTURE.md](ARCHITECTURE/ARCHITECTURE.md) — System design
 - [PROMPTS/README.md](PROMPTS/README.md) — Prompt documentation
-- [Volcano SDK](https://volcano.dev) — LLM orchestration framework
+- [VOLCANO_SDK/NOTES.md](VOLCANO_SDK/NOTES.md) — Provider setup
+- [PRD/PRD.md](PRD/PRD.md) — Original requirements
+- [ARCHITECTURE/ARCHITECTURE.md](ARCHITECTURE/ARCHITECTURE.md) — System design
