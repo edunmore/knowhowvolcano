@@ -36,7 +36,8 @@ function extractTitle(extraction: ExtractionDoc): string {
  */
 export function createCanonEntry(
     extraction: ExtractionDoc,
-    canonDir: string
+    canonDir: string,
+    provider?: string
 ): string {
     const methodId = generateMethodId();
     const today = new Date().toISOString().split('T')[0];
@@ -49,6 +50,7 @@ aliases: []
 domain_tags: []
 created: ${today}
 last_updated: ${today}
+provider: "${provider || 'unknown'}"
 ---`;
 
     const content = `${frontmatter}
@@ -123,7 +125,8 @@ export function applyCanonUpdate(
     extraction: ExtractionDoc,
     matchResult: MatchResult,
     canonDir: string,
-    existingEntry?: CanonEntry
+    existingEntry?: CanonEntry,
+    provider?: string
 ): { action: 'new' | 'update'; entryPath: string } {
     if (matchResult.matched_method_id && existingEntry) {
         // Update existing entry
@@ -135,7 +138,7 @@ export function applyCanonUpdate(
         return { action: 'update', entryPath };
     } else {
         // Create new entry
-        const entryPath = createCanonEntry(extraction, canonDir);
+        const entryPath = createCanonEntry(extraction, canonDir, provider);
         return { action: 'new', entryPath };
     }
 }

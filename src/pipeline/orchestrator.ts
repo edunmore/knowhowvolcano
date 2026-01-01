@@ -54,6 +54,7 @@ export async function runPipeline(
         runId,
         timestamp: new Date().toISOString(),
         config,
+        provider: llm.id,
         routerResult: { mode: 'DISCOVER', selectedFiles: [], topCandidates: [] },
         logs,
     };
@@ -142,7 +143,8 @@ export async function runPipeline(
             extraction,
             matchResult,
             config.canonDir,
-            existingEntry
+            existingEntry,
+            llm.id
         );
         output.canonUpdate = canonUpdate;
 

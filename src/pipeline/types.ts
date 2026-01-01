@@ -180,6 +180,8 @@ export interface CanonEntryMeta {
     domain_tags: string[];
     created: string;
     last_updated: string;
+    /** LLM provider used for extraction */
+    provider?: string;
 }
 
 export interface CanonEntry extends CanonEntryMeta {
@@ -229,6 +231,8 @@ export interface RunOutput {
     runId: string;
     timestamp: string;
     config: RunConfig;
+    /** LLM provider used */
+    provider: string;
     routerResult: RouterResult;
     extraction?: ExtractionDoc;
     criticReport?: CriticReport;
