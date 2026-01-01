@@ -1,0 +1,59 @@
+id="page-15-0"></span>**Introduction**
+
+The demand for change in business practice has never been greater than it is today. That the traditional culture of businesses has to evolve is hardly questioned now – the dot.coms have shaken up the way things have been done and are helping to redefine the relationship between organizations and their employees. In doing so, they are reaching into reservoirs of previously untapped performance. Bright sparks graduating from university have typically fought for internships at blue-chip corporations like Goldman Sachs. Now many of them dream of an internship at Google (Alphabet), Facebook, or the like, organizations that are doing things differently and pledging to provide a meaningful and exciting journey for their employees. This represents the next evolution of business, the reconnecting of business to its purpose, to its reason for being – after all, don't all businesses exist to serve a need? This Fifth Edition of *Coaching for Performance* will set out the reasons why all organizations need to embrace a new way of doing things, how coaching is central to that, and how it is a triple win for people, planet, and profit.
+
+When I wrote the first edition in 1992, it was one of the first books specifically on coaching and the first on coaching in the workplace, and it has served to define coaching globally. Much more than that, it has fueled the adoption of coaching by organizations globally, and it is for this audience, people who want to apply coaching in organizations, whether as leader or coach, that the book is written. Originally, its purpose was to define and establish the root principles of coaching before too many people jumped on the fledgling coaching bandwagon, some of whom might not have fully understood the psychological depth and potential breadth of coaching, and where it fits into the wider social context. Without that understanding, they could easily distort the fundamental methodology, application, purpose, and reputation of coaching.
+
+*Coaching for Performance* became the definitive book on coaching methodology for leaders, human resource departments, and schools of coaching globally, and now, while many other fine coaching books have added to the field of knowledge, by and large we all subscribe to a common set of principles. The coaching profession has expanded and matured beyond all expectations, and managed its start-up and early teething troubles with dignity and little pain. When we started Performance Consultants in the early 1980s, we were one of the only purveyors of coaching in Europe; now there are upward of 1,000 coaching businesses and more than 10,000 coaches in Europe involved in business, education, healthcare, charities, government departments, and every other activity imaginable. And indeed, Performance Consultants has spread its activities to 40 countries around the globe.
+
+There is a growing number of professional associations of coaches and it is gratifying to see that, in the main, they are cooperating rather than competing. Robust accreditation, qualifications, standards, and ethics are being agreed and monitored in a very responsible way, thanks in large part to the International Coach Federation (ICF) and other coach accreditation bodies. Coaching has moved from a cottage industry to a well-respected profession and has several journals dedicated to it. It is our intention at Performance Consultants to continue to champion the professionalization of this industry. As I pass on the mantle of pioneering coaching in organizations to my younger colleagues, I acknowledge that there is a long way still to go, but I am delighted with the work we have already done and the difference we have made in organizations. Testimony to this is the fact that this book is now in over 20 languages, including Japanese, Chinese, Korean, Russian, and most European languages.
+
+A note of caution: Poor practice in coaching leads to the danger of its being misrepresented, misperceived, and dismissed as not so new and different, or as failing to live up to its promises. My intention for this book is to keep the record straight and eliminate the surrounding weeds by describing and illustrating what coaching really is, including the psychological roots it stands on, what it can be used for, and how it creates the ultimate leadership style for driving thoughtful, performance-enhancing measures.
+
+#### **What is new in this edition?**
+
+This Fifth Edition is the product of more years of coaching experience, of course, and more importantly the exploration of evolutionary trends in human attitudes, beliefs, and behaviors, and in consciousness itself. It reflects the advancement of this knowledge and the maturing of the coaching industry.
+
+#### **CREATING HIGH PERFORMANCE**
+
+The fact that *Coaching for Performance* focuses on creating high performance might seem obvious to all. What I am keen to underline throughout this edition, though, is that the principles of coaching can be applied to any type of activity and will have the impact of raising performance. What I mean by performance is the result of reducing interference and increasing potential. I have illustrated this by including practical examples and also chapters on specific applications, such as Coaching for Lean Performance and Coaching for Safety Performance.
+
+Additionally, this Fifth Edition launches The Performance Curve, a model that maps the culture of an organization and relates this to the conditions for low, medium, or high performance. The Performance Curve enhances understanding of how coaching creates a high-performance culture and thereby revolutionizes the traditional approach to organizational culture. This is the new frontier for coaching and leadership development.
+
+#### **PRACTICAL ACTIVITIES, CASE STUDIES, AND EXAMPLE DIALOGUES**
+
+In this edition, I have sought to make The Practice of Coaching (Part III) even more practical. It includes the original chapters on questioning, listening, and the GROW model, revised and updated with activity boxes containing exercises from our gold standard Coaching for Performance programs that are run globally. These practice activities will help you develop the foundational skills of coaching through experience, which is the learning style that we advocate and which is proven to be most effective. After all, one can be completely versed in the theory of coaching, but not be able to coach in practice at all. Additionally, I share new example workplace dialogues and new case studies to demonstrate how coaching creates high
+
+performance and to show the practical application of a coaching style in day-to-day leadership. These sample coaching conversations draw on the extensive experience my colleagues at Performance Consultants and I have had in working with organizations globally and the many thousands of participants of our programs, in the years since the book was first published.
+
+#### **GROW FEEDBACK FRAMEWORK AND PERFORMANCE MANAGEMENT**
+
+I have completely overhauled the chapter on Will to include feedback, because it is crucial for high performance. So many of our clients are looking to focus on continuous improvement and learning and to move away from traditional approaches to performance management. They are thankful and relieved when we introduce their leaders to our GROW Feedback Framework, which applies a coaching approach to completely transform feedback and performance management. Whether you are already familiar with the GROW model or not, I am certain you will be delighted by the GROW Feedback Framework.
+
+#### **MEASURING THE BENEFITS AND ROI OF COACHING**
+
+Like education, motivation, and management, coaching needs to keep up with psychological development and understanding of how people bring the best out of themselves. For years I have been banging the drum about the astonishing effects of coaching in the workplace and how coaching leads to optimal performance. There is always a time lag between what is known in some circles and full adoption by the crowd. Performance Consultants is opening the doors to share its methodology and examples concerning the evaluation and measurement of coaching. I have completely updated the chapter on the benefits of coaching to share our way of measuring the benefits and return on investment (ROI), which we know is widely seen to be the holy grail of coaching in organizations.
+
+#### **COACHING GLOSSARY**
+
+A Glossary of Coaching Terms has been included so that readers can explore and test the universe of coaching skills. The glossary is taken from
+
+the highly esteemed Coaching for Performance workshop, which is accredited by the ICF and considered the gold standard for those who wish to develop leadership ability.
+
+#### **QUESTION BAGS**
+
+Finally, there is a section of Question Bags at the back of the book. This is a useful resource for dipping into as you find your way with coaching. Having questions (rather than answers!) at the ready is the fastest way to learn the new skill and rewire your neural networks. After a while, your questions will trip off the tongue.
+
+#### **Go for it!**
+
+Contrary to the appealing claims of *The One Minute Manager*, there are no quick fixes in business. Good coaching is a skill, an art perhaps, that requires a depth of understanding and plenty of practice if it is to deliver its astonishing potential. In this book I will show you why coaching is key to creating a high-performance culture and how to do it. Reading the book will not turn you into an expert coach, but it will get you started and help you to recognize the enormous value and potential of coaching, and perhaps set you on a journey of self-discovery that will have a profound effect on you and your organization's success, your sporting and other skills, and the quality of how you relate to others at work and at home.
+
+As with any new skill, attitude, style, or belief, adopting a coaching ethos requires commitment, practice, and some time before it flows naturally and its effectiveness is optimized. Some people will find this easier than others. If coaching is already your style, I hope this book will help you take what you already do to greater heights, or provide you with a fuller rationale for what you do intuitively. If it has not been your style in the past, I hope that the book will help set you on some new ways of thinking about leadership, about performance, and about people, and provide you with some coaching guidelines within which to begin your practice. I am frequently asked what people can do to maintain and raise their skill in their coaching work. My answer is to practice, practice, and practice, but with greater awareness of
+
+yourself and other people, and with commitment to your own continuing personal development.
+
+There is no one right way to coach. This book is no more than a companion to help you decide where you want to go and to introduce you to some routes toward your goal. You will have to explore the territory for yourself, since no one but you can begin to map the infinite variety in the landscape of human interplay in your life. The richness of that landscape can turn coaching and leadership into a personal and unique art form with which to decorate, appreciate, and enjoy your place of work.
+
+Individuals can evolve and transform their work and lives if they decide to embark on a personal developmental journey. Organizations can evolve and transform the work and lives of their people if they decide to embark on an organization-wide development journey. In practice the coaching process fosters evolution at every stage, for evolution emerges from within and can never be taught in prescriptive ways. Coaching is not teaching at all, it is about creating the conditions for learning and growing. Go for it!
+
+# <span 

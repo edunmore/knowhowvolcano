@@ -1,0 +1,170 @@
+﻿[0.00 - 67.22]  so let's talk about designer swish patterns let's talk about designer swish patterns and um we're actually looking at slide number 104 104 is the standard swish pattern it's the swish pattern put the little box-hand corner, have it explode big and bright until it covers up the other one, blah blah blah. You all do that, right? You've done that. Okay, now this one is real effective if the drivers are what? But not distance, unless you have it zoom out to the horizon, and certainly the location is the same for the old picture in the new picture so there are some clients for whom this switch pattern will not work and the switch pattern on slide number 105 will work and what are those drivers here?
+[67.32 - 69.04]  So in this case, we're going to assume
+[69.04 - 71.06]  that there's a driver of distance,
+[71.18 - 72.74]  because the other one didn't have distance, did it?
+[72.86 - 74.48]  The distance was the same in every case.
+[75.28 - 78.02]  A driver of size, because the size is different
+[78.02 - 80.74]  for the present state and the desired state,
+[80.82 - 81.32]  slightly different.
+[81.38 - 84.50]  And a driver of location, yeah, and also of distance.
+[85.12 - 87.34]  So in this case, what we do is we have the present state
+[87.34 - 104.46]  zoom out to the horizon. It actually goes from where it says present state on there, or PS, on that chart. It zooms out until it becomes way out on the horizon. I couldn't make the box, the little black box there, small enough, or the little box in the center. I could not make that small enough and still see it,
+[104.50 - 105.32]  so I made it a little bigger.
+[105.38 - 106.96]  But you could have it zoom out until it became a dot.
+[107.28 - 109.30]  And then it comes back in into the new location,
+[109.40 - 145.12]  into the desired state, and so that swish pattern would go out and then back in. Now, you can design swish patterns to do almost anything. You can design swish patterns to do almost anything, and one of the keys for me to designer switch patterns is to make them almost seem effortless for the client, to make them seem almost effortless for the client. So can you imagine, you know one of those old pull shades? Like that they used to have the little string on the bottom of them, and you pull the shade down and you just sort of loosen it up so it's ready to go and you have the present state on the shade now and then you let it go
+[145.12 - 145.36]  and it goes
+[145.36 - 147.66]  and the desired state's behind it
+[147.66 - 148.24]  like that.
+[149.62 - 149.80]  Okay?
+[150.04 - 150.96]  That's a designer switch.
+[152.32 - 152.64]  Or,
+[153.56 - 154.64]  you know the,
+[155.00 - 157.32]  what do you call those blinds that,
+[159.64 - 160.46]  levelers, right.
+[161.26 - 161.58]  Levelers,
+[161.66 - 163.12]  and you have leveler blinds
+[163.12 - 165.12]  and you have the present state on the blinds, and the blinds are closed,
+[165.20 - 166.58]  and then you go whoop like that,
+[166.68 - 168.76]  and you, with the little twisty bar thing,
+[168.88 - 170.38]  you know, the little plastic bar,
+[170.44 - 171.08]  you go like this with your hands,
+[171.16 - 172.78]  you go zip, like that,
+[172.80 - 173.54]  and the bar opens up,
+[173.60 - 174.92]  and you have the desired state.
+[178.58 - 179.42]  Clowns with pies.
+[181.20 - 185.38]  Clowns with pies. Here's another one. Here's another one.
+[225.54 - 228.98]  This is another one. This one is really kind of favorite of mine is you put the present state on a rubber sheet and you grab the back of the rubber sheet and you pull it away from the client and you stretch it way out as far as you can and when it gets all the way stretched way far back as far as it can, it changes into the desire state, and then you get to go, whap! And it hits the client in the face. Yeah? Designer swish patterns. What's the purpose of them? The purpose of designer swishes is to simply meet the needs of the client with regards to the client's drivers. Here's one more. You're walking through a very prestigious museum
+[228.98 - 231.90]  in your present state.
+[233.00 - 235.44]  And you walk up to a picture that looks like
+[235.44 - 237.02]  it's a very ancient picture of the masters,
+[237.18 - 238.42]  but it's actually your desired state.
+[239.92 - 243.02]  And you see the picture of the desired state
+[243.02 - 244.66]  and you actually see yourself in that picture,
+[326.54 - 345.50]  but one of the things you haven't noticed is that the picture's loose, and it actually all of a sudden falls over on you. Boom! And you're in the desired state, looking through your own eyes. Well, write those down. And then, of course, there's you at the drive-in movie, right? And how big is the drive-in movie screen? Very big, and you're right up close to it. And it falls over on you. That's another variation of that. No, it falls over on you, and you're in the desired state. Right, there's all kinds of ways to do designer switch patterns. And the key to it is, is to pay attention to the client's drivers. So elicit the client's drivers, find out what they are. And then utilize those in the process of making the change. Personally, I just use the standard switch pattern, or the one on slide 104, or I use the one on slide 105 mostly. I think the thing is, if you do a swish pattern more than 21 times and it doesn't take for the client, then you don't have the drivers. If you don't have the drivers, then switch drivers. Use this one, try that. Use that one, try that. In fact, it's okay not to have the drivers. It's okay not to have the drivers. In the book Magic in Action, Richard Bandler, who invented switch patterns, does a switch pattern with a woman and it doesn't work. He does the switch pattern on page 104, and it doesn't work.
+[347.20 - 349.04]  So he uses the one on 105, and it does.
+[349.32 - 349.66]  Yeah?
+[361.16 - 361.38]  So it's okay to do a standard switch pattern. If it doesn't work, then you go, hmm, I don't have the drivers. I don't personally take the time to elicit the drivers beforehand. I just use the standard switch pattern. If it doesn't work, then I go, hmm, maybe I don't have the drivers. Then I would do the one on 105,
+[363.98 - 364.82]  because it takes a while to elicit the drivers, right?
+[367.70 - 367.80]  And if 105 didn't do it, then I think I'd stop and I'd go,
+[368.88 - 369.40]  hmm, maybe I don't have the drivers.
+[366.70 - 366.72]  So then I would do the one on 105, because it takes a while to elicit the drivers, right? And if 105 didn't do it,
+[367.70 - 367.82]  then I think I'd stop and I'd go,
+[368.88 - 369.40]  hmm, maybe I don't have the drivers.
+[370.54 - 380.74]  So then I'd stop and elicit them. Now in some cases, and this is the only other piece I want to give you about making submodalities work and really making switch patterns work, the final piece for that is, because I think you guys have done enough switch patterns in your life,
+[381.18 - 382.14]  at least in terms of exercises.
+[382.98 - 388.42]  And the final piece is that if you do it enough times
+[388.42 - 425.72]  and you aren't getting the results, then stop and check and see what the drivers are. And make sure that you elicit the drivers and then design the switch pattern so that it meets the client's needs in terms of doing the drivers, in terms of making sure you've got the drivers. Any questions about that? Because what I'd like to do now is to move on to some, what I think are some advanced submodality distinctions. And to do that, I want to go back
+[425.72 - 447.88]  and we'll get to where we're going here in just a minute. I want to go back and review what we said on the very first day of the training and talk a little bit about expanded awareness and talk a little bit about quantum theory. One of the things you noticed when you were doing the quantum linguistics, I think, and one of the things you may have noticed each time you did an NLP pattern
+[447.88 - 465.04]  that really, really, really worked was that there was a moment of the client being in a sort of state of suspension or a moment of them being in the void, a moment when there was a sort of an aha, a moment when the client actually went, oh, or something happened, there was a moment of shift, and if, when
+[465.04 - 845.24]  you were the client, I don't know if you noticed, but something happened inside of you, and there was a moment of what, blankness, or what we would call the void. It may not have been a, a major experience of, or a long experience of void, but it might have just been a snap, or a quick, sort of a drop, or a quick breath that you take or whatever but at some at some point our point of view is that when a pattern like that works that you've actually entered into the void and usually from a quantum physics point of view from a quantum biology point of view what makes you enter into what causes you to enter into that experience is either the converse or the inverse or the non-merriman's reverse neurologically of what your current experience was. Okay? So to summarize, and have we been teaching this inductively so far? Yes. Will you continue? Probably. What caused the shift for you was entering into the void. So I'd like to spend a minute, a few minutes, talking about the void, and then I'd like to point towards some techniques that actually use our neurology to allow us to make shifts. Would that be fun? Actually use the drivers that our neurology has created, or that our neurology has been designed for to actually allow us to make shifts. And I'd like to begin to point the way, and this is actually the first time that I've... So it's interesting we're putting it on tape. This is the first time that we've actually gone so far in to teach these techniques to a master practitioner training. So what I'd like you to do as we go and do these techniques is I'd like you to experiment and report back to me. Is that okay with everyone? Yeah. Okay. So what is the void? The void is probably a state of relatively, it's probably a state of relatively deep trance, would you say? Actually, we're going to come, by the way, when we get all done with this training, we'll come back around and we'll look at the void in hypnosis with the very last day of this training. And if you're listening to it on tape, of course, you'll need to listen to Deep Trance Phenomena and get to the very last tape segment, because we talk about that in that tape segment. So why are we teaching this stuff in NLP? Well, one of the things that there have been a few of us, and I'll mention who we are in just a moment, there have been a few of us in NLP who, in looking at some of the techniques of Hoonah and also some of the techniques of the East Indian tradition, have found that there seem to be some neurological drivers that are also useful for assisting the client in making changes. To put it another way, there are certain deep trance states which can be utilized for therapeutic purposes that are very, very powerful. There are some deep trance states which can be used for therapeutic purposes which are very, very powerful. And so I want to talk a little bit about that. If the void is a state of infinite potential, which is what we said on our first day, or we talked a little bit about it, or maybe we said it on the second day. The void is a state of infinite potential. It's a state where we have infinite resources and infinite capabilities of accessing. So it might be interesting, would you be interested in learning how to enter into the void at will? Would you? Okay, let's look at page 417 and talk a little bit about that. And I bring this up by way of introducing us to some concepts and techniques which also utilize the void and really come back around and are, in essence, submodality or neurological submodality techniques. And when you think of the process of entering the void, it also deals with our internal state and our internal process. It deals with, it's very similar to a lot of what we do with submodalities. So that's why we're covering this in an NLP training. Furthermore, you probably realize by now that I'm more than a little into certain esoteric things. And so I'd like to quote one of my favorite authors who I've quoted a number of times in the book The Lost Secrets of Ancient Hawaiian Huna, Dion Fortune. And Dion Fortune was a great esoteric writer of the early part of the 20th century. She wrote a lot of her books in the 1920s in England. And she said essentially that psychology is not complete without at least some understanding of metaphysics. So she also felt that an understanding of metaphysics was also not complete without at least some understanding of psychology. Now, considering that we're working with the human being in both cases, then I think that makes a lot of sense. Okay, so let's look at page 417. The reason why we're covering this here is because I think it would be appropriate for you to learn how to enter into the void. We've already shared one way of going beyond context with you, which was the peripheral vision. And remember we said, and I want to just remind you, we said that when you focus in on something, when one focuses in totally on something, that then at some point, if you really focus in on it and then you let go, that your awareness will expand outward. And if you actually use this as a state yourself, you actually are going beyond context. Remember we said that the central part of your vision was content and the peripheral part of your vision was context. And if you're focused in, you're in a certain content, you're focused in a certain content, but you're also focused in a context, are you not? Right? So if you allow your awareness to expand outside that context, you'll again run over the boundaries just like we've been doing with everything we've been doing in this training with regards to quantum theory and quantum linguistics. Okay, so let's look at page 417. I think the year was 650, maybe? Somewhere in there. Maybe 600. An Indian sage named Patanjali wrote a little book called the Yoga Sutras. And the yoga, we're looking at slide number 106,
+[845.34 - 847.12]  but all the information is on page 417.
+[848.54 - 851.36]  In which he described the void or transcendence
+[851.36 - 852.28]  and how to enter into it.
+[852.30 - 853.92]  And this is a very, very short summary
+[853.92 - 855.22]  of his eight limbs of yoga
+[855.22 - 859.04]  to give you an understanding of how one would,
+[859.40 - 863.22]  how one would move in the direction
+[863.22 - 909.22]  of going more inward and actually ending up experiencing the void. The first five parts of this are more outer than the last three, which are more inner processes. In section two of his treatise, he said yoga is the cessation of mental activity, or entering into the void is the cessation of mental activity. And as I mentioned before, you probably have seen or experienced the moment when you, especially in the quantum linguistical area, when you notice something changing, that you had a moment of suspension or a moment of no thoughts.
+[909.22 - 913.08]  The process of entering into or causing a sensation in mental activity
+[913.08 - 917.16]  is accomplished by the following. First is Yama.
+[917.16 - 922.44]  And Yama, he wrote the book in 600 A.D. or 650 A.D., somewhere in there.
+[922.44 - 926.88]  So he had a lot of things that may or may not be applicable to today's world.
+[926.88 - 945.06]  But let me suggest that if you're going to enter into the void, you probably want to stop doing some things. And all the things you would want to stop doing are being the things that would bother you when you meditate. So when you sit down to meditate, I don't know if stuff comes up for you. People are going, yep, yep, sure does.
+[945.36 - 946.04]  I can't tell you
+[946.04 - 946.76]  all the stuff that comes up.
+[947.26 - 947.36]  Yeah.
+[962.42 - 963.12]  Well, what Patanjali said was, hey, if you're going to like, if you're going to sit down and meditate, there are some things that you want to stop doing, like not being truthful, and he had a whole list. Some of them are replicable, some aren't, but just think about your life.
+[964.88 - 966.60]  What are the things that you do in your life that keep you, when you sit down to meditate,
+[966.82 - 967.36]  that cause you to think your life that keep you, when you sit down to meditate, that cause
+[967.36 - 983.36]  you to think about things that keep you from going into the void, or keep you from transcending? And he also said there are some things you probably would want to do. Like, to my way of thinking, you probably want to pay your bills so the bill collector wouldn't call. You probably want to mow your lawn
+[983.36 - 985.20]  so that you wouldn't be worried about,
+[985.26 - 986.00]  gee, I've got to mow my lawn.
+[986.06 - 987.42]  I remember when I first started meditating,
+[987.56 - 988.34]  I'd sit there and I'd think,
+[988.42 - 985.20]  gee, I really have to mow your lawn so that you wouldn't be worried about,
+[985.26 - 986.00]  gee, I've got to mow my lawn.
+[986.06 - 987.42]  I remember when I first started meditating,
+[987.56 - 988.34]  I'd sit there and I'd think,
+[988.42 - 989.44]  gee, I really have to mow my lawn.
+[990.92 - 1001.40]  Did you ever do that? I mean, that's like so mundane, but it makes a lot of sense. So what he's saying in terms of yama and niyama is you'd want to order your life
+[1001.40 - 1002.12]  in such a way
+[1002.12 - 1003.06]  that it would preclude
+[1003.06 - 1004.08]  any of your interruptions
+[1004.08 - 1005.18]  from either the inside,
+[1005.30 - 1006.24]  from thoughts that you have
+[1006.24 - 1007.20]  about incomplete things,
+[1007.50 - 1008.58]  or from the outside,
+[1009.22 - 1046.34]  like people wanting to intrude upon that. And then the third thing, which is asana, is you probably want to sit down. Because I'll tell you what, if you were to really enter into the void standing up, you would fall over. So the next thing he said is to sit down and make the place where you sit comfortable. Make the place where you sit comfortable. The next one is pranayama, or pranayama. And you may want to do a breathing technique to quiet the mind, but you need to know that when you enter the void, your breathing will probably cease anyway.
+[1048.26 - 1051.40]  So if you're particularly nervous,
+[1051.72 - 1053.32]  then you may want to do a breathing technique
+[1053.32 - 1055.38]  to calm the mind down, which is called pranayama.
+[1057.28 - 1058.88]  But when you enter into the void,
+[1059.18 - 1060.58]  your breathing will probably stop,
+[1061.20 - 1062.76]  and that's also called pranayama.
+[1185.12 - 1185.92]  And the next one is pratyahara, And the thing to do with pratyahara is to turn the senses, which are normally turned outward, to turn them inward. Turn the senses from outward to inward. Now think about it for a minute. Most of our life we go around and our senses are outside. So our V-A-K-O-G and A-D are totally, well A-D is inside, but our V-A-K-O-G is turned totally toward the outside. What potentially is suggesting is a 180 degree turn so that the awareness is turned inside. That's done by focusing on something inside, and I'm going to show you a diagram in just a moment and also talk to you about a specific technique which will turn the senses and turn everything inside automatically. Now, as I mentioned, the first five are more outer and the last three, or the second set here, the last three is more inner. And dharana essentially says to focus on something inside and put all of your attention on it. So focus on something inside and put all of your attention on it. The attention should be one-pointed but gentle and not hard. And this word has often been called concentration. Although I think to those of us in the Western world, we think of concentration as holding on to something really tight. And that's not what Patanjali means by dharana. He means just allow your mind to gently rest on something and focus on it to the exclusion of all else, but not holding on to it tightly. Kind of like, did you ever get totally tranced up watching TV? That's one of my favorite trances, too, like this. Right? And it doesn't matter what's on, right? It could be CNN, it could be FX, it could be USA, it could be anything. You don't care, just watch the colors. That is, but when you're totally focused in on that, and you're totally focusing on that, that's dharana. Except that that's external. And what Patanjali's talking about is internal so you want to focus on something internally
+[1185.92 - 1204.88]  and Dhyana as you totally focus on the object of your attention what you notice is your awareness begins to expand outward you notice that during Hakala you notice that during your peripheral vision we did in the first day of this training did you notice that so you notice the attention begins to expand outward and Dhyana says let the attention begin to expand outward
+[1204.88 - 1206.24]  and let it go as far as it will go.
+[1206.52 - 1208.08]  Let the attention begin to expand outward
+[1208.08 - 1225.90]  and let it go as far as it will go. Let the attention begin to expand outward and let it go as far as it will go. And Samadhi, when it reaches infinity, then you're in the void. So with any luck, if you totally focus in on something and then let go, the awareness will begin to expand outward. And if you just let it go, when it goes, just let it go. And if it goes all the way to infinity,
+[1226.00 - 1226.46]  you're in the void.
+[1243.78 - 1243.92]  Isn't that cool? You just, boom, you drop in the void. There's a moment of awareness, a moment of suspension, with no thoughts and no object of consciousness. Think about this for a minute. No object of consciousness means a moment ago, and what happens is you're usually aware of it afterwards.
+[1244.62 - 1244.64]  So it goes like this.
+[1305.18 - 1327.96]  A moment ago, I was awake, I was aware, but I wasn't aware of anything. There was just pure awareness or pure consciousness. Have you ever had that experience? Yeah? And that's, and it's as if it was consciousness itself with nothing else that you were conscious of. And that is what samadhi is. That's what samadhi is. And, oh, so I'm going to come back to this page in just a minute. You can actually stay right here. Let me show you how that might look, looking at slide number 107. I'm indebted to Maharishi Mahesh Yogi and the Transcendental Meditation folks for this particular diagram, but it really describes how the mind works. At the bottom of slide number 107 is, see that little black line right there, is the void. That's that little line at the very, very bottom, right above the words Accelerated NLP Master Practitioner Training. How'd that get in the void? I don't know. Cool. Whoa, it's in there, yeah, definitely in there. Okay, so here's the void. And what happens, according to their theory, is that a thought begins to rise up from the void. Now, think about this for a minute. If we were standing here, unless we were all sitting here, And if you're at home in your room, imagine as you look down on the ground beneath you
+[1327.96 - 1386.50]  that it's a pond of water. Just imagine for a moment you're looking at a pond of water. Okay? And you look off here, and somewhere over there, maybe at a 45 degree angle from you, a bubble rises up from the bottom of the pond. Okay? A bubble rises up from the bottom of the pond. You're not going to see the bubble when it starts from the bottom of the pond, are you? No. And that's this little bubble down here. And a bubble will rise through the pond, and as it rises, by the way, it kind of expands. If you actually have a bubble of air that rises through water, depending on how far it rises through water, it will expand. In the same way, this is like your thoughts rising from the void, and they become more distinct, and they become more concrete as they rise through the void. They become less abstract and more concrete as they rise up through the thoughts. And then at some point they break on the surface, and these two horizontal lines
+[1386.50 - 1446.40]  near the top of the diagram are the conscious mind, which is about 10% of our awareness, and the depth below the second line, which is marked 90%, is the unconscious mind. So a thought will rise through the unconscious mind through portions of the mind of which we're not aware, until it rises up to the surface of the mind and then breaks on the surface that's how thoughts normally go now in meditation regardless of the kind of meditation according to Patanjali in in meditation according to the kind of meditation regardless of the kind according to Patanjali we want reverse this process. So we want to take and become aware of finer and finer levels of our experience. So what is meditation? Meditation is training the mind to become aware of lesser and lesser impulses, which actually trains our awareness to become more and more aware of the inner.
+[1447.14 - 1449.06]  And the mind becomes more and more aware
+[1449.06 - 1450.82]  of finer and finer impulses
+[1450.82 - 1453.16]  until at some point it'll just drop off and transcend.
+[1456.76 - 1458.72]  And you'll experience that moment of transcendence.
+[1459.18 - 1461.46]  There are many, many ways to get there,
+[1462.06 - 1463.58]  including quantum linguistics,
+[1463.68 - 1465.06]  which is kind of like the Zen koan.
+[1465.14 - 1466.26]  I don't know if you know the Zen koan,
+[1466.26 - 1469.96]  but they ask you to contemplate something
+[1469.96 - 1565.70]  Thank you for watching. many ways to get there, including quantum linguistics, which is kind of like the Zen koan. I don't know if you know the Zen koan, but they ask you to contemplate something uncontemplatable. Sound like quantum linguistics? And they want you to contemplate something as uncontemplatable, and when you contemplate that, at some point you let go and you experience what they call nirvana, which is essentially a non-members reverse of our experience. And And that's another technique, and in this case what we're doing is we're simply following a thought which normally rises from the bottom of, or the very deepest level of the unconscious mind from the void, and then rises up through the unconscious mind becoming more and more distinct, more and more concrete, less and less abstract until it breaks on the surface of the mind. And that's the 10% of the mind that we're aware of. So if the bubble rose through the pond, we wouldn't see the bubble until it, just before it broke on the surface. And that's the 10% of the mind that we're currently using. Now, there's one more thing, and this is really interesting. This deepest level of the unconscious mind, before you get to the void that's's the arrow on the left here. There's a place that's called Ritambhara Pragyam. It's in your notes here. It's at the very bottom of page 417. There's a, I hope I've spelled this correctly, by the way. There's a place called Ritambhara Pragyam. Ritambhara Pragyam translates most closely to that area that knows only truth or that place that knows only truth. It's funny that they would be called that place that knows only truth because in the Hawaiian system the void is called iyo and iyo means truth. So right before the void there's a place that knows only truth. There's an important couple of things
+[1565.70 - 1566.66]  important about this.
+[1567.00 - 1567.88]  One is if you can take
+[1567.88 - 1568.58]  something and drop it
+[1568.58 - 1568.90]  into there
+[1568.90 - 1569.52]  it becomes true.
+[1573.42 - 1574.32]  The other thing is
+[1574.32 - 1575.08]  if you want to let go
+[1575.08 - 1575.60]  of something
+[1575.60 - 1578.68]  then any illusion
+[1578.68 - 1579.88]  if you drop it in there
+[1579.88 - 1581.44]  will become true
+[1581.44 - 1582.08]  which means the illusion
+[1582.08 - 1582.54]  disappears.
+[1583.88 - 1585.08]  And the third thing is
+[1585.08 - 1587.74]  that this area has a tremendous amount of information
+[1587.74 - 1589.46]  for people that want to cognize things
+[1589.46 - 1591.00]  or be aware of things that they're unaware of.
+[1592.38 - 1595.16]  So it's the process of entering into the void, then,
+[1595.20 - 1597.76]  becomes actually a process of following your thoughts
+[1597.76 - 1600.04]  or following something
+[1600.04 - 1603.28]  back inside the self until we transcend,
+[1604.58 - 1606.60]  until we experience the very, very deeper levels of that,
+[1606.64 - 1607.82]  until we actually transcend
+[1607.82 - 1609.80]  and experience no thoughts
+[1609.80 - 1665.52]  Thanks for watching! back inside the self until we transcend, until we experience the very, very deeper levels of that, until we actually transcend and experience no thoughts, pure consciousness. A couple of other distinctions I'd like to make, and that is, Patanjali talks about two kinds of meditation. And he says one is meditation with seed and one is meditation without seed. Meditation with seed, he says, is contemplating the thinking with meaning. So if you're thinking about the meaning of life or meditating on a positive statement, that's meditation with seed. He says that meditation without seed is far superior to meditation with seed. Meditation with seed will give you the truth of that which you're meditating upon. But it may not give you absolute truth because you're still bound by the meaning. So it's better to pick something with which you're not totally invested in the meaning of it in order for you to experience going into the void. Does that make sense?
+[1666.34 - 1668.78]  So it's better to pick something
+[1668.78 - 1671.44]  where you either meditate on something
+[1671.44 - 1673.50]  which you're not caught up in the meaning of it.
+[1674.50 - 1676.12]  So in a meditation with a mantra,
+[1676.26 - 1678.32]  a lot of times people don't pay any attention to the,
+[1678.86 - 1683.26]  they don't worry about the meaning of the mantra per se,
+[1683.36 - 1685.14]  but more meditate on the sound of the mantra.
+[1685.64 - 1689.42]  And we're actually going to meditate a little bit differently, if you would like to.
+[1690.12 - 1694.44]  We'll actually meditate on a, use a technique that meditates on the inner light, the light
+[1694.44 - 1699.64]  in the head, which is already present, and that inner light is, in terms of meaning,
+[1699.74 - 1701.80]  is totally without content, because it's just light.
+[1702.70 - 1705.76]  So meditation with seed is useful. Like,
+[1705.80 - 1725.02]  for example, if you wanted to know the basic truth about a strawberry, the basic nature of a strawberry, you'd probably grab a strawberry and you'd look at it, you know, and you'd meditate on it and you'd experience, perhaps, if you were capable of doing that, you'd experience lesser and lesser levels of the strawberry and you'd get to the truth of the strawberry. Or if you're meditating on a great phrase like kindness,
+[1725.20 - 1726.86]  some people meditate on kindness, for example,
+[1727.50 - 1765.12]  or caringness or something like that. So you meditate on the word kindness and you think all about it. You may transcend and you may get to the truth about kindness, but both of those are contemplation with seed. That is to say there's some meaning involved with it or some paying attention to some sort of meaning. So the process of meditating on something which is without meaning actually allows you to go even more deeply and end up in the void at that point, which will be just simply pure consciousness.
+[1765.24 - 1766.82]  And like I said, there's lots of different ways to get there.
+[1767.76 - 1768.84]  Lots of different ways to get there.
+[1769.76 - 1770.50]  You with me so far?
+[1770.84 - 1771.58]  That's the theory.
+[1774.72 - 1778.04]  This is the end of Tape 14, Side B.
