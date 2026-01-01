@@ -8,7 +8,7 @@
  *   npx tsx src/cli.ts extract --files <file1> <file2>
  */
 
-import { resolve, dirname, basename } from 'node:path';
+import { resolve, dirname, basename, join } from 'node:path';
 import { existsSync } from 'node:fs';
 
 import { llmGeminiCLI } from './providers/gemini-cli-provider.js';
@@ -80,10 +80,14 @@ Options:
                     process.exit(1);
                 }
 
+                const sourceDir = resolve(getArg('sourceDir') || dirname(resolve(startFile)));
+                // Canon directory defaults to {sourceDir}/canon
+                const defaultCanonDir = join(sourceDir, 'canon');
+
                 const config: RunConfig = {
                     startFile: resolve(startFile),
-                    sourceDir: resolve(getArg('sourceDir', './booksample')!),
-                    canonDir: resolve(getArg('canonDir', './canon')!),
+                    sourceDir,
+                    canonDir: resolve(getArg('canonDir') || defaultCanonDir),
                     maxFiles: parseInt(getArg('maxFiles', '4')!, 10),
                     provider: provider as any,
                 };

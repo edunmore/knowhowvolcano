@@ -144,7 +144,8 @@ export async function runPipeline(
             matchResult,
             config.canonDir,
             existingEntry,
-            llm.id
+            llm.id,
+            { startFile: config.startFile, selectedFiles: routerResult.selectedFiles }
         );
         output.canonUpdate = canonUpdate;
 
