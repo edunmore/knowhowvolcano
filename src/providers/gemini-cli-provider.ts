@@ -10,6 +10,9 @@
  */
 
 import { execSync, exec } from 'node:child_process';
+import { writeFileSync, unlinkSync, mkdtempSync } from 'node:fs';
+import { join } from 'node:path';
+import { tmpdir } from 'node:os';
 import type { LLMHandle, ToolDefinition, LLMToolResult } from 'volcano-sdk';
 
 // TokenUsage type (defined locally as it's not exported from volcano-sdk)
@@ -50,28 +53,48 @@ export interface GeminiCLIResponse {
     error?: { type?: string; message?: string; code?: number };
 }
 
+// Max shell command line length (conservative estimate)
+const MAX_INLINE_PROMPT_LENGTH = 50000;
+
 /**
  * Execute a prompt via Gemini CLI headless mode
+ * Uses temp file for large prompts to avoid E2BIG shell limit
  */
 function executeGeminiCLI(
     prompt: string,
     config: Required<GeminiCLIConfig>
 ): GeminiCLIResponse {
-    const args: string[] = [
-        '-p', prompt,
-        '--output-format', 'json',
-        '-m', config.model,
-    ];
-
-    if (config.yolo) {
-        args.push('-y');
-    }
-
-    const command = `${config.binaryPath} ${args.map(a =>
-        a.includes(' ') || a.includes('"') ? `'${a.replace(/'/g, "'\\''")}'` : a
-    ).join(' ')}`;
+    let tempFile: string | null = null;
 
     try {
+        // For large prompts, write to temp file and use cat | gemini
+        const useTempFile = prompt.length > MAX_INLINE_PROMPT_LENGTH;
+
+        if (useTempFile) {
+            const tempDir = mkdtempSync(join(tmpdir(), 'gemini-'));
+            tempFile = join(tempDir, 'prompt.txt');
+            writeFileSync(tempFile, prompt, 'utf-8');
+        }
+
+        const args: string[] = [
+            '--output-format', 'json',
+            '-m', config.model,
+        ];
+
+        if (config.yolo) {
+            args.push('-y');
+        }
+
+        let command: string;
+        if (useTempFile) {
+            // Use cat to pipe file content to gemini
+            command = `cat '${tempFile}' | ${config.binaryPath} ${args.join(' ')}`;
+        } else {
+            // Inline prompt for short commands
+            const escapedPrompt = prompt.replace(/'/g, "'\\''");
+            command = `${config.binaryPath} -p '${escapedPrompt}' ${args.join(' ')}`;
+        }
+
         const output = execSync(command, {
             cwd: config.workingDir,
             timeout: config.timeout,
@@ -97,7 +120,13 @@ function executeGeminiCLI(
                 code: error.status || -1,
             },
         };
+    } finally {
+        // Clean up temp file
+        if (tempFile) {
+            try { unlinkSync(tempFile); } catch { }
+        }
     }
+
 }
 
 /**
