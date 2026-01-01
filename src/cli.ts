@@ -151,6 +151,27 @@ Options:
                 break;
             }
 
+            case 'summarize': {
+                // Import summarizer dynamically to avoid circular dependencies
+                const { generateChapterSummaries } = await import('./pipeline/summarizer.js');
+
+                const sourceDir = resolve(getArg('sourceDir', './booksample')!);
+                const summaryProvider = getArg('summaryProvider', 'deepseek');
+                const force = args.includes('--force');
+
+                console.log(`Generating chapter summaries for: ${sourceDir}`);
+                console.log(`Summary provider: ${summaryProvider}`);
+                if (force) console.log('Force regeneration: yes');
+
+                const summaryLlm = getProvider(summaryProvider);
+
+                await generateChapterSummaries(summaryLlm, sourceDir, { force });
+
+                console.log('\nSummaries saved to:');
+                console.log(`  ${sourceDir}/canon/chaptersummary.md`);
+                break;
+            }
+
             default:
                 console.error(`Unknown command: ${command}`);
                 process.exit(1);

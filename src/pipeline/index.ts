@@ -11,3 +11,4 @@ export * from './canon-matcher.js';
 export * from './canon-updater.js';
 export * from './canon-indexer.js';
 export * from './orchestrator.js';
+export * from './summarizer.js';
