@@ -69,7 +69,21 @@ Options:
     }
 
     const provider = getArg('provider', 'gemini');
-    const llm = getProvider(provider);
+    const verbose = args.includes('--verbose');
+
+    // Import and setup verbose logging if flag is set
+    if (verbose) {
+        const { setVerbose } = await import('./pipeline/verbose-logger.js');
+        setVerbose(true);
+    }
+
+    let llm = getProvider(provider);
+
+    // Wrap provider with verbose logging if enabled
+    if (verbose) {
+        const { wrapWithVerboseLogging } = await import('./pipeline/verbose-logger.js');
+        llm = wrapWithVerboseLogging(llm, { cliArgs: args });
+    }
 
     try {
         switch (command) {
@@ -93,9 +107,10 @@ Options:
                 };
 
                 console.log('Config:', config);
+                if (verbose) console.log('Verbose mode: ON');
                 console.log('');
 
-                const result = await runPipeline(llm, config);
+                const result = await runPipeline(llm, config, verbose);
 
                 console.log('\n=== Run Complete ===');
                 console.log(`Run ID: ${result.runId}`);

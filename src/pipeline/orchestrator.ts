@@ -12,6 +12,7 @@ import { critique, meetsThresholds } from './critic.js';
 import { loadCanonIndex, matchCanon, loadCanonEntry } from './canon-matcher.js';
 import { applyCanonUpdate } from './canon-updater.js';
 import { regenerateIndex } from './canon-indexer.js';
+import { formatLogsForFile } from './verbose-logger.js';
 
 /**
  * Generate a run ID
@@ -36,7 +37,8 @@ function log(logs: string[], message: string): void {
  */
 export async function runPipeline(
     llm: LLMHandle,
-    config: RunConfig
+    config: RunConfig,
+    verbose: boolean = false
 ): Promise<RunOutput> {
     const runId = generateRunId();
     const logs: string[] = [];
@@ -165,8 +167,12 @@ export async function runPipeline(
         log(logs, `\n!!! ERROR: ${error.message}`);
         throw error;
     } finally {
-        // Save logs
-        writeFileSync(join(runDir, 'run.log'), logs.join('\n'));
+        // Save logs - include verbose logs if enabled
+        let logContent = logs.join('\n');
+        if (verbose) {
+            logContent += formatLogsForFile();
+        }
+        writeFileSync(join(runDir, 'run.log'), logContent);
         writeFileSync(
             join(runDir, 'output.json'),
             JSON.stringify(output, null, 2)
