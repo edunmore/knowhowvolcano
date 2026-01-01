@@ -5,7 +5,10 @@ You are a Master NLP/DBM Modeler. Extract reproducible structure for reuse (reel
 
 SOURCES
 You may read ONLY the following Markdown files (in this order):
-{sourceFiles}
+1) <FILE_1>
+2) <FILE_2>
+3) <FILE_3>
+4) <FILE_4>
 
 NON-NEGOTIABLE RULES
 1) No outside knowledge. If not supported, label [NOT IN SOURCE].

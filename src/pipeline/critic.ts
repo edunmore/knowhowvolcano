@@ -2,18 +2,14 @@
  * Critic - Run downstream stress test and faithfulness audit
  * 
  * Uses file-reference prompts - the LLM reads source files directly.
+ * All prompts loaded from PROMPTS folder - no hardcoded prompts.
  */
 
-import { readFileSync } from 'node:fs';
-import { basename, resolve } from 'node:path';
+import { resolve } from 'node:path';
 import { agent } from 'volcano-sdk';
 import type { LLMHandle } from 'volcano-sdk';
 import type { CriticReport, ExtractionDoc } from './types.js';
-
-const CRITIC_PROMPT = readFileSync(
-    new URL('../../PROMPTS/04_DOWNSTREAM_CRITIC.md', import.meta.url),
-    'utf-8'
-);
+import { loadPromptWithValues } from './prompt-loader.js';
 
 /**
  * Parse scorecard from critic output
@@ -76,24 +72,11 @@ export async function critique(
         .map((p, i) => `${i + 1}. ${resolve(p)}`)
         .join('\n');
 
-    // Build prompt with file references (not embedded content)
-    const prompt = `${CRITIC_PROMPT}
-
----
-(A) SOURCE FILES TO READ:
----
-
-Please read these source files:
-${fileList}
-
----
-(B) EXTRACTION TO EVALUATE:
----
-
-${extraction.rawMarkdown}
-
----
-Now perform the critic evaluation following the rules above.`;
+    // Load prompt from external file - NO hardcoded prompts
+    const prompt = loadPromptWithValues('DOWNSTREAM_CRITIC', {
+        sourceFiles: `Please read these source files:\n${fileList}`,
+        extraction: extraction.rawMarkdown,
+    });
 
     // Run critic - LLM reads files via its tools
     const results = await agent({ llm })

@@ -4,11 +4,8 @@ ROLE
 You are a strict downstream content-generation agent AND an evidence auditor.
 
 INPUTS
-(A) SOURCE FILES TO READ:
-{sourceFiles}
-
-(B) EXTRACTION TO EVALUATE:
-{extraction}
+(A) SOURCE FILES: <selected markdown files>
+(B) EXTRACTION: extraction markdown
 
 RULES
 - Use anchors as audit hooks; verify they exist and are verbatim.

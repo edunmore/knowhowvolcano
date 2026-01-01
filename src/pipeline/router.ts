@@ -93,25 +93,15 @@ export async function routeChapters(
             additionalFiles: String(maxFiles - 1),
         });
     } else {
-        // Fall back to original prompt - load from external file
+        // Fall back to original prompt - load from external file with placeholders
         const chapterList = chapterIndex.map((f, i) => `${i + 1}. ${basename(f)}`).join('\n');
-        const basePrompt = loadPrompt('CHAPTER_ROUTER');
-        prompt = `${basePrompt}
-
-CHAPTER INDEX:
-${chapterList}
-
-START FILE: ${startFileName}
-
-CANON INDEX SUMMARY:
-${canonSummary}
-
-MAX_FILES: ${maxFiles}
-
-START FILE PREVIEW (first 1000 chars):
-${startDoc.content.slice(0, 1000)}
-
-Please select the files needed and output in the required format.`;
+        prompt = loadPromptWithValues('CHAPTER_ROUTER', {
+            chapterIndex: chapterList,
+            startFile: startFileName,
+            canonSummary,
+            maxFiles: String(maxFiles),
+            startPreview: startDoc.content.slice(0, 1000),
+        });
     }
 
     // Run LLM
