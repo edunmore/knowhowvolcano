@@ -9,7 +9,7 @@
  */
 
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
-import { join, basename } from 'node:path';
+import { join, basename, resolve } from 'node:path';
 import { agent } from 'volcano-sdk';
 import type { LLMHandle } from 'volcano-sdk';
 import { listSourceFiles, loadSourceFile } from './source-store.js';
@@ -61,23 +61,19 @@ function parseSummaryResponse(filename: string, response: string): ChapterSummar
 
 /**
  * Generate summary for a single chapter
+ * Note: The LLM reads the file directly using its file-reading capability
  */
 async function summarizeChapter(
     llm: LLMHandle,
     filePath: string
 ): Promise<ChapterSummary> {
-    const doc = loadSourceFile(filePath);
     const filename = basename(filePath);
+    const absolutePath = resolve(filePath);
 
-    // Truncate very long files to avoid token limits
-    const content = doc.content.length > 15000
-        ? doc.content.slice(0, 15000) + '\n\n[... truncated ...]'
-        : doc.content;
-
-    // Load prompt from external file
+    // Load prompt from external file - pass file path, not content
     const prompt = loadPromptWithValues('SUMMARIZER', {
         filename,
-        content,
+        content: `[Please read this file: ${absolutePath}]`,
     });
 
     const results = await agent({ llm })

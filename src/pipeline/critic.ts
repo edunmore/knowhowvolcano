@@ -1,13 +1,14 @@
 /**
  * Critic - Run downstream stress test and faithfulness audit
+ * 
+ * Uses file-reference prompts - the LLM reads source files directly.
  */
 
 import { readFileSync } from 'node:fs';
-import { basename } from 'node:path';
+import { basename, resolve } from 'node:path';
 import { agent } from 'volcano-sdk';
 import type { LLMHandle } from 'volcano-sdk';
-import type { CriticReport, ExtractionDoc, SourceDocument } from './types.js';
-import { loadSourceFiles, formatSourcesForPrompt } from './source-store.js';
+import type { CriticReport, ExtractionDoc } from './types.js';
 
 const CRITIC_PROMPT = readFileSync(
     new URL('../../PROMPTS/04_DOWNSTREAM_CRITIC.md', import.meta.url),
@@ -63,27 +64,30 @@ function parseFixSpec(output: string): CriticReport['fixSpec'] {
 
 /**
  * Run the critic evaluation
+ * Note: The LLM reads source files directly using its file-reading capability
  */
 export async function critique(
     llm: LLMHandle,
     extraction: ExtractionDoc,
     selectedFiles: string[]
 ): Promise<CriticReport> {
-    // Load source files
-    const sources = loadSourceFiles(selectedFiles);
-    const sourceContent = formatSourcesForPrompt(sources);
+    // Build file reference list with absolute paths
+    const fileList = selectedFiles
+        .map((p, i) => `${i + 1}. ${resolve(p)}`)
+        .join('\n');
 
-    // Build prompt
+    // Build prompt with file references (not embedded content)
     const prompt = `${CRITIC_PROMPT}
 
 ---
-(A) SOURCE FILES:
+(A) SOURCE FILES TO READ:
 ---
 
-${sourceContent}
+Please read these source files:
+${fileList}
 
 ---
-(B) EXTRACTION:
+(B) EXTRACTION TO EVALUATE:
 ---
 
 ${extraction.rawMarkdown}
@@ -91,7 +95,7 @@ ${extraction.rawMarkdown}
 ---
 Now perform the critic evaluation following the rules above.`;
 
-    // Run critic
+    // Run critic - LLM reads files via its tools
     const results = await agent({ llm })
         .then({ prompt })
         .run();

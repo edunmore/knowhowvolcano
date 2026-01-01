@@ -1,13 +1,15 @@
 /**
  * Extractor - Extract Method Kernel, Delivery Model, and Reuse Pack
+ * 
+ * Uses file-reference prompts - the LLM reads files directly instead of 
+ * us embedding content in the prompt.
  */
 
 import { readFileSync } from 'node:fs';
-import { basename } from 'node:path';
+import { basename, resolve } from 'node:path';
 import { agent } from 'volcano-sdk';
 import type { LLMHandle } from 'volcano-sdk';
-import type { ExtractionDoc, SourceDocument } from './types.js';
-import { loadSourceFiles, formatSourcesForPrompt } from './source-store.js';
+import type { ExtractionDoc } from './types.js';
 
 const EXTRACTOR_PROMPT = readFileSync(
     new URL('../../PROMPTS/02_EXTRACTOR_MULTI.md', import.meta.url),
@@ -15,50 +17,50 @@ const EXTRACTOR_PROMPT = readFileSync(
 );
 
 /**
- * Build the extraction prompt with source files injected
+ * Build the extraction prompt with file references (not embedded content)
  */
-function buildExtractionPrompt(sources: SourceDocument[]): string {
+function buildExtractionPrompt(filePaths: string[]): string {
     // Replace placeholders in prompt template
     let prompt = EXTRACTOR_PROMPT;
 
-    // Replace file placeholders
+    // Replace file placeholders with basenames
     for (let i = 0; i < 4; i++) {
         const placeholder = `<FILE_${i + 1}>`;
-        const replacement = sources[i]
-            ? basename(sources[i].path)
+        const replacement = filePaths[i]
+            ? basename(filePaths[i])
             : '(not provided)';
         prompt = prompt.replace(placeholder, replacement);
     }
 
-    // Add source content
-    const sourceContent = formatSourcesForPrompt(sources);
+    // Build file reference list with absolute paths
+    const fileList = filePaths
+        .map((p, i) => `${i + 1}. ${resolve(p)}`)
+        .join('\n');
 
     return `${prompt}
 
 ---
-SOURCE FILES CONTENT:
+SOURCE FILES TO READ:
 ---
 
-${sourceContent}
+Please read and analyze the following files:
+${fileList}
 
----
-END OF SOURCES. Now perform the extraction following the rules above.`;
+Read each file, then perform the extraction following the rules above.`;
 }
 
 /**
  * Run the extraction process
+ * Note: The LLM will read the files directly using its file-reading capability
  */
 export async function extract(
     llm: LLMHandle,
     selectedFiles: string[]
 ): Promise<ExtractionDoc> {
-    // Load source files
-    const sources = loadSourceFiles(selectedFiles);
+    // Build prompt with file references (no content embedding)
+    const prompt = buildExtractionPrompt(selectedFiles);
 
-    // Build prompt
-    const prompt = buildExtractionPrompt(sources);
-
-    // Run extraction
+    // Run extraction - LLM reads files via its tools
     const results = await agent({ llm })
         .then({ prompt })
         .run();
