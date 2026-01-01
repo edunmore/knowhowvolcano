@@ -3,6 +3,7 @@
 > **⚠️ MANDATORY RULE: All prompts MUST be defined in this folder. No hardcoded prompts in code.**
 
 This folder contains all system prompts used by the Canon Extraction Pipeline.
+Prompts are **numbered by pipeline execution order** (01 = first, 07 = last).
 
 ---
 
@@ -15,108 +16,62 @@ This folder contains all system prompts used by the Canon Extraction Pipeline.
 
 ---
 
-## Prompt Index
+## Prompt Index (Pipeline Order)
 
-| File | Purpose | Variables | Used In |
-|------|---------|-----------|---------|
-| [00_CHAPTER_ROUTER.md](00_CHAPTER_ROUTER.md) | Select chapters (fallback, adjacent-based) | `{chapterIndex}`, `{startFile}`, `{canonSummary}`, `{maxFiles}`, `{startPreview}` | `router.ts` |
-| [01_SMART_ROUTER.md](01_SMART_ROUTER.md) | Select chapters (thematic, summary-based) | `{startFile}`, `{startPreview}`, `{summaries}`, `{canonSummary}`, `{maxFiles}`, `{additionalFiles}` | `router.ts` |
-| [02_EXTRACTOR_MULTI.md](02_EXTRACTOR_MULTI.md) | Extract Method Kernel + Delivery Model + Reuse Pack | `{sourceFiles}` | `extractor.ts` |
-| [03_DELTA_EXTRACTOR.md](03_DELTA_EXTRACTOR.md) | Update existing canon entry with new info | (not yet implemented) | — |
-| [04_DOWNSTREAM_CRITIC.md](04_DOWNSTREAM_CRITIC.md) | Stress test + faithfulness audit + scoring | `{sourceFiles}`, `{extraction}` | `critic.ts` |
-| [05_SUMMARIZER.md](05_SUMMARIZER.md) | Generate chapter summaries for routing | `{filename}`, `{content}` | `summarizer.ts` |
-| [06_CANON_MATCHER.md](06_CANON_MATCHER.md) | Match extraction to existing canon | `{extraction}`, `{canonMethods}` | `canon-matcher.ts` |
+| # | File | Purpose | Variables | Used In |
+|---|------|---------|-----------|---------|
+| 01 | [01_SUMMARIZER.md](01_SUMMARIZER.md) | Generate chapter summaries | `{filename}`, `{content}` | `summarizer.ts` |
+| 02 | [02_CHAPTER_ROUTER.md](02_CHAPTER_ROUTER.md) | Select chapters (fallback) | `{chapterIndex}`, `{startFile}`, `{canonSummary}`, `{maxFiles}`, `{startPreview}` | `router.ts` |
+| 03 | [03_SMART_ROUTER.md](03_SMART_ROUTER.md) | Select chapters (smart) | `{startFile}`, `{startPreview}`, `{summaries}`, `{canonSummary}`, `{maxFiles}`, `{additionalFiles}` | `router.ts` |
+| 04 | [04_EXTRACTOR.md](04_EXTRACTOR.md) | Extract Method Kernel | `{sourceFiles}` | `extractor.ts` |
+| 05 | [05_CRITIC.md](05_CRITIC.md) | Stress test + scoring | `{sourceFiles}`, `{extraction}` | `critic.ts` |
+| 06 | [06_MATCHER.md](06_MATCHER.md) | Match to canon | `{extraction}`, `{canonMethods}` | `canon-matcher.ts` |
+| 07 | [07_DELTA_EXTRACTOR.md](07_DELTA_EXTRACTOR.md) | Update existing entry | (not yet implemented) | — |
 
 ---
 
 ## Variable Reference
 
-### Variable Format
-All variables use `{variableName}` format: `{sourceFiles}`, `{extraction}`, etc.
+### Format
+All variables use `{variableName}`: `{sourceFiles}`, `{extraction}`, etc.
 
 ### Common Variables
 
-| Variable | Description | Example Value |
-|----------|-------------|---------------|
-| `{sourceFiles}` | List of file paths to read | `1. /path/to/file1.md\n2. /path/to/file2.md` |
-| `{extraction}` | Extraction markdown output | `# Method Kernel\n...` |
-| `{startFile}` | Starting chapter filename | `016_the_grow_model.md` |
-| `{startPreview}` | First 800-1000 chars of start file | `# Chapter 16\n...` |
-| `{chapterIndex}` | Numbered list of all chapters | `1. chapter1.md\n2. chapter2.md\n...` |
-| `{summaries}` | Formatted chapter summaries | `file.md: Methods=[X] Concepts=[Y]\n...` |
-| `{canonSummary}` | Existing canon entries | `- MTH-001: Method Name\n...` |
-| `{maxFiles}` | Maximum files to select | `4` |
+| Variable | Description | Example |
+|----------|-------------|---------|
+| `{sourceFiles}` | File paths to read | `1. /path/file1.md\n2. /path/file2.md` |
+| `{extraction}` | Extraction output | `# Method Kernel\n...` |
+| `{startFile}` | Starting chapter | `016_the_grow_model.md` |
+| `{startPreview}` | First 800-1000 chars | `# Chapter 16\n...` |
+| `{chapterIndex}` | All chapters list | `1. chapter1.md\n2. chapter2.md` |
+| `{summaries}` | Chapter summaries | `file.md: Methods=[X] Concepts=[Y]` |
+| `{canonSummary}` | Existing canon | `- MTH-001: Method Name` |
+| `{maxFiles}` | Max files to select | `4` |
 | `{filename}` | Single file name | `016_the_grow_model.md` |
-| `{content}` | File content or instruction | `[Please read this file: /path/...]` |
-| `{canonMethods}` | Canon methods for matching | `- MTH-001: Method Name\n...` |
+| `{content}` | File content/instruction | `[Please read: /path/...]` |
+| `{canonMethods}` | Methods for matching | `- MTH-001: Method Name` |
 
 ---
 
-## How to Add a New Prompt
+## How to Add/Modify Prompts
 
-1. **Create file**: `NN_PROMPT_NAME.md` (use next available number)
-2. **Add to registry**: Update `PROMPTS` object in `src/pipeline/prompt-loader.ts`
-3. **Document here**: Add row to Prompt Index table above
-4. **Document variables**: List all `{variable}` placeholders
-5. **Use in code**: `loadPromptWithValues('PROMPT_NAME', { var1: value1, ... })`
+### Add New Prompt
+1. Create `NN_PROMPT_NAME.md` (use next number)
+2. Add to `PROMPTS` in `src/pipeline/prompt-loader.ts`
+3. Document in table above
+4. Use: `loadPromptWithValues('PROMPT_NAME', {...})`
 
----
-
-## How to Modify a Prompt
-
-1. **Archive first**: Copy current version to `history/`
-   ```bash
-   cp PROMPTS/02_EXTRACTOR_MULTI.md "PROMPTS/history/02_EXTRACTOR_MULTI_v2_2026-01-02.md"
-   ```
-2. **Update CHANGELOG**: Document the change in `history/CHANGELOG.md`
-3. **Edit prompt**: Make your changes
-4. **Update README**: If variables changed, update table above
-5. **Test**: Run pipeline to verify
+### Modify Existing
+1. Archive: `cp PROMPTS/04_EXTRACTOR.md "PROMPTS/history/04_EXTRACTOR_v2_2026-01-02.md"`
+2. Update `history/CHANGELOG.md`
+3. Edit prompt
+4. Update README if variables changed
+5. Test pipeline
 
 ---
 
-## History Structure
+## History
 
-Version history is maintained in `history/` folder:
+Version history in `history/` folder. See [CHANGELOG.md](history/CHANGELOG.md).
 
-```
-history/
-├── CHANGELOG.md                          # Log of all changes
-├── 00_CHAPTER_ROUTER_v1_2026-01-01.md   # Archived versions
-├── 02_EXTRACTOR_MULTI_v1_2026-01-01.md
-├── 04_DOWNSTREAM_CRITIC_v1_2026-01-01.md
-└── ...
-```
-
-### Naming Convention
-```
-{NN}_{PROMPT_NAME}_v{VERSION}_{DATE}.md
-```
-
----
-
-## Code Example
-
-```typescript
-import { loadPromptWithValues } from './pipeline/prompt-loader.js';
-
-// Load prompt with variable substitution
-const prompt = loadPromptWithValues('EXTRACTOR_MULTI', {
-  sourceFiles: '1. /path/to/file1.md\n2. /path/to/file2.md',
-});
-
-// For prompts without variables
-import { loadPrompt } from './pipeline/prompt-loader.js';
-const basePrompt = loadPrompt('CHAPTER_ROUTER');
-```
-
----
-
-## Enforcement
-
-The `prompt-loader.ts` module is the ONLY way to load prompts. Direct file reading or inline strings are prohibited. This ensures:
-
-- ✓ All prompts are tracked
-- ✓ Variables are consistently replaced
-- ✓ Changes can be audited
-- ✓ Prompts can be versioned
+Unused PRD templates archived in `history/unused_prd_templates/`.

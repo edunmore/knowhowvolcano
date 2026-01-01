@@ -14,16 +14,22 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const PROMPTS_DIR = join(__dirname, '..', '..', 'PROMPTS');
 
 /**
- * Available prompt files
+ * Available prompt files (numbered by pipeline execution order)
  */
 export const PROMPTS = {
-    CHAPTER_ROUTER: '00_CHAPTER_ROUTER.md',
-    SMART_ROUTER: '01_SMART_ROUTER.md',
-    EXTRACTOR_MULTI: '02_EXTRACTOR_MULTI.md',
-    DELTA_EXTRACTOR: '03_DELTA_EXTRACTOR.md',
-    DOWNSTREAM_CRITIC: '04_DOWNSTREAM_CRITIC.md',
-    SUMMARIZER: '05_SUMMARIZER.md',
-    CANON_MATCHER: '06_CANON_MATCHER.md',
+    // 01 - Summarizer (optional pre-step)
+    SUMMARIZER: '01_SUMMARIZER.md',
+    // 02/03 - Routing
+    CHAPTER_ROUTER: '02_CHAPTER_ROUTER.md',
+    SMART_ROUTER: '03_SMART_ROUTER.md',
+    // 04 - Extraction
+    EXTRACTOR_MULTI: '04_EXTRACTOR.md',
+    // 05 - Critique
+    DOWNSTREAM_CRITIC: '05_CRITIC.md',
+    // 06 - Matching
+    CANON_MATCHER: '06_MATCHER.md',
+    // 07 - Delta update
+    DELTA_EXTRACTOR: '07_DELTA_EXTRACTOR.md',
 } as const;
 
 export type PromptName = keyof typeof PROMPTS;
