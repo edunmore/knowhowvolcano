@@ -1,0 +1,117 @@
+[
+  {
+    "id": "concept-coachee",
+    "path": "concepts/concept-coachee.md",
+    "title": "concept-coachee",
+    "type": "concept",
+    "outboundLinks": [
+      "source-a-note-to-the-reader"
+    ]
+  },
+  {
+    "id": "concept-coaching-style-of-leadership",
+    "path": "concepts/concept-coaching-style-leadership.md",
+    "title": "concept-coaching-style-of-leadership",
+    "type": "concept",
+    "outboundLinks": [
+      "source-a-note-to-the-reader"
+    ]
+  },
+  {
+    "id": "concept-coaching-style-leadership",
+    "path": "concepts/concept-coaching-style-of-leadership.md",
+    "title": "concept-coaching-style-leadership",
+    "type": "concept",
+    "outboundLinks": [
+      "source-a-note-to-the-reader"
+    ]
+  },
+  {
+    "id": "concept-leader-coach",
+    "path": "concepts/concept-leader-coach.md",
+    "title": "concept-leader-coach",
+    "type": "concept",
+    "outboundLinks": [
+      "source-a-note-to-the-reader"
+    ]
+  },
+  {
+    "id": "principle-developing-authentic-leadership-approach",
+    "path": "principles/principle-authentic-leadership-development.md",
+    "title": "principle-developing-authentic-leadership-approach",
+    "type": "principle",
+    "outboundLinks": [
+      "source-a-note-to-the-reader"
+    ]
+  },
+  {
+    "id": "principle-authentic-leadership-through-competence",
+    "path": "principles/principle-authentic-leadership-through-competence.md",
+    "title": "principle-authentic-leadership-through-competence",
+    "type": "principle",
+    "outboundLinks": [
+      "source-a-note-to-the-reader"
+    ]
+  },
+  {
+    "id": "principle-coaching-as-symbiotic-platform",
+    "path": "principles/principle-coaching-as-symbiotic-platform.md",
+    "title": "principle-coaching-as-symbiotic-platform",
+    "type": "principle",
+    "outboundLinks": [
+      "source-a-note-to-the-reader"
+    ]
+  },
+  {
+    "id": "principle-coaching-in-organizational-context",
+    "path": "principles/principle-coaching-in-organizational-context.md",
+    "title": "principle-coaching-in-organizational-context",
+    "type": "principle",
+    "outboundLinks": [
+      "source-a-note-to-the-reader"
+    ]
+  },
+  {
+    "id": "principle-combining-coaching-with-business-mechanics",
+    "path": "principles/principle-combining-coaching-with-business-mechanics.md",
+    "title": "principle-combining-coaching-with-business-mechanics",
+    "type": "principle",
+    "outboundLinks": [
+      "source-a-note-to-the-reader"
+    ]
+  },
+  {
+    "id": "principle-communicating-behavioral-change",
+    "path": "principles/principle-communicating-behavioral-change.md",
+    "title": "principle-communicating-behavioral-change",
+    "type": "principle",
+    "outboundLinks": [
+      "source-a-note-to-the-reader"
+    ]
+  },
+  {
+    "id": "principle-symbiotic-organization-people-relationship",
+    "path": "principles/principle-symbiotic-organization-people-relationship.md",
+    "title": "principle-symbiotic-organization-people-relationship",
+    "type": "principle",
+    "outboundLinks": [
+      "source-a-note-to-the-reader"
+    ]
+  },
+  {
+    "id": "procedure-communicating-leadership-skill-development",
+    "path": "procedures/procedure-communicating-leadership-skill-development-to-colleagues.md",
+    "title": "procedure-communicating-leadership-skill-development",
+    "type": "procedure",
+    "outboundLinks": [
+      "source-a-note-to-the-reader"
+    ]
+  },
+  {
+    "id": "source-a-note-to-the-reader",
+    "path": "sources/source-a-note-to-the-reader.md",
+    "title": "A Note to the Reader",
+    "type": "source_anchor",
+    "outboundLinks": []
+  }
+]
