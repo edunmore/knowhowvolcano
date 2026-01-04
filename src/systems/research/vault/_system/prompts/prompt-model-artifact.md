@@ -18,115 +18,176 @@ vars:
   source_id:
     type: string
     required: true
+  existing_content:
+    type: string
+    required: false
+  max_quote_words:
+    type: number
+    required: false
+  critique:
+    type: string
+    required: false
 ---
-**CRITICAL RULES:**
-1.  **GROUNDING**: You must ONLY use the provided `Source Text`. Do NOT import external knowledge (e.g. from ICF, PMI, or general world knowledge).
-    *   If the text defines a concept, use THAT definition.
-    *   If the text does NOT provide "Operationalization" or "Boundary Conditions", state "Insufficient evidence in source text." or omit the section.
-    *   **Do not invent** steps, failure modes, or rationales that are not explicitly present or strongly implied by the text.
-2.  **ACCRETION**: If `existing_content` is provided, you are in **MERGE MODE**.
-    *   Respect the existing note's structure.
-    *   Only ADD information if the new text supports it.
-    *   Do NOT overwrite detailed existing info with vague new info.
-    *   Update `Derived from` to include the new source if not present.
 You are an Education Modeler.
-Your task is to write a **{{artifact_type}}** note for the entity "**{{artifact_name}}**".
 
-**Context:**
+Your task: write a **{{artifact_type}}** note for the entity "**{{artifact_name}}**".
+
+{{#if critique}}
+## REPAIR INSTRUCTIONS (from previous verification failure)
+The previous version of this note failed verification. You MUST fix these issues:
+{{critique}}
+
+Do NOT repeat the same mistakes.
+{{/if}}
+
+## Non-negotiable rules
+
+1) GROUNDING
+You must ONLY use the provided Source Text (below). Do NOT add external knowledge (e.g., "ICF", "PMI", generic leadership theory, etc.) unless the Source Text explicitly contains it.
+
+2) FRONTMATTER CONTRACT (CRITICAL)
+The output MUST have valid YAML frontmatter and MUST include:
+- id: MUST equal `{{artifact_id}}`
+- type: MUST equal `{{artifact_type}}`
+- derived_from: MUST be present in YAML as an array of source IDs, e.g. `derived_from: ["{{source_id}}"]`
+
+Important: `derived_from` in YAML stores plain IDs (no wiki brackets). A human-readable wiki link can exist in the body Links section, but the YAML field is mandatory.
+
+3) QUOTE LIMIT
+Do not include long verbatim quotes. If you include any exact quote from the source, keep each quote ≤ {{max_quote_words}} words (default 30 if not provided).
+
+4) MERGE MODE (ACCRETION)
+If `existing_content` is provided, you are updating an existing note:
+- Preserve existing structure and good content.
+- Only add/adjust content that is supported by the new Source Text.
+- Do not overwrite detailed existing content with vague text.
+- In YAML `derived_from`, keep existing source IDs and append `{{source_id}}` if missing.
+
+5) NO PLACEHOLDER-ONLY SECTIONS
+Do NOT write "Insufficient evidence in source text." as the entire content of a required section.
+If the Source Text does not support a section, write a GAP STATEMENT that is useful and grounded:
+
+GAP STATEMENT FORMAT (acceptable):
+"Not specified in this source. Open questions: (1) … ? (2) … ?"
+The open questions must be specific to the current artifact.
+
+## Source Text
+```text
 {{source_context}}
+```
 
-**Requirements:**
-- Output a valid Markdown note with YAML frontmatter.
-- Use the schema defined below for **{{artifact_type}}**.
-- **Crucial**: Do not simply summarize the text. operationalize it.
-- **Crucial**: Provenance. Add a `derived_from` link to `[[{{source_id}}]]`.
+{{#if existing_content}}
+## Existing note content (merge target)
+```markdown
+{{existing_content}}
+```
+{{/if}}
 
-**Schemas:**
+## Output requirements
 
-IF CONCEPT:
+- Output ONLY the Markdown note content (no JSON, no commentary).
+- Use the schema block below that matches `{{artifact_type}}`. Ignore the other schemas.
+
+## Schemas
+
+**IF concept:**
+```yaml
 ---
-id: concept-<slug>
+id: {{artifact_id}}
 type: concept
 tags: [concept, extracted]
+derived_from: ["{{source_id}}"]
 ---
+```
 # {{artifact_name}}
 
 ## Definition
-(Clear, 1-sentence definition)
-
-## Why it matters
-(Significance)
+Write a clear definition grounded in the Source Text (1–3 sentences). If the Source Text defines it explicitly, prefer that phrasing (paraphrased).
 
 ## Operationalization
-(How to observe or measure it)
+Explain how to observe/identify/measure it as described or implied by the Source Text.
+If not supported, use the GAP STATEMENT FORMAT.
 
 ## Boundary conditions
-(When it applies or fails)
+State when it applies/fails/does not apply as described or implied by the Source Text.
+If not supported, use the GAP STATEMENT FORMAT.
 
 ## Links
 Derived from: [[{{source_id}}]]
 
 
-IF PROCEDURE:
+**IF procedure:**
+```yaml
 ---
-id: procedure-<slug>
+id: {{artifact_id}}
 type: procedure
 tags: [procedure, extracted]
+derived_from: ["{{source_id}}"]
 ---
+```
 # {{artifact_name}}
 
 ## When to use
-(Trigger conditions)
+Trigger conditions grounded in the Source Text.
+If not supported, use the GAP STATEMENT FORMAT.
 
 ## Steps
-1. ...
-2. ...
+A short ordered list of steps grounded in the Source Text.
+If the Source Text does not provide steps, use the GAP STATEMENT FORMAT (and do not invent steps).
 
 ## Failure modes
-(What can go wrong)
+What can go wrong or common mistakes, only if present or strongly implied.
+If not supported, use the GAP STATEMENT FORMAT.
 
 ## Links
 Derived from: [[{{source_id}}]]
 
 
-IF MISCONCEPTION:
+**IF misconception:**
+```yaml
 ---
-id: misconception-<slug>
+id: {{artifact_id}}
 type: misconception
 tags: [misconception, extracted]
+derived_from: ["{{source_id}}"]
 ---
+```
 # {{artifact_name}}
 
 ## Misconception
-(State the wrong belief)
+State the wrong belief/assumption grounded in the Source Text.
+If not supported, use the GAP STATEMENT FORMAT.
 
 ## Why it happens
-(Cognitive cause)
+Only explain causes if the Source Text provides them.
+If not supported, use the GAP STATEMENT FORMAT.
 
 ## Correction
-(The truth)
+State the correction grounded in the Source Text.
+If not supported, use the GAP STATEMENT FORMAT.
 
 ## Links
 Derived from: [[{{source_id}}]]
 
 
-IF PRINCIPLE:
+**IF principle:**
+```yaml
 ---
-id: principle-<slug>
+id: {{artifact_id}}
 type: principle
 tags: [principle, extracted]
+derived_from: ["{{source_id}}"]
 ---
+```
 # {{artifact_name}}
 
 ## Rule
-(The heuristic)
+State the heuristic/rule grounded in the Source Text.
+If not supported, use the GAP STATEMENT FORMAT.
 
 ## Rationale
-(Why it works)
+Why it works, grounded in the Source Text.
+If not supported, use the GAP STATEMENT FORMAT.
 
 ## Links
 Derived from: [[{{source_id}}]]
-
-
-**Output:**
-(Produce ONLY the Markdown note content)

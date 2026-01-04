@@ -24,6 +24,7 @@ export async function runExtractor(
 
     // Render the prompt
     const prompt = await renderPrompt(promptPath, {
+        source_title: sourceTitle,
         source_text: sourceText
     });
 

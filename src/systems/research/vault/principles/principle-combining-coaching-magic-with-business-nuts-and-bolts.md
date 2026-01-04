@@ -1,15 +1,13 @@
 ---
-id: principle-combining-coaching-magic-with-business-nuts-and-bolts
+id: principle-coaching-combines-magic-and-nuts-and-bolts
 type: principle
 tags: [principle, extracted]
+derived_from: ["source-a-note-to-the-reader"]
 ---
-# Combining Coaching Magic With Business Nuts And Bolts
+# Coaching Combines Magic and Nuts and Bolts
 
 ## Rule
-An effective coaching engagement must integrate the transformative, human-centered "magic" of coaching with the practical, results-oriented "nuts and bolts" of business.
+Effective coaching in an organizational context requires combining the transformative, human-centered "magic" of coaching with the practical, results-oriented "nuts and bolts" of business.
 
 ## Rationale
-This integration creates a wholly powerful experience that serves the needs of both the organization (by achieving tangible business results) and the coachee (by facilitating personal and professional transformation).
-
-## Links
-Derived from: [[source-a-note-to-the-reader]]
+This integration creates a "wholly powerful experience" that serves the dual purpose of facilitating personal transformation for the coachee and delivering tangible value and performance for the organization. It grounds the coaching process in the real-world context where it operates.

@@ -107,4 +107,3 @@ export async function runVerifier(
         return { pass: false, issues: result.issues };
     }
 }
-```

@@ -1,19 +1,20 @@
 ---
-id: procedure-communicating-leadership-skill-development-to-colleagues
+id: procedure-leaders-informing-colleagues-of-skill-development
 type: procedure
 tags: [procedure, extracted]
+derived_from: ["source-a-note-to-the-reader"]
 ---
-# Communicating Leadership Skill Development To Colleagues
+# Leaders Informing Colleagues of Skill Development
 
 ## When to use
-When a leader is actively developing their leadership skills and intends to try new leadership behaviors, which may be noticeable or confusing to colleagues.
+Not specified in this source. Open questions: (1) Should this be done at the start of a skill development journey or when a specific new behavior is being tried? (2) Is it for all colleagues or only those directly affected by the behavioral changes?
 
 ## Steps
-1. Tell colleagues that you are developing your leadership skills.
-2. Tell colleagues that you will be trying new things as part of this development.
+A short ordered list of steps grounded in the Source Text.
+Not specified in this source. Open questions: (1) What is the specific content of the communication? (2) Is it a formal announcement or an informal conversation?
 
 ## Failure modes
-Insufficient evidence in source text.
+Not specified in this source. Open questions: (1) What happens if colleagues are not informed? (2) What if the communication is too vague or too frequent?
 
 ## Links
 Derived from: [[source-a-note-to-the-reader]]

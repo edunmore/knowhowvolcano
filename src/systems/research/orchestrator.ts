@@ -24,6 +24,31 @@ function getProvider(cfg: ResearchConfig) {
     }
 }
 
+/**
+ * Extract a context window around a quote from the source text.
+ * Returns ±windowSize characters around the first occurrence of the quote.
+ */
+function extractContextWindow(sourceText: string, quote: string, windowSize: number = 2000): string {
+    const idx = sourceText.indexOf(quote);
+    if (idx === -1) {
+        // Quote not found exactly, return larger chunk from start
+        return sourceText.slice(0, windowSize * 2);
+    }
+    const start = Math.max(0, idx - windowSize);
+    const end = Math.min(sourceText.length, idx + quote.length + windowSize);
+    return sourceText.slice(start, end);
+}
+
+/**
+ * Build explicit repair instructions from verifier issues.
+ */
+function buildRepairInstructions(issues: string[]): string {
+    if (issues.length === 0) return '';
+    const header = 'Fix the following issues from the previous attempt:';
+    const items = issues.map((issue, i) => `${i + 1}. ${issue}`).join('\n');
+    return `${header}\n${items}\n\nDo NOT repeat these mistakes. Follow all schema rules exactly.`;
+}
+
 export async function runResearchPipeline(config: ResearchConfig) {
     const logger = await RunLogger.create(config.runsDir, config.verbose);
     const runId = logger.getRunId();
@@ -80,8 +105,21 @@ export async function runResearchPipeline(config: ResearchConfig) {
             let filename: string;
             const resolvedId = resolutionMap.get(candidate.name);
 
+            // TYPE VALIDATION: Block cross-type merges
             if (resolvedId) {
-                filename = `${resolvedId}.md`;
+                // Extract type from resolved ID (e.g., "concept-foo" -> "concept")
+                const resolvedType = resolvedId.split('-')[0];
+                if (resolvedType !== candidate.type) {
+                    await logger.log(`[Resolution] Type mismatch: "${candidate.name}" (${candidate.type}) cannot merge with "${resolvedId}" (${resolvedType}). Creating new note instead.`, 'WARN');
+                    resolutionMap.delete(candidate.name); // Clear the invalid merge
+                }
+            }
+
+            // Re-check after validation
+            const validatedResolvedId = resolutionMap.get(candidate.name);
+
+            if (validatedResolvedId) {
+                filename = `${validatedResolvedId}.md`;
                 await logger.log(`[Resolution] Maps "${candidate.name}" -> ${filename}`, 'DEBUG');
             } else {
                 filename = getArtifactFilename(candidate.name, candidate.type);
@@ -116,15 +154,23 @@ export async function runResearchPipeline(config: ResearchConfig) {
             while (attempts < maxAttempts && !success) {
                 attempts++;
 
+                // Extract context window around the quote (±2000 chars)
+                const contextWindow = extractContextWindow(sourceContent, candidate.quote, 2000);
+
+                // Build repair instructions if this is a retry
+                const repairInstructions = currentCritique
+                    ? buildRepairInstructions(currentCritique.split('\n'))
+                    : undefined;
+
                 // We pass existingContent. Modeler will see it and enter MERGE mode.
                 const modelResult = await runModeler(
                     llm,
                     candidate,
-                    candidate.quote,
+                    contextWindow, // Use context window instead of just quote
                     ingestResult.sourceId,
                     config.vaultDir,
                     logger,
-                    currentCritique,
+                    repairInstructions, // Use structured repair instructions
                     existingContent
                 );
 
