@@ -1,0 +1,26 @@
+{
+  "id": "chapter-001",
+  "input_files": [
+    "eval/corpus/chapter-001.md"
+  ],
+  "min_notes_by_type": {
+    "learning_objective": 1,
+    "concept": 3,
+    "misconception": 1
+  },
+  "must_create_types": [
+    "story",
+    "storyboard",
+    "microlearning_unit",
+    "activity",
+    "assessment_item"
+  ],
+  "hard_gates": {
+    "link_resolution_rate": 1.0,
+    "required_sections_rate": 1.0,
+    "primary_objective_uniqueness_rate": 1.0,
+    "provenance_coverage_rate": 0.9,
+    "storyboard_beat_link_coverage": 0.95
+  },
+  "notes": "Starter expectation; adjust once the corpus item is in place."
+}

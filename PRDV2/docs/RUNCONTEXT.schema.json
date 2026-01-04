@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RunContext",
+  "type": "object",
+  "properties": {
+    "run_id": {
+      "type": "string"
+    },
+    "vault_dir": {
+      "type": "string"
+    },
+    "inputs": {
+      "type": "object",
+      "properties": {
+        "files": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "source_anchor_id": {
+          "type": "string"
+        },
+        "objective_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "files"
+      ]
+    },
+    "outputs": {
+      "type": "object",
+      "properties": {
+        "staging_dir": {
+          "type": "string"
+        },
+        "notes_dir": {
+          "type": "string"
+        },
+        "index_dir": {
+          "type": "string"
+        }
+      }
+    },
+    "retrieval_set": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "constraints": {
+      "type": "object",
+      "properties": {
+        "max_quote_words": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "require_sections": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "run_id",
+    "vault_dir",
+    "inputs"
+  ]
+}

@@ -10,7 +10,8 @@ Extracts structured method definitions from books/articles into a versioned cano
 ## Key Files to Read First
 1. `README.md` — Project overview and current status
 2. `PROMPTS/README.md` — **MANDATORY** prompt management rules
-3. `VOLCANO_SDK/NOTES.md` — LLM provider setup
+3. `.agent/workflows/volcano-best-practices.md` — **Read this for SDK patterns**
+4. `VOLCANO_SDK/NOTES.md` — LLM provider setup
 
 ## MANDATORY Rules
 
@@ -56,3 +57,8 @@ npx tsx src/cli.ts run --start ./booksample/016_...md --verbose
 - [ ] Implement DELTA flow (07_DELTA_EXTRACTOR)
 - [ ] Iterative refinement loop
 - [ ] Merge refactor branch to main
+
+## Agent Best Practices (User Feedback)
+1.  **Simplified Prompts**: Since agents can read/write files directly, prompts do NOT need to contain embedded content. Just point to the files.
+2.  **Observability**: Keep using the `runs/` folder for detailed output and the `--verbose` flag for terminal visibility. The user loves this transparency.
+3.  **Git Safety**: **ALWAYS** create a feature branch before starting any major refactoring. Never commit broken code to main.

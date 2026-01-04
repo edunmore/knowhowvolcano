@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Expectation",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "input_files": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "min_notes_by_type": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "integer",
+        "minimum": 0
+      }
+    },
+    "must_create_types": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "hard_gates": {
+      "type": "object",
+      "properties": {
+        "link_resolution_rate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "required_sections_rate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "primary_objective_uniqueness_rate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "provenance_coverage_rate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "storyboard_beat_link_coverage": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "input_files"
+  ]
+}

@@ -58,6 +58,7 @@ async function main() {
   npx tsx src/cli.ts extract --files <file1,file2,...>
   npx tsx src/cli.ts critic --extraction <file> --files <file1,file2,...>
   npx tsx src/cli.ts reindex --canonDir <dir>
+  npx tsx src/cli.ts chain-poc --start <file>
 
 Options:
   --provider <gemini|deepseek|ollama>  LLM provider (default: gemini)
@@ -184,6 +185,28 @@ Options:
 
                 console.log('\nSummaries saved to:');
                 console.log(`  ${sourceDir}/canon/chaptersummary.md`);
+                break;
+            }
+
+            case 'chain-poc': {
+                const startFile = getArg('start');
+                if (!startFile) {
+                    console.error('Error: --start <file> is required');
+                    process.exit(1);
+                }
+                const sourceDir = resolve(getArg('sourceDir') || dirname(resolve(startFile)));
+
+                const { runChainPipeline } = await import('./orchestrator-chain.js');
+
+                const config: RunConfig = {
+                    startFile: resolve(startFile),
+                    sourceDir,
+                    canonDir: resolve(getArg('canonDir') || join(sourceDir, 'canon')),
+                    maxFiles: 2,
+                    provider: provider as any,
+                };
+
+                await runChainPipeline(llm, config);
                 break;
             }
 
