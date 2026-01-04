@@ -11,7 +11,7 @@ import { fileURLToPath } from 'node:url';
 
 // Get the prompts directory (relative to this file's location)
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const PROMPTS_DIR = join(__dirname, '..', '..', 'PROMPTS');
+const PROMPTS_DIR = join(__dirname, '..', '..', '..', 'PROMPTS', 'canon');
 
 /**
  * Available prompt files (numbered by pipeline execution order)

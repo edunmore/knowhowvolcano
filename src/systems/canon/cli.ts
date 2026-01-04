@@ -11,17 +11,17 @@
 import { resolve, dirname, basename, join } from 'node:path';
 import { existsSync } from 'node:fs';
 
-import { llmGeminiCLI } from './providers/gemini-cli-provider.js';
-import { createDeepSeekWithTools } from './providers/deepseek-tools-provider.js';
-import { createOllamaProvider } from './providers/ollama-provider.js';
+import { llmGeminiCLI } from '../../core/providers/gemini-cli-provider.js';
+import { createDeepSeekWithTools } from '../../core/providers/deepseek-tools-provider.js';
+import { createOllamaProvider } from '../../core/providers/ollama-provider.js';
 
-import { runPipeline } from './pipeline/orchestrator.js';
-import { routeChapters } from './pipeline/router.js';
-import { extract } from './pipeline/extractor.js';
-import { critique } from './pipeline/critic.js';
-import { loadCanonIndex, matchCanon } from './pipeline/canon-matcher.js';
-import { regenerateIndex } from './pipeline/canon-indexer.js';
-import type { RunConfig } from './pipeline/types.js';
+import { runPipeline } from './orchestrator.js';
+import { routeChapters } from './router.js';
+import { extract } from './extractor.js';
+import { critique } from './critic.js';
+import { loadCanonIndex, matchCanon } from './canon-matcher.js';
+import { regenerateIndex } from './canon-indexer.js';
+import type { RunConfig } from './types.js';
 
 // Parse command line arguments
 const args = process.argv.slice(2);
@@ -73,7 +73,7 @@ Options:
 
     // Import and setup verbose logging if flag is set
     if (verbose) {
-        const { setVerbose } = await import('./pipeline/verbose-logger.js');
+        const { setVerbose } = await import('../../core/utils/verbose-logger.js');
         setVerbose(true);
     }
 
@@ -81,7 +81,7 @@ Options:
 
     // Wrap provider with verbose logging if enabled
     if (verbose) {
-        const { wrapWithVerboseLogging } = await import('./pipeline/verbose-logger.js');
+        const { wrapWithVerboseLogging } = await import('../../core/utils/verbose-logger.js');
         llm = wrapWithVerboseLogging(llm, { cliArgs: args });
     }
 
@@ -168,7 +168,7 @@ Options:
 
             case 'summarize': {
                 // Import summarizer dynamically to avoid circular dependencies
-                const { generateChapterSummaries } = await import('./pipeline/summarizer.js');
+                const { generateChapterSummaries } = await import('./summarizer.js');
 
                 const sourceDir = resolve(getArg('sourceDir', './booksample')!);
                 const summaryProvider = getArg('summaryProvider', 'deepseek');

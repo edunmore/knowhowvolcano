@@ -7,7 +7,9 @@
   "scripts": {
     "test": "npx tsx src/test-provider.ts",
     "build": "tsc",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "canon": "npx tsx src/systems/canon/cli.ts",
+    "research": "npx tsx src/systems/research/cli.ts"
   },
   "keywords": [
     "volcano-sdk",

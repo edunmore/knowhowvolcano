@@ -12,7 +12,7 @@ import { critique, meetsThresholds } from './critic.js';
 import { loadCanonIndex, matchCanon, loadCanonEntry } from './canon-matcher.js';
 import { applyCanonUpdate } from './canon-updater.js';
 import { regenerateIndex } from './canon-indexer.js';
-import { formatLogsForFile } from './verbose-logger.js';
+import { formatLogsForFile } from '../../core/utils/verbose-logger.js';
 
 /**
  * Generate a run ID
