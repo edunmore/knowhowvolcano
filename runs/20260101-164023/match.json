@@ -1,0 +1,6 @@
+{
+  "matched_method_id": "MTH-20260101-143421",
+  "confidence": 100,
+  "rationale": "The new extraction explicitly details \"The GROW model,\" covering its purpose, preconditions, roles, and process steps, including specific goal-setting criteria (SMART, PURE, CLEAR). This aligns perfectly with the existing canon entry \"9 The Grow Model\" in both subject matter and core concepts.",
+  "merge_guidance": "The new extraction provides a more comprehensive and granular breakdown of the GROW model, particularly with the detailed descriptions of goal types and criteria (SMART, PURE, CLEAR). This information should be integrated into the existing entry (MTH-20260101-143421), expanding its \"Process (Goal Setting - G)\" section and enriching the overall description of the GROW model. Ensure the new details are incorporated under the appropriate headings without redundancy."
+}

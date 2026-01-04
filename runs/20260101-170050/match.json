@@ -1,0 +1,6 @@
+{
+  "matched_method_id": "MTH-20260101-143421",
+  "confidence": 95,
+  "rationale": "The EXTRACTION explicitly details the \"GROW model,\" outlining its purpose, preconditions, and specific phases (Goal Setting, Reality, Options). The existing canon methods are all titled \"9 The Grow Model.\" There is a direct and strong overlap in core mechanism, purpose, and terminology, indicating the extraction is an elaboration of an already canonized method.",
+  "merge_guidance": "The new extraction should be merged with the existing \"9 The Grow Model\" entry. The content under \"Purpose\" and \"Preconditions\" in the EXTRACTION should be used to enrich or update the corresponding sections of the canon entry. The detailed descriptions of the 'G' (Goal Setting), 'R' (Reality), and 'O' (Options) phases should be integrated into the existing method description to provide a more comprehensive explanation of the GROW model. This will enhance the depth and clarity of the canon entry."
+}

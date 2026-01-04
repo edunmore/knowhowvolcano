@@ -1,0 +1,6 @@
+{
+  "matched_method_id": "MTH-20260101-154713",
+  "confidence": 95,
+  "rationale": "The new extraction is a direct and detailed match for the GROW model. The core mechanism is identical: a four-stage sequential questioning framework (Goal, Reality, Options, Will) used in a coaching conversation to move from intention to action. The purpose overlaps perfectly, focusing on raising awareness, responsibility, and improving performance. The process steps are a verbatim match for the canonical GROW stages. Key terminology (\"GROW\", \"coach\", \"coachee\", the four stage names and their core questions) are all explicitly shared. The extraction adds valuable contextual detail (preconditions, role descriptions, application contexts) that enriches the existing canon entry without contradiction.",
+  "merge_guidance": "Merge the new extraction into MTH-20260101-154713. The new extraction provides richer textual descriptions for Purpose, Preconditions, and Roles that should be integrated to augment the existing entry. The Process description is highly aligned and can be merged to reinforce the canonical four-step sequence. Ensure the unique identifiers from the extraction (e.g., source file references) are preserved in the merged entry's metadata."
+}

@@ -1,0 +1,48 @@
+{
+  "runId": "run-2026-01-04T09-57-21-523Z",
+  "timestamp": "2026-01-04T09:57:21.525Z",
+  "config": {
+    "sourceDir": "/home/mac/projects/knowhow1",
+    "vaultDir": "/home/mac/projects/knowhow1/src/systems/research/vault",
+    "runsDir": "/home/mac/projects/knowhow1/runs",
+    "provider": "deepseek",
+    "verbose": true,
+    "startFile": "/home/mac/projects/knowhow1/booksample/006_1_what_is_coaching_with_descriptions.md"
+  },
+  "manifest": {
+    "filesRead": [
+      "/home/mac/projects/knowhow1/booksample/006_1_what_is_coaching_with_descriptions.md"
+    ],
+    "notesCreated": [
+      "/home/mac/projects/knowhow1/src/systems/research/vault/sources/source-what-is-coaching-with-descriptions.md",
+      "/home/mac/projects/knowhow1/src/systems/research/vault/concepts/concept-coaching.md",
+      "/home/mac/projects/knowhow1/src/systems/research/vault/principles/principle-coaching-focuses-on-future-possibilities.md",
+      "/home/mac/projects/knowhow1/src/systems/research/vault/concepts/concept-the-inner-game.md",
+      "/home/mac/projects/knowhow1/src/systems/research/vault/principles/principle-inner-game-equation.md",
+      "/home/mac/projects/knowhow1/src/systems/research/vault/concepts/concept-interference.md",
+      "/home/mac/projects/knowhow1/src/systems/research/vault/misconceptions/misconception-coaching-is-teaching-or-instruction.md",
+      "/home/mac/projects/knowhow1/src/systems/research/vault/principles/principle-natural-learning-capability.md",
+      "/home/mac/projects/knowhow1/src/systems/research/vault/concepts/concept-acorn-analogy-for-human-potential.md",
+      "/home/mac/projects/knowhow1/src/systems/research/vault/procedures/procedure-transplanting-an-acorn-analogy-for-coaching.md",
+      "/home/mac/projects/knowhow1/src/systems/research/vault/concepts/concept-mentoring-vs-coaching.md",
+      "/home/mac/projects/knowhow1/src/systems/research/vault/principles/principle-coaching-beyond-coachs-knowledge.md",
+      "/home/mac/projects/knowhow1/src/systems/research/vault/concepts/concept-maslows-hierarchy-of-needs-adapted.md",
+      "/home/mac/projects/knowhow1/src/systems/research/vault/concepts/concept-self-belief.md",
+      "/home/mac/projects/knowhow1/src/systems/research/vault/concepts/concept-independent-mindset.md",
+      "/home/mac/projects/knowhow1/src/systems/research/vault/concepts/concept-interdependent-mindset.md",
+      "/home/mac/projects/knowhow1/src/systems/research/vault/misconceptions/misconception-promotion-equals-empowerment.md",
+      "/home/mac/projects/knowhow1/src/systems/research/vault/principles/principle-telling-vs-coaching.md",
+      "/home/mac/projects/knowhow1/src/systems/research/vault/concepts/concept-leadership-style-evolution.md",
+      "/home/mac/projects/knowhow1/src/systems/research/vault/principles/principle-coaching-as-mechanism-for-transformation.md",
+      "/home/mac/projects/knowhow1/src/systems/research/vault/concepts/concept-foundations-of-coaching.md"
+    ],
+    "stepsCompleted": [
+      "ingestion",
+      "extraction",
+      "modeling",
+      "linking",
+      "indexing",
+      "generation"
+    ]
+  }
+}

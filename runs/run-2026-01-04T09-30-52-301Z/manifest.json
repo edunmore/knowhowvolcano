@@ -1,0 +1,23 @@
+{
+  "runId": "run-2026-01-04T09-30-52-301Z",
+  "timestamp": "2026-01-04T09:30:52.303Z",
+  "config": {
+    "sourceDir": "/home/mac/projects/knowhow1",
+    "vaultDir": "/home/mac/projects/knowhow1/src/systems/research/vault",
+    "runsDir": "/home/mac/projects/knowhow1/runs",
+    "provider": "deepseek",
+    "verbose": false,
+    "startFile": "/home/mac/projects/knowhow1/booksample/004_a_note_to_the_reader.md"
+  },
+  "manifest": {
+    "filesRead": [
+      "/home/mac/projects/knowhow1/booksample/004_a_note_to_the_reader.md"
+    ],
+    "notesCreated": [
+      "/home/mac/projects/knowhow1/src/systems/research/vault/sources/source-a-note-to-the-reader.md"
+    ],
+    "stepsCompleted": [
+      "ingestion"
+    ]
+  }
+}

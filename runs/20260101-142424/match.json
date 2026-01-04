@@ -1,0 +1,6 @@
+{
+  "matched_method_id": null,
+  "confidence": 20,
+  "rationale": "The extraction focuses on creativity techniques (e.g., breaking assumptions, role-playing, metaphors) and coaching strategies for problem-solving, which are broad concepts not tied to specific named methods. The existing methods (MTH-2026-1511/5547) are untitled and lack descriptive details to establish core mechanism or purpose overlap. Without additional method-specific content, no direct match can be confirmed.  ",
+  "merge_guidance": "None required. To improve accuracy, provide details about the existing methods (e.g., their purpose, techniques, or processes) for comparison."
+}

@@ -1,0 +1,35 @@
+{
+  "runId": "run-2026-01-04T11-31-23-032Z",
+  "timestamp": "2026-01-04T11:31:23.033Z",
+  "config": {
+    "sourceDir": "/home/mac/projects/knowhow1",
+    "vaultDir": "/home/mac/projects/knowhow1/src/systems/research/vault",
+    "runsDir": "/home/mac/projects/knowhow1/runs",
+    "provider": "deepseek",
+    "verbose": true,
+    "startFile": "/home/mac/projects/knowhow1/booksample/004_a_note_to_the_reader.md"
+  },
+  "manifest": {
+    "filesRead": [
+      "/home/mac/projects/knowhow1/booksample/004_a_note_to_the_reader.md"
+    ],
+    "notesCreated": [
+      "/home/mac/projects/knowhow1/src/systems/research/vault/sources/source-a-note-to-the-reader.md",
+      "/home/mac/projects/knowhow1/src/systems/research/vault/concepts/concept-coaching-style-of-leadership.md",
+      "/home/mac/projects/knowhow1/src/systems/research/vault/concepts/concept-leader-coach.md",
+      "/home/mac/projects/knowhow1/src/systems/research/vault/concepts/concept-coaching-in-organizational-context.md",
+      "/home/mac/projects/knowhow1/src/systems/research/vault/principles/principle-symbiotic-organization-people-relationship.md",
+      "/home/mac/projects/knowhow1/src/systems/research/vault/procedures/procedure-announcing-leadership-skill-development.md",
+      "/home/mac/projects/knowhow1/src/systems/research/vault/principles/principle-combining-coaching-magic-with-business-nuts-and-bolts.md",
+      "/home/mac/projects/knowhow1/src/systems/research/vault/concepts/concept-coachee.md"
+    ],
+    "stepsCompleted": [
+      "ingestion",
+      "extraction",
+      "modeling",
+      "linking",
+      "indexing",
+      "generation"
+    ]
+  }
+}

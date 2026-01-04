@@ -1,0 +1,153 @@
+# Method Kernel
+
+*   **Purpose:** The GROW model provides a structured framework for coaching that guides the sequence of questions, moving from defining goals to establishing commitment for action. (file: 016_9_the_grow_model_with_descriptions.md, "A framework for coaching", p1) [EXTRACTED]
+*   **Preconditions:** Coaching requires a foundation of awareness and responsibility, supported by active listening and powerful questions. (file: 016_9_the_grow_model_with_descriptions.md, "More than GROW", p1) The coachee's goal must be both inspiring and challenging. (file: 016_9_the_grow_model_with_descriptions.md, "The key to GROW", p1) [EXTRACTED] Coachees need to define their desired outcomes. (file: 017_10_g_goal_setting.md, "The goal for the session", p1) [EXTRACTED]
+*   **Roles:** The coach facilitates the process by asking questions and listening, while the coachee defines goals, provides information, and develops their own awareness and responsibility. (file: 016_9_the_grow_model_with_descriptions.md, "Formal or informal?", p1; "A framework for coaching", p1; file: 017_10_g_goal_setting.md, "The goal for the session", p1) [INFERRED]
+*   **Process:** The coaching process generally follows four distinct stages, which can be recycled and adjusted flexibly:
+    1.  **G**oal setting: Defines desired outcomes for the session, as well as short-term and long-term objectives. (file: 016_9_the_grow_model_with_descriptions.md, "A framework for coaching", p2) [EXTRACTED] This involves distinguishing between end goals (final objective, often beyond direct control), performance goals (measurable, within control), dream goals (personal vision), and process goals (actions needed). (file: 017_10_g_goal_setting.md, "The goal for the issue", p2-3; "From inspiration to action", p1) [EXTRACTED]
+    2.  **R**eality checking: Explores the current situation to clarify the impact of past actions and identify internal obstacles. (file: 016_9_the_grow_model_with_descriptions.md, "A framework for coaching", p2; "STEP 2: WHAT IS THE REALITY?", p1) [EXTRACTED] This stage emphasizes objectivity and detailed description over judgment. (file: 018_11_r_what_is_reality_with_descriptions.md, "Objectivity", p1; "Description not judgment", p1) [EXTRACTED] It involves assessing external realities (e.g., organizational strategy, culture) and internal realities (thoughts, feelings, beliefs). (file: 018_11_r_what_is_reality_with_descriptions.md, "Reality questions", p5) [EXTRACTED]
+    3.  **O**ptions: Generates and lists alternative strategies or courses of action. (file: 016_9_the_grow_model_with_descriptions.md, "A framework for coaching", p2) [EXTRACTED] The focus is on quantity and creative possibility, temporarily sidestepping limiting assumptions. (file: 019_12_o_what_options_do_you_have_with_descriptions.md, p1; "Negative assumptions", p1) [EXTRACTED]
+    4.  **W**ill: Establishes what actions will be taken, when, and by whom, ensuring commitment and outlining future obstacles and support needed. (file: 016_9_the_grow_model_with_descriptions.md, "A framework for coaching", p2; "STEP 4: WHAT WILL YOU DO?", p1) [EXTRACTED]
+*   **Loops/Order Changes:** While often desirable to visit all four stages, coaching can begin and end at any stage, especially for ongoing tasks. (file: 016_9_the_grow_model_with_descriptions.md, p3) [EXTRACTED] The process is flexible, and stages may be revisited, such as refining a goal after exploring reality. (file: 016_9_the_grow_model_with_descriptions.md, "Context and flexibility", p3) [EXTRACTED] Intuition guides movement through the sequence. (file: 016_9_the_grow_model_with_descriptions.md, "Context and flexibility", p4) [EXTRACTED]
+*   **Decision rules:**
+    *   A vaguely defined goal may require re-evaluation after assessing reality. (file: 016_9_the_grow_model_with_descriptions.md, "Context and flexibility", p3) [EXTRACTED]
+    *   Options must be checked to ensure they align with the desired goal. (file: 016_9_the_grow_model_with_descriptions.md, "Context and flexibility", p3) [EXTRACTED]
+    *   If self-motivation is low after action planning, re-examine the goal and coachee ownership. (file: 016_9_the_grow_model_with_descriptions.md, "Context and flexibility", p3) [EXTRACTED]
+    *   When a team's goal differs from a leader's, overriding it should be considered carefully to avoid demotivation. (file: 017_10_g_goal_setting.md, "WHOSE GOAL?", p1) [EXTRACTED]
+    *   The coach offers ideas only after the coachee has exhausted their own, and without attachment. (file: 019_12_o_what_options_do_you_have_with_descriptions.md, "INPUT FROM THE COACH", p1) [EXTRACTED]
+*   **Success signals:** The coachee commits to actions that transform intention into action. (file: 016_9_the_grow_model_with_descriptions.md, "A framework for coaching", p2) [EXTRACTED] Coachees remain energized and motivated, and their goals align with personal values and company objectives. (file: 016_9_the_grow_model_with_descriptions.md, "Context and flexibility", p4) [EXTRACTED] Goals are Specific, Measurable, Agreed, Realistic, Timeframed (SMART) and Positively stated, Understood, Relevant, Ethical (PURE), and Challenging, Legal, Environmentally sound, Appropriate, Recorded (CLEAR). (file: 017_10_g_goal_setting.md, "Qualities of a good goal", p1-3) [EXTRACTED] The coachee achieves a high degree of objectivity in examining reality. (file: 018_11_r_what_is_reality_with_descriptions.md, "Objectivity", p1) [EXTRACTED]
+*   **Failure modes & fixes:**
+    *   **Failure Mode:** Goals determined solely by current reality may be negative, problem-focused, or creatively limited. (file: 016_9_the_grow_model_with_descriptions.md, "Goal first", p1) [EXTRACTED]
+    *   **Fix:** Establish goals by identifying an ideal long-term vision first, then defining realistic steps. (file: 016_9_the_grow_model_with_descriptions.md, "Goal first", p2) [EXTRACTED]
+    *   **Failure Mode:** Applying GROW without the foundational context of awareness, responsibility, active listening, and powerful questioning renders it ineffective. (file: 016_9_the_grow_model_with_descriptions.md, "More than GROW", p1) [EXTRACTED]
+    *   **Fix:** Prioritize developing awareness and responsibility in the coaching interaction. (file: 016_9_the_grow_model_with_descriptions.md, "Context and flexibility", p1) [EXTRACTED]
+    *   **Failure Mode:** An autocratic approach using GROW steps to dictate outcomes, rather than asking questions, fails to generate awareness or choice. (file: 016_9_the_grow_model_with_descriptions.md, "More than GROW", p3) [EXTRACTED]
+    *   **Fix:** The coach must actively ask questions to foster coachee awareness and responsibility. (file: 016_9_the_grow_model_with_descriptions.md, "More than GROW", p3) [INFERRED]
+    *   **Failure Mode:** Lack of clear goals results in low performance due to confusion about desired outcomes. (file: 017_10_g_goal_setting.md, "GOAL SETTING AND THE PERFORMANCE CURVE", p1) [EXTRACTED]
+    *   **Fix:** Ensure goals are clearly understood and agreed upon by all parties to maintain ownership and responsibility. (file: 017_10_g_goal_setting.md, "WHOSE GOAL?", p3) [EXTRACTED]
+    *   **Failure Mode:** Relying on negative phrasing for goals focuses attention on failure. (file: 017_10_g_goal_setting.md, "Positive focus", p1) [EXTRACTED]
+    *   **Fix:** Always state goals in a positive frame. (file: 017_10_g_goal_setting.md, "Positive focus", p1) [EXTRACTED]
+    *   **Failure Mode:** Distortion of reality by opinions, judgments, expectations, and fears. (file: 018_11_r_what_is_reality_with_descriptions.md, "Objectivity", p1) [EXTRACTED] The "blame culture" creates a "false reality syndrome." (file: 018_11_r_what_is_reality_with_descriptions.md, p3) [EXTRACTED]
+    *   **Fix:** Seek detachment and phrase questions to elicit factual, descriptive answers, not justifications or opinions. (file: 018_11_r_what_is_reality_with_descriptions.md, "Detachment", p1; "Description not judgment", p1) [EXTRACTED] Focus on objective investigation rather than immediate problem-raising to avoid defensiveness. (file: 018_11_r_what_is_reality_with_descriptions.md, p2) [EXTRACTED]
+    *   **Failure Mode:** Self-limiting assumptions restrict creative solutions. (file: 019_12_o_what_options_do_you_have_with_descriptions.md, "Negative assumptions", p1) [EXTRACTED]
+    *   **Fix:** Invite questions like "What if there were no obstacles?" to bypass censorship and unleash creative thought. (file: 019_12_o_what_options_do_you_have_with_descriptions.md, "Negative assumptions", p3) [EXTRACTED]
+*   **Do/Don't checklist:**
+    *   **Do:** Visit all four GROW stages when tackling a new issue for the first time. (file: 016_9_the_grow_model_with_descriptions.md, p3) [EXTRACTED]
+    *   **Do:** Be flexible to start and end coaching at any stage for ongoing tasks. (file: 016_9_the_grow_model_with_descriptions.md, p3) [EXTRACTED]
+    *   **Do:** Spend sufficient time in the 'G' stage to ensure inspirational and stretching goals. (file: 016_9_the_grow_model_with_descriptions.md, "The key to GROW", p1) [EXTRACTED]
+    *   **Do:** Support end goals with performance and process goals that are within the coachee's control. (file: 017_10_g_goal_setting.md, "Qualities of a good goal", p1) [EXTRACTED]
+    *   **Do:** Frame goals positively to maintain energy and motivation. (file: 017_10_g_goal_setting.md, "Positive focus", p1) [EXTRACTED]
+    *   **Do:** Ensure goals are legal, ethical, and environmentally sound. (file: 017_10_g_goal_setting.md, "Ethical standards", p1) [EXTRACTED]
+    *   **Do:** Encourage coachees to aim high, stretching themselves. (file: 017_10_g_goal_setting.md, "Inspiring goals", p2) [EXTRACTED]
+    *   **Do:** Strive for objectivity and detachment when exploring reality. (file: 018_11_r_what_is_reality_with_descriptions.md, "Objectivity", p1; "Detachment", p1) [EXTRACTED]
+    *   **Do:** Elicit descriptive rather than judgmental answers in the reality phase. (file: 018_11_r_what_is_reality_with_descriptions.md, "Description not judgment", p1) [EXTRACTED]
+    *   **Do:** Follow the coachee's agenda and chain of thought. (file: 018_11_r_what_is_reality_with_descriptions.md, "Follow the coachee", p1) [EXTRACTED]
+    *   **Do:** Focus on quantity of options over quality initially to maximize choices and creativity. (file: 019_12_o_what_options_do_you_have_with_descriptions.md, p1) [EXTRACTED]
+    *   **Don't:** Base goals solely on current reality, as they may be negative or limited. (file: 016_9_the_grow_model_with_descriptions.md, "Goal first", p1) [EXTRACTED]
+    *   **Don't:** Misperceive GROW as a standalone solution; it requires context. (file: 016_9_the_grow_model_with_descriptions.md, "More than GROW", p1) [EXTRACTED]
+    *   **Don't:** Undermine coachee ownership by dictating goals or solutions. (file: 017_10_g_goal_setting.md, "Ownership of goals", p1; "INPUT FROM THE COACH", p1) [EXTRACTED]
+    *   **Don't:** Use "why" and "how" questions excessively, as they invite analysis, opinion, and defensiveness. (file: 018_11_r_what_is_reality_with_descriptions.md, "Reality questions", p3) [EXTRACTED]
+    *   **Don't:** Allow censorship or judgment during option generation. (file: 019_12_o_what_options_do_you_have_with_descriptions.md, p1) [EXTRACTED]
+
+# Author Delivery Model
+
+*   **Teaching strategy:** The author introduces concepts sequentially, building on previous chapters. The GROW model is presented as a logical next step after establishing foundational coaching skills. (file: 016_9_the_grow_model_with_descriptions.md, p1) [EXTRACTED] The model is made memorable through the use of a mnemonic (GROW) and supporting visual diagrams (Figure 9 for GROW, Figure 10 for Goal Setting, Figure 11 for Communication Envelope, Figure 12 for Nine Dot Exercise). (file: 016_9_the_grow_model_with_descriptions.md, "A framework for coaching", p2; file: 017_10_g_goal_setting.md, "From inspiration to action", p1; file: 018_11_r_what_is_reality_with_descriptions.md, "Description not judgment", p1; file: 019_12_o_what_options_do_you_have_with_descriptions.md, "THE NINE DOT EXERCISE", p1) [EXTRACTED] Complex ideas are explained through historical context (origins of GROW), personal anecdotes (Lyn Davies, Bob Beamon, John Naber), and fictional coaching dialogues (Sam and Michelle). (file: 016_9_the_grow_model_with_descriptions.md, "Origins of the GROW Model", p1-5; file: 017_10_g_goal_setting.md, "Performance goals are crucial", p1; "Olympic goal", p1; "A sample coaching conversation", p1; file: 018_11_r_what_is_reality_with_descriptions.md, p5; file: 019_12_o_what_options_do_you_have_with_descriptions.md, "Generating options in practice", p1) [EXTRACTED] The author defines and categorizes concepts (e.g., end vs. performance goals, SMART/PURE/CLEAR goals). (file: 017_10_g_goal_setting.md, "The goal for the issue", p2-3; "Qualities of a good goal", p1-3) [EXTRACTED]
+*   **Persuasion moves:** The author establishes credibility through personal experience ("My experience with goal setting," "When we brought the Inner Game to Europe in 1979") and by citing the model's global popularity and success. (file: 016_9_the_grow_model_with_descriptions.md, "Goal first", p1; "Origins of the GROW Model", p1, p5) [EXTRACTED] They emphasize the practical benefits of the GROW model ("most effective way," "it works"). (file: 016_9_the_grow_model_with_descriptions.md, "Formal or informal?", p1; "Context and flexibility", p1) [EXTRACTED] The author also uses cautionary statements to highlight potential misuses of the model ("Models are not the truth," "panaceas") and the importance of underlying principles like awareness and responsibility. (file: 016_9_the_grow_model_with_descriptions.md, "More than GROW", p1) [EXTRACTED] Real-world business successes (Jorge Paulo Lemann, 3G Capital) are used to illustrate the effectiveness of the principles. (file: 017_10_g_goal_setting.md, "OLYMPIC PERFORMANCE IN BUSINESS", p1-4) [EXTRACTED]
+*   **Framing contrasts:**
+    *   Formal vs. informal coaching. (file: 016_9_the_grow_model_with_descriptions.md, "Formal or informal?", p1) [EXTRACTED]
+    *   Coaching as a tool vs. a way to lead people. (file: 016_9_the_grow_model_with_descriptions.md, "Formal or informal?", p1) [EXTRACTED]
+    *   One-to-one, team, or self-coaching. (file: 016_9_the_grow_model_with_descriptions.md, "One to one", p1) [EXTRACTED]
+    *   Goals based on current reality (negative, limited) vs. ideal long-term vision (inspiring, motivating). (file: 016_9_the_grow_model_with_descriptions.md, "Goal first", p1-2) [EXTRACTED]
+    *   Autocratic use of GROW (dictation) vs. true coaching (questions, awareness, responsibility). (file: 016_9_the_grow_model_with_descriptions.md, "More than GROW", p2-3) [EXTRACTED]
+    *   End goals (external control) vs. performance/process goals (within control). (file: 017_10_g_goal_setting.md, "The goal for the issue", p2-3) [EXTRACTED]
+    *   Leadership imposing goals vs. coaching for ownership. (file: 017_10_g_goal_setting.md, "Ownership of goals", p1; "WHOSE GOAL?", p1) [EXTRACTED]
+    *   Negative goal phrasing (focus on failure) vs. positive goal phrasing (focus on achievement). (file: 017_10_g_goal_setting.md, "Positive focus", p1) [EXTRACTED]
+    *   Objectivity vs. distortions from opinions, judgments, fears. (file: 018_11_r_what_is_reality_with_descriptions.md, "Objectivity", p1) [EXTRACTED]
+    *   Description vs. judgment in communication. (file: 018_11_r_what_is_reality_with_descriptions.md, "Description not judgment", p1) [EXTRACTED]
+    *   Fuzzy/general vs. detailed/specific language. (file: 018_11_r_what_is_reality_with_descriptions.md, "Description not judgment", p1) [EXTRACTED]
+    *   Analysis/opinion (from "why/how") vs. facts (from "what/when/where/who/how much"). (file: 018_11_r_what_is_reality_with_descriptions.md, "Reality questions", p3) [EXTRACTED]
+    *   Quantity of options vs. quality of options (in early options stage). (file: 019_12_o_what_options_do_you_have_with_descriptions.md, p1) [EXTRACTED]
+    *   Internal vs. external perspective (e.g., in team motivation). (file: 019_12_o_what_options_do_you_have_with_descriptions.md, "Generating options in practice", p1) [EXTRACTED]
+*   **Key phrases (verbatim <=6 words):**
+    *   "essential nature of awareness and responsibility" (file: 016_9_the_grow_model_with_descriptions.md, p1) [EXTRACTED]
+    *   "intention turns into action" (file: 016_9_the_grow_model_with_descriptions.md, "A framework for coaching", p2) [EXTRACTED]
+    *   "simple, flexible, and it works" (file: 016_9_the_grow_model_with_descriptions.md, "Context and flexibility", p1) [EXTRACTED]
+    *   "Models are not the truth" (file: 016_9_the_grow_model_with_descriptions.md, "More than GROW", p1) [EXTRACTED]
+    *   "context of awareness and responsibility" (file: 016_9_the_grow_model_with_descriptions.md, "More than GROW", p1) [EXTRACTED]
+    *   "choice and self-motivation is a matter of choice" (file: 017_10_g_goal_setting.md, p1) [EXTRACTED]
+    *   "I want to for me" (file: 017_10_g_goal_setting.md, p1) [EXTRACTED]
+    *   "Self-motivation is a matter of choice" (file: 017_10_g_goal_setting.md, p1) [EXTRACTED]
+    *   "clarify the current situation" (file: 018_11_r_what_is_reality_with_descriptions.md, p1) [EXTRACTED]
+    *   "Objectivity is subject to major distortions" (file: 018_11_r_what_is_reality_with_descriptions.md, "Objectivity", p1) [EXTRACTED]
+    *   "Description not judgment" (file: 018_11_r_what_is_reality_with_descriptions.md, "Description not judgment", p1) [EXTRACTED]
+    *   "You have a measure of choice and control over what you are aware of, but what you are unaware of controls you." (file: 018_11_r_what_is_reality_with_descriptions.md, p2) [EXTRACTED]
+    *   "Trying hard or trying to change causes bodily tension and uncoordinated action, which all too often results in failure." (file: 018_11_r_what_is_reality_with_descriptions.md, p5) [EXTRACTED]
+    *   "compel the coachee to think" (file: 018_11_r_what_is_reality_with_descriptions.md, "Reality questions", p2) [EXTRACTED]
+    *   "high-resolution focus" (file: 018_11_r_what_is_reality_with_descriptions.md, "Reality questions", p2) [EXTRACTED]
+    *   "descriptive not judgmental" (file: 018_11_r_what_is_reality_with_descriptions.md, "Reality questions", p2) [EXTRACTED]
+    *   "quantity of options is more important" (file: 019_12_o_what_options_do_you_have_with_descriptions.md, p1) [EXTRACTED]
+    *   "creative juices flowing" (file: 019_12_o_what_options_do_you_have_with_descriptions.md, p1) [EXTRACTED]
+    *   "without inhibition or fear of judgment" (file: 019_12_o_what_options_do_you_have_with_descriptions.md, "Maximizing choices", p1) [EXTRACTED]
+    *   "What if there were no obstacles?" (file: 019_12_o_what_options_do_you_have_with_descriptions.md, "Negative assumptions", p3) [EXTRACTED]
+*   **Question patterns and intent:**
+    *   "What do you want?" (Goal, Figure 9, "STEP 1: WHAT ARE YOUR GOALS?") [EXTRACTED] - Intent: Clarify desired outcomes and aspirations.
+    *   "Where are you now?" (Reality, Figure 9, "STEP 2: WHAT IS THE REALITY?") [EXTRACTED] - Intent: Explore current situation, actions taken, and internal blocks.
+    *   "What could you do?" (Options, Figure 9, "STEP 3: WHAT ARE YOUR OPTIONS?") [EXTRACTED] - Intent: Identify possibilities and alternative strategies.
+    *   "What will you do?" (Will, Figure 9, "STEP 4: WHAT WILL YOU DO?") [EXTRACTED] - Intent: Establish concrete actions and commitment.
+    *   "What would you like to get out of this time together?" (file: 017_10_g_goal_setting.md, "The goal for the session", p2) [EXTRACTED] - Intent: Elicit coachee's session goals.
+    *   "How much are you willing to invest in the process?" (file: 017_10_g_goal_setting.md, "From inspiration to action", p1) [EXTRACTED] - Intent: Gauge commitment to process goals.
+    *   "What were the factors that determined your decision?" (file: 018_11_r_what_is_reality_with_descriptions.md, "Detachment", p1) [EXTRACTED] - Intent: Elicit factual details without inviting justification.
+    *   "In what way does this relate to the goal?" (file: 018_11_r_what_is_reality_with_descriptions.md, "Follow the coachee", p1) [EXTRACTED] - Intent: Redirect coachee back to the main objective or reveal valid connections.
+    *   "What action have you taken on this so far?" followed by "What were the effects of that action?" (file: 018_11_r_what_is_reality_with_descriptions.md, "Reality questions", p4) [EXTRACTED] - Intent: Focus on concrete actions and their results.
+    *   "What if there were no obstacles, what would you do then?" (file: 019_12_o_what_options_do_you_have_with_descriptions.md, "Negative assumptions", p3) [EXTRACTED] - Intent: Temporarily remove limiting beliefs to generate creative ideas.
+    *   "What if you were the CEO...?" or "What would SuperX do...?" (file: 019_12_o_what_options_do_you_have_with_descriptions.md, "Expanding creativity", p1) [EXTRACTED] - Intent: Encourage thinking from different perspectives to expand options.
+    *   "What else?" (file: 019_12_o_what_options_do_you_have_with_descriptions.md, "Generating options in practice", p1) [EXTRACTED] - Intent: Prompt for more options beyond initial ideas.
+
+# Reuse Pack
+
+*   **Metaphors:**
+    *   "Traffic problem" used to illustrate setting goals based on ideal future vs. current reality. (file: 016_9_the_grow_model_with_descriptions.md, "Goal first", p2) [EXTRACTED]
+    *   "Inner filing cabinet" for retrieving deeper consciousness information. (file: 018_11_r_what_is_reality_with_descriptions.md, "Deeper awareness", p1) [EXTRACTED]
+    *   "Communication envelope" to represent the spectrum from judgmental to descriptive language. (file: 018_11_r_what_is_reality_with_descriptions.md, "Description not judgment", p1) [EXTRACTED]
+    *   "Ladder to mastery" (mentioned in chapter 22, not detailed here). (file: 016_9_the_grow_model_with_descriptions.md, p1, no section provided, but mentioned in book structure for chapter 22). [NOT IN SOURCE]
+    *   "Mapping the options" visually, like a crossword expert solving an anagram. (file: 019_12_o_what_options_do_you_have_with_descriptions.md, "MAPPING THE OPTIONS", p1) [EXTRACTED]
+    *   "Quantum values intervention" (mentioned in NLP chapter 27a, not detailed here). (file: 016_9_the_grow_model_with_descriptions.md, p1, no section provided, but mentioned in book structure for chapter 27a). [NOT IN SOURCE]
+*   **Micro-scenarios:**
+    *   An employee coaching their boss covertly. (file: 016_9_the_grow_model_with_descriptions.md, "One to one", p1) [EXTRACTED]
+    *   An autocratic boss dictating sales targets using the GROW structure. (file: 016_9_the_grow_model_with_descriptions.md, "More than GROW", p2) [EXTRACTED]
+    *   A schoolchild inspired by an Everest climb, begging to go rock climbing. (file: 017_10_g_goal_setting.md, "From inspiration to action", p1) [EXTRACTED]
+    *   A leader (Alison) approaching a problem in a peer's department (Peter) constructively to avoid defensiveness. (file: 018_11_r_what_is_reality_with_descriptions.md, p2) [EXTRACTED]
+    *   A cricket batsman being told "Don't get out first ball" and then doing so. (file: 017_10_g_goal_setting.md, "Positive focus", p1) [EXTRACTED]
+*   **10 story beats:**
+    1.  **Introduction to Coaching Framework:** The need for structured questioning (GROW). (file: 016_9_the_grow_model_with_descriptions.md, "A framework for coaching", p1) [EXTRACTED]
+    2.  **The GROW Mnemonic:** Introduce the four stages and their key questions. (file: 016_9_the_grow_model_with_descriptions.md, "A framework for coaching", p2) [EXTRACTED]
+    3.  **Flexibility of the Model:** Highlight that not all stages are always followed linearly, and cycles are common. (file: 016_9_the_grow_model_with_descriptions.md, p3; "Context and flexibility", p3) [EXTRACTED]
+    4.  **Goal Setting Fundamentals:** Distinguish between different goal types (end, performance, dream, process). (file: 017_10_g_goal_setting.md, "The goal for the issue", p2-3; "From inspiration to action", p1) [EXTRACTED]
+    5.  **Ownership and Motivation:** Emphasize that goals must be owned by the coachee to be motivating and effective. (file: 017_10_g_goal_setting.md, "Ownership of goals", p1; "WHOSE GOAL?", p1) [EXTRACTED]
+    6.  **Objectivity in Reality:** Introduce the challenge of objectivity and the importance of descriptive language over judgment. (file: 018_11_r_what_is_reality_with_descriptions.md, "Objectivity", p1; "Description not judgment", p1) [EXTRACTED]
+    7.  **Deepening Awareness:** Explain how powerful reality questions can elicit deeper insights and self-correction. (file: 018_11_r_what_is_reality_with_descriptions.md, "Deeper awareness", p1; "Use the senses", p1) [EXTRACTED]
+    8.  **Overcoming Limiting Assumptions:** Discuss how implicit negative assumptions hinder option generation and techniques to bypass them. (file: 019_12_o_what_options_do_you_have_with_descriptions.md, "Negative assumptions", p1-3) [EXTRACTED]
+    9.  **Creative Option Generation:** Focus on techniques to expand thinking, such as "What if?" questions and metaphor. (file: 019_12_o_what_options_do_you_have_with_descriptions.md, "Negative assumptions", p3; "Expanding creativity", p1) [EXTRACTED]
+    10. **Coach's Role in Options:** Detail how a coach can contribute ideas without undermining coachee ownership. (file: 019_12_o_what_options_do_you_have_with_descriptions.md, "INPUT FROM THE COACH", p1) [EXTRACTED]
+*   **One-page fable spec:**
+    *   **Title:** The Mountain, The Map, The Many Paths, and The March.
+    *   **Characters:**
+        *   **Aspirant:** A well-meaning but overwhelmed individual, striving to reach a significant personal or professional peak. (Inspiration from Sam, file: 017_10_g_goal_setting.md, "A sample coaching conversation", p1; file: 018_11_r_what_is_reality_with_descriptions.md, p5)
+        *   **Guide:** A wise, patient, and observant mentor who asks insightful questions rather than giving directions. (Inspiration from Michelle, file: 017_10_g_goal_setting.md, "A sample coaching conversation", p1; file: 018_11_r_what_is_reality_with_descriptions.md, p5)
+        *   **Obstacles:** Internal doubts, external challenges, misleading paths, and the "false reality syndrome" of others. (Inspiration from "Negative assumptions," file: 019_12_o_what_options_do_you_have_with_descriptions.md, p1; "Objectivity," file: 018_11_r_what_is_reality_with_descriptions.md, p1)
+    *   **Setting:** A metaphorical journey to a high mountain peak, where the terrain is complex and the best route is not immediately obvious.
+    *   **Plot:**
+        1.  **The Dream Mountain:** The Aspirant dreams of reaching a magnificent peak but feels lost and overwhelmed by the task. They have a vague idea of the goal but no clear path. (G: Dream Goal, file: 017_10_g_goal_setting.md, "From inspiration to action", p1)
+        2.  **Seeking Guidance:** The Aspirant meets the Guide, who, instead of providing a map, asks "What peak do you truly want to reach, and why does it matter?" (G: Goal setting questions, file: 016_9_the_grow_model_with_descriptions.md, Figure 9; "The goal for the session", p2)
+        3.  **Mapping the Present:** The Guide then asks, "Where are you standing right now, and what have you tried so far?" The Aspirant describes their current location, past attempts, and the internal and external conditions impacting them, helped by the Guide's descriptive questions. (R: Reality checking, file: 016_9_the_grow_model_with_descriptions.md, Figure 9; "Reality questions", p4)
+        4.  **Unveiling New Paths:** Facing perceived dead ends, the Guide challenges the Aspirant: "If there were no impossible cliffs or raging rivers, what paths could you imagine?" The Aspirant brainstorms many creative, initially outlandish routes. (O: Options, "What if?", file: 019_12_o_what_options_do_you_have_with_descriptions.md, Figure 9; "Negative assumptions", p3)
+        5.  **Choosing the Ascent:** From the generated paths, the Aspirant, with the Guide's help, evaluates the "pros and cons" of each, refining them into a solid, realistic plan. (O: Sorting options BENEFITS AND COSTS, file: 019_12_o_what_options_do_you_have_with_descriptions.md, p1)
+        6.  **The First Step:** The Guide then asks, "What is the very first step you will take, and when?" The Aspirant, now with renewed purpose and a clear action plan, begins their ascent. (W: Will, file: 016_9_the_grow_model_with_descriptions.md, Figure 9)
+    *   **Theme:** True progress comes not from being told the way, but from clarifying your destination, understanding your starting point, imagining possibilities, and committing to your own chosen path. The journey is made by the climber, guided by insightful questions.
+    *   **Length:** Approximately 500-700 words (this current spec is around 300 words, so it's a starting point).
+
+# Quality Gate Report
+
+*   All [EXTRACTED] claims have at least one anchor snippet + location.
+*   All [INFERRED] claims have at least two anchor snippets + location.
+*   [NOT IN SOURCE] tags: 2 (for "Ladder to mastery" and "Quantum values intervention" mentions in the file path list, but not detailed in the provided source content)

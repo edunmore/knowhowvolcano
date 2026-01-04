@@ -1,0 +1,34 @@
+{
+  "runId": "run-2026-01-04T11-45-08-108Z",
+  "timestamp": "2026-01-04T11:45:08.109Z",
+  "config": {
+    "sourceDir": "/home/mac/projects/knowhow1",
+    "vaultDir": "/home/mac/projects/knowhow1/src/systems/research/vault",
+    "runsDir": "/home/mac/projects/knowhow1/runs",
+    "provider": "deepseek",
+    "verbose": true,
+    "startFile": "/home/mac/projects/knowhow1/booksample/004_a_note_to_the_reader.md"
+  },
+  "manifest": {
+    "filesRead": [
+      "/home/mac/projects/knowhow1/booksample/004_a_note_to_the_reader.md"
+    ],
+    "notesCreated": [
+      "/home/mac/projects/knowhow1/src/systems/research/vault/sources/source-a-note-to-the-reader.md",
+      "/home/mac/projects/knowhow1/src/systems/research/vault/concepts/concept-coaching-style-of-leadership.md",
+      "/home/mac/projects/knowhow1/src/systems/research/vault/concepts/concept-leader-coach.md",
+      "/home/mac/projects/knowhow1/src/systems/research/vault/concepts/concept-symbiotic-organization-people-relationship.md",
+      "/home/mac/projects/knowhow1/src/systems/research/vault/principles/principle-coach-in-the-context-of-an-organization.md",
+      "/home/mac/projects/knowhow1/src/systems/research/vault/procedures/procedure-announcing-leadership-skill-development-to-colleagues.md"
+    ],
+    "stepsCompleted": [
+      "ingestion",
+      "extraction",
+      "resolution",
+      "modeling",
+      "linking",
+      "indexing",
+      "generation"
+    ]
+  }
+}

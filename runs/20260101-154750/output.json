@@ -1,0 +1,123 @@
+{
+  "runId": "20260101-154750",
+  "timestamp": "2026-01-01T14:47:50.861Z",
+  "config": {
+    "startFile": "/home/mac/projects/knowhow1/booksample/016_9_the_grow_model_with_descriptions.md",
+    "sourceDir": "/home/mac/projects/knowhow1/booksample",
+    "canonDir": "/home/mac/projects/knowhow1/booksample/canon",
+    "maxFiles": 4,
+    "provider": "deepseek"
+  },
+  "provider": "DeepSeek-V3.2-Tools",
+  "routerResult": {
+    "mode": "DISCOVER",
+    "selectedFiles": [
+      "/home/mac/projects/knowhow1/booksample/016_9_the_grow_model_with_descriptions.md",
+      "/home/mac/projects/knowhow1/booksample/000_preamble_with_descriptions.md"
+    ],
+    "kernelSketch": {
+      "topic": "9 the grow model with descriptions",
+      "keyTerms": []
+    },
+    "topCandidates": []
+  },
+  "logs": [
+    "[2026-01-01T14:47:50.861Z] === Starting Pipeline Run: 20260101-154750 ===",
+    "[2026-01-01T14:47:50.861Z] Start file: /home/mac/projects/knowhow1/booksample/016_9_the_grow_model_with_descriptions.md",
+    "[2026-01-01T14:47:50.861Z] Provider: DeepSeek-V3.2-Tools",
+    "[2026-01-01T14:47:50.861Z] \n--- Step 1: Router ---",
+    "[2026-01-01T14:47:55.136Z] Mode: DISCOVER",
+    "[2026-01-01T14:47:55.136Z] Selected files: 2",
+    "[2026-01-01T14:47:55.136Z]   - /home/mac/projects/knowhow1/booksample/016_9_the_grow_model_with_descriptions.md",
+    "[2026-01-01T14:47:55.136Z]   - /home/mac/projects/knowhow1/booksample/000_preamble_with_descriptions.md",
+    "[2026-01-01T14:47:55.136Z] \n--- Step 2: Extraction ---",
+    "[2026-01-01T14:48:36.215Z] Extraction complete: 7866 chars",
+    "[2026-01-01T14:48:36.215Z] \n--- Step 3: Critic ---",
+    "[2026-01-01T14:49:19.751Z] Scorecard:",
+    "[2026-01-01T14:49:19.751Z]   - Faithfulness: 3/5",
+    "[2026-01-01T14:49:19.751Z]   - Generator Readiness: 3/5",
+    "[2026-01-01T14:49:19.751Z]   - Non-plagiarism: 3/5",
+    "[2026-01-01T14:49:19.752Z] \n--- Step 4: Canon Matching ---",
+    "[2026-01-01T14:49:24.871Z] Match result: MTH-20260101-154713",
+    "[2026-01-01T14:49:24.871Z] Confidence: 95%",
+    "[2026-01-01T14:49:24.871Z] \n--- Step 5: Canon Update ---",
+    "[2026-01-01T14:49:24.873Z] Action: update",
+    "[2026-01-01T14:49:24.873Z] Entry: /home/mac/projects/knowhow1/booksample/canon/methods/MTH-20260101-154713.md",
+    "[2026-01-01T14:49:24.873Z] \n--- Step 6: Regenerate Index ---",
+    "[2026-01-01T14:49:24.876Z] Index regenerated: /home/mac/projects/knowhow1/booksample/canon/METHODS-CANON-INDEX.md",
+    "[2026-01-01T14:49:24.876Z] \n=== Pipeline Complete ===",
+    "[2026-01-01T14:49:24.876Z] Run artifacts saved to: runs/20260101-154750"
+  ],
+  "extraction": {
+    "methodKernel": {
+      "purpose": [],
+      "preconditions": [],
+      "roles": [],
+      "process": [],
+      "decisionRules": [],
+      "successSignals": [],
+      "failureModes": [],
+      "dosDonts": []
+    },
+    "authorDeliveryModel": {
+      "teachingStrategy": [],
+      "persuasionMoves": [],
+      "framingContrasts": [],
+      "keyPhrases": [],
+      "questionPatterns": []
+    },
+    "reusePack": {
+      "metaphors": [],
+      "microScenarios": [],
+      "storyBeats": [],
+      "fableSpec": ""
+    },
+    "qualityGateReport": "",
+    "rawMarkdown": "# Method Kernel\n\n**Purpose**: [EXTRACTED] To provide a structured framework for guiding a coaching conversation to improve performance and learning by raising awareness and responsibility. (File 1, heading \"9 The GROW Model\", paragraph 1)\n**Purpose**: [EXTRACTED] To transform intention into action through a sequence of questions. (File 1, heading \"A framework for coaching\", paragraph 2)\n\n**Preconditions**: [EXTRACTED] The coach must possess the intention and skill to generate awareness and responsibility through active listening and powerful questioning. (File 1, heading \"More than GROW\", paragraph 1)\n**Preconditions**: [EXTRACTED] The context must be one where coaching is appropriate, such as a formal session, an informal leadership conversation, or a team setting. (File 1, heading \"Formal or informal?\" and \"One to one\", paragraphs 1 & 1)\n\n**Roles**:\n*   **Coach**: [EXTRACTED] Facilitates the process by asking questions, listening actively, and holding the framework. Can be a leader, peer, or dedicated coach. (File 1, heading \"One to one\", paragraph 1)\n*   **Coachee**: [EXTRACTED] The individual or team being coached, who provides answers, explores their own situation, and commits to actions. (File 1, heading \"One to one\", paragraph 1)\n\n**Process**:\n1.  **Goal**: [EXTRACTED] Begin by establishing what the coachee wants to achieve in the session and in the longer term. The core question is \"What do you want?\" (File 1, CONCEPT_DIAGRAM interpretation)\n2.  **Reality**: [EXTRACTED] Explore the current situation, including actions taken so far and internal obstacles. The core question is \"Where are you now?\" (File 1, CONCEPT_DIAGRAM interpretation)\n3.  **Options**: [EXTRACTED] Identify possible strategies and alternative courses of action. The core question is \"What could you do?\" (File 1, CONCEPT_DIAGRAM interpretation)\n4.  **Will**: [EXTRACTED] Establish commitment to specific actions, timing, and accountability. The core question is \"What will you do?\" (File 1, CONCEPT_DIAGRAM interpretation)\n\n**Loops/Order Changes**: [EXTRACTED] The sequence is flexible and recyclable. A vague initial Goal may need redefinition after exploring Reality. Options should be checked against the Goal. The final Will should be checked against the Goal and the coachee's motivation. (File 1, heading \"Context and flexibility\", paragraph 2)\n**Loops/Order Changes**: [EXTRACTED] Coaching on an ongoing task may begin and end with any stage, not necessarily following the full G-R-O-W sequence. (File 1, heading \"A framework for coaching\", paragraph 3)\n\n**Decision Rules**:\n*   [EXTRACTED] Move to the next stage when the coachee has sufficient awareness and clarity on the current one. (File 1, heading \"The key to GROW\", paragraph 1)\n*   [EXTRACTED] Revisit a previous stage if new information reveals a misalignment (e.g., an Option doesn't serve the Goal, or motivation for the Will is low). (File 1, heading \"Context and flexibility\", paragraph 2)\n*   [INFERRED] The coach's intuition and instinct guide when to move or loop, rather than rigidly obeying a rule. (Anchors: File 1, heading \"Context and flexibility\", paragraph 3; File 1, heading \"The key to GROW\", paragraph 1)\n\n**Success Signals**: [EXTRACTED] The coachee sets an inspirational and stretching goal. (File 1, heading \"The key to GROW\", paragraph 1)\n**Success Signals**: [EXTRACTED] The coachee demonstrates raised awareness and takes responsibility for their actions and decisions. (File 1, heading \"More than GROW\", paragraph 1)\n**Success Signals**: [EXTRACTED] A clear plan of action with commitment and accountability is established. (File 1, heading \"STEP 4: WHAT WILL YOU DO?\", paragraph 1)\n\n**Failure Modes & Fixes**:\n*   **Failure**: [EXTRACTED] Using the framework autocratically (telling, not asking), which creates no awareness or real responsibility. (File 1, heading \"More than GROW\", paragraph 2)\n    *   **Fix**: [EXTRACTED] Return to using powerful questions and active listening within each stage. (File 1, heading \"More than GROW\", paragraph 1)\n*   **Failure**: [EXTRACTED] Setting goals based only on current reality, leading to uninspired, limited, or counterproductive aims. (File 1, heading \"Goal first\", paragraph 1)\n    *   **Fix**: [EXTRACTED] Start with an ideal long-term vision, then set realistic steps toward it. (File 1, heading \"Goal first\", paragraph 2)\n*   **Failure**: [EXTRACTED] Low self-motivation when committing to action (Will). (File 1, heading \"Context and flexibility\", paragraph 2)\n    *   **Fix**: [EXTRACTED] Revisit the Goal to review and strengthen the coachee's sense of ownership. (File 1, heading \"Context and flexibility\", paragraph 2)\n\n**Do/Don't Checklist**:\n*   **DO**: [EXTRACTED] Spend sufficient time on Goal until it is inspirational. (File 1, heading \"The key to GROW\", paragraph 1)\n*   **DO**: [EXTRACTED] Use the framework flexibly, recycling through stages as needed. (File 1, heading \"Context and flexibility\", paragraph 3)\n*   **DO**: [EXTRACTED] Follow your coaching intuition. (File 1, heading \"Context and flexibility\", paragraph 3)\n*   **DON'T**: [EXTRACTED] Treat the model as a rigid, linear sequence to be followed mechanically. (File 1, heading \"Context and flexibility\", paragraph 3)\n*   **DON'T**: [EXTRACTED] Use the GROW acronym without the foundational context of awareness and responsibility. (File 1, heading \"More than GROW\", paragraph 1)\n\n# Author Delivery Model\n\n**Teaching Strategy**: [EXTRACTED] Presenting a core, simple mnemonic (GROW) as an accessible entry point, then layering on essential context and nuance to prevent misuse. (File 1, heading \"A framework for coaching\" and \"More than GROW\", paragraphs 1 & 1)\n**Teaching Strategy**: [EXTRACTED] Using contrast to clarify concepts: formal vs. informal coaching, visionary vs. reactive goal-setting, coaching vs. autocratic telling. (File 1, headings \"Formal or informal?\", \"Goal first\", and \"More than GROW\")\n\n**Persuasion Moves**:\n*   [EXTRACTED] Asserting the model's effectiveness based on origin story and client success (e.g., development with McKinsey). (File 1, heading \"Origins of the GROW Model\", paragraphs 2-4)\n*   [EXTRACTED] Framing the model as the \"underpinning framework\" for a successful coaching practice observed elsewhere. (File 1, heading \"Origins of the GROW Model\", paragraph 2)\n*   [EXTRACTED] Underscoring the primacy of core principles (awareness, responsibility) over the model itself to establish credibility and depth. (File 1, heading \"More than GROW\", paragraph 1)\n\n**Framing Contrasts**:\n*   [EXTRACTED] **Coaching vs. Directive Leadership**: Coaching asks questions to generate awareness; autocratic telling does not. (File 1, heading \"More than GROW\", paragraph 2)\n*   [EXTRACTED] **Vision-Led vs. Problem-Reactive Goals**: Goals from an ideal future are inspiring; goals from current reality are limiting. (File 1, heading \"Goal first\", paragraphs 1-2)\n*   [EXTRACTED] **Flexible Tool vs. Rigid Rule**: GROW is a recyclable framework for intuition; it is not a strict linear sequence. (File 1, heading \"Context and flexibility\", paragraph 3)\n\n**Key Phrases (Verbatim)**:\n*   \"awareness and responsibility\" (File 1, multiple headings)\n*   \"powerful questions\" (File 1, heading \"More than GROW\", paragraph 1)\n*   \"What do you want?\" (File 1, CONCEPT_DIAGRAM)\n*   \"transformational\" (File 1, heading \"A framework for coaching\", paragraph 2)\n*   \"simple, flexible, and it works\" (File 1, heading \"Context and flexibility\", paragraph 1)\n\n**Question Patterns and Intent**:\n*   **Pattern**: [EXTRACTED] Using open-ended \"What\" questions for each stage (What do you want? Where are you now? etc.). (File 1, CONCEPT_DIAGRAM)\n*   **Intent**: [INFERRED] To provoke exploration and self-reflection, avoiding closed questions that elicit simple yes/no answers. (Anchors: File 1, heading \"More than GROW\", paragraph 2; File"
+  },
+  "criticReport": {
+    "stressTest": {
+      "reelScript": "",
+      "fableOutline": "",
+      "comicBeats": "",
+      "gaps": []
+    },
+    "audit": {
+      "anchorIssues": [],
+      "unsupportedClaims": [],
+      "overreachItems": [],
+      "mislabelings": []
+    },
+    "scorecard": {
+      "operationalCompleteness": 3,
+      "decisionRulesClarity": 3,
+      "teachingTransfer": 3,
+      "generatorReadiness": 3,
+      "faithfulness": 3,
+      "nonPlagiarismSafety": 3
+    },
+    "fixSpec": {
+      "mustAdd": [
+        "(Clarification):** To the **Process: Goal** step, add a note clarifying the three goal types mentioned in the source's \"STEP 1\": ultimate, performance, and progress goals. This provides more nuanced language for generators.",
+        "*   *Anchor:* File 1, heading \"STEP 1: WHAT ARE YOUR GOALS?\", bullet 1.",
+        "**"
+      ],
+      "mustRemove": [],
+      "mustDowngrade": [],
+      "mustProvideAnchors": [],
+      "mustRewrite": [],
+      "optional": []
+    },
+    "rawMarkdown": "# Stress Test Outputs\n\n## A) 30s Reel Script\n\n**(Visual: Quick cuts of a person looking stressed at a desk, sticky notes everywhere.)**\n**Voiceover:** Stuck? Overwhelmed? There's a better way to tackle any challenge.\n**(Visual: Whiteboard appears with four boxes: G, R, O, W. \"G\" lights up.)**\n**VO:** First, get clear on your GOAL. What do you *really* want?\n**(Visual: \"R\" lights up. Person looks at calendar and project plan.)**\n**VO:** Check REALITY. Where are you now, honestly?\n**(Visual: \"O\" lights up. Brainstorm cloud with lightbulb icons appears.)**\n**VO:** Brainstorm OPTIONS. What *could* you do?\n**(Visual: \"W\" lights up. Person confidently checks off a calendar date.)**\n**VO:** Commit to WILL. What *will* you do, and by when?\n**(Visual: Person looks empowered, clutter cleared. Logo: \"GROW - The Coaching Model.\")**\n**VO:** It's not a rigid rulebook. It's a flexible framework to unlock your potential. Try GROW.\n\n**Where I got stuck / What was missing:**\n*   The extraction lacks concrete, vivid examples of the \"inspirational and stretching goal\" versus a \"problem-reactive goal.\" I had to infer a generic \"stuck at desk\" scenario.\n*   No specific \"question patterns\" beyond the core four were provided, limiting script dialogue.\n*   The nuance of \"recycling\" and \"intuition\" is hard to convey in 30 seconds, risking an oversimplified linear presentation.\n\n## B) One-Page Business Fable Outline\n\n**Title:** The Manager Who Learned to Ask\n**Characters:** Alex (frustrated, directive manager), Sam (disengaged team member), Jordan (wise mentor/coach).\n**Setting:** A product team missing launch deadlines.\n\n1.  **The Grind:** Alex berates Sam for another missed milestone, dictating a solution (\"You **will** work weekends!\"). Sam nods, demoralized. Productivity drops further.\n2.  **The Intervention:** Mentor Jordan asks Alex, \"What's your **goal** for the team?\" Alex states, \"To hit the deadline.\" Jordan probes: \"Is that inspiring, or just reacting to panic?\"\n3.  **A New Path:** Jordan guides Alex through a quiet conversation with Sam.\n    *   **G (Goal):** \"Sam, what do you want this product launch to achieve for you and our customers?\" Sam reveals a desire to build something elegant, not just fast.\n    *   **R (Reality):** \"What's *actually* slowing you down?\" Sam confesses a critical, unclear requirement from another department.\n    *   **O (Options):** \"What could we do about that?\" They brainstorm: escalate, prototype, re-scope.\n    *   **W (Will):** \"What will you do?\" Sam commits to clarifying the requirement by tomorrow. Alex commits to backing them up.\n4.  **The Shift:** The blockage clears. Sam is energized, taking ownership. Alex realizes the power of asking, not telling. The team begins using the GROW rhythm informally.\n5.  **The Moral:** The framework (GROW) is the map, but awareness, responsibility, and genuine inquiry (the compass) are what guide you to performance.\n\n**Where I got stuck / What was missing:**\n*   The extraction provides the \"autocratic boss\" failure mode but not a detailed positive example of a full, nuanced GROW conversation to model the fable's pivotal scene. I inferred the dialogue.\n*   Clarifying the exact difference between \"performance goals\" and \"progress goals\" (mentioned in Step 1) would have added depth to the goal-setting scene.\n\n## C) 6-Panel Comic Beat Sheet\n\n**Panel 1:** **Frustration.** Leader (pointing at chart): \"Our numbers are down! You need to try harder!\" Team looks deflated.\n**Panel 2:** **Insight.** Leader remembers coaching training. Thinks: \"Goal... Reality... Options... Will. I was just dictating 'Will.'\"\n**Panel 3:** **Reframing (Goal).** Leader asks team: \"Forget the problem for a sec. What's an *inspiring* goal for this quarter?\" Ideas start flowing.\n**Panel 4:** **Assessment (Reality).** Leader: \"So, where are we *really* stuck?\" Team identifies a specific process bottleneck.\n**Panel 5:** **Brainstorm (Options).** Leader: \"What could we do to fix that and hit our new goal?\" Wild and practical ideas on a whiteboard.\n**Panel 6:** **Commitment (Will).** Team huddle. Leader: \"So, what will *we* do?\" Team members volunteer for actions with dates. Smiles, determined faces.\n\n**Where I got stuck / What was missing:**\n*   The extraction emphasizes checking Options against the Goal and looping back. This recursive, non-linear aspect is difficult to show in a static, 6-panel linear comic format without overcomplicating it.\n*   Lacked specific visual metaphors from the source (e.g., the traffic example for goal-setting) to inspire more unique imagery.\n\n# Faithfulness Audit\n\n## Anchor Verification Issues\n*   **All anchors are present and verbatim.** The extraction correctly cites specific headings, paragraphs, and the CONCEPT_DIAGRAM from File 1. No issues.\n\n## Unsupported [EXTRACTED] Claims\n*   **None.** All claims tagged `[EXTRACTED]` are directly supported by the provided anchors. For example, the purpose, preconditions, roles, process steps, and failure modes are all explicitly stated in the source text.\n\n## Overreach / External Lore (Bad [INFERRED])\n*   **Inference on Question Intent:** The inference that open-ended \"What\" questions are used \"To provoke exploration and self-reflection, avoiding closed questions\" is **reasonable and well-supported**. The source contrasts coaching (asking questions) with autocratic telling (no questions asked) and emphasizes generating awareness, making this a logical, grounded inference.\n*   **Inference on Decision Rule:** The inference that \"The coach's intuition and instinct guide when to move or loop\" is **critical and well-supported** by two explicit anchors stating \"Follow your own intuition and instinct\" and \"move *flexibly* through the sequence, according to your intuition.\" This is not overreach.\n\n## Mislabeling\n*   **No mislabeling found.** `[EXTRACTED]` and `[INFERRED]` tags are applied correctly based on the evidence.\n\n## Plagiarism Risk Assessment\n*   **Low Risk.** The extraction synthesizes and paraphrases concepts from the source. The longest verbatim phrases (e.g., \"awareness and responsibility,\" \"powerful questions\") are correctly presented as \"Key Phrases (Verbatim)\" and are central, defining terminology. The process description is in the extractor's own words, not long copied passages.\n\n# Scorecard (0–5)\n\n| Category | Score | Rationale |\n| :--- | :--- | :--- |\n| **Operational Completeness** | 5 | All core components of the method are captured: Purpose, Preconditions, Roles, Process (4 steps), Loops, Decision Rules, Success Signals, Failure Modes, and a Do/Don't checklist. |\n| **Decision Rules Clarity** | 4 | Clear rules for moving forward (\"sufficient awareness\") and looping back (\"if misalignment\") are stated. The \"intuition\" rule is correctly inferred. Could be slightly more explicit on what \"sufficient awareness\" looks like. |\n| **Teaching Transfer** | 5 | The \"Author Delivery Model\" section excellently captures *how* the concept is taught: the strategy, persuasion moves, framing contrasts, and key phrases. This is crucial for effective downstream generation. |\n| **Generator Readiness** | 5 | The extraction is exceptionally well-structured, discrete, and tagged. It provides clear hooks (like \"vision-led vs. problem-reactive\") and contrasts that are ideal for creating stories, scripts, and summaries. |\n| **Faithfulness** | 5 | The extraction is highly faithful. All extracted claims are anchored, inferences are reasonable and necessary, and there is no detected mislabeling or unsupported overreach. |\n| **Non-Plagiarism Safety** | 5 | The work is a model of safe synthesis. It uses verbatim quotes sparingly and appropriately for key terms, while the explanatory text is original paraphrasing that demonstrates understanding without copying. |\n\n**Overall Average: 4.8**\n\n# Fix Spec\n\nThe extraction is of very high quality. The fixes below are minor enhancements, not corrections of errors.\n\n*   **MUST ADD (Clarification):** To the **Process: Goal** step, add a note clarifying the three goal types mentioned in the source's \"STEP 1\": ultimate, performance, and progress goals. This provides more nuanced language for generators.\n    *   *Anchor:* File 1, heading \"STEP 1: WHAT ARE YOUR GOALS?\", bullet 1.\n*   **MUST ADD (Example):** To the **Failure Modes & Fixes** for \"goals based only on current reality,\" incorporate the **source's concrete traffic example** (widening a road vs. designing an ideal future traffic pattern). This provides a powerful, tangible analogy for"
+  },
+  "matchResult": {
+    "matched_method_id": "MTH-20260101-154713",
+    "confidence": 95,
+    "rationale": "The new extraction is a direct and detailed match for the GROW model. The core mechanism is identical: a four-stage sequential questioning framework (Goal, Reality, Options, Will) used in a coaching conversation to move from intention to action. The purpose overlaps perfectly, focusing on raising awareness, responsibility, and improving performance. The process steps are a verbatim match for the canonical GROW stages. Key terminology (\"GROW\", \"coach\", \"coachee\", the four stage names and their core questions) are all explicitly shared. The extraction adds valuable contextual detail (preconditions, role descriptions, application contexts) that enriches the existing canon entry without contradiction.",
+    "merge_guidance": "Merge the new extraction into MTH-20260101-154713. The new extraction provides richer textual descriptions for Purpose, Preconditions, and Roles that should be integrated to augment the existing entry. The Process description is highly aligned and can be merged to reinforce the canonical four-step sequence. Ensure the unique identifiers from the extraction (e.g., source file references) are preserved in the merged entry's metadata."
+  },
+  "canonUpdate": {
+    "action": "update",
+    "entryPath": "/home/mac/projects/knowhow1/booksample/canon/methods/MTH-20260101-154713.md"
+  }
+}

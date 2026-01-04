@@ -1,0 +1,6 @@
+{
+  "matched_method_id": "MTH-20260101-143421,MTH-20260101-154713",
+  "confidence": 95,
+  "rationale": "The new extraction explicitly references \"The GROW Model\" as a structured coaching framework with four phases (Goal, Reality, Options, Will) in Part III, directly aligning with the existing canon methods. Core mechanism similarity is confirmed by the GROW Model's structure. Purpose/goal overlap exists through coaching for performance improvement. Process steps (Goal Setting, Reality, Options, Will) match the model's components. Shared terminology (\"GROW Model,\" \"Goal Setting,\" \"Options\") confirms the match. The existing methods likely represent this model, so the new extraction is a canonical extension.  ",
+  "merge_guidance": "Merge the new extraction's detailed breakdown of the GROW Model (including sub-chapters 10-13) into the existing methods to enhance granularity. Ensure consistency in terminology and structure across entries."
+}

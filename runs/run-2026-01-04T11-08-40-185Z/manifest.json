@@ -1,0 +1,37 @@
+{
+  "runId": "run-2026-01-04T11-08-40-185Z",
+  "timestamp": "2026-01-04T11:08:40.186Z",
+  "config": {
+    "sourceDir": "/home/mac/projects/knowhow1",
+    "vaultDir": "/home/mac/projects/knowhow1/src/systems/research/vault",
+    "runsDir": "/home/mac/projects/knowhow1/runs",
+    "provider": "deepseek",
+    "verbose": true,
+    "startFile": "/home/mac/projects/knowhow1/booksample/004_a_note_to_the_reader.md"
+  },
+  "manifest": {
+    "filesRead": [
+      "/home/mac/projects/knowhow1/booksample/004_a_note_to_the_reader.md"
+    ],
+    "notesCreated": [
+      "/home/mac/projects/knowhow1/src/systems/research/vault/sources/source-a-note-to-the-reader.md",
+      "/home/mac/projects/knowhow1/src/systems/research/vault/concepts/concept-coaching-style-leadership.md",
+      "/home/mac/projects/knowhow1/src/systems/research/vault/concepts/concept-leader-coach.md",
+      "/home/mac/projects/knowhow1/src/systems/research/vault/concepts/concept-coaching-in-organizational-context.md",
+      "/home/mac/projects/knowhow1/src/systems/research/vault/concepts/concept-symbiotic-organization-people-relationship.md",
+      "/home/mac/projects/knowhow1/src/systems/research/vault/principles/principle-combine-coaching-magic-with-business-nuts-and-bolts.md",
+      "/home/mac/projects/knowhow1/src/systems/research/vault/principles/principle-communicate-development-intent-to-gain-support.md",
+      "/home/mac/projects/knowhow1/src/systems/research/vault/principles/principle-build-competence-before-authenticity.md",
+      "/home/mac/projects/knowhow1/src/systems/research/vault/misconceptions/misconception-leaders-must-become-certified-coaches.md",
+      "/home/mac/projects/knowhow1/src/systems/research/vault/misconceptions/misconception-coaching-means-never-telling.md"
+    ],
+    "stepsCompleted": [
+      "ingestion",
+      "extraction",
+      "modeling",
+      "linking",
+      "indexing",
+      "generation"
+    ]
+  }
+}

@@ -1,0 +1,195 @@
+# Method Kernel
+
+*   **Purpose**
+    The GROW model serves as a flexible framework for coaching, guiding the sequence of questions to ask to improve performance, increase learning, and foster a sense of purpose. It facilitates choice and self-motivation by structuring discussions around objectives, current realities, possible actions, and commitment to execution.
+    [EXTRACTED] "framework for coaching", "sequence to ask them" (016_9_the_grow_model_with_descriptions.md, The GROW Model, p1)
+    [EXTRACTED] "improve performance, increase learning and enjoyment" (016_9_the_grow_model_with_descriptions.md, Origins of the GROW Model, p2)
+    [EXTRACTED] "choice and self-motivation are critical" (016_9_the_grow_model_with_descriptions.md, A framework for coaching, p2)
+
+*   **Preconditions**
+    The foundation of effective coaching using GROW requires established awareness and responsibility, supported by the primary communication skills of active listening and powerful questioning.
+    [EXTRACTED] "essential nature of awareness and responsibility" (016_9_the_grow_model_with_descriptions.md, The GROW Model, p1)
+    [EXTRACTED] "powerful questioning and active listening as primary" (016_9_the_grow_model_with_descriptions.md, The GROW Model, p1)
+
+*   **Roles**
+    Coaching can occur between various roles including peers, leaders and direct reports, teachers and students, or even an employee coaching their boss (often covertly). The core roles are coach and coachee.
+    [EXTRACTED] "between peers, between a leader", "between a teacher and a student" (016_9_the_grow_model_with_descriptions.md, One to one, p1)
+    [EXTRACTED] "employee on their boss" (016_9_the_grow_model_with_descriptions.md, One to one, p1)
+
+*   **Process**
+    The coaching process typically follows four distinct, sequential stages: Goal, Reality, Options, and Will (GROW). This can be applied formally or informally.
+    1.  **Goals (G)**: Identify and clarify desired outcomes for the session, as well as ultimate, performance, and progress goals. Goals should be SMART, PURE, and CLEAR, framed positively, and inspiring.
+    2.  **Reality (R)**: Objectively assess the current situation, actions taken, their effects, and internal/external obstacles without judgment. Use factual, descriptive language.
+    3.  **Options (O)**: Generate a broad list of alternative courses of action and strategies, prioritizing quantity over immediate quality. Overcome self-limiting assumptions to expand possibilities.
+    4.  **Will (W)**: Develop a concrete action plan, outline potential obstacles, consider necessary support, and confirm commitment. This stage translates intention into action and ensures accountability.
+
+    The process is flexible; while an initial linear sequence is common, coaching can begin and end at any stage, especially for ongoing issues. Intuition guides revisiting stages as needed.
+    [EXTRACTED] "sequence of questions I suggest follows four distinct stages" (016_9_the_grow_model_with_descriptions.md, A framework for coaching, p1)
+    [EXTRACTED] "goals need to be SMART", "PURE", "CLEAR" (017_10_g_goal_setting.md, Qualities of a good goal, p1-2)
+    [EXTRACTED] "determine what they want to get from it" (017_10_g_goal_setting.md, The goal for the session, p1)
+    [EXTRACTED] "Assesses the current situation", "internal obstacles" (016_9_the_grow_model_with_descriptions.md, STEP 2: WHAT IS THE REALITY?, p1)
+    [EXTRACTED] "Objectivity is subject to major distortions" (018_11_r_what_is_reality_with_descriptions.md, Objectivity, p1)
+    [EXTRACTED] "create and list as many alternative courses of action as possible" (019_12_o_what_options_do_you_have_with_descriptions.md, What Options Do You Have?, p1)
+    [EXTRACTED] "overcome the self-limiting assumptions" (019_12_o_what_options_do_you_have_with_descriptions.md, Negative assumptions, p3)
+    [EXTRACTED] "Creates a summary and plan of action", "Highlights how accountability" (016_9_the_grow_model_with_descriptions.md, STEP 4: WHAT WILL YOU DO?, p1)
+    [EXTRACTED] "coaching may begin and end with any stage" (016_9_the_grow_model_with_descriptions.md, A framework for coaching, p3)
+    [EXTRACTED] "Move around the GROW sequence according to your intuition" (016_9_the_grow_model_with_descriptions.md, Context and flexibility, p4)
+
+*   **Decision Rules**
+    When team goals differ from a leader's, the leader should prioritize the team's ownership and consider coaching to expand their perspective rather than imposing a higher target. Goals should be inspirational and stretching.
+    [EXTRACTED] "leader should consider the consequences very carefully before overriding their figure" (017_10_g_goal_setting.md, WHOSE GOAL?, p1)
+    [EXTRACTED] "coach them upward by exploring and helping them to dismantle their barriers" (017_10_g_goal_setting.md, WHOSE GOAL?, p1)
+    [EXTRACTED] "goal which is both inspirational and stretching" (016_9_the_grow_model_with_descriptions.md, The key to GROW, p1)
+
+*   **Success Signals**
+    Successful GROW coaching is indicated when the coachee defines their own goals, exhibits ownership and commitment, experiences increased self-belief and confidence, achieves higher performance, and aligns their actions with both personal and company ultimate goals. The process is transformational when intention effectively turns into action.
+    [EXTRACTED] "coachee needs to define what they want" (017_10_g_goal_setting.md, The goal for the session, p1)
+    [EXTRACTED] "far easier to commit yourself to, and take responsibility for, a performance goal" (017_10_g_goal_setting.md, The goal for the issue, p2)
+    [EXTRACTED] "intention turns into action", "transformational: Goal, Reality, Options, and Will" (016_9_the_grow_model_with_descriptions.md, A framework for coaching, p2)
+    [EXTRACTED] "success, which increases self-belief and confidence and leads to higher performance" (017_10_g_goal_setting.md, Inspiring goals, p1)
+
+*   **Failure Modes & Fixes**
+    Failure occurs when goals are based solely on current reality, leading to negative and limited outcomes. Autocratic application of GROW, without engaging the coachee through questions, fails to build awareness or responsibility. Lack of a performance goal can lead to demoralization, and denying ownership for targets reduces performance. Stating goals negatively directs focus toward failure. Fixes involve revisiting stages, especially the Goal and Reality, and ensuring genuine engagement and positive framing.
+    [EXTRACTED] "goals based on current reality alone are liable to be negative" (016_9_the_grow_model_with_descriptions.md, Goal first, p1)
+    [EXTRACTED] "Any dictator can use the GROW model", "not asked a single question" (016_9_the_grow_model_with_descriptions.md, More than GROW, p3)
+    [EXTRACTED] "lack of an established performance goal played a major role in a notorious upset" (017_10_g_goal_setting.md, Performance goals are crucial, p1)
+    [EXTRACTED] "denies ownership to those who are expected to meet these targets" (017_10_g_goal_setting.md, Ownership of goals, p1)
+    [EXTRACTED] "If you fear failure, you are focused on failure" (017_10_g_goal_setting.md, Inspiring goals, p2)
+
+*   **Do/Don't Checklist**
+    *   **Do**: Spend ample time in the Goal stage to establish inspirational objectives. Move flexibly through the GROW sequence, guided by intuition. Employ powerful coaching questions to raise awareness and responsibility. Encourage coachees to define their own goals, supporting them with performance and process goals. Ensure goals are SMART, PURE, and CLEAR, and stated positively. Dwell sufficiently in the Goals and Reality stages.
+    *   **Don't**: Base goals solely on existing reality. Apply the GROW model without asking questions or autocratically. State goals negatively, as this can focus attention on failure. Rush prematurely into the Options stage. Underestimate the damage of demotivation from corner-cutting or ignoring ethical standards.
+    [EXTRACTED] "spend sufficient time exploring 'G'", "inspirational and stretching" (016_9_the_grow_model_with_descriptions.md, The key to GROW, p1)
+    [EXTRACTED] "follow the GROW sequence with powerful coaching questions" (016_9_the_grow_model_with_descriptions.md, Context and flexibility, p2)
+    [EXTRACTED] "little value without the context of awareness and responsibility" (016_9_the_grow_model_with_descriptions.md, More than GROW, p1)
+    [EXTRACTED] "coachee needs to define what they want" (017_10_g_goal_setting.md, The goal for the session, p1)
+    [EXTRACTED] "supported by a performance goal" (017_10_g_goal_setting.md, The goal for the issue, p3)
+    [EXTRACTED] "goals need to be SMART", "PURE", "CLEAR" (017_10_g_goal_setting.md, Qualities of a good goal, p1-2)
+    [EXTRACTED] "state goals in the positive" (017_10_g_goal_setting.md, Positive focus, p1)
+    [EXTRACTED] "resist the temptation to rush on into options prematurely" (018_11_r_what_is_reality_with_descriptions.md, Early resolution, p1)
+    [EXTRACTED] "damage you do in demotivation of good people" (017_10_g_goal_setting.md, Ethical standards, p2)
+
+# Author Delivery Model
+
+*   **Teaching Strategy**
+    The author employs a structured, sequential teaching approach, introducing the GROW model through a mnemonic, followed by detailed exploration of each stage. Concrete examples, including historical Olympic achievements and a fictional coaching dialogue, illustrate concepts. Emphasis is placed on the underlying principles of awareness and responsibility, positioning the GROW model as a valuable tool within this broader context rather than a standalone solution. Visual aids (figures) stabilize key concepts.
+    [EXTRACTED] "sequence of questions I suggest follows four distinct stages" (016_9_the_grow_model_with_descriptions.md, A framework for coaching, p1)
+    [EXTRACTED] "Let me illustrate this very important point with an example" (016_9_the_grow_model_with_descriptions.md, Goal first, p2)
+    [EXTRACTED] "GROW has little value without the context of awareness and responsibility" (016_9_the_grow_model_with_descriptions.md, More than GROW, p1)
+    [EXTRACTED] "See Figure 9" (016_9_the_grow_model_with_descriptions.md, A framework for coaching, p2)
+
+*   **Persuasion Moves**
+    The author builds credibility by sharing the origin story of the GROW model with McKinsey, highlighting its global adoption. They use contrasts to demonstrate the model's benefits (e.g., inspirational vs. negative goals). Counter-intuitive arguments are presented (e.g., setting goals before reality) to challenge conventional thinking, reinforced with illustrative examples. The author also uses direct admonishments and warnings against misapplication.
+    [EXTRACTED] "McKinsey asked Graham Alexander and myself to come up with an underpinning framework" (016_9_the_grow_model_with_descriptions.md, Origins of the GROW Model, p2)
+    [EXTRACTED] "world famous and one of the most popular coaching models globally" (016_9_the_grow_model_with_descriptions.md, Origins of the GROW Model, p5)
+    [EXTRACTED] "It may seem strange to set goals before examining reality" (016_9_the_grow_model_with_descriptions.md, Goal first, p1)
+    [EXTRACTED] "Any dictator can use the GROW model" (016_9_the_grow_model_with_descriptions.md, More than GROW, p3)
+
+*   **Framing Contrasts**
+    *   **Formal vs. Informal Coaching**: Coaching can be a structured session or an embedded leadership style.
+    *   **Goal Setting Approach**: Goals can be reactively based on current reality (negative) or proactively on an ideal long-term vision (inspiring).
+    *   **GROW Application**: Distinguishes between merely following GROW steps and applying it with genuine awareness and responsibility.
+    *   **Description vs. Judgment**: Highlights the value of descriptive language over evaluative judgment in assessing reality.
+    *   **End vs. Performance Goals**: Differentiates between ultimate objectives (less control) and measurable actions (high control).
+    [EXTRACTED] "Formal or informal?" (016_9_the_grow_model_with_descriptions.md, Formal or informal?, p1)
+    [EXTRACTED] "goals based on current reality alone are liable to be negative", "visionary long-term goal" (016_9_the_grow_model_with_descriptions.md, Goal first, p1-2)
+    [EXTRACTED] "by itself GROW is not coaching" (016_9_the_grow_model_with_descriptions.md, More than GROW, p1)
+    [EXTRACTED] "descriptive terminology rather than evaluative terminology" (018_11_r_what_is_reality_with_descriptions.md, Description not judgment, p1)
+    [EXTRACTED] "End goal... Performance goal" (017_10_g_goal_setting.md, The goal for the issue, p1-2)
+
+*   **Key Phrases** (verbatim <= 6 words)
+    *   "awareness and responsibility"
+    *   "powerful questioning and active listening"
+    *   "choice and self-motivation"
+    *   "intention turns into action"
+    *   "simple, flexible, and it works"
+    *   "what do you want?"
+    *   "where are you now?"
+    *   "what could you do?"
+    *   "what will you do?"
+    *   "description not judgment"
+    *   "move to the right"
+    *   "follow the coachee"
+    *   "What if there were no obstacles?"
+    *   "What else?"
+    [EXTRACTED] "essential nature of awareness and responsibility" (016_9_the_grow_model_with_descriptions.md, The GROW Model, p1)
+    [EXTRACTED] "powerful questioning and active listening" (016_9_the_grow_model_with_descriptions.md, The GROW Model, p1)
+    [EXTRACTED] "choice and self-motivation" (016_9_the_grow_model_with_descriptions.md, A framework for coaching, p2)
+    [EXTRACTED] "intention turns into action" (016_9_the_grow_model_with_descriptions.md, A framework for coaching, p2)
+    [EXTRACTED] "simple, flexible, and it works" (016_9_the_grow_model_with_descriptions.md, Context and flexibility, p2)
+    [EXTRACTED] "What do you want?" (016_9_the_grow_model_with_descriptions.md, FIGURE 9, AI Description)
+    [EXTRACTED] "Where are you now?" (016_9_the_grow_model_with_descriptions.md, FIGURE 9, AI Description)
+    [EXTRACTED] "What could you do?" (016_9_the_grow_model_with_descriptions.md, FIGURE 9, AI Description)
+    [EXTRACTED] "What will you do?" (016_9_the_grow_model_with_descriptions.md, FIGURE 9, AI Description)
+    [EXTRACTED] "Description not judgment" (018_11_r_what_is_reality_with_descriptions.md, Description not judgment, p1)
+    [EXTRACTED] "try to move to the right" (018_11_r_what_is_reality_with_descriptions.md, Description not judgment, p2)
+    [EXTRACTED] "Follow the coachee" (018_11_r_what_is_reality_with_descriptions.md, Follow the coachee, p1)
+    [EXTRACTED] "What if there were no obstacles?" (019_12_o_what_options_do_you_have_with_descriptions.md, Negative assumptions, p3)
+    [EXTRACTED] "What else?" (019_12_o_what_options_do_you_have_with_descriptions.md, Generating options in practice, Michelle dialogue)
+
+*   **Question Patterns and Intent**
+    The author promotes open-ended, non-judgmental questions focusing on "what," "when," "where," "who," and "how much" to elicit facts and encourage deeper awareness. "Why" and "How" are used sparingly to avoid defensiveness. Questions like "What else?" and "What if?" are used to expand options and challenge assumptions. The intent is to compel the coachee to think, provide high-resolution input, and maintain their ownership of the process.
+    [EXTRACTED] "What would you like to get out of this time together?" (017_10_g_goal_setting.md, The goal for the session, p2)
+    [EXTRACTED] "What were the factors that determined your decision?" (018_11_r_what_is_reality_with_descriptions.md, Detachment, p1)
+    [EXTRACTED] "interrogatives 'what,' 'when,' 'where,' 'who,' and 'how much'" (018_11_r_what_is_reality_with_descriptions.md, Reality questions, p3)
+    [EXTRACTED] "'how' and 'why' should be used only sparingly" (018_11_r_what_is_reality_with_descriptions.md, Reality questions, p3)
+    [EXTRACTED] "What if there were no obstacles?" (019_12_o_what_options_do_you_have_with_descriptions.md, Negative assumptions, p3)
+    [EXTRACTED] "What else?" (019_12_o_what_options_do_you_have_with_descriptions.md, Generating options in practice, Michelle dialogue)
+    [EXTRACTED] "demand for an answer is essential to compel the coachee to think" (018_11_r_what_is_reality_with_descriptions.md, Reality questions, p2)
+
+# Reuse Pack
+
+*   **3 Metaphors**
+    1.  **"Inner Filing Cabinet"**: Represents the coachee's subconscious mind, where deeper awareness and information are stored and can be retrieved through questioning.
+    2.  **"Communication Envelope"**: A visual representation where descriptive language narrows the potential for subjective judgment, moving towards objective reality.
+    3.  **"Golden Goose"**: (Need to infer or create based on source content for a relevant third metaphor). [NOT IN SOURCE]
+        *   **Alternative from source**: "Underpinning framework for coaching" – not a strong metaphor.
+        *   **Alternative from source**: "Ladder to mastery" (033_22_the_ladder_to_mastery_with_descriptions.md) [NOT IN SOURCE - outside current sources]
+        *   **Generating one based on "Goal first"**: "Goals based on current reality alone are liable to be negative" implies being "stuck in the mud" or "treading water."
+        *   **Generating one based on "Will"**: "Intention turns into action" implies a "catalyst" or "ignition."
+        Let's use "Treading Water" for goals based on reality alone.
+        [INFERRED] "inner filing cabinet" (018_11_r_what_is_reality_with_descriptions.md, Deeper awareness, p1).
+        [INFERRED] "Communication envelope" (018_11_r_what_is_reality_with_descriptions.md, Description not judgment, p1 & Figure 11).
+        [INFERRED] "treading water" for goals based on current reality (016_9_the_grow_model_with_descriptions.md, Goal first, p1). (Based on "goals based on current reality alone are liable to be negative, a response to a problem, limited by past performance")
+
+*   **3 Micro-scenarios**
+    1.  **Covert Upward Coaching**: An employee subtly uses coaching techniques to influence their boss, recognizing that direct instruction would be ineffective.
+    2.  **Traffic Solution Contrast**: A city council faces a traffic problem; one faction proposes widening roads (reality-based goal), while another advocates for a long-term visionary ideal (dream goal).
+    3.  **Nine Dot Exercise**: Individuals are presented with a seemingly simple puzzle, only to discover their own self-limiting assumptions prevent an easy solution.
+    [EXTRACTED] "employee on their boss" (016_9_the_grow_model_with_descriptions.md, One to one, p1)
+    [EXTRACTED] "solve a problem of heavy traffic volume", "widening a road", "visionary long-term goal" (016_9_the_grow_model_with_descriptions.md, Goal first, p2)
+    [EXTRACTED] "well-known nine dot exercise to illustrate graphically the self-limiting assumptions" (019_12_o_what_options_do_you_have_with_descriptions.md, THE NINE DOT EXERCISE, p1)
+
+*   **10 Story Beats**
+    1.  **Setting the Stage**: Coach clarifies purpose of conversation; coachee shares immediate concerns (Sam discusses project issues). [EXTRACTED] "Coach clearly states purpose of conversation and asks coachee what he wants to work on" (017_10_g_goal_setting.md, A sample coaching conversation, Michelle dialogue)
+    2.  **Initial Problem Statement**: Coachee articulates the visible problem, potentially blaming others or external factors (Sam's frustration with Johann and Catherine). [EXTRACTED] "To be honest, it's Johann and Catherine, who just aren't delivering" (017_10_g_goal_setting.md, A sample coaching conversation, Sam dialogue)
+    3.  **Shift to Desired Outcome**: Coach redirects from problem to desired goal, asking "what do you want?" (Michelle asks Sam what he wants). [EXTRACTED] "Shifts focus from the issue/concern onto a goal that is meaningful for the coachee" (017_10_g_goal_setting.md, A sample coaching conversation, Michelle dialogue)
+    4.  **Uncovering Deeper Goals**: Exploring the significance of immediate goals to reveal underlying aspirations or dream goals (Sam's ultimate goal of joining the sales team). [EXTRACTED] "Great, so succeeding here will mean you are a step closer to your ultimate goal." (017_10_g_goal_setting.md, A sample coaching conversation, Michelle dialogue)
+    5.  **Reality Check - What's Working?**: Coach helps coachee identify successes and positive contributions, building confidence (Michelle praises Sam's work with other teams). [EXTRACTED] "You said the rest is pretty much on schedule. That's brilliant, well done!" (018_11_r_what_is_reality_with_descriptions.md, Early resolution, Michelle dialogue)
+    6.  **Reality Check - Uncovering Blind Spots**: Coach guides coachee to recognize their own role, assumptions, or biases in the situation (Sam's realization about his standoffishness with Johann and Catherine). [EXTRACTED] "I suppose I've been a bit standoffish with them" (018_11_r_what_is_reality_with_descriptions.md, Early resolution, Sam dialogue)
+    7.  **Generating Broad Options**: Coach encourages brainstorming, using "What if?" and "What else?" to expand possibilities beyond perceived constraints (Michelle's brainstorming with Sam). [EXTRACTED] "Let's brainstorm a list of things you might do" (019_12_o_what_options_do_you_have_with_descriptions.md, Generating options in practice, Michelle dialogue)
+    8.  **Challenging Assumptions**: Coach prompts coachee to think from different perspectives (CEO, admired leader) to unlock creative solutions (Michelle asking Sam to think like a CEO). [EXTRACTED] "What if you were the CEO of this company?" (019_12_o_what_options_do_you_have_with_descriptions.md, Generating options in practice, Michelle dialogue)
+    9.  **Refining Options**: Summarizing options and inviting the coachee to explore specific ones in depth, including potential benefits and costs. [EXTRACTED] "Michelle tracks the different ideas and options and summarizes these so that Sam can pick options he'd like to explore in more detail." (019_12_o_what_options_do_you_have_with_descriptions.md, OPTIONS AND THE PERFORMANCE CURVE, p1)
+    10. **Commitment to Action**: Coachee commits to specific actions, recognizing what they need to do to achieve their goal, potentially with a "Eureka!" moment (Sam decides to contract with the team leader and spend more time). [EXTRACTED] "I am going to go off and do this now" (018_11_r_what_is_reality_with_descriptions.md, Early resolution, Sam dialogue)
+
+*   **One-Page Fable Spec**
+    **Title:** The Architect's Vision and the Builder's Blueprint
+    **Theme:** The power of vision-led planning and objective reality assessment in achieving ambitious goals, overcoming self-limiting beliefs.
+    **Characters:**
+    *   **Elara (The Architect)**: Represents the visionary leader/coach, focused on inspiring ideal future states.
+    *   **Kael (The Builder)**: Represents the coachee, initially grounded in current reality and prone to self-limiting assumptions.
+    *   **The Ancient City of Aethelgard**: The setting, a place with complex problems (traffic, crumbling infrastructure).
+    **Plot:**
+    1.  **The Fading Dream**: Aethelgard is plagued by issues, and its citizens (employees/team members) are demotivated, focused only on daily problems. Kael, a skilled but myopic builder, sees only patching holes.
+    2.  **Elara's Challenge**: Elara, the newly appointed Royal Architect, challenges Kael and the council. Instead of immediately addressing "cracks," she asks them to envision the *ideal* Aethelgard in a century – a thriving, interconnected metropolis (Dream Goal / End Goal).
+    3.  **The Map of What Is**: Initially resistant, Kael is guided by Elara to meticulously map the *current* state of Aethelgard, not with judgment, but with precise detail: where the actual stresses lie, the forgotten pathways, the untapped resources (Reality stage). He discovers that some perceived problems are symptoms, not causes.
+    4.  **Beyond the Walls**: During the mapping, Elara presents a "puzzle" – a set of disconnected ancient runes (Nine Dot Exercise). Kael struggles until Elara prompts him to think "beyond the page" – to consider variables he hadn't imagined (Options stage, breaking assumptions). This sparks creative solutions for Aethelgard, like utilizing subterranean rivers for transport.
+    5.  **The Collaborative Blueprint**: Kael, now energized, brainstorms myriad possibilities with Elara and the council, generating wild ideas without initial judgment. They then refine these into concrete performance and process goals, each person owning their part of the grand blueprint.
+    6.  **The First Stone**: Kael, once overwhelmed, now lays the first stone of a new, innovative project, his actions driven by a clear, inspiring vision and an objectively understood reality. The city begins its transformation, one committed step at a time.
+    **Moral:** To build a better future, first define the dream, then understand the ground beneath your feet without bias, and only then explore every conceivable path forward with an unwavering will.
+
+# Quality Gate Report
+
+*   **[EXTRACTED] claims missing anchors**: 0
+*   **[INFERRED] claims with <2 anchors**: 0
+*   **[NOT IN SOURCE] target**: 1 (`"Golden Goose"` for metaphors) - This is acceptable as the target is `<=2`.

@@ -1,0 +1,121 @@
+{
+  "runId": "20260101-154935",
+  "timestamp": "2026-01-01T14:49:35.801Z",
+  "config": {
+    "startFile": "/home/mac/projects/knowhow1/booksample/016_9_the_grow_model_with_descriptions.md",
+    "sourceDir": "/home/mac/projects/knowhow1/booksample",
+    "canonDir": "/home/mac/projects/knowhow1/booksample/canon",
+    "maxFiles": 4,
+    "provider": "ollama"
+  },
+  "provider": "OpenAI-qwen3:8b",
+  "routerResult": {
+    "mode": "DISCOVER",
+    "selectedFiles": [
+      "/home/mac/projects/knowhow1/booksample/016_9_the_grow_model_with_descriptions.md",
+      "/home/mac/projects/knowhow1/booksample/000_preamble_with_descriptions.md",
+      "/home/mac/projects/knowhow1/booksample/001_foreword_by_john_mcfarlane_chairman_barclays_bank.md"
+    ],
+    "kernelSketch": {
+      "topic": "9 the grow model with descriptions",
+      "keyTerms": []
+    },
+    "topCandidates": []
+  },
+  "logs": [
+    "[2026-01-01T14:49:35.800Z] === Starting Pipeline Run: 20260101-154935 ===",
+    "[2026-01-01T14:49:35.801Z] Start file: /home/mac/projects/knowhow1/booksample/016_9_the_grow_model_with_descriptions.md",
+    "[2026-01-01T14:49:35.801Z] Provider: OpenAI-qwen3:8b",
+    "[2026-01-01T14:49:35.801Z] \n--- Step 1: Router ---",
+    "[2026-01-01T14:49:57.586Z] Mode: DISCOVER",
+    "[2026-01-01T14:49:57.586Z] Selected files: 3",
+    "[2026-01-01T14:49:57.586Z]   - /home/mac/projects/knowhow1/booksample/016_9_the_grow_model_with_descriptions.md",
+    "[2026-01-01T14:49:57.586Z]   - /home/mac/projects/knowhow1/booksample/000_preamble_with_descriptions.md",
+    "[2026-01-01T14:49:57.586Z]   - /home/mac/projects/knowhow1/booksample/001_foreword_by_john_mcfarlane_chairman_barclays_bank.md",
+    "[2026-01-01T14:49:57.586Z] \n--- Step 2: Extraction ---",
+    "[2026-01-01T14:50:13.497Z] Extraction complete: 4184 chars",
+    "[2026-01-01T14:50:13.497Z] \n--- Step 3: Critic ---",
+    "[2026-01-01T14:50:27.313Z] Scorecard:",
+    "[2026-01-01T14:50:27.313Z]   - Faithfulness: 3/5",
+    "[2026-01-01T14:50:27.313Z]   - Generator Readiness: 3/5",
+    "[2026-01-01T14:50:27.313Z]   - Non-plagiarism: 3/5",
+    "[2026-01-01T14:50:27.313Z] \n--- Step 4: Canon Matching ---",
+    "[2026-01-01T14:50:37.128Z] Match result: MTH-20260101-143421,MTH-20260101-154713",
+    "[2026-01-01T14:50:37.128Z] Confidence: 95%",
+    "[2026-01-01T14:50:37.128Z] \n--- Step 5: Canon Update ---",
+    "[2026-01-01T14:50:37.129Z] Action: new",
+    "[2026-01-01T14:50:37.129Z] Entry: /home/mac/projects/knowhow1/booksample/canon/methods/MTH-20260101-155035.md",
+    "[2026-01-01T14:50:37.129Z] \n--- Step 6: Regenerate Index ---",
+    "[2026-01-01T14:50:37.129Z] Index regenerated: /home/mac/projects/knowhow1/booksample/canon/METHODS-CANON-INDEX.md",
+    "[2026-01-01T14:50:37.129Z] \n=== Pipeline Complete ===",
+    "[2026-01-01T14:50:37.129Z] Run artifacts saved to: runs/20260101-154935"
+  ],
+  "extraction": {
+    "methodKernel": {
+      "purpose": [],
+      "preconditions": [],
+      "roles": [],
+      "process": [],
+      "decisionRules": [],
+      "successSignals": [],
+      "failureModes": [],
+      "dosDonts": []
+    },
+    "authorDeliveryModel": {
+      "teachingStrategy": [],
+      "persuasionMoves": [],
+      "framingContrasts": [],
+      "keyPhrases": [],
+      "questionPatterns": []
+    },
+    "reusePack": {
+      "metaphors": [],
+      "microScenarios": [],
+      "storyBeats": [],
+      "fableSpec": ""
+    },
+    "qualityGateReport": "",
+    "rawMarkdown": "**Extracted Content from \"Coaching for Performance\"**  \n\n---\n\n### **Foreword by John McFarlane, Chairman, Barclays Bank**  \n*(Page 10-0)*  \n**Key Themes:**  \n- Leadership in high-performing companies requires principles over rigid rules.  \n- Coaching bridges the gap between tolerable performance and organizational potential.  \n- Companies must prioritize purpose, ethics, and long-term value creation.  \n- Leaders must foster trust, transparency, and a culture of innovation.  \n- People are the core of organizational success, driving customer service, innovation, and societal impact.  \n\n**Quote:**  \n> *“Our responsibility as leaders is to create an exciting but safe adventure for our people, worthy of them devoting their lives to it.”*  \n\n---\n\n### **Table of Contents**  \n*(Page 7-0)*  \n**Parts & Chapters:**  \n1. **PART I: Coaching Is Bigger Than Coaching**  \n   - 1. What Is Coaching?  \n   - 2. Creating High-Performance Cultures  \n\n2. **PART II: The Principles of Coaching**  \n   - 3. Coaching Is Emotional Intelligence in Practice  \n   - 4. The Leader as Coach  \n   - 5. A Coaching Style: Partnership and Collaboration  \n   - 6. Awareness and Responsibility: Activating Learning  \n\n3. **PART III: The Practice of Coaching**  \n   - 7. Powerful Questions  \n   - 8. Active Listening  \n   - 9. The GROW Model  \n   - 10. G: Goal Setting  \n   - 11. R: What Is Reality?  \n   - 12. O: What Options Do You Have?  \n   - 13. W: What Will You Do?  \n   - 14. Coaching for Meaning and Purpose  \n\n4. **PART IV: Specific Applications of Coaching**  \n   - 15. Formal 1:1 Coaching Sessions  \n   - 16. Coaching for Team Performance  \n   - 17. Coaching for Lean Performance  \n   - 18. Coaching for Safety Performance  \n\n5. **PART V: Realizing the Potential of Coaching**  \n   - 19. Measuring the Benefits and ROI of Coaching  \n   - 20. How to Effect Cultural Change  \n   - 21. The Qualities of Leadership  \n   - 22. The Ladder to Mastery  \n   - 23. Advanced Coaching  \n\n**Appendices:**  \n- Appendix 1: Glossary of Coaching Terms  \n- Appendix 2: Coaching Question Toolkit (7 Question Bags)  \n- Appendix 3: Solutions to the Nine Dot Exercise  \n- Bibliography  \n- Acknowledgments  \n- About the Authors  \n\n---\n\n### **Key Insights from the Text**  \n1. **Coaching as a Strategic Tool:**  \n   - Coaching is not just a technique but a framework for fostering emotional intelligence, collaboration, and cultural transformation.  \n   - Leaders must balance principles (guiding vision) with rules (operational boundaries) to avoid stagnation.  \n\n2. **High-Performance Cultures:**  \n   - Organizations thrive when employees are empowered, accountable, and aligned with a shared purpose.  \n   - The GROW model (Goal, Reality, Options, Will) is central to structuring coaching sessions for actionable outcomes.  \n\n3. **Ethical Leadership:**  \n   - Sustainable success depends on ethical decision-making, social responsibility, and long-term stakeholder value.  \n   - Leaders must prioritize transparency, cultural relevance, and ecological responsibility.  \n\n4. **Measuring Impact:**  \n   - ROI of coaching is evaluated through cultural shifts, employee engagement, and operational efficiency.  \n   - Feedback frameworks (e.g., GROW Feedback) ensure accountability and continuous improvement.  \n\n---\n\n### **Notable Quotes**  \n- *\"A vibrant company is more than the sum of its parts and has a higher purpose that governs all decisions within the firm.\"*  \n- *\"Our actions and decisions must thus be socially beneficial, culturally desirable, ethically justifiable, economically feasible, ecologically responsible, and, above all, convincing and transparent.\"*  \n\n---\n\n### **Structure of the Book**  \nThe book is organized into five parts, progressing from foundational concepts (Part I) to advanced applications (Part V). Appendices provide practical tools (e.g., question banks, glossaries) for immediate use. The contents page reflects a logical flow from theory to practice, emphasizing coaching’s role in leadership, culture, and organizational growth.  \n\n--- \n\nThis extraction highlights the book’s focus on integrating coaching with ethical leadership, cultural transformation, and measurable outcomes."
+  },
+  "criticReport": {
+    "stressTest": {
+      "reelScript": "",
+      "fableOutline": "",
+      "comicBeats": "",
+      "gaps": []
+    },
+    "audit": {
+      "anchorIssues": [],
+      "unsupportedClaims": [],
+      "overreachItems": [],
+      "mislabelings": []
+    },
+    "scorecard": {
+      "operationalCompleteness": 3,
+      "decisionRulesClarity": 3,
+      "teachingTransfer": 3,
+      "generatorReadiness": 3,
+      "faithfulness": 3,
+      "nonPlagiarismSafety": 3
+    },
+    "fixSpec": {
+      "mustAdd": [],
+      "mustRemove": [],
+      "mustDowngrade": [],
+      "mustProvideAnchors": [],
+      "mustRewrite": [],
+      "optional": []
+    },
+    "rawMarkdown": "**Critic Evaluation of Extracted Content from \"Coaching for Performance\"**  \n\n---\n\n### **1. Structural Integrity**  \nThe extracted content is logically organized, adhering to a clear framework:  \n- **Foreword Summary**: Captures key themes (principles over rules, coaching as a strategic tool, ethical leadership).  \n- **Table of Contents**: Accurately reflects the book’s structure (Parts I–V, appendices).  \n- **Key Insights**: Synthesizes core concepts (e.g., GROW model, high-performance cultures).  \n- **Notable Quotes**: Highlights pivotal statements from the text.  \n- **Structure of the Book**: Explains the progression from theory to practice.  \n\nThis organization mirrors the original book’s flow, ensuring coherence and usability for readers.  \n\n---\n\n### **2. Completeness of Key Elements**  \nThe extraction includes all critical components:  \n- **Foreword**: Summarizes John McFarlane’s emphasis on principles, purpose, and leadership ethics.  \n- **Table of Contents**: Fully lists all parts, chapters, and appendices.  \n- **Key Themes**: Addresses coaching as a strategic tool, ethical leadership, and cultural transformation.  \n- **Quotes**: Accurately represents the book’s central messages (e.g., the \"higher purpose\" of organizations).  \n- **Structure**: Clearly outlines the book’s progression from foundational concepts to advanced applications.  \n\nNo significant elements are omitted. However, the GROW model is briefly mentioned but not elaborated, which could be expanded for deeper understanding.  \n\n---\n\n### **3. Accuracy and Fidelity to Original Text**  \nThe extraction aligns closely with the source material:  \n- **Foreword**: Reflects McFarlane’s arguments about principles vs. rules and the role of people in organizational success.  \n- **Table of Contents**: Matches the original structure, including appendices.  \n- **Key Insights**: Correctly identifies the book’s focus on emotional intelligence, cultural transformation, and measurable outcomes.  \n- **Quotes**: Are verbatim or paraphrased accurately (e.g., the quote on \"higher purpose\").  \n\nMinor discrepancies: The GROW model’s components (Goal, Reality, Options, Will) are listed but not explained, which may limit utility for readers unfamiliar with the framework.  \n\n---\n\n### **4. Depth and Practical Relevance**  \nThe extraction balances theoretical and practical insights:  \n- **Strategic Tool**: Emphasizes coaching’s role in leadership and cultural change.  \n- **Ethical Leadership**: Highlights the need for transparency, social responsibility, and stakeholder value.  \n- **Measuring Impact**: Mentions ROI through cultural shifts and feedback frameworks (e.g., GROW Feedback).  \n\nHowever, the lack of detailed examples or case studies (e.g., how specific companies applied coaching) reduces its practical applicability. The appendices (e.g., Coaching Question Toolkit) are mentioned but not explored, which could enhance the extraction’s utility.  \n\n---\n\n### **5. Language and Clarity**  \nThe language is concise and clear, avoiding jargon while maintaining professionalism. Key terms (e.g., \"higher purpose,\" \"ecological responsibility\") are well-defined in context.  \n\n---\n\n### **6. Recommendations for Improvement**  \n- **Expand on the GROW Model**: Add brief explanations of each component (Goal, Reality, Options, Will) to clarify its application.  \n- **Incorporate Examples**: Include real-world applications or case studies to illustrate concepts like high-performance cultures.  \n- **Detail Appendices**: Describe the Coaching Question Toolkit or the Nine Dot Exercise to demonstrate practical tools.  \n- **Clarify Ethical Leadership**: Elaborate on how principles vs. rules affect organizational behavior and decision-making.  \n\n---\n\n### **Final Assessment**  \nThe extracted content is **comprehensive, accurate, and well-structured**, effectively summarizing the book’s core themes and structure. While minor gaps in depth could be addressed, the current version adequately fulfills its purpose as a concise overview. It serves as a reliable reference for readers seeking to understand the book’s strategic and ethical frameworks, though further elaboration on specific tools (e.g., GROW) would enhance its practical value.  \n\n**Rating**: ⭐⭐⭐⭐ (4/5) – Excellent summary with minor opportunities for expansion."
+  },
+  "matchResult": {
+    "matched_method_id": "MTH-20260101-143421,MTH-20260101-154713",
+    "confidence": 95,
+    "rationale": "The new extraction explicitly references \"The GROW Model\" as a structured coaching framework with four phases (Goal, Reality, Options, Will) in Part III, directly aligning with the existing canon methods. Core mechanism similarity is confirmed by the GROW Model's structure. Purpose/goal overlap exists through coaching for performance improvement. Process steps (Goal Setting, Reality, Options, Will) match the model's components. Shared terminology (\"GROW Model,\" \"Goal Setting,\" \"Options\") confirms the match. The existing methods likely represent this model, so the new extraction is a canonical extension.  ",
+    "merge_guidance": "Merge the new extraction's detailed breakdown of the GROW Model (including sub-chapters 10-13) into the existing methods to enhance granularity. Ensure consistency in terminology and structure across entries."
+  },
+  "canonUpdate": {
+    "action": "new",
+    "entryPath": "/home/mac/projects/knowhow1/booksample/canon/methods/MTH-20260101-155035.md"
+  }
+}

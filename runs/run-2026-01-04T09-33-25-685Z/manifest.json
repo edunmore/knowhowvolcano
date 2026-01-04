@@ -1,0 +1,31 @@
+{
+  "runId": "run-2026-01-04T09-33-25-685Z",
+  "timestamp": "2026-01-04T09:33:25.686Z",
+  "config": {
+    "sourceDir": "/home/mac/projects/knowhow1",
+    "vaultDir": "/home/mac/projects/knowhow1/src/systems/research/vault",
+    "runsDir": "/home/mac/projects/knowhow1/runs",
+    "provider": "deepseek",
+    "verbose": false,
+    "startFile": "/home/mac/projects/knowhow1/booksample/004_a_note_to_the_reader.md"
+  },
+  "manifest": {
+    "filesRead": [
+      "/home/mac/projects/knowhow1/booksample/004_a_note_to_the_reader.md"
+    ],
+    "notesCreated": [
+      "/home/mac/projects/knowhow1/src/systems/research/vault/sources/source-a-note-to-the-reader.md",
+      "/home/mac/projects/knowhow1/src/systems/research/vault/concepts/concept-coaching-style-of-leadership.md",
+      "/home/mac/projects/knowhow1/src/systems/research/vault/principles/principle-coaching-for-organizational-context.md",
+      "/home/mac/projects/knowhow1/src/systems/research/vault/concepts/concept-leader-coach.md",
+      "/home/mac/projects/knowhow1/src/systems/research/vault/principles/principle-authentic-leadership-through-competence.md",
+      "/home/mac/projects/knowhow1/src/systems/research/vault/procedures/procedure-communicating-behavioral-change-to-colleagues.md",
+      "/home/mac/projects/knowhow1/src/systems/research/vault/concepts/concept-symbiotic-organization-people-relationship.md"
+    ],
+    "stepsCompleted": [
+      "ingestion",
+      "extraction",
+      "modeling"
+    ]
+  }
+}

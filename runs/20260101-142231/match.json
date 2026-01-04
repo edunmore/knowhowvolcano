@@ -1,0 +1,6 @@
+{
+  "matched_method_id": "MTH-2026-5547",
+  "confidence": 90,
+  "rationale": "The extraction describes the GROW model, a foundational coaching framework. The core mechanism of structuring a conversation to build awareness and responsibility through the sequence of Goal, Reality, Options, and Will (GROW) is a precise match for MTH-2026-5547. The purpose (structuring coaching conversations for performance and learning), key preconditions (coaching mindset, skilled facilitator), and defined roles (facilitative coach, agenda-owning coachee) are all consistent with the GROW model's standard definition and application. The only minor uncertainty is the exact naming convention of the existing method, but the structural and functional description is unmistakably GROW.  ",
+  "merge_guidance": "The extracted content is a clear and comprehensive description of the GROW model. It should be merged into MTH-2026-5547, filling in its currently \"Untitled\" state. The extracted Purpose, Preconditions, Roles, and the detailed GROW Process sequence should form the core of the method entry. The \"Origins\" and \"More than GROW\" insights can be added as contextual notes or principles."
+}
