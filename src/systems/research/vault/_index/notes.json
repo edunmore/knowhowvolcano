@@ -1,114 +1,112 @@
 [
   {
-    "id": "concept-coachee",
-    "path": "concepts/concept-coachee.md",
-    "title": "concept-coachee",
+    "id": "concept-acorn-analogy-for-human-potential",
+    "path": "concepts/concept-acorn-analogy-for-human-potential.md",
+    "title": "concept-acorn-analogy-for-human-potential",
     "type": "concept",
     "outboundLinks": [
-      "source-a-note-to-the-reader"
+      "source-what-is-coaching-with-descriptions"
     ]
   },
   {
-    "id": "concept-coaching-in-the-context-of-an-organization",
-    "path": "concepts/concept-coaching-in-organizational-context.md",
-    "title": "concept-coaching-in-the-context-of-an-organization",
+    "id": "concept-coaching-as-adult-learning",
+    "path": "concepts/concept-coaching-as-adult-learning.md",
+    "title": "concept-coaching-as-adult-learning",
     "type": "concept",
     "outboundLinks": [
-      "source-a-note-to-the-reader"
+      "source-what-is-coaching-with-descriptions"
     ]
   },
   {
-    "id": "concept-coaching-style-of-leadership",
-    "path": "concepts/concept-coaching-style-leadership.md",
-    "title": "concept-coaching-style-of-leadership",
+    "id": "concept-coaching-definition",
+    "path": "concepts/concept-coaching-definition.md",
+    "title": "concept-coaching-definition",
     "type": "concept",
     "outboundLinks": [
-      "source-a-note-to-the-reader"
+      "source-what-is-coaching-with-descriptions"
     ]
   },
   {
-    "id": "concept-coaching-style-leadership",
-    "path": "concepts/concept-coaching-style-of-leadership.md",
-    "title": "concept-coaching-style-leadership",
+    "id": "concept-foundation-of-coaching-awareness-and-responsibility",
+    "path": "concepts/concept-foundation-of-coaching-awareness-and-responsibility.md",
+    "title": "concept-foundation-of-coaching-awareness-and-responsibility",
     "type": "concept",
     "outboundLinks": [
-      "source-a-note-to-the-reader"
+      "source-what-is-coaching-with-descriptions"
     ]
   },
   {
-    "id": "concept-leader-coach",
-    "path": "concepts/concept-leader-coach.md",
-    "title": "concept-leader-coach",
+    "id": "concept-maslow-s-hierarchy-of-needs",
+    "path": "concepts/concept-maslow-s-hierarchy-of-needs.md",
+    "title": "concept-maslow-s-hierarchy-of-needs",
     "type": "concept",
     "outboundLinks": [
-      "source-a-note-to-the-reader"
+      "source-what-is-coaching-with-descriptions"
     ]
   },
   {
-    "id": "concept-symbiotic-organization-people-relationship",
-    "path": "concepts/principle-symbiotic-organization-people-relationship.md",
-    "title": "concept-symbiotic-organization-people-relationship",
+    "id": "concept-self-belief",
+    "path": "concepts/concept-self-belief.md",
+    "title": "concept-self-belief",
     "type": "concept",
     "outboundLinks": [
-      "source-a-note-to-the-reader"
+      "source-what-is-coaching-with-descriptions"
     ]
   },
   {
-    "id": "principle-coaching-in-organizational-context",
-    "path": "principles/concept-coaching-in-organizational-context.md",
-    "title": "principle-coaching-in-organizational-context",
-    "type": "principle",
+    "id": "concept-the-inner-game",
+    "path": "concepts/concept-the-inner-game.md",
+    "title": "concept-the-inner-game",
+    "type": "concept",
     "outboundLinks": [
-      "source-a-note-to-the-reader"
+      "source-what-is-coaching-with-descriptions"
     ]
   },
   {
-    "id": "principle-authentic-leadership-development-path",
-    "path": "principles/principle-authentic-leadership-development-path.md",
-    "title": "principle-authentic-leadership-development-path",
-    "type": "principle",
+    "id": "misconception-coaching-is-teaching",
+    "path": "misconceptions/misconception-coaching-is-teaching.md",
+    "title": "misconception-coaching-is-teaching",
+    "type": "misconception",
     "outboundLinks": [
-      "source-a-note-to-the-reader"
+      "source-what-is-coaching-with-descriptions"
     ]
   },
   {
-    "id": "principle-coaching-combines-magic-and-nuts-and-bolts",
-    "path": "principles/principle-combining-coaching-magic-with-business-nuts-and-bolts.md",
-    "title": "principle-coaching-combines-magic-and-nuts-and-bolts",
+    "id": "principle-coaching-expertise-vs-subject-expertise",
+    "path": "principles/principle-coaching-expertise-vs-subject-expertise.md",
+    "title": "principle-coaching-expertise-vs-subject-expertise",
     "type": "principle",
     "outboundLinks": []
   },
   {
-    "id": "principle-standards-and-quality-are-key-in-coaching",
-    "path": "principles/principle-standards-and-quality-are-key-in-coaching.md",
-    "title": "principle-standards-and-quality-are-key-in-coaching",
+    "id": "principle-coaching-focuses-on-future-possibilities",
+    "path": "principles/principle-coaching-focuses-on-future-possibilities.md",
+    "title": "principle-coaching-focuses-on-future-possibilities",
     "type": "principle",
     "outboundLinks": [
-      "source-a-note-to-the-reader"
+      "source-what-is-coaching-with-descriptions"
     ]
   },
   {
-    "id": "principle-symbiotic-organization-people-relationship",
-    "path": "principles/principle-symbiotic-organization-people-relationship.md",
-    "title": "principle-symbiotic-organization-people-relationship",
+    "id": "principle-inner-game-equation",
+    "path": "principles/principle-inner-game-equation.md",
+    "title": "principle-inner-game-equation",
+    "type": "principle",
+    "outboundLinks": []
+  },
+  {
+    "id": "principle-telling-negates-choice-and-demotivates",
+    "path": "principles/principle-telling-negates-choice-and-demotivates.md",
+    "title": "principle-telling-negates-choice-and-demotivates",
     "type": "principle",
     "outboundLinks": [
-      "source-a-note-to-the-reader"
+      "source-what-is-coaching-with-descriptions"
     ]
   },
   {
-    "id": "procedure-leaders-informing-colleagues-of-skill-development",
-    "path": "procedures/procedure-communicating-leadership-skill-development-to-colleagues.md",
-    "title": "procedure-leaders-informing-colleagues-of-skill-development",
-    "type": "procedure",
-    "outboundLinks": [
-      "source-a-note-to-the-reader"
-    ]
-  },
-  {
-    "id": "source-a-note-to-the-reader",
-    "path": "sources/source-a-note-to-the-reader.md",
-    "title": "A Note to the Reader",
+    "id": "source-what-is-coaching-with-descriptions",
+    "path": "sources/source-what-is-coaching-with-descriptions.md",
+    "title": "What Is Coaching",
     "type": "source_anchor",
     "outboundLinks": []
   }
