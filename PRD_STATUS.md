@@ -1,7 +1,7 @@
 # PRD V2 Implementation Status
 
-**Date**: 2026-01-04
-**Last Run**: Successful (Pipeline completed with all verification passing)
+**Date**: 2026-01-05
+**Last Run**: Not yet tested (modules created)
 
 ## MVP-1: Vault + Index + Stub Creation ✅ COMPLETE
 | Feature | Status | Notes |
@@ -32,22 +32,65 @@
 | Stub promotion workflow | ❌ | Not implemented |
 | Taxonomy emergence reports | ❌ | Not implemented |
 
-## MVP-4: Prompt Evolution and Self-Improvement ❌ NOT STARTED
+## MVP-4: Prompt Evolution and Self-Improvement 🟡 PARTIAL
 | Feature | Status | Notes |
 |---------|--------|-------|
 | Prompts as vault notes | ✅ | Already stored in `_system/prompts/` |
 | Promptset releases | 🟡 | `promptset-current.md` exists, no versioning |
-| Evaluation corpus | ❌ | Not implemented |
-| Regression runs | ❌ | Not implemented |
+| Evaluation corpus | ✅ | Step scenarios framework ready |
+| Regression runs | ✅ | `step-scenario-runner.ts` created |
 | In-run repair loop | ✅ | Implemented (retry with repair instructions) |
 
-## MVP-5: Regression Harness ❌ NOT STARTED
+## MVP-5: Regression Harness ✅ FRAMEWORK COMPLETE
 | Feature | Status | Notes |
 |---------|--------|-------|
-| Eval corpus with expectations | ❌ | Not implemented |
-| Deterministic detectors | ❌ | Not implemented |
-| Baseline vs candidate comparison | ❌ | Not implemented |
-| Promotion gates | ❌ | Not implemented |
+| Eval corpus with expectations | ✅ | `step_scenario.schema.json` + runner |
+| Deterministic detectors | ✅ | `comparators.ts` (exactJson, setOverlap, etc.) |
+| Baseline vs candidate comparison | ✅ | `nkm-builder.ts` (precision/recall/F1) |
+| Promotion gates | ✅ | `runbook-runner.ts` with evaluation gates |
+
+---
+
+## PRD V2 Enhancement Add-ons ✅ IMPLEMENTED
+
+### PRD-05: Chunk Streaming & Gating
+| Feature | Status | Notes |
+|---------|--------|-------|
+| Evidence storage (`_sources/`) | ✅ | `chunker.ts` |
+| Chunk Gate (Ollama) | ✅ | `chunk-gate.ts` |
+| Sliding windows (PREV/CURRENT/NEXT) | ✅ | `window-assembler.ts` |
+
+### PRD-06: DBM Lens
+| Feature | Status | Notes |
+|---------|--------|-------|
+| Lens registry | ✅ | `lens-registry.ts` |
+| DBM renditions | ✅ | `agents/lenses/lens-dbm.ts` |
+
+### PRD-09: Dynamic Vault Path + Stepwise Eval
+| Feature | Status | Notes |
+|---------|--------|-------|
+| `--vault <path>` CLI flag | ✅ | `cli.ts` updated |
+| Step scenario runner | ✅ | `eval/step-scenario-runner.ts` |
+
+### PRD-10: Round-Trip Evaluation
+| Feature | Status | Notes |
+|---------|--------|-------|
+| NKM format | ✅ | `eval/nkm-builder.ts` |
+| Round-trip comparator | ✅ | `compareNKMs()` with P/R/F1 |
+
+### PRD-11: Domain Primer
+| Feature | Status | Notes |
+|---------|--------|-------|
+| Primer loader | ✅ | `primer-loader.ts` |
+| Step-aware injection | ✅ | `renderPrimerHeader()` |
+| Token budget enforcement | ✅ | 250/300/600 defaults |
+
+### PRD-12: Runbook Orchestrator
+| Feature | Status | Notes |
+|---------|--------|-------|
+| Runbook loader | ✅ | `runbook-loader.ts` |
+| Runbook runner | ✅ | `runbook-runner.ts` |
+| Evaluation gates | ✅ | `checkEvaluationGate()` |
 
 ---
 
@@ -59,7 +102,7 @@
 5. ✅ **Repair Instructions**: Verifier issues fed back as explicit fix directives
 
 ## Recommended Next Steps
-1. **MVP-2 Completion**: Add Activity and Assessment generators
-2. **Learning Objectives**: Implement `learning_objective` note type for objective-driven retrieval
-3. **Facilitator Appendix**: Add to Storyteller output
-4. **Resolver Scalability**: Implement fuzzy prefilter or vector search (Warning in promptset)
+1. **Run Integration Test**: Test with DeepSeek + Ollama on a sample chapter
+2. **Add Sample Runbook**: Create `ingest_and_model.yml` for declarative workflow
+3. **Create Step Scenarios**: Add test cases for gate and modeler validation
+

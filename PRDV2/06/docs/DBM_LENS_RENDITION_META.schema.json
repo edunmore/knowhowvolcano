@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DBMLensRenditionMeta",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": ".+--lens-dbm-v1$"
+    },
+    "type": {
+      "const": "lens_rendition"
+    },
+    "lens_id": {
+      "const": "lens-dbm-v1"
+    },
+    "renders": {
+      "type": "string"
+    },
+    "derived_from": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "modeled_at": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "id",
+    "type",
+    "lens_id",
+    "renders",
+    "derived_from",
+    "modeled_at",
+    "tags"
+  ],
+  "additionalProperties": true
+}

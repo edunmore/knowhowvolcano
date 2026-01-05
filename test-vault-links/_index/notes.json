@@ -1,0 +1,99 @@
+[
+  {
+    "id": "concept-acorn-analogy-for-human-potential",
+    "path": "concepts/concept-acorn-analogy-for-human-potential.md",
+    "title": "concept-acorn-analogy-for-human-potential",
+    "type": "concept",
+    "outboundLinks": [
+      "source-what-is-coaching-with-descriptions"
+    ]
+  },
+  {
+    "id": "concept-coaching-core-components",
+    "path": "concepts/concept-coaching-core-components.md",
+    "title": "concept-coaching-core-components",
+    "type": "concept",
+    "outboundLinks": [
+      "source-what-is-coaching-with-descriptions"
+    ]
+  },
+  {
+    "id": "concept-inner-game",
+    "path": "concepts/concept-inner-game.md",
+    "title": "concept-inner-game",
+    "type": "concept",
+    "outboundLinks": [
+      "source-what-is-coaching-with-descriptions"
+    ]
+  },
+  {
+    "id": "concept-maslow-s-hierarchy-of-needs-business-adaptation",
+    "path": "concepts/concept-maslow-s-hierarchy-of-needs-business-adaptation.md",
+    "title": "concept-maslow-s-hierarchy-of-needs-business-adaptation",
+    "type": "concept",
+    "outboundLinks": [
+      "source-what-is-coaching-with-descriptions"
+    ]
+  },
+  {
+    "id": "concept-self-belief-vs-status",
+    "path": "concepts/concept-self-belief-vs-status.md",
+    "title": "concept-self-belief-vs-status",
+    "type": "concept",
+    "outboundLinks": [
+      "source-what-is-coaching-with-descriptions"
+    ]
+  },
+  {
+    "id": "misconception-coaching-as-instruction",
+    "path": "misconceptions/misconception-coaching-as-instruction.md",
+    "title": "misconception-coaching-as-instruction",
+    "type": "misconception",
+    "outboundLinks": [
+      "source-what-is-coaching-with-descriptions"
+    ]
+  },
+  {
+    "id": "principle-coach-s-subject-expertise",
+    "path": "principles/principle-coach-s-subject-expertise.md",
+    "title": "principle-coach-s-subject-expertise",
+    "type": "principle",
+    "outboundLinks": [
+      "source-what-is-coaching-with-descriptions"
+    ]
+  },
+  {
+    "id": "principle-coaching-as-adult-learning",
+    "path": "principles/principle-coaching-as-adult-learning.md",
+    "title": "principle-coaching-as-adult-learning",
+    "type": "principle",
+    "outboundLinks": [
+      "source-what-is-coaching-with-descriptions"
+    ]
+  },
+  {
+    "id": "principle-coaching-definition",
+    "path": "principles/principle-coaching-definition.md",
+    "title": "principle-coaching-definition",
+    "type": "principle",
+    "outboundLinks": [
+      "source-what-is-coaching-with-descriptions"
+    ]
+  },
+  {
+    "id": "principle-inner-game-equation",
+    "path": "principles/principle-inner-game-equation.md",
+    "title": "principle-inner-game-equation",
+    "type": "principle",
+    "outboundLinks": [
+      "source-what-is-coaching-with-descriptions"
+    ]
+  },
+  {
+    "id": "source-what-is-coaching-with-descriptions",
+    "path": "sources/source-what-is-coaching-with-descriptions.md",
+    "title": "What Is Coaching With Descriptions",
+    "type": "source_anchor",
+    "outboundLinks": []
+  }
+]

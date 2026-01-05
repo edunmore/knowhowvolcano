@@ -1,0 +1,41 @@
+{
+  "runId": "run-2026-01-05T19-02-53-073Z",
+  "timestamp": "2026-01-05T19:02:53.074Z",
+  "config": {
+    "sourceDir": "/home/mac/projects/knowhow1",
+    "vaultDir": "/home/mac/projects/knowhow1/test-vault",
+    "runsDir": "/home/mac/projects/knowhow1/test-vault/_runs",
+    "provider": "deepseek",
+    "verbose": true,
+    "startFile": "/home/mac/projects/knowhow1/booksample/006_1_what_is_coaching_with_descriptions.md"
+  },
+  "manifest": {
+    "filesRead": [
+      "/home/mac/projects/knowhow1/booksample/006_1_what_is_coaching_with_descriptions.md"
+    ],
+    "notesCreated": [
+      "/home/mac/projects/knowhow1/test-vault/sources/source-what-is-coaching.md",
+      "/home/mac/projects/knowhow1/test-vault/concepts/concept-inner-game.md",
+      "/home/mac/projects/knowhow1/test-vault/principles/principle-inner-game-equation.md",
+      "/home/mac/projects/knowhow1/test-vault/principles/principle-coaching-definition-gallwey-inspired.md",
+      "/home/mac/projects/knowhow1/test-vault/concepts/concept-acorn-analogy-for-human-potential.md",
+      "/home/mac/projects/knowhow1/test-vault/concepts/concept-mentoring-vs-coaching.md",
+      "/home/mac/projects/knowhow1/test-vault/principles/principle-coaching-requires-expertise-in-coaching-not-the-subject.md",
+      "/home/mac/projects/knowhow1/test-vault/concepts/concept-maslow-s-hierarchy-of-needs-business-adaptation.md",
+      "/home/mac/projects/knowhow1/test-vault/concepts/concept-self-belief-vs-status-recognition.md",
+      "/home/mac/projects/knowhow1/test-vault/concepts/concept-independent-mindset.md",
+      "/home/mac/projects/knowhow1/test-vault/concepts/concept-interdependent-mindset.md",
+      "/home/mac/projects/knowhow1/test-vault/principles/principle-coaching-as-the-mechanism-for-adult-learning.md",
+      "/home/mac/projects/knowhow1/test-vault/misconceptions/misconception-coaching-is-teaching-or-instruction.md"
+    ],
+    "stepsCompleted": [
+      "ingestion",
+      "extraction",
+      "resolution",
+      "modeling",
+      "linking",
+      "indexing",
+      "generation"
+    ]
+  }
+}

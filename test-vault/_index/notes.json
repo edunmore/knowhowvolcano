@@ -1,0 +1,115 @@
+[
+  {
+    "id": "concept-acorn-analogy-for-human-potential",
+    "path": "concepts/concept-acorn-analogy-for-human-potential.md",
+    "title": "concept-acorn-analogy-for-human-potential",
+    "type": "concept",
+    "outboundLinks": [
+      "source-what-is-coaching"
+    ]
+  },
+  {
+    "id": "concept-independent-mindset",
+    "path": "concepts/concept-independent-mindset.md",
+    "title": "concept-independent-mindset",
+    "type": "concept",
+    "outboundLinks": [
+      "source-what-is-coaching"
+    ]
+  },
+  {
+    "id": "concept-inner-game",
+    "path": "concepts/concept-inner-game.md",
+    "title": "concept-inner-game",
+    "type": "concept",
+    "outboundLinks": [
+      "source-what-is-coaching"
+    ]
+  },
+  {
+    "id": "concept-interdependent-mindset",
+    "path": "concepts/concept-interdependent-mindset.md",
+    "title": "concept-interdependent-mindset",
+    "type": "concept",
+    "outboundLinks": [
+      "source-what-is-coaching"
+    ]
+  },
+  {
+    "id": "concept-maslow-s-hierarchy-of-needs-business-adaptation",
+    "path": "concepts/concept-maslow-s-hierarchy-of-needs-business-adaptation.md",
+    "title": "concept-maslow-s-hierarchy-of-needs-business-adaptation",
+    "type": "concept",
+    "outboundLinks": [
+      "source-what-is-coaching"
+    ]
+  },
+  {
+    "id": "concept-mentoring-vs-coaching",
+    "path": "concepts/concept-mentoring-vs-coaching.md",
+    "title": "concept-mentoring-vs-coaching",
+    "type": "concept",
+    "outboundLinks": [
+      "source-what-is-coaching"
+    ]
+  },
+  {
+    "id": "concept-self-belief-vs-status-recognition",
+    "path": "concepts/concept-self-belief-vs-status-recognition.md",
+    "title": "concept-self-belief-vs-status-recognition",
+    "type": "concept",
+    "outboundLinks": [
+      "source-what-is-coaching"
+    ]
+  },
+  {
+    "id": "misconception-coaching-is-teaching-or-instruction",
+    "path": "misconceptions/misconception-coaching-is-teaching-or-instruction.md",
+    "title": "misconception-coaching-is-teaching-or-instruction",
+    "type": "misconception",
+    "outboundLinks": [
+      "source-what-is-coaching"
+    ]
+  },
+  {
+    "id": "principle-coaching-as-the-mechanism-for-adult-learning",
+    "path": "principles/principle-coaching-as-the-mechanism-for-adult-learning.md",
+    "title": "principle-coaching-as-the-mechanism-for-adult-learning",
+    "type": "principle",
+    "outboundLinks": [
+      "source-what-is-coaching"
+    ]
+  },
+  {
+    "id": "principle-coaching-definition-gallwey-inspired",
+    "path": "principles/principle-coaching-definition-gallwey-inspired.md",
+    "title": "principle-coaching-definition-gallwey-inspired",
+    "type": "principle",
+    "outboundLinks": [
+      "source-what-is-coaching"
+    ]
+  },
+  {
+    "id": "principle-coaching-requires-expertise-in-coaching-not-the-subject",
+    "path": "principles/principle-coaching-requires-expertise-in-coaching-not-the-subject.md",
+    "title": "principle-coaching-requires-expertise-in-coaching-not-the-subject",
+    "type": "principle",
+    "outboundLinks": [
+      "source-what-is-coaching"
+    ]
+  },
+  {
+    "id": "principle-inner-game-equation",
+    "path": "principles/principle-inner-game-equation.md",
+    "title": "principle-inner-game-equation",
+    "type": "principle",
+    "outboundLinks": []
+  },
+  {
+    "id": "source-what-is-coaching",
+    "path": "sources/source-what-is-coaching.md",
+    "title": "What Is Coaching",
+    "type": "source_anchor",
+    "outboundLinks": []
+  }
+]

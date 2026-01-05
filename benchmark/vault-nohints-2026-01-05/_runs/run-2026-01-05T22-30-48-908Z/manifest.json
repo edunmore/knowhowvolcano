@@ -1,0 +1,42 @@
+{
+  "runId": "run-2026-01-05T22-30-48-908Z",
+  "timestamp": "2026-01-05T22:30:48.910Z",
+  "config": {
+    "sourceDir": "/home/mac/projects/knowhow1",
+    "vaultDir": "/home/mac/projects/knowhow1/benchmark/vault-nohints-2026-01-05",
+    "runsDir": "/home/mac/projects/knowhow1/benchmark/vault-nohints-2026-01-05/_runs",
+    "provider": "deepseek",
+    "verbose": false,
+    "startFile": "/home/mac/projects/knowhow1/benchmark/benchmark_source_nohints.md"
+  },
+  "manifest": {
+    "filesRead": [
+      "/home/mac/projects/knowhow1/benchmark/benchmark_source_nohints.md"
+    ],
+    "notesCreated": [
+      "/home/mac/projects/knowhow1/benchmark/vault-nohints-2026-01-05/sources/source-benchmark-source-nohints-38e4b47a.md",
+      "/home/mac/projects/knowhow1/benchmark/vault-nohints-2026-01-05/concepts/concept-outcome-ladder.md",
+      "/home/mac/projects/knowhow1/benchmark/vault-nohints-2026-01-05/principles/principle-common-mistake-of-testing-only-rung-a.md",
+      "/home/mac/projects/knowhow1/benchmark/vault-nohints-2026-01-05/concepts/concept-friction-budget.md",
+      "/home/mac/projects/knowhow1/benchmark/vault-nohints-2026-01-05/principles/principle-spend-friction-where-it-buys-transfer.md",
+      "/home/mac/projects/knowhow1/benchmark/vault-nohints-2026-01-05/procedures/procedure-7-minute-microlearning-loop.md",
+      "/home/mac/projects/knowhow1/benchmark/vault-nohints-2026-01-05/principles/principle-two-speed-feedback.md",
+      "/home/mac/projects/knowhow1/benchmark/vault-nohints-2026-01-05/misconceptions/misconception-more-content-means-more-learning.md",
+      "/home/mac/projects/knowhow1/benchmark/vault-nohints-2026-01-05/misconceptions/misconception-if-they-understood-it-once-they-will-perform-it-later.md",
+      "/home/mac/projects/knowhow1/benchmark/vault-nohints-2026-01-05/concepts/concept-calibration-loop.md",
+      "/home/mac/projects/knowhow1/benchmark/vault-nohints-2026-01-05/principles/principle-prefer-fewer-stronger-links.md",
+      "/home/mac/projects/knowhow1/benchmark/vault-nohints-2026-01-05/examples/example-manager-scenario-missed-deadlines.md",
+      "/home/mac/projects/knowhow1/benchmark/vault-nohints-2026-01-05/principles/principle-toolbox-applicability-condition.md"
+    ],
+    "stepsCompleted": [
+      "ingestion",
+      "extraction",
+      "resolution",
+      "modeling",
+      "link_resolution",
+      "linking",
+      "indexing",
+      "generation"
+    ]
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "VaultDomainPrimer",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "type": "string"
+    },
+    "domain": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "scope_in": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "scope_out": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "scope_in",
+        "scope_out"
+      ]
+    },
+    "core": {
+      "type": "string"
+    },
+    "ontology": {
+      "type": "object",
+      "properties": {
+        "note_types": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "link_categories": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "note_types"
+      ]
+    },
+    "style": {
+      "type": "object",
+      "properties": {
+        "paraphrase_rules": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "banned_patterns": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "tone": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "paraphrase_rules"
+      ]
+    },
+    "steps": {
+      "type": "object"
+    },
+    "lenses": {
+      "type": "object"
+    },
+    "budgets": {
+      "type": "object",
+      "properties": {
+        "core_max_tokens": {
+          "type": "integer",
+          "minimum": 50
+        },
+        "step_slice_max_tokens": {
+          "type": "integer",
+          "minimum": 50
+        },
+        "total_primer_max_tokens": {
+          "type": "integer",
+          "minimum": 100
+        }
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "domain",
+    "core",
+    "ontology",
+    "style"
+  ],
+  "additionalProperties": true
+}

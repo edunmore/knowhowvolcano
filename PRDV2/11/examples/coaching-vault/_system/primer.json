@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.0",
+  "domain": {
+    "id": "coaching",
+    "title": "Coaching Knowledge Vault",
+    "scope_in": [
+      "coaching frameworks and models",
+      "coaching conversation structure",
+      "question patterns and interventions",
+      "behavior change, habit formation (as used in coaching)",
+      "leadership coaching and performance coaching"
+    ],
+    "scope_out": [
+      "clinical therapy protocols",
+      "diagnosis and medical treatment",
+      "legal compliance guidance",
+      "pure marketing copy or author biography"
+    ]
+  },
+  "core": "This vault stores paraphrased, teachable coaching knowledge for education and content generation. Notes must be actionable and grounded: define concepts, show how to apply them, include boundary conditions, common pitfalls, and at least one practical example. Prefer concise, neutral wording. Mark presumed prerequisites as link-intents using [[...]]; unresolved terms become stubs later.",
+  "ontology": {
+    "note_types": [
+      "concept",
+      "framework",
+      "procedure",
+      "question_set",
+      "exercise",
+      "pattern",
+      "pitfall",
+      "example",
+      "story"
+    ],
+    "link_categories": [
+      "prerequisite",
+      "variant",
+      "contrasts_with",
+      "applies_to",
+      "pitfall_of",
+      "example_of"
+    ]
+  },
+  "style": {
+    "tone": "practical, neutral, educator voice",
+    "paraphrase_rules": [
+      "Do not quote source text; rewrite in your own words.",
+      "Avoid book-like filler; prefer operational statements.",
+      "When unsure, mark as unknown rather than inventing details.",
+      "Use short sections with clear headings."
+    ],
+    "banned_patterns": [
+      "verbatim long quotes",
+      "grandiose marketing language",
+      "unsupported claims not present in provided context"
+    ]
+  },
+  "steps": {
+    "gate": "Skip content that is promotional, author biography, acknowledgements, or unrelated front matter. Prioritize definitions, models, examples, and operational guidance.",
+    "modeler": "Model notes as: Definition \u2192 When to use \u2192 How to apply (steps/questions) \u2192 Boundary conditions \u2192 Pitfalls \u2192 Variants/related concepts. Add [[Link Intents]] for prerequisites and assumed terms.",
+    "storyteller": "Stories are business fables that teach the intended coaching concept(s) implicitly through character action, then make the lesson explicit in a short debrief. Keep it plausible and non-cheesy. Append CONTENT_MANIFEST."
+  },
+  "budgets": {
+    "core_max_tokens": 250,
+    "step_slice_max_tokens": 300,
+    "total_primer_max_tokens": 600
+  }
+}

@@ -1,0 +1,64 @@
+{
+    "schema_version": "1.0",
+    "domain": {
+        "id": "coaching",
+        "title": "Coaching Knowledge Vault",
+        "scope_in": [
+            "coaching techniques",
+            "leadership development",
+            "performance management",
+            "feedback methods",
+            "team dynamics"
+        ],
+        "scope_out": [
+            "marketing copy",
+            "author biography",
+            "testimonials",
+            "legal text",
+            "table of contents",
+            "index pages"
+        ]
+    },
+    "core": "This vault stores paraphrased, teachable coaching knowledge for education and content generation. Focus on actionable techniques that develop leadership and coaching competencies.",
+    "ontology": {
+        "note_types": [
+            "concept",
+            "procedure",
+            "principle",
+            "misconception"
+        ],
+        "link_categories": [
+            "prerequisite_of",
+            "part_of",
+            "contrasts_with",
+            "supports"
+        ]
+    },
+    "style": {
+        "paraphrase_rules": [
+            "Never copy source text verbatim (max 30 words per quote)",
+            "Use neutral educator tone",
+            "Write actionable definitions with observable behaviors",
+            "Include boundary conditions and failure modes"
+        ],
+        "banned_patterns": [
+            "generic leadership theory without source grounding",
+            "external frameworks not mentioned in source (ICF, PMI, etc.)"
+        ],
+        "tone": "neutral educator"
+    },
+    "steps": {
+        "gate": "Skip marketing, TOC, testimonials, about-author, legal. Focus on core chapters with definitions, frameworks, and procedures.",
+        "model": "Write actionable notes: define the concept, explain operationalization (how to observe/measure), state boundary conditions (when it applies/fails). Include Gap Statements for missing evidence.",
+        "verify": "Ensure YAML derived_from is present. No placeholder-only sections. No quotes over 30 words.",
+        "story": "Create engaging coaching scenarios that demonstrate the concepts in realistic workplace situations."
+    },
+    "lenses": {
+        "dbm": "Model with DBM frames: TOTE structure, observable indicators, calibration cues. Focus on behavioral patterns."
+    },
+    "budgets": {
+        "core_max_tokens": 250,
+        "step_slice_max_tokens": 300,
+        "total_primer_max_tokens": 600
+    }
+}

@@ -36,17 +36,27 @@ Commands:
   ingest --file <file>   Ingest a single file into the vault
 
 Options:
-  --provider <azure-gpt52|deepseek|ollama> (default: azure-gpt52)
-  --vaultDir <dir>      (default: ./src/systems/research/vault)
-  --runsDir <dir>       (default: ./runs)
-  --verbose             Enable verbose logging
+  --vault <path>          Vault directory (default: ./vault)
+  --provider <provider>   azure-gpt52|deepseek|ollama (default: azure-gpt52)
+  --runsDir <dir>         Runs output dir (default: <vault>/_runs)
+  --verbose               Enable verbose logging
+
+Examples:
+  # Ingest a file into a domain-specific vault
+  npx tsx src/systems/research/cli.ts ingest \\
+    --file ./booksample/chapter01.md \\
+    --vault ./vaults/coaching \\
+    --provider deepseek
         `);
         return;
     }
 
     try {
-        const vaultDir = resolve(getArg('vaultDir') || join(cwd, 'src/systems/research/vault'));
-        const runsDir = resolve(getArg('runsDir') || join(cwd, 'runs'));
+        // Vault path is the primary configuration point
+        const vaultDir = resolve(getArg('vault') || join(cwd, 'vault'));
+
+        // runsDir defaults to inside vault, but can be overridden
+        const runsDir = resolve(getArg('runsDir') || join(vaultDir, '_runs'));
 
         const config: ResearchConfig = {
             sourceDir: cwd, // not strictly used for single file ingest yet
@@ -64,6 +74,7 @@ Options:
             }
             config.startFile = resolve(startFile);
 
+            console.log(`Starting ingestion with vault: ${vaultDir}`);
             await runResearchPipeline(config);
         } else {
             console.error(`Unknown command: ${command}`);
@@ -77,3 +88,4 @@ Options:
 }
 
 main();
+

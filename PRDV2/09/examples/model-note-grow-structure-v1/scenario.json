@@ -1,0 +1,31 @@
+{
+  "scenario_id": "model-note-grow-structure-v1",
+  "step": "model_note",
+  "description": "Model note must include YAML and required sections; no placeholder-only sections",
+  "inputs": {
+    "files": [
+      "inputs/window_current.txt",
+      "inputs/window_prev.txt",
+      "inputs/window_next.txt"
+    ]
+  },
+  "expected": {
+    "files": [
+      "expected/note.md"
+    ]
+  },
+  "compare": {
+    "method": "markdown_structure",
+    "thresholds": {
+      "require_yaml": true,
+      "require_headings": [
+        "## Definition",
+        "## Operationalization"
+      ],
+      "no_placeholder_sections": true
+    }
+  },
+  "models": {
+    "modeler": "cloud:primary"
+  }
+}

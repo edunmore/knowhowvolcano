@@ -1,0 +1,51 @@
+{
+  "scenario_id": "rt-story-grow-v1",
+  "description": "Round-trip test: teach GROW via a short business fable",
+  "vault_seed_mode": "empty",
+  "topic": {
+    "canonical_ids": [
+      "concept-grow-model"
+    ],
+    "include_related_depth": 1
+  },
+  "generation": {
+    "artifact_type": "story",
+    "constraints": {
+      "audience": "beginner manager",
+      "length_words_target": 900,
+      "tone": "business fable, practical, not cheesy",
+      "must_include_content_manifest": true
+    }
+  },
+  "flow": {
+    "gate": true,
+    "lenses": [
+      "lens-edu-v1",
+      "lens-artifact-extract-v1"
+    ],
+    "verifiers": [
+      "schema",
+      "grounding"
+    ]
+  },
+  "thresholds": {
+    "min_coverage_f1": 0.7,
+    "max_extras_rate": 0.2,
+    "max_cost_multiplier_vs_baseline": 1.2,
+    "min_delta_coverage_f1_to_promote": 0.03
+  },
+  "promotion": {
+    "allow_paths": [
+      "_system/prompts",
+      "_system/config",
+      "_system/contracts",
+      "_system/schemas",
+      "_system/scenarios"
+    ],
+    "deny_paths": [
+      "_runs",
+      "_index/cache",
+      "_lenses/_tmp"
+    ]
+  }
+}

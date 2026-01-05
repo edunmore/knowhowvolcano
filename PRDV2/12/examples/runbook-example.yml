@@ -1,0 +1,75 @@
+runbook_id: coaching_ingest_stream_model_v1
+version: "1.0"
+description: "Chunk-stream a coaching book, gate chunks locally, model notes with link intents, then resolve stubs."
+globals:
+  budgets:
+    max_total_tokens: 400000
+    max_cloud_calls: 200
+  models:
+    gate_local: "ollama:qwen2.5:8b"
+    model_cloud: "cloud:primary"
+inputs:
+  source_path: "{{CLI:source_path}}"
+steps:
+  - id: stream_chunks
+    type: chunk_stream
+    inputs:
+      source_path: "{{inputs.source_path}}"
+      window_chars: { min: 3500, max: 8000 }
+      stride_chars: { min: 2500, max: 6000 }
+    decision_points:
+      - name: window_and_stride
+        allowed:
+          window_chars: [4000, 6000, 8000]
+          stride_chars: [3000, 4500, 6000]
+        objective: "maximize_note_quality_under_budget"
+        guardrails:
+          max_overlap_ratio: 0.45
+    outputs:
+      chunk_list_path: "_runs/tmp/chunks.json"
+  - id: gate
+    type: gate_chunk
+    agent: "GateAgent"
+    prompt: "_system/prompts/prompt-gate-chunk.md"
+    inputs:
+      chunk_list_path: "{{steps.stream_chunks.outputs.chunk_list_path}}"
+      model: "{{globals.models.gate_local}}"
+      decision_thresholds:
+        full_model_min: 0.65
+        skip_max: 0.25
+    outputs:
+      gated_chunks_path: "_runs/tmp/gated_chunks.json"
+  - id: model_notes
+    type: model_notes
+    agent: "Modeler"
+    prompt: "_system/prompts/prompt-model-window.md"
+    inputs:
+      gated_chunks_path: "{{steps.gate.outputs.gated_chunks_path}}"
+      model: "{{globals.models.model_cloud}}"
+      include_prev_next: true
+    outputs:
+      notes_written_report: "_runs/tmp/notes_written.json"
+  - id: resolve_links
+    type: resolve_links
+    agent: "Resolver"
+    prompt: "_system/prompts/prompt-resolve-link-intents.md"
+    inputs:
+      notes_written_report: "{{steps.model_notes.outputs.notes_written_report}}"
+      index_mode: "topk"
+      topk: 15
+    outputs:
+      stubs_report: "_runs/tmp/stubs.json"
+  - id: verify
+    type: verify
+    agent: "Verifier"
+    inputs:
+      mode: ["schema", "grounding"]
+    outputs:
+      verify_report: "_runs/tmp/verify.json"
+evaluations:
+  stop_on_fail: true
+persistence:
+  allow_write_paths:
+    - "concepts/**"
+    - "procedures/**"
+    - "_system/**"

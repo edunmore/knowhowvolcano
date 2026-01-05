@@ -1,0 +1,21 @@
+{
+  "scenario_id": "gate-skip-marketing-v1",
+  "step": "gate",
+  "description": "Marketing blurb should be SKIP",
+  "inputs": {
+    "files": [
+      "inputs/text.txt"
+    ]
+  },
+  "expected": {
+    "inline": {
+      "decision": "SKIP"
+    }
+  },
+  "compare": {
+    "method": "exact_json"
+  },
+  "models": {
+    "gate": "ollama:qwen2.5:8b"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "runId": "run-2026-01-05T20-39-43-096Z",
+  "timestamp": "2026-01-05T20:39:43.098Z",
+  "config": {
+    "sourceDir": "/home/mac/projects/knowhow1",
+    "vaultDir": "/home/mac/projects/knowhow1/benchmark/vault-official-2026-01-05",
+    "runsDir": "/home/mac/projects/knowhow1/benchmark/vault-official-2026-01-05/_runs",
+    "provider": "deepseek",
+    "verbose": true,
+    "startFile": "/home/mac/projects/knowhow1/benchmark/benchmark_source_raw.md"
+  },
+  "manifest": {
+    "filesRead": [
+      "/home/mac/projects/knowhow1/benchmark/benchmark_source_raw.md"
+    ],
+    "notesCreated": [
+      "/home/mac/projects/knowhow1/benchmark/vault-official-2026-01-05/sources/source-benchmark-source-raw-7ed51ef2.md",
+      "/home/mac/projects/knowhow1/benchmark/vault-official-2026-01-05/concepts/concept-outcome-ladder.md",
+      "/home/mac/projects/knowhow1/benchmark/vault-official-2026-01-05/principles/principle-friction-budget.md",
+      "/home/mac/projects/knowhow1/benchmark/vault-official-2026-01-05/procedures/procedure-7-minute-microlearning-loop.md",
+      "/home/mac/projects/knowhow1/benchmark/vault-official-2026-01-05/concepts/concept-two-speed-feedback.md",
+      "/home/mac/projects/knowhow1/benchmark/vault-official-2026-01-05/misconceptions/misconception-more-content-means-more-learning.md",
+      "/home/mac/projects/knowhow1/benchmark/vault-official-2026-01-05/misconceptions/misconception-recognition-is-performance.md",
+      "/home/mac/projects/knowhow1/benchmark/vault-official-2026-01-05/concepts/concept-calibration-loop.md",
+      "/home/mac/projects/knowhow1/benchmark/vault-official-2026-01-05/principles/principle-prefer-fewer-stronger-links.md"
+    ],
+    "stepsCompleted": [
+      "ingestion",
+      "extraction",
+      "resolution",
+      "modeling",
+      "link_resolution",
+      "linking",
+      "indexing",
+      "generation"
+    ]
+  }
+}

@@ -1,0 +1,81 @@
+[
+  {
+    "id": "concept-calibration-loop",
+    "path": "concepts/concept-calibration-loop.md",
+    "title": "concept-calibration-loop",
+    "type": "concept",
+    "outboundLinks": [
+      "source-benchmark-mini-chapter-designing-microlearning-that-actually-sticks"
+    ]
+  },
+  {
+    "id": "concept-outcome-ladder",
+    "path": "concepts/concept-outcome-ladder.md",
+    "title": "concept-outcome-ladder",
+    "type": "concept",
+    "outboundLinks": [
+      "source-benchmark-mini-chapter-designing-microlearning-that-actually-sticks"
+    ]
+  },
+  {
+    "id": "concept-two-speed-feedback",
+    "path": "concepts/concept-two-speed-feedback.md",
+    "title": "concept-two-speed-feedback",
+    "type": "concept",
+    "outboundLinks": [
+      "source-benchmark-mini-chapter-designing-microlearning-that-actually-sticks"
+    ]
+  },
+  {
+    "id": "misconception-more-content-means-more-learning",
+    "path": "misconceptions/misconception-more-content-means-more-learning.md",
+    "title": "misconception-more-content-means-more-learning",
+    "type": "misconception",
+    "outboundLinks": [
+      "source-benchmark-mini-chapter-designing-microlearning-that-actually-sticks"
+    ]
+  },
+  {
+    "id": "misconception-recognition-equals-performance",
+    "path": "misconceptions/misconception-recognition-equals-performance.md",
+    "title": "misconception-recognition-equals-performance",
+    "type": "misconception",
+    "outboundLinks": [
+      "source-benchmark-mini-chapter-designing-microlearning-that-actually-sticks"
+    ]
+  },
+  {
+    "id": "principle-friction-budget",
+    "path": "principles/principle-friction-budget.md",
+    "title": "principle-friction-budget",
+    "type": "principle",
+    "outboundLinks": [
+      "source-benchmark-mini-chapter-designing-microlearning-that-actually-sticks"
+    ]
+  },
+  {
+    "id": "principle-prefer-fewer-stronger-links",
+    "path": "principles/principle-prefer-fewer-stronger-links.md",
+    "title": "principle-prefer-fewer-stronger-links",
+    "type": "principle",
+    "outboundLinks": [
+      "source-benchmark-mini-chapter-designing-microlearning-that-actually-sticks"
+    ]
+  },
+  {
+    "id": "procedure-7-minute-microlearning-loop",
+    "path": "procedures/procedure-7-minute-microlearning-loop.md",
+    "title": "procedure-7-minute-microlearning-loop",
+    "type": "procedure",
+    "outboundLinks": [
+      "source-benchmark-mini-chapter-designing-microlearning-that-actually-sticks"
+    ]
+  },
+  {
+    "id": "source-benchmark-mini-chapter-designing-microlearning-that-actually-sticks",
+    "path": "sources/source-benchmark-mini-chapter-designing-microlearning-that-actually-sticks.md",
+    "title": "Benchmark Mini-Chapter Designing Microlearning That Actually Sticks",
+    "type": "source_anchor",
+    "outboundLinks": []
+  }
+]

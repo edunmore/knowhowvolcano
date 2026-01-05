@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "topic_id": "benchmark-microlearning-sticks-v1",
+  "items": [
+    {
+      "item_type": "concept",
+      "title": "Outcome Ladder"
+    },
+    {
+      "item_type": "principle",
+      "title": "Friction Budget"
+    },
+    {
+      "item_type": "procedure",
+      "title": "7-Minute Microlearning Loop"
+    },
+    {
+      "item_type": "concept",
+      "title": "Two-Speed Feedback"
+    },
+    {
+      "item_type": "misconception",
+      "title": "More content means more learning"
+    },
+    {
+      "item_type": "misconception",
+      "title": "If they understood it once, they will perform it later"
+    },
+    {
+      "item_type": "concept",
+      "title": "Calibration Loop"
+    },
+    {
+      "item_type": "principle",
+      "title": "Prefer Fewer, Stronger Links"
+    },
+    {
+      "item_type": "example",
+      "title": "Scenario: Blocked deadlines (diagnose before advice)"
+    }
+  ],
+  "intended_inline_links": [
+    "Outcome Ladder",
+    "Friction Budget",
+    "7-Minute Microlearning Loop",
+    "Two-Speed Feedback",
+    "Calibration Loop",
+    "Interference"
+  ],
+  "intended_link_candidates": [
+    "Cognitive Load",
+    "Spaced Repetition",
+    "Interference under Stress",
+    "Deliberate Practice",
+    "Scenario-Based Learning",
+    "Decision Under Uncertainty"
+  ]
+}

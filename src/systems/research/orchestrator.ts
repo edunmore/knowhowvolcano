@@ -5,11 +5,14 @@ import { runIngestor } from './agents/ingestor.js';
 import { runExtractor } from './agents/extractor.js';
 import { runModeler } from './agents/modeler.js';
 import { runLinker } from './agents/linker.js';
+import { resolveLinksInVault } from './agents/link-resolver.js';
 import { runIndexer } from './utils/indexer.js';
 import { runStoryteller } from './agents/storyteller.js';
 import { runVerifier } from './agents/verifier.js';
 import { runResolver } from './agents/resolver.js';
 import { getArtifactFilename } from './utils/naming.js';
+import { ensureVaultLayout, ensureVaultMetadata, getVaultPaths } from './utils/vault-utils.js';
+import { loadPrimer, createDefaultPrimerFile, type LoadedPrimer } from './primer-loader.js';
 import type { ResearchConfig, RunContext } from './types.js';
 import { createAzureGPT52Provider } from '../../core/providers/azure-gpt52-provider.js';
 import { createAzureProvider } from '../../core/providers/azure-deepseek-provider.js';
@@ -69,6 +72,16 @@ export async function runResearchPipeline(config: ResearchConfig) {
     await logger.log(`Provider initialization: ${config.provider || 'default'}`);
 
     try {
+        // Initialize vault layout and metadata
+        await ensureVaultLayout(config.vaultDir);
+        const vaultMeta = await ensureVaultMetadata(config.vaultDir);
+        await logger.log(`Vault initialized: ${vaultMeta.vault_id} (${vaultMeta.title})`);
+
+        // Load domain primer
+        await createDefaultPrimerFile(config.vaultDir);
+        const loadedPrimer = await loadPrimer(config.vaultDir);
+        await logger.log(`Primer loaded: ${loadedPrimer.primer.domain.title} (hash: ${loadedPrimer.hash}, source: ${loadedPrimer.source})`);
+
         if (!config.startFile) {
             throw new Error('No start file provided');
         }
@@ -211,13 +224,18 @@ export async function runResearchPipeline(config: ResearchConfig) {
 
         context.manifest.stepsCompleted.push('extraction', 'resolution', 'modeling');
 
-        // Step 4: Linking
-        await logger.log(`Step 4: Linking & Stub Creation`);
+        // Step 4: Link Resolution (Phase 2 of Zettelkasten linking)
+        await logger.log(`Step 4: Link Resolution (resolving candidates, creating stubs)`);
+        const linkResult = await resolveLinksInVault(config.vaultDir, logger);
+        context.manifest.stepsCompleted.push('link_resolution');
+
+        // Step 5: Linking (legacy wikilink stub creation)
+        await logger.log(`Step 5: Linking & Stub Creation`);
         const stubsCreated = await runLinker(llm, config.vaultDir, logger);
         context.manifest.stepsCompleted.push('linking');
 
-        // Step 5: Indexing
-        await logger.log(`Step 5: Rebuilding Indexes`);
+        // Step 6: Indexing
+        await logger.log(`Step 6: Rebuilding Indexes`);
         await runIndexer(config.vaultDir, logger);
         context.manifest.stepsCompleted.push('indexing');
 

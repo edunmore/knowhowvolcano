@@ -1,0 +1,117 @@
+[
+  {
+    "id": "concept-calibration-loop",
+    "path": "concepts/concept-calibration-loop.md",
+    "title": "concept-calibration-loop",
+    "type": "concept",
+    "outboundLinks": [
+      "source-benchmark-source-nohints-38e4b47a"
+    ]
+  },
+  {
+    "id": "concept-friction-budget",
+    "path": "concepts/concept-friction-budget.md",
+    "title": "concept-friction-budget",
+    "type": "concept",
+    "outboundLinks": [
+      "source-benchmark-source-nohints-38e4b47a"
+    ]
+  },
+  {
+    "id": "concept-outcome-ladder",
+    "path": "concepts/concept-outcome-ladder.md",
+    "title": "concept-outcome-ladder",
+    "type": "concept",
+    "outboundLinks": [
+      "source-benchmark-source-nohints-38e4b47a"
+    ]
+  },
+  {
+    "id": "example-manager-scenario-missed-deadlines",
+    "path": "examples/example-manager-scenario-missed-deadlines.md",
+    "title": "example-manager-scenario-missed-deadlines",
+    "type": "example",
+    "outboundLinks": [
+      "source-benchmark-source-nohints-38e4b47a"
+    ]
+  },
+  {
+    "id": "misconception-if-they-understood-it-once-they-will-perform-it-later",
+    "path": "misconceptions/misconception-if-they-understood-it-once-they-will-perform-it-later.md",
+    "title": "misconception-if-they-understood-it-once-they-will-perform-it-later",
+    "type": "misconception",
+    "outboundLinks": [
+      "source-benchmark-source-nohints-38e4b47a"
+    ]
+  },
+  {
+    "id": "misconception-more-content-means-more-learning",
+    "path": "misconceptions/misconception-more-content-means-more-learning.md",
+    "title": "misconception-more-content-means-more-learning",
+    "type": "misconception",
+    "outboundLinks": [
+      "source-benchmark-source-nohints-38e4b47a"
+    ]
+  },
+  {
+    "id": "principle-common-mistake-of-testing-only-rung-a",
+    "path": "principles/principle-common-mistake-of-testing-only-rung-a.md",
+    "title": "principle-common-mistake-of-testing-only-rung-a",
+    "type": "principle",
+    "outboundLinks": [
+      "source-benchmark-source-nohints-38e4b47a"
+    ]
+  },
+  {
+    "id": "principle-prefer-fewer-stronger-links",
+    "path": "principles/principle-prefer-fewer-stronger-links.md",
+    "title": "principle-prefer-fewer-stronger-links",
+    "type": "principle",
+    "outboundLinks": [
+      "source-benchmark-source-nohints-38e4b47a"
+    ]
+  },
+  {
+    "id": "principle-spend-friction-where-it-buys-transfer",
+    "path": "principles/principle-spend-friction-where-it-buys-transfer.md",
+    "title": "principle-spend-friction-where-it-buys-transfer",
+    "type": "principle",
+    "outboundLinks": [
+      "source-benchmark-source-nohints-38e4b47a"
+    ]
+  },
+  {
+    "id": "principle-toolbox-applicability-condition",
+    "path": "principles/principle-toolbox-applicability-condition.md",
+    "title": "principle-toolbox-applicability-condition",
+    "type": "principle",
+    "outboundLinks": [
+      "source-benchmark-source-nohints-38e4b47a"
+    ]
+  },
+  {
+    "id": "principle-two-speed-feedback",
+    "path": "principles/principle-two-speed-feedback.md",
+    "title": "principle-two-speed-feedback",
+    "type": "principle",
+    "outboundLinks": [
+      "source-benchmark-source-nohints-38e4b47a"
+    ]
+  },
+  {
+    "id": "procedure-7-minute-microlearning-loop",
+    "path": "procedures/procedure-7-minute-microlearning-loop.md",
+    "title": "procedure-7-minute-microlearning-loop",
+    "type": "procedure",
+    "outboundLinks": [
+      "source-benchmark-source-nohints-38e4b47a"
+    ]
+  },
+  {
+    "id": "source-benchmark-source-nohints-38e4b47a",
+    "path": "sources/source-benchmark-source-nohints-38e4b47a.md",
+    "title": "Benchmark Source Nohints",
+    "type": "source_anchor",
+    "outboundLinks": []
+  }
+]
