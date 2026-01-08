@@ -1,0 +1,23 @@
+[
+  {
+    "step_id": "chunk",
+    "decision_point": "chunkSize",
+    "value": 2000,
+    "objective": "semantic_coherence",
+    "rationale": "A chunk size of 2000 tokens balances semantic coherence with the 20-chunk limit. It's large enough to preserve context and meaningful semantic units, while staying under the max_chunks constraint for a typical document. This size is in the middle of the allowed range, providing good coverage without excessive fragmentation."
+  },
+  {
+    "step_id": "gate",
+    "decision_point": "strictness",
+    "value": "balanced",
+    "objective": "balanced_filtering",
+    "rationale": "The 'balanced_filtering' objective calls for a middle-ground approach that filters content appropriately without being overly restrictive or permissive. The source content is a well-structured educational document about microlearning design, with clear instructional value and no apparent harmful or irrelevant material. A 'balanced' strictness level will allow substantive filtering that preserves the educational core while avoiding unnecessary verbosity, aligning with the objective's intent for moderate, context-aware filtering."
+  },
+  {
+    "step_id": "model",
+    "decision_point": "model_depth",
+    "value": "deep",
+    "objective": "quality",
+    "rationale": "The objective is quality, and the source content is rich with conceptual frameworks (Outcome Ladder, Friction Budget), procedures (7-Minute Microlearning Loop), principles, and misconceptions. A 'deep' modeling depth will allow for thorough exploration of relationships and nuances between these 10 candidates, ensuring high-quality, interconnected models that capture the full instructional design toolkit presented."
+  }
+]

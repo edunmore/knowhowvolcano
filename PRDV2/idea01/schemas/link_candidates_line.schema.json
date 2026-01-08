@@ -1,0 +1,36 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "term": {
+      "type": "string",
+      "minLength": 1
+    },
+    "type_guess": {
+      "type": "string",
+      "enum": [
+        "concept",
+        "principle",
+        "procedure",
+        "example",
+        "misconception",
+        "unknown"
+      ]
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    }
+  },
+  "required": [
+    "term",
+    "type_guess",
+    "reason",
+    "confidence"
+  ]
+}

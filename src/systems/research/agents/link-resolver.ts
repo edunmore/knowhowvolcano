@@ -103,12 +103,38 @@ function findMatch(term: string, index: IndexEntry[]): ResolvedLink {
 
 /**
  * Parse link candidates from note content
+ * Supports both old text format (## Link candidates) and new JSON format (## LINK_INTENTS)
  */
 export function parseLinkCandidates(noteContent: string): LinkCandidate[] {
     const candidates: LinkCandidate[] = [];
 
-    // Find "## Link candidates" or "## Link Candidates" section
-    const sectionMatch = noteContent.match(/## Link [Cc]andidates\n([\s\S]*?)(?=\n## |\n---|\Z)/);
+    // Try new JSON format first: ## LINK_INTENTS with JSON block
+    const jsonMatch = noteContent.match(/## LINK_INTENTS\s*```json\s*([\s\S]*?)```/);
+    if (jsonMatch) {
+        try {
+            const parsed = JSON.parse(jsonMatch[1]);
+            const intents = parsed.link_intents || [];
+            for (const intent of intents) {
+                // Map stub_policy to reason for backwards compatibility
+                let reason: LinkCandidate['reason'] = 'related_construct';
+                if (intent.intent_type === 'concept') reason = 'technical_term';
+                else if (intent.intent_type === 'procedure') reason = 'prerequisite';
+                else if (intent.intent_type === 'tool') reason = 'named_entity';
+
+                candidates.push({
+                    term: intent.target_title || intent.anchor_text,
+                    reason,
+                    context: intent.reason
+                });
+            }
+            return candidates;
+        } catch {
+            // JSON parse failed, try text format
+        }
+    }
+
+    // Fall back to old text format: ## Link candidates
+    const sectionMatch = noteContent.match(/## Link [Cc]andidates\n([\s\S]*?)(?=\n## |\n---|$)/);
     if (!sectionMatch) return candidates;
 
     const sectionContent = sectionMatch[1];

@@ -33,12 +33,18 @@ export const VAULT_LAYOUT = {
     index: '_index',
     lenses: '_lenses',
     sources: '_sources',
+    // Extraction note types
     concepts: 'concepts',
     procedures: 'procedures',
     principles: 'principles',
     misconceptions: 'misconceptions',
     examples: 'examples',
+    // Rendition note types
     stories: 'stories',
+    microlearnings: 'microlearnings',
+    learning_paths: 'learning_paths',
+    quizzes: 'quizzes',
+    flashcards: 'flashcards',
 } as const;
 
 /**
@@ -77,10 +83,10 @@ export async function copyTemplateSystem(vaultDir: string): Promise<boolean> {
     try {
         await fs.access(templateSystem);
         await copyDirectory(templateSystem, targetSystem);
+        console.log(`✅ Copied template vault to ${vaultDir}`);
         return true;
-    } catch (error) {
-        // Template vault not found - this is OK in production where vault is embedded
-        console.warn(`Template vault not found at ${templateSystem}. Prompts must be provided manually.`);
+    } catch (error: any) {
+        console.warn(`⚠️  Template vault not found at ${templateSystem} - vault will need manual setup`);
         return false;
     }
 }
@@ -99,12 +105,18 @@ export async function ensureVaultLayout(vaultDir: string): Promise<void> {
         VAULT_LAYOUT.index,
         VAULT_LAYOUT.lenses,
         VAULT_LAYOUT.sources,
+        // Extraction types
         VAULT_LAYOUT.concepts,
         VAULT_LAYOUT.procedures,
         VAULT_LAYOUT.principles,
         VAULT_LAYOUT.misconceptions,
         VAULT_LAYOUT.examples,
+        // Rendition types
         VAULT_LAYOUT.stories,
+        VAULT_LAYOUT.microlearnings,
+        VAULT_LAYOUT.learning_paths,
+        VAULT_LAYOUT.quizzes,
+        VAULT_LAYOUT.flashcards,
     ];
 
     for (const dir of dirsToCreate) {
@@ -178,6 +190,10 @@ export function getVaultPaths(vaultDir: string) {
         principles: resolveVaultPath(vaultDir, VAULT_LAYOUT.principles),
         misconceptions: resolveVaultPath(vaultDir, VAULT_LAYOUT.misconceptions),
         stories: resolveVaultPath(vaultDir, VAULT_LAYOUT.stories),
+        microlearnings: resolveVaultPath(vaultDir, VAULT_LAYOUT.microlearnings),
+        learning_paths: resolveVaultPath(vaultDir, VAULT_LAYOUT.learning_paths),
+        quizzes: resolveVaultPath(vaultDir, VAULT_LAYOUT.quizzes),
+        flashcards: resolveVaultPath(vaultDir, VAULT_LAYOUT.flashcards),
     };
 }
 

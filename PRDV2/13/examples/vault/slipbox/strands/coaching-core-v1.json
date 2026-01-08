@@ -1,0 +1,35 @@
+{
+  "strand_id": "coaching-core-v1",
+  "version": "1.0",
+  "title": "Coaching \u2014 Core Line of Thought",
+  "domain": "coaching",
+  "created_at": "2026-01-06T00:00:00Z",
+  "nodes": [
+    {
+      "note_id": "concept-coaching-definition",
+      "fz": "1",
+      "rationale": "Start with a working definition to anchor all later methods.",
+      "intent": "definition"
+    },
+    {
+      "note_id": "concept-goal-setting",
+      "fz": "1a",
+      "rationale": "Coaching is operationalized through goal-directed conversations.",
+      "intent": "builds_on"
+    },
+    {
+      "note_id": "framework-grow",
+      "fz": "1a1",
+      "rationale": "GROW is a commonly used structure for goal-directed coaching.",
+      "intent": "example"
+    }
+  ],
+  "branches": [
+    {
+      "from_note_id": "framework-grow",
+      "branch_id": "grow-variants",
+      "title": "GROW Variants and Critiques",
+      "start_index": 2
+    }
+  ]
+}

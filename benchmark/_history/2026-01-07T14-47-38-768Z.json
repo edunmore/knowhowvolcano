@@ -1,0 +1,180 @@
+{
+  "run_id": "benchmark-1767797258768",
+  "benchmark_id": "benchmark-microlearning-sticks-v1",
+  "timestamp": "2026-01-07T14:47:38.768Z",
+  "source_file": "./benchmark/benchmark_source_raw.md",
+  "vault_path": "./benchmark/test-1538",
+  "expected_count": 9,
+  "actual_count": 11,
+  "matched_count": 7,
+  "missing_count": 2,
+  "extra_count": 4,
+  "precision": 0.64,
+  "recall": 0.78,
+  "f1_score": 0.7,
+  "matches": [
+    {
+      "expected": {
+        "item_type": "concept",
+        "title": "Outcome Ladder"
+      },
+      "matched_id": "concept-outcome-ladder",
+      "match_type": "exact",
+      "confidence": 1
+    },
+    {
+      "expected": {
+        "item_type": "principle",
+        "title": "Friction Budget"
+      },
+      "matched_id": "concept-friction-budget",
+      "match_type": "fuzzy",
+      "confidence": 0.6
+    },
+    {
+      "expected": {
+        "item_type": "procedure",
+        "title": "7-Minute Microlearning Loop"
+      },
+      "matched_id": "procedure-7-minute-microlearning-loop",
+      "match_type": "exact",
+      "confidence": 1
+    },
+    {
+      "expected": {
+        "item_type": "concept",
+        "title": "Two-Speed Feedback"
+      },
+      "matched_id": "principle-two-speed-feedback",
+      "match_type": "fuzzy",
+      "confidence": 0.6
+    },
+    {
+      "expected": {
+        "item_type": "misconception",
+        "title": "More content means more learning"
+      },
+      "matched_id": "misconception-more-content-means-more-learning",
+      "match_type": "exact",
+      "confidence": 1
+    },
+    {
+      "expected": {
+        "item_type": "misconception",
+        "title": "If they understood it once, they will perform it later"
+      },
+      "matched_id": null,
+      "match_type": "none",
+      "confidence": 0
+    },
+    {
+      "expected": {
+        "item_type": "concept",
+        "title": "Calibration Loop"
+      },
+      "matched_id": "concept-calibration-loop",
+      "match_type": "exact",
+      "confidence": 1
+    },
+    {
+      "expected": {
+        "item_type": "principle",
+        "title": "Prefer Fewer, Stronger Links"
+      },
+      "matched_id": "principle-prefer-fewer-stronger-links",
+      "match_type": "exact",
+      "confidence": 1
+    },
+    {
+      "expected": {
+        "item_type": "example",
+        "title": "Scenario: Blocked deadlines (diagnose before advice)"
+      },
+      "matched_id": null,
+      "match_type": "none",
+      "confidence": 0
+    }
+  ],
+  "extra_items": [
+    {
+      "id": "outcome-ladder",
+      "path": "concepts/outcome-ladder.md",
+      "title": "outcome-ladder",
+      "type": "concept",
+      "outboundLinks": []
+    },
+    {
+      "id": "example-manager-scenario-missing-deadlines",
+      "path": "examples/example-manager-scenario-missing-deadlines.md",
+      "title": "example-manager-scenario-missing-deadlines",
+      "type": "example",
+      "outboundLinks": [
+        "Microlearning",
+        "Interference (Learning)",
+        "7-Minute Microlearning Loop",
+        "Transfer (Learning Outcome)",
+        "Rule of Thumb",
+        "Recognition (Learning Outcome)",
+        "Performance (Learning Outcome)",
+        "Calibration Loop",
+        "Two-Speed Feedback",
+        "src_38e4b47a40f0"
+      ]
+    },
+    {
+      "id": "misconception-recognition-equals-performance",
+      "path": "misconceptions/misconception-recognition-equals-performance.md",
+      "title": "misconception-recognition-equals-performance",
+      "type": "misconception",
+      "outboundLinks": [
+        "Rung B: Recognize",
+        "Rung C: Perform",
+        "Rung A: Remember",
+        "Rung B: Recognize",
+        "Recognition",
+        "Performance",
+        "Transfer (Learning)",
+        "Rung D: Transfer",
+        "Outcome Ladder",
+        "Time Pressure",
+        "src_38e4b47a40f0"
+      ]
+    },
+    {
+      "id": "principle-spend-friction-where-it-buys-transfer",
+      "path": "principles/principle-spend-friction-where-it-buys-transfer.md",
+      "title": "principle-spend-friction-where-it-buys-transfer",
+      "type": "principle",
+      "outboundLinks": [
+        "Friction Budget",
+        "Transfer (Outcome Ladder)",
+        "Friction Budget",
+        "Recall (Outcome Ladder)",
+        "Recognition (Outcome Ladder)",
+        "Two-Speed Feedback",
+        "7-Minute Microlearning Loop",
+        "src_38e4b47a40f0"
+      ]
+    }
+  ],
+  "link_analysis": {
+    "expected_inline": [
+      "Outcome Ladder",
+      "Friction Budget",
+      "7-Minute Microlearning Loop",
+      "Two-Speed Feedback",
+      "Calibration Loop",
+      "Interference"
+    ],
+    "expected_candidates": [
+      "Cognitive Load",
+      "Spaced Repetition",
+      "Interference under Stress",
+      "Deliberate Practice",
+      "Scenario-Based Learning",
+      "Decision Under Uncertainty"
+    ],
+    "found_inline": [],
+    "found_candidates": []
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "step_id": "ingest",
+  "step_type": "ingest",
+  "success": true,
+  "outputs": {
+    "sourceId": "source-benchmark-source-nohints-38e4b47a",
+    "sourcePath": "/home/mac/projects/knowhow1/benchmark/test-1555/sources/source-benchmark-source-nohints-38e4b47a.md",
+    "rawPath": "/home/mac/projects/knowhow1/benchmark/test-1555/_sources/source-benchmark-source-nohints-38e4b47a/raw.md",
+    "contentHash": "38e4b47a40f0db0f16e16bace47bda2222f1fc33"
+  },
+  "duration_ms": 1
+}

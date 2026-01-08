@@ -84,6 +84,7 @@ export interface BenchmarkResult {
 function normalize(text: string): string {
     return text
         .toLowerCase()
+        .replace(/-/g, ' ')  // Convert hyphens to spaces first
         .replace(/[^\w\s]/g, '')
         .replace(/\s+/g, ' ')
         .trim();
@@ -152,13 +153,13 @@ function findMatch(expected: ExpectedItem, notes: IndexedNote[]): ItemMatch {
         'principle': 'principle',
         'procedure': 'procedure',
         'misconception': 'misconception',
-        'example': 'example', // May not exist
+        'example': 'example',
     };
 
     const targetType = typeMap[expected.item_type] || expected.item_type;
     const matchingType = notes.filter(n => n.type === targetType);
 
-    // Try exact match on normalized title
+    // Try exact match on normalized title (same type)
     for (const note of matchingType) {
         const noteTitle = normalize(extractTitle(note.id));
         if (noteTitle === normalizedExpected) {
@@ -166,7 +167,7 @@ function findMatch(expected: ExpectedItem, notes: IndexedNote[]): ItemMatch {
         }
     }
 
-    // Try fuzzy match
+    // Try fuzzy match (same type)
     let bestMatch: IndexedNote | null = null;
     let bestScore = 0;
 
@@ -182,6 +183,41 @@ function findMatch(expected: ExpectedItem, notes: IndexedNote[]): ItemMatch {
 
     if (bestMatch) {
         return { expected, matched_id: bestMatch.id, match_type: 'fuzzy', confidence: bestScore };
+    }
+
+    // Try cross-type matching (title matches but type is wrong)
+    // This helps identify categorization issues
+    const knowledgeTypes = ['concept', 'principle', 'procedure', 'misconception', 'example'];
+    const otherTypeNotes = notes.filter(n =>
+        knowledgeTypes.includes(n.type) && n.type !== targetType
+    );
+
+    for (const note of otherTypeNotes) {
+        const noteTitle = normalize(extractTitle(note.id));
+        if (noteTitle === normalizedExpected) {
+            // Found same title but wrong type - still a match but with penalty
+            return {
+                expected,
+                matched_id: note.id,
+                match_type: 'fuzzy',  // Mark as fuzzy due to type mismatch 
+                confidence: 0.6  // Lower confidence for type mismatch
+            };
+        }
+    }
+
+    // Try fuzzy cross-type match
+    for (const note of otherTypeNotes) {
+        const noteTitle = normalize(extractTitle(note.id));
+        const score = similarity(noteTitle, normalizedExpected);
+
+        if (score > 0.7) {  // Higher threshold for cross-type
+            return {
+                expected,
+                matched_id: note.id,
+                match_type: 'fuzzy',
+                confidence: score * 0.7  // Penalty for type mismatch
+            };
+        }
     }
 
     // No match

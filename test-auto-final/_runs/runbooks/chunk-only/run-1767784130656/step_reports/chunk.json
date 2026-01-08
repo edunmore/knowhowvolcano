@@ -1,0 +1,22 @@
+{
+  "step_id": "chunk",
+  "step_type": "chunk",
+  "success": true,
+  "outputs": {
+    "totalChunks": 1,
+    "totalFiles": 1,
+    "manifests": [
+      {
+        "source_id": "src_38e4b47a40f0",
+        "original_path": "/home/mac/projects/knowhow1/benchmark/benchmark_source_nohints.md",
+        "original_filename": "benchmark_source_nohints.md",
+        "total_chars": 4727,
+        "total_chunks": 1,
+        "created_at": "2026-01-07T11:08:58.259Z",
+        "sha1": "38e4b47a40f0db0f16e16bace47bda2222f1fc33"
+      }
+    ],
+    "chunkSize": 5000
+  },
+  "duration_ms": 2
+}

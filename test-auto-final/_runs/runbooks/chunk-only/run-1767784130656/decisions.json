@@ -1,0 +1,9 @@
+[
+  {
+    "step_id": "chunk",
+    "decision_point": "chunkSize",
+    "value": 5000,
+    "objective": "balanced_coverage",
+    "rationale": "5000 balances coverage and manageability, ensuring sufficient content per chunk while respecting the max_chunks limit of 100."
+  }
+]

@@ -1,0 +1,71 @@
+{
+  "step_id": "resolve",
+  "step_type": "resolve",
+  "success": true,
+  "outputs": {
+    "resolved": 0,
+    "resolutionMapData": {},
+    "candidates": [
+      {
+        "type": "concept",
+        "name": "Outcome Ladder",
+        "quote": "The Outcome Ladder separates outcomes into four rungs:",
+        "reason": "A core model for defining and measuring different levels of learning success, from recall to real-world transfer."
+      },
+      {
+        "type": "concept",
+        "name": "Friction Budget",
+        "quote": "Every learning unit has a friction budget: the maximum mental effort a learner can spend before they quit or start guessing.",
+        "reason": "A key concept for designing effective learning by managing cognitive load and learner engagement."
+      },
+      {
+        "type": "procedure",
+        "name": "7-Minute Microlearning Loop",
+        "quote": "Use this loop to design one unit: Step 1: Choose one Outcome Ladder rung as the target... Step 7: Add a 'next repetition' prompt...",
+        "reason": "A specific, step-by-step method for creating a single microlearning unit from goal-setting to reinforcement."
+      },
+      {
+        "type": "principle",
+        "name": "Spend Friction Where It Buys Transfer",
+        "quote": "This does not mean 'make everything easy.' It means you spend friction where it buys transfer.",
+        "reason": "A crucial design guideline for allocating learner effort to maximize durable skill application."
+      },
+      {
+        "type": "principle",
+        "name": "Prefer Fewer, Stronger Links",
+        "quote": "A note system should connect ideas... But linking every noun creates noise. Links should point to stable concepts, named models, or repeated prerequisites.",
+        "reason": "A rule of thumb for effective knowledge structuring, emphasizing quality over quantity in creating connections."
+      },
+      {
+        "type": "misconception",
+        "name": "More Content Means More Learning",
+        "quote": "Teams often believe that adding more examples and more theory increases learning. In reality, extra content can raise friction without improving transfer.",
+        "reason": "Identifies a common error in instructional design that can undermine learning effectiveness."
+      },
+      {
+        "type": "misconception",
+        "name": "Recognition Equals Performance",
+        "quote": "\"If they understood it once, they will perform it later\"... Recognition is not performance. People can nod at a good model and still fail under stress.",
+        "reason": "Highlights a dangerous misunderstanding about the gap between comprehension and the ability to execute under real conditions."
+      },
+      {
+        "type": "principle",
+        "name": "Two-Speed Feedback",
+        "quote": "A guideline for structuring feedback to support both immediate recall and deep understanding, preventing overthinking and blind habit."
+      },
+      {
+        "type": "concept",
+        "name": "Calibration Loop",
+        "quote": "A learner calibrates by comparing their choice to an expert choice and understanding the difference. Calibration improves fastest when the learner must commit to a decision before seeing the answer...",
+        "reason": "Describes a learning mechanism where judgment is refined through comparison and feedback on underlying variables."
+      },
+      {
+        "type": "example",
+        "name": "Manager Scenario: Missing Deadlines",
+        "quote": "You are a manager. A team member says: 'I keep missing deadlines because other teams block me.'... Action A: Ask for a concrete recent example... Action B: Give advice immediately...",
+        "reason": "A concrete, illustrative scenario used to demonstrate the application of a coaching skill and a common error."
+      }
+    ]
+  },
+  "duration_ms": 3
+}

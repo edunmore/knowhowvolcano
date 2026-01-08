@@ -2,6 +2,15 @@ import { join } from 'node:path';
 import fs from 'node:fs/promises';
 import { resolveVaultPath, VAULT_LAYOUT } from './utils/vault-utils.js';
 import { loadRunbook, validateRunbook, type LoadedRunbook, type RunbookStep } from './runbook-loader.js';
+import {
+    makeStepDecisions,
+    createBudgetState,
+    updateBudget,
+    checkBudget,
+    getBudgetRemaining,
+    type DecisionResult,
+    type BudgetState
+} from './orchestrator-agent.js';
 import type { RunLogger } from './run-logger.js';
 import type { LLMHandle } from 'volcano-sdk';
 
@@ -35,11 +44,18 @@ export interface RunbookRunResult {
     run_id: string;
     runbook_id: string;
     runbook_version: string;
-    status: 'completed' | 'failed' | 'stopped_at_gate';
+    status: 'completed' | 'failed' | 'stopped_at_gate' | 'budget_exceeded';
     steps_completed: number;
     steps_total: number;
     step_results: StepResult[];
     decisions: Decision[];
+    budget_usage?: {
+        tokens_used: number;
+        tokens_budget: number;
+        cost_used: number;
+        cost_budget: number;
+        time_seconds: number;
+    };
     start_time: string;
     end_time: string;
     duration_ms: number;
@@ -130,6 +146,33 @@ function evaluateConditions(
 }
 
 /**
+ * Resolve template variables in step inputs
+ * Replaces {{variable}} patterns with values from context
+ */
+function resolveTemplateInputs(
+    inputs: Record<string, any>,
+    context: Record<string, any>
+): Record<string, any> {
+    const resolved: Record<string, any> = {};
+
+    for (const [key, value] of Object.entries(inputs)) {
+        if (typeof value === 'string') {
+            // Replace {{variable}} patterns with context values
+            resolved[key] = value.replace(/\{\{(\w+)\}\}/g, (match, varName) => {
+                return context[varName] !== undefined ? context[varName] : match;
+            });
+        } else if (typeof value === 'object' && value !== null) {
+            // Recursively resolve nested objects
+            resolved[key] = resolveTemplateInputs(value, context);
+        } else {
+            resolved[key] = value;
+        }
+    }
+
+    return resolved;
+}
+
+/**
  * Run a complete runbook
  */
 export async function runRunbook(
@@ -154,6 +197,10 @@ export async function runRunbook(
 
     await logger?.log(`[Runbook] Starting: ${definition.runbook_id} v${definition.version}`);
 
+    // Initialize budget tracking
+    let budgetState = createBudgetState(definition.globals);
+    await logger?.log(`[Runbook] Budget: tokens=${budgetState.tokens_budget}, cost=${budgetState.cost_budget}, time=${budgetState.time_budget_seconds}s`, 'DEBUG');
+
     const result: RunbookRunResult = {
         run_id: runId,
         runbook_id: definition.runbook_id,
@@ -176,14 +223,56 @@ export async function runRunbook(
         for (const step of definition.steps) {
             await logger?.log(`[Runbook] Step: ${step.id} (${step.type})`);
 
+            // Check budget before step
+            const budgetCheck = checkBudget(budgetState);
+            if (budgetCheck.exceeded) {
+                result.status = 'budget_exceeded';
+                result.error = budgetCheck.reason;
+                await logger?.log(`[Runbook] ${budgetCheck.reason}`, 'WARN');
+                break;
+            }
+
             // Check conditions
             if (!evaluateConditions(step.conditions, context)) {
                 await logger?.log(`[Runbook] Step ${step.id} skipped (conditions not met)`);
                 continue;
             }
 
-            // Merge step inputs with context
-            const stepInputs = { ...context, ...step.inputs };
+            // Process decision points (agentic decisions)
+            if (step.decision_points && step.decision_points.length > 0) {
+                await logger?.log(`[Runbook] Making ${step.decision_points.length} decision(s) for step ${step.id}`);
+
+                const decisions = await makeStepDecisions(
+                    llm,
+                    step.decision_points,
+                    {
+                        step_id: step.id,
+                        step_type: step.type,
+                        current_state: context,
+                        budget_remaining: getBudgetRemaining(budgetState),
+                    },
+                    logger
+                );
+
+                // Record decisions and merge into context
+                for (const decision of decisions) {
+                    result.decisions.push({
+                        step_id: step.id,
+                        decision_point: decision.name,
+                        value: decision.value,
+                        objective: decision.objective,
+                        rationale: decision.rationale,
+                    });
+                    context[decision.name] = decision.value;
+                    await logger?.log(`[Runbook] Decision: ${decision.name} = ${decision.value}`);
+                }
+            }
+
+            // Resolve template variables in step inputs ({{variable}} syntax)
+            const resolvedStepInputs = resolveTemplateInputs(step.inputs || {}, context);
+
+            // Merge resolved step inputs with context (context values take precedence for non-template values)
+            const stepInputs = { ...context, ...resolvedStepInputs };
 
             // Execute
             const stepResult = await executeStep(step, stepInputs, vaultDir, llm, logger);
@@ -220,6 +309,15 @@ export async function runRunbook(
     const endTime = new Date();
     result.end_time = endTime.toISOString();
     result.duration_ms = endTime.getTime() - startTime.getTime();
+
+    // Add budget usage to result
+    result.budget_usage = {
+        tokens_used: budgetState.tokens_used,
+        tokens_budget: budgetState.tokens_budget === Infinity ? -1 : budgetState.tokens_budget,
+        cost_used: budgetState.cost_used,
+        cost_budget: budgetState.cost_budget === Infinity ? -1 : budgetState.cost_budget,
+        time_seconds: result.duration_ms / 1000,
+    };
 
     // Save run results
     await saveRunResult(vaultDir, runbookId, runId, result);

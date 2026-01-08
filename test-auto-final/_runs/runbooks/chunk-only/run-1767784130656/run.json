@@ -1,0 +1,51 @@
+{
+  "run_id": "run-1767784130656",
+  "runbook_id": "chunk-only",
+  "runbook_version": "1.0",
+  "status": "completed",
+  "steps_completed": 1,
+  "steps_total": 1,
+  "step_results": [
+    {
+      "step_id": "chunk",
+      "step_type": "chunk",
+      "success": true,
+      "outputs": {
+        "totalChunks": 1,
+        "totalFiles": 1,
+        "manifests": [
+          {
+            "source_id": "src_38e4b47a40f0",
+            "original_path": "/home/mac/projects/knowhow1/benchmark/benchmark_source_nohints.md",
+            "original_filename": "benchmark_source_nohints.md",
+            "total_chars": 4727,
+            "total_chunks": 1,
+            "created_at": "2026-01-07T11:08:58.259Z",
+            "sha1": "38e4b47a40f0db0f16e16bace47bda2222f1fc33"
+          }
+        ],
+        "chunkSize": 5000
+      },
+      "duration_ms": 2
+    }
+  ],
+  "decisions": [
+    {
+      "step_id": "chunk",
+      "decision_point": "chunkSize",
+      "value": 5000,
+      "objective": "balanced_coverage",
+      "rationale": "5000 balances coverage and manageability, ensuring sufficient content per chunk while respecting the max_chunks limit of 100."
+    }
+  ],
+  "start_time": "2026-01-07T11:08:50.656Z",
+  "end_time": "2026-01-07T11:08:58.259Z",
+  "duration_ms": 7603,
+  "budget_usage": {
+    "tokens_used": 0,
+    "tokens_budget": -1,
+    "cost_used": 0,
+    "cost_budget": -1,
+    "time_seconds": 7.603
+  }
+}

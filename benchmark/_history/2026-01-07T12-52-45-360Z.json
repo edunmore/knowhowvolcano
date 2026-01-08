@@ -1,0 +1,119 @@
+{
+  "run_id": "benchmark-1767790365360",
+  "benchmark_id": "benchmark-microlearning-sticks-v1",
+  "timestamp": "2026-01-07T12:52:45.360Z",
+  "source_file": "./benchmark/benchmark_source_raw.md",
+  "vault_path": "./benchmark/full-pipeline-2026-01-07-1338",
+  "expected_count": 9,
+  "actual_count": 0,
+  "matched_count": 0,
+  "missing_count": 9,
+  "extra_count": 0,
+  "precision": 0,
+  "recall": 0,
+  "f1_score": 0,
+  "matches": [
+    {
+      "expected": {
+        "item_type": "concept",
+        "title": "Outcome Ladder"
+      },
+      "matched_id": null,
+      "match_type": "none",
+      "confidence": 0
+    },
+    {
+      "expected": {
+        "item_type": "principle",
+        "title": "Friction Budget"
+      },
+      "matched_id": null,
+      "match_type": "none",
+      "confidence": 0
+    },
+    {
+      "expected": {
+        "item_type": "procedure",
+        "title": "7-Minute Microlearning Loop"
+      },
+      "matched_id": null,
+      "match_type": "none",
+      "confidence": 0
+    },
+    {
+      "expected": {
+        "item_type": "concept",
+        "title": "Two-Speed Feedback"
+      },
+      "matched_id": null,
+      "match_type": "none",
+      "confidence": 0
+    },
+    {
+      "expected": {
+        "item_type": "misconception",
+        "title": "More content means more learning"
+      },
+      "matched_id": null,
+      "match_type": "none",
+      "confidence": 0
+    },
+    {
+      "expected": {
+        "item_type": "misconception",
+        "title": "If they understood it once, they will perform it later"
+      },
+      "matched_id": null,
+      "match_type": "none",
+      "confidence": 0
+    },
+    {
+      "expected": {
+        "item_type": "concept",
+        "title": "Calibration Loop"
+      },
+      "matched_id": null,
+      "match_type": "none",
+      "confidence": 0
+    },
+    {
+      "expected": {
+        "item_type": "principle",
+        "title": "Prefer Fewer, Stronger Links"
+      },
+      "matched_id": null,
+      "match_type": "none",
+      "confidence": 0
+    },
+    {
+      "expected": {
+        "item_type": "example",
+        "title": "Scenario: Blocked deadlines (diagnose before advice)"
+      },
+      "matched_id": null,
+      "match_type": "none",
+      "confidence": 0
+    }
+  ],
+  "extra_items": [],
+  "link_analysis": {
+    "expected_inline": [
+      "Outcome Ladder",
+      "Friction Budget",
+      "7-Minute Microlearning Loop",
+      "Two-Speed Feedback",
+      "Calibration Loop",
+      "Interference"
+    ],
+    "expected_candidates": [
+      "Cognitive Load",
+      "Spaced Repetition",
+      "Interference under Stress",
+      "Deliberate Practice",
+      "Scenario-Based Learning",
+      "Decision Under Uncertainty"
+    ],
+    "found_inline": [],
+    "found_candidates": []
+  }
+}

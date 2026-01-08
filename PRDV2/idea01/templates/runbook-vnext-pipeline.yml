@@ -1,0 +1,14 @@
+# Illustrative runbook skeleton (adapt to your runner)
+# Intent: show the new step ordering for vNext.
+steps:
+  - id: ingest
+  - id: chunk
+  - id: gate_chunks
+  - id: assemble_filtered_corpus
+  - id: model_chunks_bundle
+  - id: verify_changed
+  - id: emit_candidates_and_create_incubator_notes
+  - id: resolve_promote_merge
+  - id: emergent_garden
+  - id: index
+  - id: report

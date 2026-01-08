@@ -222,17 +222,54 @@ export function createDeepSeekWithTools(cfg: DeepSeekConfig = {}): LLMHandle {
                 return { content, toolCalls: [], usage: lastUsage };
             }
 
-            // Return parsed tool calls for Volcano SDK to execute
-            return {
-                content,
-                toolCalls: parsedCalls.map(tc => {
-                    const tool = toolMap.get(tc.name);
-                    return {
+            // Debug: log what we're parsing
+            console.log('[DeepSeek Provider] Parsed tool calls:', parsedCalls.length);
+
+            // Execute the tools ourselves since DeepSeek uses text-based format
+            const executedToolCalls: any[] = [];
+
+            for (const tc of parsedCalls) {
+                const tool = toolMap.get(tc.name);
+                console.log(`  [Tool] ${tc.name}: ${tool ? 'FOUND' : 'NOT FOUND'}`);
+
+                if (tool?.mcpHandle) {
+                    console.log(`    Executing via MCP...`);
+                    try {
+                        // Extract the actual tool name from mcp_<hash>_<name> format
+                        const actualToolName = tc.name.replace(/^mcp_[a-f0-9]+_/, '');
+
+                        // Execute the MCP tool directly
+                        const result = await (tool.mcpHandle as any).callTool(actualToolName, tc.arguments);
+                        console.log(`    Result: ${JSON.stringify(result).slice(0, 100)}...`);
+
+                        executedToolCalls.push({
+                            name: tc.name,
+                            arguments: tc.arguments,
+                            result: result,
+                            mcpHandle: tool.mcpHandle,
+                        });
+                    } catch (err: any) {
+                        console.log(`    MCP Error: ${err.message}`);
+                        executedToolCalls.push({
+                            name: tc.name,
+                            arguments: tc.arguments,
+                            error: err.message,
+                            mcpHandle: tool.mcpHandle,
+                        });
+                    }
+                } else {
+                    // No mcpHandle, just return the parsed call
+                    executedToolCalls.push({
                         name: tc.name,
                         arguments: tc.arguments,
                         mcpHandle: tool?.mcpHandle,
-                    };
-                }),
+                    });
+                }
+            }
+
+            return {
+                content,
+                toolCalls: executedToolCalls,
                 usage: lastUsage,
             };
         },

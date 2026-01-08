@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FolgezettelStrand",
+  "type": "object",
+  "properties": {
+    "strand_id": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "domain": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "note_id": {
+            "type": "string"
+          },
+          "fz": {
+            "type": "string"
+          },
+          "rationale": {
+            "type": "string"
+          },
+          "intent": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "note_id",
+          "fz",
+          "rationale"
+        ],
+        "additionalProperties": true
+      }
+    },
+    "branches": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "from_note_id": {
+            "type": "string"
+          },
+          "branch_id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "start_index": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "from_note_id",
+          "branch_id"
+        ]
+      }
+    }
+  },
+  "required": [
+    "strand_id",
+    "version",
+    "title",
+    "nodes"
+  ],
+  "additionalProperties": true
+}

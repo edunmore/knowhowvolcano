@@ -1,0 +1,35 @@
+runbook_id: emergent_layer_after_modeling_v1
+version: "1.0"
+description: "After modeling notes, add Zettelkasten emergence: rationalize links, build MOCs/strands, generate bridges."
+inputs:
+  recent_notes_report: "{{CLI:recent_notes_report}}"
+steps:
+  - id: rationalize
+    type: rationalize_links
+    agent: "Gardener"
+    prompt: "_system/prompts/prompt-rationalize-links.md"
+    inputs:
+      recent_notes_report: "{{inputs.recent_notes_report}}"
+    outputs:
+      edges_path: "_graph/edges.jsonl"
+  - id: garden
+    type: garden_structure
+    agent: "Gardener"
+    prompt: "_system/prompts/prompt-garden-mocs-strands.md"
+    inputs:
+      edges_path: "{{steps.rationalize.outputs.edges_path}}"
+      create_or_update_mocs: true
+      create_or_update_strands: true
+      min_nodes_per_strand: 10
+    outputs:
+      gardener_report: "_runs/tmp/gardener.json"
+  - id: bridges
+    type: build_bridges
+    agent: "BridgeBuilder"
+    prompt: "_system/prompts/prompt-build-bridge-notes.md"
+    inputs:
+      edges_path: "{{steps.rationalize.outputs.edges_path}}"
+      topk_retrieval: 12
+      max_bridge_notes: 6
+    outputs:
+      bridge_report: "_runs/tmp/bridges.json"

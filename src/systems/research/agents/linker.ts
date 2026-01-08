@@ -4,6 +4,7 @@ import fs from 'node:fs/promises';
 import { join, basename, extname } from 'node:path';
 import { renderPrompt } from '../prompt-renderer.js';
 import { RunLogger } from '../run-logger.js';
+import { createAzureGPT5Nano } from '../../../core/providers/azure-gpt5-nano-provider.js';
 
 interface LinkReference {
     sourceFile: string;
@@ -98,7 +99,13 @@ export async function runLinker(
             context_usage: link.context
         });
 
-        const result = await agent({ llm, name: 'Linker-Stubber' })
+        // Use Azure GPT-5-nano for stub generation:
+        // - Faster response times
+        // - Higher rate limits (avoids 429 errors)
+        // - Sufficient capability for simple stub content
+        const gpt5nano = createAzureGPT5Nano({ maxTokens: 500 });
+
+        const result = await agent({ llm: gpt5nano, name: 'Linker-Stubber' })
             .then({ prompt })
             .run();
 

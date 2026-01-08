@@ -1,0 +1,36 @@
+# Knowledge Extraction Runbook (Goal-Based)
+# The coordinator autonomously decides HOW to achieve these goals
+
+runbook_id: knowledge-extraction
+version: "1.0"
+description: Extract educational knowledge from source documents
+
+# What to achieve (not how)
+goals:
+  - Chunk source documents into manageable units
+  - Filter out non-educational content (TOC, legal, marketing)
+  - Extract concepts, procedures, principles, and misconceptions
+  - Verify all notes are grounded in source evidence
+  - Create navigable links between related notes
+
+# Boundaries for the coordinator
+constraints:
+  max_tokens: 100000
+  max_cost_usd: 5.00
+  max_retries: 3
+  min_verification_pass_rate: 0.8
+
+# Hints (coordinator can override with judgment)
+preferences:
+  chunk_size: [2000, 6000]
+  batch_modeling: 3
+  skip_types:
+    - table_of_contents
+    - legal_disclaimer
+    - author_bio
+    - acknowledgments
+
+# Enable learning from runs
+self_improvement:
+  enabled: true
+  log_path: _runs/improvements.json

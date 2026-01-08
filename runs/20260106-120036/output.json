@@ -1,0 +1,139 @@
+{
+  "runId": "20260106-120036",
+  "timestamp": "2026-01-06T11:00:36.757Z",
+  "config": {
+    "startFile": "/home/mac/projects/knowhow1/booksample/006_1_what_is_coaching_with_descriptions.md",
+    "sourceDir": "/home/mac/projects/knowhow1/booksample",
+    "canonDir": "/home/mac/projects/knowhow1/booksample/canon",
+    "maxFiles": 4,
+    "provider": "deepseek"
+  },
+  "provider": "DeepSeek-V3.2-Tools",
+  "routerResult": {
+    "mode": "DISCOVER",
+    "selectedFiles": [
+      "/home/mac/projects/knowhow1/booksample/006_1_what_is_coaching_with_descriptions.md",
+      "/home/mac/projects/knowhow1/booksample/000_preamble_with_descriptions.md",
+      "/home/mac/projects/knowhow1/booksample/001_foreword_by_john_mcfarlane_chairman_barclays_bank.md"
+    ],
+    "kernelSketch": {
+      "topic": "1 what is coaching with descriptions",
+      "keyTerms": []
+    },
+    "topCandidates": []
+  },
+  "logs": [
+    "[2026-01-06T11:00:36.757Z] === Starting Pipeline Run: 20260106-120036 ===",
+    "[2026-01-06T11:00:36.757Z] Start file: /home/mac/projects/knowhow1/booksample/006_1_what_is_coaching_with_descriptions.md",
+    "[2026-01-06T11:00:36.757Z] Provider: DeepSeek-V3.2-Tools",
+    "[2026-01-06T11:00:36.757Z] \n--- Step 1: Router ---",
+    "[2026-01-06T11:00:41.118Z] Mode: DISCOVER",
+    "[2026-01-06T11:00:41.118Z] Selected files: 3",
+    "[2026-01-06T11:00:41.118Z]   - /home/mac/projects/knowhow1/booksample/006_1_what_is_coaching_with_descriptions.md",
+    "[2026-01-06T11:00:41.118Z]   - /home/mac/projects/knowhow1/booksample/000_preamble_with_descriptions.md",
+    "[2026-01-06T11:00:41.118Z]   - /home/mac/projects/knowhow1/booksample/001_foreword_by_john_mcfarlane_chairman_barclays_bank.md",
+    "[2026-01-06T11:00:41.118Z] \n--- Step 2: Extraction ---",
+    "[2026-01-06T11:01:22.611Z] Extraction complete: 7664 chars",
+    "[2026-01-06T11:01:22.611Z] \n--- Step 3: Critic ---",
+    "[2026-01-06T11:02:00.313Z] Scorecard:",
+    "[2026-01-06T11:02:00.313Z]   - Faithfulness: 3/5",
+    "[2026-01-06T11:02:00.313Z]   - Generator Readiness: 3/5",
+    "[2026-01-06T11:02:00.313Z]   - Non-plagiarism: 3/5",
+    "[2026-01-06T11:02:00.313Z] \n--- Step 4: Canon Matching ---",
+    "[2026-01-06T11:02:06.482Z] Match result: MTH-20260101-143421",
+    "[2026-01-06T11:02:06.482Z] Confidence: 92%",
+    "[2026-01-06T11:02:06.482Z] \n--- Step 5: Canon Update ---",
+    "[2026-01-06T11:02:06.485Z] Action: update",
+    "[2026-01-06T11:02:06.485Z] Entry: /home/mac/projects/knowhow1/booksample/canon/methods/MTH-20260101-143421.md",
+    "[2026-01-06T11:02:06.485Z] \n--- Step 6: Regenerate Index ---",
+    "[2026-01-06T11:02:06.490Z] Index regenerated: /home/mac/projects/knowhow1/booksample/canon/METHODS-CANON-INDEX.md",
+    "[2026-01-06T11:02:06.490Z] \n=== Pipeline Complete ===",
+    "[2026-01-06T11:02:06.490Z] Run artifacts saved to: runs/20260106-120036"
+  ],
+  "extraction": {
+    "methodKernel": {
+      "purpose": [],
+      "preconditions": [],
+      "roles": [],
+      "process": [],
+      "decisionRules": [],
+      "successSignals": [],
+      "failureModes": [],
+      "dosDonts": []
+    },
+    "authorDeliveryModel": {
+      "teachingStrategy": [],
+      "persuasionMoves": [],
+      "framingContrasts": [],
+      "keyPhrases": [],
+      "questionPatterns": []
+    },
+    "reusePack": {
+      "metaphors": [],
+      "microScenarios": [],
+      "storyBeats": [],
+      "fableSpec": ""
+    },
+    "qualityGateReport": "",
+    "rawMarkdown": "# Method Kernel\n\n**Purpose:** [EXTRACTED] To help individuals achieve personal or professional goals and improve performance through a structured, collaborative conversation. (\"coaching is about helping people achieve their goals\" - 006_1_what_is_coaching_with_descriptions.md, heading: \"What is Coaching?\", paragraph 2)\n\n**Preconditions:** [INFERRED] A willing individual (coachee) with a goal or area for improvement. A coach with the requisite skills. A context where performance or personal development is valued. (Anchors: 1. \"coaching is about helping people achieve their goals\" - 006_1_what_is_coaching_with_descriptions.md, heading: \"What is Coaching?\", paragraph 2. 2. \"Coaching has become a central plank in the development of people\" - 001_foreword_by_john_mcfarlane_chairman_barclays_bank.md, heading: \"Foreword\", paragraph 1.)\n\n**Roles:**\n*   **Coach:** [EXTRACTED] Acts as a facilitator and catalyst, not an instructor. They ask questions, listen, and guide the coachee to find their own answers. (\"the coach's role is to ask the right questions\" - 006_1_what_is_coaching_with_descriptions.md, heading: \"What is Coaching?\", paragraph 3)\n*   **Coachee:** [EXTRACTED] The individual who owns the goal and is responsible for their own progress and actions. (\"the individual being coached has to take responsibility\" - 006_1_what_is_coaching_with_descriptions.md, heading: \"What is Coaching?\", paragraph 3)\n\n**Process:**\n1.  **Establish Goal/Issue:** [EXTRACTED] Conversation begins by identifying a specific goal or area the coachee wants to address. (\"start with a specific goal or issue\" - 006_1_what_is_coaching_with_descriptions.md, heading: \"What is Coaching?\", paragraph 4)\n2.  **Explore Reality:** [EXTRACTED] The coach asks questions to understand the current situation, challenges, and resources. (\"explore the current reality of the situation\" - 006_1_what_is_coaching_with_descriptions.md, heading: \"What is Coaching?\", paragraph 4)\n3.  **Generate Options:** [EXTRACTED] The coachee, prompted by the coach, brainstorms potential actions or solutions. (\"generate options for what to do\" - 006_1_what_is_coaching_with_descriptions.md, heading: \"What is Coaching?\", paragraph 4)\n4.  **Commit to Action (Will):** [EXTRACTED] The coachee selects a specific option and commits to concrete next steps. (\"commit to action, establishing the will to move\" - 006_1_what_is_coaching_with_descriptions.md, heading: \"What is Coaching?\", paragraph 4)\n*Loops/Order Changes:* [INFERRED] The process is not strictly linear. Steps may be revisited, especially if new insights emerge during exploration or if committed actions prove ineffective. (Anchors: 1. The process is described as a \"framework\" not a rigid sequence - 006_1_what_is_coaching_with_descriptions.md, heading: \"What is Coaching?\", paragraph 4. 2. The conversation is dynamic and depends on the coachee's responses - 006_1_what_is_coaching_with_descriptions.md, heading: \"What is Coaching?\", paragraph 3.)\n\n**Decision Rules:** [NOT IN SOURCE]\n\n**Success Signals:** [INFERRED] The coachee achieves their stated goal, demonstrates improved performance, gains clarity, or takes sustained, self-directed action. (Anchors: 1. Purpose is \"helping people achieve their goals\" - 006_1_what_is_coaching_with_descriptions.md, heading: \"What is Coaching?\", paragraph 2. 2. Coaching develops \"human potential\" and \"performance\" - 001_foreword_by_john_mcfarlane_chairman_barclays_bank.md, heading: \"Foreword\", paragraph 1.)\n\n**Failure Modes & Fixes:**\n*   **Failure:** Coachee is dependent on coach. **Fix:** [EXTRACTED] Coach must reinforce that the coachee owns the problem and solution, using questions to return responsibility. (\"the individual being coached has to take responsibility\" - 006_1_what_is_coaching_with_descriptions.md, heading: \"What is Coaching?\", paragraph 3)\n*   **Failure:** Conversation stays vague. **Fix:** [EXTRACTED] Coach insists on specificity in goals, reality, and action steps. (\"start with a *specific* goal or issue\" - 006_1_what_is_coaching_with_descriptions.md, heading: \"What is Coaching?\", paragraph 4)\n*   **Failure:** Lack of action. **Fix:** [INFERRED] Revisit the \"Will\" step to identify and address barriers, or scale back the action to a smaller, more manageable commitment. (Anchors: 1. Process includes \"commit to action\" - 006_1_what_is_coaching_with_descriptions.md, heading: \"What is Coaching?\", paragraph 4. 2. Coach ensures the coachee, not the coach, is the \"source of the answer\" - 006_1_what_is_coaching_with_descriptions.md, heading: \"What is Coaching?\", paragraph 3.)\n\n**Do/Don't Checklist:**\n*   **DO:** Ask questions; listen; focus on the coachee's agenda. [EXTRACTED] (\"the coach's role is to ask the right questions\" - 006_1_what_is_coaching_with_descriptions.md, heading: \"What is Coaching?\", paragraph 3)\n*   **DO:** Work on specific, defined issues. [EXTRACTED] (\"start with a specific goal or issue\" - 006_1_what_is_coaching_with_descriptions.md, heading: \"What is Coaching?\", paragraph 4)\n*   **DON'T:** Provide answers or instructions. [EXTRACTED] (\"not about the coach providing the answers\" - 006_1_what_is_coaching_with_descriptions.md, heading: \"What is Coaching?\", paragraph 3)\n*   **DON'T:** Let the coachee avoid responsibility. [EXTRACTED] (\"the individual being coached has to take responsibility\" - 006_1_what_is_coaching_with_descriptions.md, heading: \"What is Coaching?\", paragraph 3)\n\n# Author Delivery Model\n\n**Teaching Strategy:** [INFERRED] Uses a clear, memorable framework (GROW) to structure a potentially abstract concept. Illustrates with hypothetical dialogue snippets to show the model in action. Establishes credibility through endorsements and by contrasting coaching with better-known roles. (Anchors: 1. Presents the \"GROW\" model - 006_1_what_is_coaching_with_descriptions.md, heading: \"What is Coaching?\", paragraph 4. 2. Includes a sample coaching conversation - 006_1_what_is_coaching_with_descriptions.md, heading: \"What is Coaching?\", paragraph 5. 3. Foreword provides business leader endorsement - 001_foreword_by_john_mcfarlane_chairman_barclays_bank.md, heading: \"Foreword\".)\n\n**Persuasion Moves:**\n*   **Authority Borrowing:** [EXTRACTED] Opens with a foreword from a prominent business chairman to validate the material's importance. (\"I commend it to you\" - 001_foreword_by_john_mcfarlane_chairman_barclays_bank.md, heading: \"Foreword\", paragraph 3)\n*   **Problem-Agitation:** [INFERRED] Implies a common misunderstanding (coaching = instruction) and positions the book as the correct solution. (Anchors: 1. Contrasts coaching with \"telling\" and \"instructing\" - 006_1_what_is_coaching_with_descriptions.md, heading: \"What is Coaching?\", paragraph 1. 2. Foreword states coaching is \"often misunderstood\" - 001_foreword_by_john_mcfarlane_chairman_barclays_bank.md, heading: \"Foreword\", paragraph 1.)\n*   **Utility Framing:** [EXTRACTED] Presents coaching as a practical, outcome-oriented tool for development and performance. (\"practical guide to the simple but powerful skill\" - 000_preamble_with_descriptions.md, heading: \"Preamble\", paragraph 1)\n\n**Framing Contrasts:**\n*   Coaching vs. Telling/Instructing. [EXTRACTED] (\"Coaching is not merely about telling\" - 006_1_what_is_coaching_with_descriptions.md, heading: \"What is Coaching?\", paragraph 1)\n*   Coach as Facilitator vs. Coach as Expert. [EXTRACTED] (\"not about the coach providing the answers\" - 006_1_what_is_coaching_with_descriptions.md, heading: \"What is Coaching?\", paragraph 3)\n*   Performance/Goal Focus vs. Therapy/Past Focus. [NOT IN SOURCE] (Implied but not explicitly stated in provided sources.)\n\n**Key Phrases (verbatim <=6 words"
+  },
+  "criticReport": {
+    "stressTest": {
+      "reelScript": "",
+      "fableOutline": "",
+      "comicBeats": "",
+      "gaps": []
+    },
+    "audit": {
+      "anchorIssues": [],
+      "unsupportedClaims": [],
+      "overreachItems": [],
+      "mislabelings": []
+    },
+    "scorecard": {
+      "operationalCompleteness": 3,
+      "decisionRulesClarity": 3,
+      "teachingTransfer": 3,
+      "generatorReadiness": 3,
+      "faithfulness": 3,
+      "nonPlagiarismSafety": 3
+    },
+    "fixSpec": {
+      "mustAdd": [
+        "*",
+        "*   **Decision Rules:** Add a field for **Decision Rules**, even if it"
+      ],
+      "mustRemove": [],
+      "mustDowngrade": [
+        "*",
+        "*   In **Author Delivery Model > Framing Contrasts**, change \"Performance/Goal Focus vs. Therapy/Past Focus\" from `[NOT IN SOURCE]` to `[INFERRED - EXTERNAL LORE]` or, preferably, **REMOVE** it entirely, as it is not supported by the given chapters.",
+        "**"
+      ],
+      "mustProvideAnchors": [
+        "*",
+        "*   For the **Failure Fix for \"Lack of Action\"**, the inference is logical but unanchored. Either find an anchor in the source text about overcoming barriers or scaling actions, or change the `[INFERRED]` tag to `[LOGICAL EXTENSION]` to clearly signal it's not sourced.",
+        "**"
+      ],
+      "mustRewrite": [
+        "*",
+        "*   The **Success Signals** inference \"takes sustained, self-directed action\" should be rephrased to more closely align with the anchors. E.g., \"...takes action toward their goal\" or \"demonstrates improved performance or progress toward a goal.\"",
+        "**"
+      ],
+      "optional": [
+        "*",
+        "*   To increase generator readiness, one could infer and add a \"**Common Variations**\" or \"**Context Notes**\" field, noting that the model is presented as universal but may be applied in business/personal contexts per the foreword and preamble."
+      ]
+    },
+    "rawMarkdown": "# Stress Test Outputs\n\n**A) 30s Reel Script**\n*   **Visual:** Quick cuts between a frustrated person (Coachee) at a messy desk and a calm, listening Coach.\n*   **Text Overlay (0-5s):** \"Stuck? Telling them what to do doesn't work.\"\n*   **Coach (Voiceover, 5-15s):** \"So, what's the *specific* goal? What have you tried? What's one small option you haven't tested?\"\n*   **Visual:** Coachee's face lights up with an idea. They scribble a plan.\n*   **Text Overlay (15-25s):** \"Coaching. Unlock their potential. It's their goal, their answer, their action.\"\n*   **Final Frame (25-30s):** Logo. Tagline: \"GROW Your Team's Performance.\"\n*   **Stuck Point:** The script leans heavily on the inferred \"success signal\" of a moment of clarity/action. The extraction lacks specific, vivid language for the *feeling* of a coaching breakthrough to make the reel emotionally compelling.\n\n**B) One-Page Business Fable Outline**\n*   **Title:** The Gardener and the Oak\n*   **Characters:** Arden (anxious new manager, the Coachee), Sage (experienced leader, the Coach), Team (wilting plants).\n*   **Plot:**\n    1.  **Problem:** Arden's team is underperforming. He tries *telling* them what to do (micro-managing, instructing). Performance worsens.\n    2.  **Encounter:** Sage observes and asks, \"What's your one goal for this team?\" (Establish Goal). Arden says \"Better results.\" Sage pushes for specificity.\n    3.  **Exploration:** Sage asks, \"What's happening now? What's blocking them?\" (Explore Reality). Arden realizes he hasn't listened to their ideas.\n    4.  **Ideation:** \"So, what could you do differently *tomorrow*?\" (Generate Options). Arden brainstorms: ask for their input, delegate one task.\n    5.  **Commitment:** \"Which will you commit to?\" (Will). Arden commits to holding a listening session.\n    6.  **Result:** Arden acts. The team responds. He learns he doesn't need to have all the answers, just the right questions.\n*   **Moral:** True growth comes from drawing out the potential within, not from imposing solutions from without.\n*   **Stuck Point:** The fable needs a clear \"Failure Mode\" antagonist. The extraction lists dependency and vagueness as failures, but personifying them (e.g., \"The Imp of Vagueness\") feels forced without more source material on typical coachee resistance patterns.\n\n**C) 6-Panel Comic Beat Sheet**\n1.  **Panel 1:** Coachee looking overwhelmed, thought bubble: \"My project is a mess. I need help!\"\n2.  **Panel 2:** Coach enters, not with a checklist, but with a question mark above head. Dialogue: \"What's the one thing you want to change?\"\n3.  **Panel 3:** Split panel. Left: Coachee gives a vague answer (\"Make it better\"). Right: Coach asks, \"Be specific.\"\n4.  **Panel 4:** Coach asking questions (\"What's working?\" \"What's the block?\"). Coachee thinking, connecting dots.\n5.  **Panel 5:** Coachee excited, lightbulb moment. Dialogue: \"I could try X! Or maybe Y!\"\n6.  **Panel 6:** Coachee walking away determined, checking watch. Dialogue: \"First step, today at 3 PM.\" Coach smiling in background.\n*   **Stuck Point:** The comic sequence assumes the \"Generate Options\" step flows naturally from exploration. The extraction doesn't provide techniques for when a coachee is stuck ideating, making the middle panels potentially simplistic.\n\n# Faithfulness Audit\n\n*   **Anchor Verification Issues:** All cited anchors are present and verbatim in the source files.\n*   **Unsupported [EXTRACTED] Claims:** None. All [EXTRACTED] claims have valid anchors.\n*   **Overreach / Bad [INFERRED]:**\n    *   **Process Non-Linearity:** The inference that the process is not strictly linear is **well-supported** by two strong anchors: \"framework\" (not a rigid sequence) and the dynamic nature of the conversation.\n    *   **Success Signals:** The inference that success includes \"gains clarity\" or \"takes sustained, self-directed action\" is a **reasonable extension** of the stated purpose (achieve goals, improve performance). However, \"sustained\" is an add-on.\n    *   **Failure Fix for \"Lack of Action\":** The fix (\"scale back the action\") is a **reasonable inference** but is not anchored. The source only commits to the step \"commit to action,\" not troubleshooting it.\n    *   **Teaching Strategy - Contrast with Therapy:** The inferred contrast \"Performance/Goal Focus vs. Therapy/Past Focus\" is **NOT anchored** in the provided sources. This is external lore/common knowledge being introduced.\n*   **Mislabeling:** None.\n\n# Scorecard\n\n| Category | Score (0-5) | Rationale |\n| :--- | :--- | :--- |\n| **Operational Completeness** | 3 | Core roles, purpose, and the 4-step GROW process are captured. Lacks explicit **decision rules** and detailed **success/failure signals**. |\n| **Decision Rules Clarity** | 0 | Field is marked \"[NOT IN SOURCE]\". No rules for guiding the coach's moment-to-moment choices are provided. |\n| **Teaching Transfer** | 4 | The model clearly distinguishes coaching from instruction, outlines the GROW framework, and provides a Do/Don't list. Effective for basic understanding. |\n| **Generator Readiness** | 3 | Provides solid core elements for generation (purpose, roles, process steps). Missing nuance on handling process breakdowns and lacks \"key phrases\" for authentic dialogue generation. |\n| **Faithfulness** | 4 | Nearly all claims are well-anchored. One minor overreach (therapy contrast) and one inferred fix without direct anchor. Overall, highly faithful to the provided text. |\n| **Non-Plagiarism Safety** | 5 | Excellent use of anchoring. All direct concepts are cited. The extraction paraphrases and structures ideas without copying long, uncredited passages. |\n\n# Fix Spec\n\n*   **MUST ADD:**\n    *   **Decision Rules:** Add a field for **Decision Rules**, even if it must be populated with `[NOT EXPLICIT IN SOURCE]`. This highlights a major gap in the operational logic extracted from the source.\n    *   **Key Phrases:** Complete the **Key Phrases** section. The prompt cuts off. This is critical for dialogue generation and faithful tone replication.\n\n*   **MUST DOWNGRADE:**\n    *   In **Author Delivery Model > Framing Contrasts**, change \"Performance/Goal Focus vs. Therapy/Past Focus\" from `[NOT IN SOURCE]` to `[INFERRED - EXTERNAL LORE]` or, preferably, **REMOVE** it entirely, as it is not supported by the given chapters.\n\n*   **MUST PROVIDE ANCHORS:**\n    *   For the **Failure Fix for \"Lack of Action\"**, the inference is logical but unanchored. Either find an anchor in the source text about overcoming barriers or scaling actions, or change the `[INFERRED]` tag to `[LOGICAL EXTENSION]` to clearly signal it's not sourced.\n\n*   **MUST REWRITE:**\n    *   The **Success Signals** inference \"takes sustained, self-directed action\" should be rephrased to more closely align with the anchors. E.g., \"...takes action toward their goal\" or \"demonstrates improved performance or progress toward a goal.\"\n\n*   **OPTIONAL:**\n    *   To increase generator readiness, one could infer and add a \"**Common Variations**\" or \"**Context Notes**\" field, noting that the model is presented as universal but may be applied in business/personal contexts per the foreword and preamble."
+  },
+  "matchResult": {
+    "matched_method_id": "MTH-20260101-143421",
+    "confidence": 92,
+    "rationale": "The extracted method kernel is a direct description of the GROW model. The core mechanism is identical: a structured, collaborative conversation between a coach and coachee to facilitate goal achievement through self-discovery. The purpose (helping individuals achieve goals through structured conversation) is a perfect match. The listed process steps (Establish Goal/Issue, Explore Reality, Generate Options) map directly to the first three stages of GROW (Goal, Reality, Options). The final inferred step would be \"Will\" or \"Way Forward,\" which is implied by the truncated extraction (\"The co...\"). The roles (facilitator Coach, responsible Coachee) and preconditions (willing individual, development context) are fully consistent with the GROW model's application in coaching.",
+    "merge_guidance": "The new extraction should be merged as a specific, text-anchored instance of the existing GROW model canon entry (MTH-20260101-143421). The extracted \"Purpose,\" \"Roles,\" and explicit \"Process\" steps (1-3) provide valuable source-anchored descriptions that can be used to enrich the existing entry, particularly by adding the specific source citations (e.g., from `006_1_what_is_coaching_with_descriptions.md`). The inferred \"Preconditions\" are also consistent and can be noted. This is not a new method but a direct textual source for the established GROW framework."
+  },
+  "canonUpdate": {
+    "action": "update",
+    "entryPath": "/home/mac/projects/knowhow1/booksample/canon/methods/MTH-20260101-143421.md"
+  }
+}

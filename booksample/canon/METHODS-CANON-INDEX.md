@@ -1,6 +1,6 @@
 # Methods Canon Index
 version: 1
-updated: 2026-01-01
+updated: 2026-01-06
 notes: "Compact index only. Full entries live in ./canon/methods/"
 
 ---

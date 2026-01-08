@@ -1,7 +1,7 @@
 import { join } from 'node:path';
 import fs from 'node:fs/promises';
 import { agent } from 'volcano-sdk';
-import { createOllamaProvider } from '../../../core/providers/ollama-provider.js';
+import { createAzureGPT5Nano } from '../../../core/providers/azure-gpt5-nano-provider.js';
 import { resolveVaultPath, VAULT_LAYOUT } from '../utils/vault-utils.js';
 import type { ChunkMetadata } from '../utils/chunker.js';
 import type { RunLogger } from '../run-logger.js';
@@ -128,9 +128,9 @@ function parseGateDecision(response: string): GateDecision | null {
 
         return {
             content_class: parsed.content_class,
-            relevance_score: parseFloat(parsed.relevance_score) || 0,
+            relevance_score: parsed.relevance_score ? parsed.relevance_score / 100 : 0,
             decision: parsed.decision,
-            confidence: parseFloat(parsed.confidence) || 0,
+            confidence: parsed.confidence ? parsed.confidence / 100 : 0,
             reasons: Array.isArray(parsed.reasons) ? parsed.reasons : [],
         };
     } catch {
@@ -168,14 +168,16 @@ export async function runChunkGate(
     const prompt = renderGatePrompt(promptTemplate, snippet);
 
     try {
-        // Use Ollama with local model for gating
-        const ollama = createOllamaProvider();
+        // Use Azure GPT-5-nano for fast, cost-effective gating
+        // Note: GPT-5-nano only supports temperature=1.0 (default)
+        const gpt5nano = createAzureGPT5Nano({ maxTokens: 500 });
 
-        const result = await agent({ llm: ollama, name: 'ChunkGate' })
+        const result = await agent({ llm: gpt5nano, name: 'ChunkGate' })
             .then({ prompt })
             .run();
 
         const response = result[0]?.llmOutput || '';
+        console.log('[ChunkGate] Raw LLM response:', response.slice(0, 300));
         const decision = parseGateDecision(response);
 
         if (!decision) {
@@ -196,8 +198,8 @@ export async function runChunkGate(
         return finalDecision;
 
     } catch (error: any) {
-        // Ollama error - fallback to LIGHT_SCAN
-        await logger?.log(`[Gate] Ollama error: ${error.message}. Defaulting to LIGHT_SCAN`, 'WARN');
+        // Azure error - fallback to LIGHT_SCAN
+        await logger?.log(`[Gate] Azure GPT-5-nano error: ${error.message}. Defaulting to LIGHT_SCAN`, 'WARN');
         return {
             content_class: 'unknown',
             relevance_score: 0,

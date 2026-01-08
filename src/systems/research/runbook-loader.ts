@@ -1,5 +1,6 @@
 import { join } from 'node:path';
 import fs from 'node:fs/promises';
+import yaml from 'js-yaml';
 import { resolveVaultPath, VAULT_LAYOUT } from './utils/vault-utils.js';
 
 /**
@@ -20,6 +21,7 @@ export interface RunbookStep {
         guardrails?: Record<string, any>;
     }>;
     conditions?: Record<string, any>;
+    depends_on?: string[];  // For future DAG support
 }
 
 /**
@@ -71,11 +73,10 @@ export async function loadRunbook(
         }
     }
 
-    // Parse (YAML or JSON)
+    // Parse using js-yaml for YAML files
     let definition: RunbookDefinition;
     if (path.endsWith('.yml') || path.endsWith('.yaml')) {
-        // Simple YAML parsing for common patterns
-        definition = parseSimpleYaml(content);
+        definition = yaml.load(content) as RunbookDefinition;
     } else {
         definition = JSON.parse(content);
     }
@@ -88,58 +89,6 @@ export async function loadRunbook(
     return { definition, path, vaultDir };
 }
 
-/**
- * Simple YAML parser for runbook format
- * (For production, use a proper YAML library)
- */
-function parseSimpleYaml(content: string): RunbookDefinition {
-    // This is a simplified parser - in production use js-yaml
-    const lines = content.split('\n');
-    const result: any = {};
-    let currentKey = '';
-    let currentArray: any[] = [];
-    let inSteps = false;
-    let currentStep: any = null;
-
-    for (const line of lines) {
-        // Skip comments and empty lines
-        if (line.trim().startsWith('#') || line.trim() === '') continue;
-
-        // Key-value pair
-        const kvMatch = line.match(/^(\w+):\s*(.*)$/);
-        if (kvMatch) {
-            const [, key, value] = kvMatch;
-            if (key === 'steps') {
-                inSteps = true;
-                result.steps = [];
-            } else if (value) {
-                result[key] = value.replace(/^["']|["']$/g, '');
-            }
-            currentKey = key;
-        }
-
-        // Array item in steps
-        if (inSteps && line.match(/^\s+-\s+id:/)) {
-            if (currentStep) {
-                result.steps.push(currentStep);
-            }
-            const idMatch = line.match(/id:\s*(.+)/);
-            currentStep = { id: idMatch?.[1] || '' };
-        } else if (inSteps && currentStep && line.match(/^\s{4}\w+:/)) {
-            const stepKv = line.match(/^\s+(\w+):\s*(.*)$/);
-            if (stepKv) {
-                currentStep[stepKv[1]] = stepKv[2].replace(/^["']|["']$/g, '');
-            }
-        }
-    }
-
-    // Add last step
-    if (currentStep) {
-        result.steps.push(currentStep);
-    }
-
-    return result as RunbookDefinition;
-}
 
 /**
  * List available runbooks in a vault

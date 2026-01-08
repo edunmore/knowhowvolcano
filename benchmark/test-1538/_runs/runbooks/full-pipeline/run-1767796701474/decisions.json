@@ -1,0 +1,23 @@
+[
+  {
+    "step_id": "chunk",
+    "decision_point": "chunkSize",
+    "value": 2000,
+    "objective": "semantic_coherence",
+    "rationale": "Selected 2000 characters as a balanced middle-ground chunk size. This provides sufficient context for most language model tasks while maintaining manageable processing units. It's large enough to capture meaningful paragraphs or document sections, yet small enough to avoid overwhelming token limits or losing focus within chunks. This size works well for general-purpose text processing where the optimal chunk size isn't predetermined by specific requirements."
+  },
+  {
+    "step_id": "gate",
+    "decision_point": "strictness",
+    "value": "balanced",
+    "objective": "balanced_filtering",
+    "rationale": "A 'balanced' approach allows for flexibility and context-aware decision-making, which is essential for an Orchestrator Agent. It enables adherence to core rules and guidelines while permitting reasonable adaptations to dynamic situations, avoiding the rigidity of 'strict' or the potential inconsistency of 'lenient'."
+  },
+  {
+    "step_id": "model",
+    "decision_point": "model_depth",
+    "value": "standard",
+    "objective": "quality",
+    "rationale": "The query does not provide specific context about complexity, domain, or required reasoning depth, so a 'standard' model is appropriate. It balances capability with efficiency, suitable for general tasks without assuming the need for extensive analysis ('deep') or minimal processing ('shallow')."
+  }
+]
