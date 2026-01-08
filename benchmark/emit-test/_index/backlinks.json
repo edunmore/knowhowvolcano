@@ -1,0 +1,117 @@
+{
+  "Terminology": [
+    "concept-friction-budget"
+  ],
+  "Deliberate Practice": [
+    "concept-friction-budget",
+    "misconception-understanding-guarantees-performance",
+    "procedure-7-minute-microlearning-loop"
+  ],
+  "src_38e4b47a40f0": [
+    "concept-friction-budget",
+    "concept-outcome-ladder",
+    "example-manager-scenario-missed-deadlines",
+    "misconception-more-content-means-more-learning",
+    "misconception-understanding-guarantees-performance",
+    "principle-prefer-fewer-stronger-links",
+    "principle-spend-friction-where-it-buys-transfer",
+    "principle-the-calibration-loop",
+    "principle-two-speed-feedback",
+    "procedure-7-minute-microlearning-loop"
+  ],
+  "7-Minute Microlearning Loop": [
+    "concept-outcome-ladder",
+    "example-manager-scenario-missed-deadlines",
+    "example-manager-scenario-missed-deadlines",
+    "misconception-understanding-guarantees-performance",
+    "principle-two-speed-feedback"
+  ],
+  "Friction Budget": [
+    "concept-outcome-ladder",
+    "misconception-more-content-means-more-learning",
+    "principle-spend-friction-where-it-buys-transfer",
+    "principle-spend-friction-where-it-buys-transfer",
+    "procedure-7-minute-microlearning-loop"
+  ],
+  "Calibration Loop": [
+    "concept-outcome-ladder",
+    "example-manager-scenario-missed-deadlines",
+    "misconception-understanding-guarantees-performance",
+    "principle-spend-friction-where-it-buys-transfer"
+  ],
+  "Interference (Learning)": [
+    "concept-outcome-ladder",
+    "procedure-7-minute-microlearning-loop"
+  ],
+  "Interference": [
+    "example-manager-scenario-missed-deadlines"
+  ],
+  "Microlearning": [
+    "example-manager-scenario-missed-deadlines",
+    "procedure-7-minute-microlearning-loop"
+  ],
+  "Outcome Ladder": [
+    "example-manager-scenario-missed-deadlines",
+    "misconception-more-content-means-more-learning",
+    "misconception-understanding-guarantees-performance",
+    "principle-spend-friction-where-it-buys-transfer",
+    "procedure-7-minute-microlearning-loop"
+  ],
+  "Two-Speed Feedback": [
+    "example-manager-scenario-missed-deadlines",
+    "principle-spend-friction-where-it-buys-transfer",
+    "procedure-7-minute-microlearning-loop"
+  ],
+  "Trust": [
+    "example-manager-scenario-missed-deadlines"
+  ],
+  "Power": [
+    "example-manager-scenario-missed-deadlines"
+  ],
+  "Uncertainty": [
+    "example-manager-scenario-missed-deadlines"
+  ],
+  "Learning": [
+    "misconception-more-content-means-more-learning"
+  ],
+  "Transfer (Learning)": [
+    "misconception-more-content-means-more-learning",
+    "principle-the-calibration-loop",
+    "procedure-7-minute-microlearning-loop"
+  ],
+  "Transfer": [
+    "misconception-understanding-guarantees-performance",
+    "principle-spend-friction-where-it-buys-transfer"
+  ],
+  "Wiki Links": [
+    "principle-prefer-fewer-stronger-links"
+  ],
+  "Stable Concepts": [
+    "principle-prefer-fewer-stronger-links"
+  ],
+  "Named Models": [
+    "principle-prefer-fewer-stronger-links"
+  ],
+  "Prerequisite Concepts": [
+    "principle-prefer-fewer-stronger-links"
+  ],
+  "Constraint": [
+    "principle-spend-friction-where-it-buys-transfer"
+  ],
+  "Rung D: Transfer": [
+    "principle-spend-friction-where-it-buys-transfer"
+  ],
+  "Expert Judgment": [
+    "principle-the-calibration-loop"
+  ],
+  "Rule of Thumb": [
+    "principle-two-speed-feedback",
+    "procedure-7-minute-microlearning-loop"
+  ],
+  "Overthinking": [
+    "principle-two-speed-feedback"
+  ],
+  "Blind Habit": [
+    "principle-two-speed-feedback"
+  ]
+}

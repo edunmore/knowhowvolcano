@@ -1,0 +1,18 @@
+{
+  "step_id": "emergent_artifacts",
+  "step_type": "emergent_artifacts",
+  "success": true,
+  "outputs": {
+    "strands": 1,
+    "mocs": 1,
+    "bridges": 1,
+    "trails": 1,
+    "paths": [
+      "/home/mac/projects/knowhow1/benchmark/phase1-test/slipbox/strands/strand-src_38e4b47a40f0.md",
+      "/home/mac/projects/knowhow1/benchmark/phase1-test/slipbox/mocs/moc-38e4b47a40f0.md",
+      "/home/mac/projects/knowhow1/benchmark/phase1-test/slipbox/bridges/bridge-concept-outcome-ladder-procedure-7-minute-microlearni.md",
+      "/home/mac/projects/knowhow1/benchmark/phase1-test/slipbox/trails/trail-38e4b47a40f0.md"
+    ]
+  },
+  "duration_ms": 2961
+}

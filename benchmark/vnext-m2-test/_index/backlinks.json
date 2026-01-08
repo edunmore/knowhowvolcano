@@ -1,0 +1,122 @@
+{
+  "Deliberate Practice": [
+    "concept-friction-budget"
+  ],
+  "Outcome Ladder": [
+    "concept-friction-budget",
+    "misconception-more-content-means-more-learning",
+    "misconception-recognition-equals-performance",
+    "procedure-7-minute-microlearning-loop",
+    "procedure-7-minute-microlearning-loop"
+  ],
+  "src_38e4b47a40f0": [
+    "concept-friction-budget",
+    "concept-outcome-ladder",
+    "example-manager-scenario-blocked-team-member",
+    "misconception-more-content-means-more-learning",
+    "misconception-recognition-equals-performance",
+    "principle-calibration-loop",
+    "principle-prefer-fewer-stronger-links",
+    "principle-two-speed-feedback",
+    "procedure-7-minute-microlearning-loop"
+  ],
+  "7-Minute Microlearning Loop": [
+    "concept-outcome-ladder",
+    "misconception-more-content-means-more-learning"
+  ],
+  "Interference (Learning)": [
+    "concept-outcome-ladder"
+  ],
+  "Team Member": [
+    "example-manager-scenario-blocked-team-member"
+  ],
+  "Action": [
+    "example-manager-scenario-blocked-team-member"
+  ],
+  "Calibration": [
+    "example-manager-scenario-blocked-team-member",
+    "principle-calibration-loop"
+  ],
+  "Diagnostic Step": [
+    "example-manager-scenario-blocked-team-member",
+    "example-manager-scenario-blocked-team-member"
+  ],
+  "Two-Speed Feedback": [
+    "example-manager-scenario-blocked-team-member",
+    "procedure-7-minute-microlearning-loop"
+  ],
+  "Calibration Loop": [
+    "example-manager-scenario-blocked-team-member"
+  ],
+  "Performance Under Stress": [
+    "example-manager-scenario-blocked-team-member"
+  ],
+  "Conflict Resolution": [
+    "example-manager-scenario-blocked-team-member"
+  ],
+  "Stakeholder Management": [
+    "example-manager-scenario-blocked-team-member"
+  ],
+  "Theory": [
+    "misconception-more-content-means-more-learning"
+  ],
+  "Learning": [
+    "misconception-more-content-means-more-learning"
+  ],
+  "Transfer": [
+    "misconception-more-content-means-more-learning",
+    "misconception-more-content-means-more-learning",
+    "misconception-more-content-means-more-learning",
+    "misconception-recognition-equals-performance",
+    "principle-two-speed-feedback",
+    "procedure-7-minute-microlearning-loop"
+  ],
+  "Knowledge Transfer (Rung A)": [
+    "misconception-more-content-means-more-learning"
+  ],
+  "Friction Budget": [
+    "misconception-more-content-means-more-learning",
+    "misconception-more-content-means-more-learning",
+    "procedure-7-minute-microlearning-loop"
+  ],
+  "Rule of Thumb": [
+    "misconception-more-content-means-more-learning",
+    "principle-two-speed-feedback"
+  ],
+  "Skills": [
+    "misconception-more-content-means-more-learning"
+  ],
+  "Recognition": [
+    "misconception-recognition-equals-performance"
+  ],
+  "Performance": [
+    "misconception-recognition-equals-performance"
+  ],
+  "Spaced Repetition": [
+    "misconception-recognition-equals-performance"
+  ],
+  "Note System": [
+    "principle-prefer-fewer-stronger-links"
+  ],
+  "Stable Concepts": [
+    "principle-prefer-fewer-stronger-links"
+  ],
+  "Named Models": [
+    "principle-prefer-fewer-stronger-links"
+  ],
+  "Prerequisites": [
+    "principle-prefer-fewer-stronger-links"
+  ],
+  "Noise": [
+    "principle-prefer-fewer-stronger-links"
+  ],
+  "Cognitive Load": [
+    "principle-prefer-fewer-stronger-links"
+  ],
+  "Friction": [
+    "principle-prefer-fewer-stronger-links"
+  ],
+  "Conceptual Understanding": [
+    "principle-two-speed-feedback"
+  ]
+}

@@ -1,0 +1,23 @@
+[
+  {
+    "step_id": "chunk",
+    "decision_point": "chunkSize",
+    "value": 2000,
+    "objective": "semantic_coherence",
+    "rationale": "2000 tokens is a balanced middle ground for general-purpose chunking. It's large enough to capture meaningful context and semantic relationships within a passage (useful for most RAG and summarization tasks), while being small enough to avoid excessive computational overhead and to stay well within typical LLM input windows for subsequent processing steps. This value is a safe, effective default for a wide range of documents and applications."
+  },
+  {
+    "step_id": "gate",
+    "decision_point": "strictness",
+    "value": "balanced",
+    "objective": "balanced_filtering",
+    "rationale": "A balanced approach is optimal for an Orchestrator Agent as it provides flexibility to adapt to varying contexts while maintaining sufficient structure and control. It allows for moderate oversight without being overly restrictive or excessively permissive, enabling effective coordination and decision-making across diverse tasks and agents."
+  },
+  {
+    "step_id": "model",
+    "decision_point": "model_depth",
+    "value": "standard",
+    "objective": "quality",
+    "rationale": "The user's prompt is a simple directive for the Orchestrator Agent to select a reasoning depth, without providing any contextual details about the specific task or query that will follow. Since there is no information about the complexity of the subsequent task, a 'standard' depth is the most appropriate default. It balances efficiency with sufficient reasoning capability, avoiding the oversimplification of 'shallow' and the unnecessary computational overhead of 'deep' before the actual problem is presented."
+  }
+]

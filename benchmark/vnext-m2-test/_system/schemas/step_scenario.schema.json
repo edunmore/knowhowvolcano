@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "StepScenario",
+  "type": "object",
+  "properties": {
+    "scenario_id": {
+      "type": "string"
+    },
+    "step": {
+      "type": "string",
+      "enum": [
+        "gate",
+        "extract_candidates",
+        "resolve",
+        "model_note",
+        "generate_story",
+        "extract_nkm"
+      ]
+    },
+    "description": {
+      "type": "string"
+    },
+    "inputs": {
+      "type": "object",
+      "properties": {
+        "files": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "inline": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": true
+    },
+    "expected": {
+      "type": "object",
+      "properties": {
+        "files": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "inline": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": true
+    },
+    "compare": {
+      "type": "object",
+      "properties": {
+        "method": {
+          "type": "string",
+          "enum": [
+            "exact_json",
+            "schema_json",
+            "set_overlap",
+            "markdown_structure",
+            "hybrid"
+          ]
+        },
+        "thresholds": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "method"
+      ],
+      "additionalProperties": true
+    },
+    "models": {
+      "type": "object"
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "scenario_id",
+    "step",
+    "inputs",
+    "expected",
+    "compare"
+  ],
+  "additionalProperties": true
+}

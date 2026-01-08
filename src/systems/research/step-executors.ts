@@ -27,6 +27,7 @@ import { runStoryteller } from './agents/storyteller.js';
 import { resolveLinksInVault } from './agents/link-resolver.js';
 import { getArtifactFilename } from './utils/naming.js';
 import { logVerificationFailure } from './utils/failure-log.js';
+import { assembleFilteredCorpus } from './utils/corpus-assembler.js';
 
 /**
  * Echo step - simple test step that echoes a message
@@ -175,7 +176,32 @@ registerStepExecutor('gate', async (step, inputs, vaultDir, llm, logger) => {
 
     await logger?.log(`[Gate] Loading chunks from source: ${sourceId}`);
     const loadedChunks = await loadSourceChunks(vaultDir, sourceId);
-    await logger?.log(`[Gate] Loaded ${loadedChunks.length} chunks, running Azure GPT-5-nano gate...`);
+
+    // Phase 1 improvement: Fast mode for small sources
+    // Skip gating if total content is < 10kb
+    const totalSize = loadedChunks.reduce((sum, c) => sum + c.content.length, 0);
+    const fastMode = totalSize < 10000;
+
+    if (fastMode) {
+        await logger?.log(`[Gate] Fast mode: source < 10kb (${(totalSize / 1024).toFixed(1)}kb), all chunks FULL_MODEL`);
+        for (const chunk of loadedChunks) {
+            chunk.metadata.decision = 'FULL_MODEL';
+            await writeSourceChunk(chunk);
+        }
+        return {
+            success: true,
+            outputs: {
+                sourceId,
+                gated_chunks: loadedChunks.length,
+                full_model: loadedChunks.length,
+                light_scan: 0,
+                skip: 0,
+                fast_mode: true,
+            }
+        };
+    }
+
+    await logger?.log(`[Gate] Loaded ${loadedChunks.length} chunks (${(totalSize / 1024).toFixed(1)}kb), running Azure GPT-5-nano gate...`);
 
     // Convert to format expected by gateChunks
     const chunks = loadedChunks.map(c => ({ metadata: c.metadata, content: c.content }));
@@ -211,6 +237,89 @@ registerStepExecutor('gate', async (step, inputs, vaultDir, llm, logger) => {
             skip: counts.SKIP,
         }
     };
+});
+
+/**
+ * Assemble Corpus step (vNext M1) - build filtered corpora from gated chunks
+ * Creates FULL_MODEL_TEXT and LIGHT_SCAN_TEXT for downstream processing
+ */
+registerStepExecutor('assemble_corpus', async (step, inputs, vaultDir, llm, logger) => {
+    const sourceId = inputs.sourceId as string;
+
+    if (!sourceId) {
+        return {
+            success: false,
+            outputs: { error: 'No sourceId provided for corpus assembly' }
+        };
+    }
+
+    // Generate run ID for this execution
+    const runId = `run-${new Date().toISOString().replace(/[:.]/g, '-')}`;
+
+    try {
+        await logger?.log(`[AssembleCorpus] Building filtered corpus from source: ${sourceId}`);
+
+        const corpus = await assembleFilteredCorpus(vaultDir, sourceId, runId);
+
+        await logger?.log(
+            `[AssembleCorpus] Stats: ${corpus.stats.fullModelChunks} FULL_MODEL, ` +
+            `${corpus.stats.lightScanChunks} LIGHT_SCAN, ${corpus.stats.skipChunks} SKIP`
+        );
+        await logger?.log(
+            `[AssembleCorpus] Corpus sizes: FULL_MODEL=${corpus.stats.fullModelChars} chars, ` +
+            `LIGHT_SCAN=${corpus.stats.lightScanChars} chars`
+        );
+
+        return {
+            success: true,
+            outputs: {
+                runId,
+                fullModelText: corpus.fullModelText,
+                lightScanText: corpus.lightScanText,
+                fullModelChunkIds: corpus.fullModelChunkIds,
+                lightScanChunkIds: corpus.lightScanChunkIds,
+                corpusStats: corpus.stats,
+            }
+        };
+    } catch (error: any) {
+        await logger?.log(`[AssembleCorpus] Error: ${error.message}`, 'ERROR');
+        return { success: false, outputs: { error: error.message } };
+    }
+});
+
+/**
+ * Extract Filtered step (vNext M1) - extract candidates from FILTERED corpus
+ * Uses fullModelText from assemble_corpus instead of full source
+ */
+registerStepExecutor('extract_filtered', async (step, inputs, vaultDir, llm, logger) => {
+    // Use filtered corpus instead of full source
+    const fullModelText = inputs.fullModelText as string;
+    const file = inputs.file as string;
+    const sourceId = inputs.sourceId as string;
+
+    if (!fullModelText) {
+        return { success: false, outputs: { error: 'No filtered corpus (fullModelText) for extraction' } };
+    }
+
+    try {
+        await logger?.log(`[ExtractFiltered] Running extractor on filtered corpus (${fullModelText.length} chars)`);
+        const candidates = await runExtractor(llm, fullModelText, file || 'source', vaultDir, logger!);
+
+        await logger?.log(`[ExtractFiltered] Extracted ${candidates.length} candidates from filtered corpus`);
+
+        return {
+            success: true,
+            outputs: {
+                candidates,
+                candidateCount: candidates.length,
+                // Pass fullModelText as sourceContent for downstream modeling
+                sourceContent: fullModelText
+            }
+        };
+    } catch (error: any) {
+        await logger?.log(`[ExtractFiltered] Error: ${error.message}`, 'ERROR');
+        return { success: false, outputs: { error: error.message } };
+    }
 });
 
 /**
@@ -377,6 +486,15 @@ registerStepExecutor('model', async (step, inputs, vaultDir, llm, logger) => {
 
             if (verification.pass) {
                 success = true;
+
+                // M4: Add verified: true to frontmatter to skip re-verification
+                let noteContent = await fs.readFile(expectedPath, 'utf-8');
+                if (noteContent.startsWith('---')) {
+                    // Insert verified: true after the first ---
+                    noteContent = noteContent.replace(/^---\n/, `---\nverified: true\nverified_at: ${new Date().toISOString()}\n`);
+                    await fs.writeFile(expectedPath, noteContent);
+                }
+
                 const action = existingContent ? 'Updated' : 'Created';
                 await logger?.log(`[Model] ${action} note: ${expectedPath}`);
                 notesCreated.push(expectedPath);
@@ -416,6 +534,160 @@ registerStepExecutor('model', async (step, inputs, vaultDir, llm, logger) => {
 });
 
 /**
+ * Model Bundle step (vNext M3) - chunk-centric modeling with sliding windows
+ * For each FULL_MODEL chunk, models with context from prev/next chunks.
+ * Caps at K grounded notes per chunk (default 3).
+ */
+registerStepExecutor('model_bundle', async (step, inputs, vaultDir, llm, logger) => {
+    const { assembleWindows, formatWindowForModeler, WINDOW_MODELER_INSTRUCTION } = await import('./utils/window-assembler.js');
+    const { loadSourceChunks } = await import('./utils/chunk-loader.js');
+
+    // Get sourceId from inputs or find most recent
+    let sourceId = inputs.sourceId as string;
+    if (!sourceId) {
+        const sourcesDir = join(vaultDir, '_sources');
+        const sources = await fs.readdir(sourcesDir);
+        sourceId = sources.filter(s => s.startsWith('src_')).sort().reverse()[0];
+    }
+
+    const maxNotesPerChunk = (step.inputs?.max_notes_per_chunk as number) || 5;
+
+    if (!sourceId) {
+        await logger?.log(`[ModelBundle] No sourceId found`);
+        return { success: false, outputs: { error: 'No sourceId' } };
+    }
+
+    await logger?.log(`[ModelBundle] Loading chunks for ${sourceId}`);
+
+    // Load all chunks
+    const chunks = await loadSourceChunks(vaultDir, sourceId);
+    if (chunks.length === 0) {
+        await logger?.log(`[ModelBundle] No chunks found`);
+        return { success: true, outputs: { notes_created: 0, notes: [], windows_processed: 0 } };
+    }
+
+    // Assemble sliding windows for FULL_MODEL chunks
+    const windows = assembleWindows(chunks, ['FULL_MODEL']);
+    await logger?.log(`[ModelBundle] Created ${windows.length} windows from ${chunks.length} chunks`);
+
+    // Initialize vector store for embedding-based deduplication
+    const { VectorStore } = await import('./utils/vector-store.js');
+    const indexDir = join(vaultDir, '_index');
+    await fs.mkdir(indexDir, { recursive: true });
+    const vectorStore = new VectorStore(vaultDir);
+
+    // Index existing notes for dedup
+    if (vectorStore.count === 0) {
+        await logger?.log(`[ModelBundle] Building vector index...`);
+        await vectorStore.indexVault(logger);
+    }
+    await logger?.log(`[ModelBundle] Vector store: ${vectorStore.count} indexed notes`);
+
+    // Configurable dedup threshold (can be set in step inputs)
+    const dedupThreshold = (step.inputs?.dedup_threshold as number) || 0.7;
+    const dedupTopK = (step.inputs?.dedup_top_k as number) || 3;
+
+    const allNotes: string[] = [];
+    let skippedDueDeDup = 0;
+
+    for (let i = 0; i < windows.length; i++) {
+        const windowCtx = windows[i];
+        const windowText = windowCtx.formattedText;
+
+        await logger?.log(`[ModelBundle] Processing window ${i + 1}/${windows.length} (chunk: ${windowCtx.window.current.chunkId})`);
+
+        // Build context with window instruction
+        const fullContext = `${WINDOW_MODELER_INSTRUCTION}\n\n${windowText}`;
+
+        // For now, we use the existing extract->model flow but with windowed context
+        // Future: create dedicated bundle-modeler prompt that outputs K notes directly
+        const candidates = await runExtractor(llm, fullContext, `window-${i}`, vaultDir, logger!);
+
+        // Cap at max notes per chunk
+        const cappedCandidates = candidates.slice(0, maxNotesPerChunk);
+        if (candidates.length > maxNotesPerChunk) {
+            await logger?.log(`[ModelBundle] Capped from ${candidates.length} to ${maxNotesPerChunk} candidates`, 'DEBUG');
+        }
+
+        for (const candidate of cappedCandidates) {
+            const subfolder = `${candidate.type}s`;
+            const filename = getArtifactFilename(candidate.name, candidate.type);
+            const notePath = join(vaultDir, subfolder, filename);
+
+            try {
+                // Check if note already exists (by filename)
+                await fs.access(notePath);
+                await logger?.log(`[ModelBundle] Skipping ${candidate.name} - already exists`, 'DEBUG');
+                allNotes.push(notePath);
+                continue;
+            } catch {
+                // Note doesn't exist by filename, check embeddings
+            }
+
+            // Check for semantic duplicates using embedding search
+            // Generate keywords from candidate name for embedding search
+            const keywords = candidate.name.toLowerCase().split(/[\s-]+/).filter((w: string) => w.length > 2);
+
+            const existingMatch = await vectorStore.findExistingMatch(
+                candidate.name,
+                keywords,
+                dedupThreshold
+            );
+
+            if (existingMatch) {
+                await logger?.log(`[ModelBundle] Dedup: "${candidate.name}" similar to "${existingMatch.match.title}" (${(existingMatch.similarity * 100).toFixed(0)}%) - skipping`);
+                skippedDueDeDup++;
+                continue;
+            }
+
+            const modelResult = await runModeler(
+                llm,
+                candidate,
+                windowText,  // Use window as context
+                sourceId,
+                vaultDir,
+                logger!
+            );
+
+            if (modelResult) {
+                await fs.mkdir(join(vaultDir, subfolder), { recursive: true });
+                await fs.writeFile(notePath, modelResult.output);
+                await logger?.log(`[ModelBundle] Created: ${notePath}`);
+                allNotes.push(notePath);
+
+                // Verify inline
+                const verification = await runVerifier(llm, notePath, vaultDir, logger!, fullContext);
+                if (verification.pass) {
+                    // M4: Mark as verified to skip in verify step
+                    let noteContent = await fs.readFile(notePath, 'utf-8');
+                    if (!noteContent.includes('verified: true')) {
+                        noteContent = noteContent.replace(
+                            /^(---\n)/,
+                            `---\nverified: true\nverified_at: ${new Date().toISOString()}\n`
+                        );
+                        await fs.writeFile(notePath, noteContent);
+                        await logger?.log(`[ModelBundle] Verified: ${filename}`);
+                    }
+                } else {
+                    await logger?.log(`[ModelBundle] Verification issues for ${filename}: ${verification.issues.join('; ')}`, 'WARN');
+                }
+            }
+        }
+    }
+
+    await logger?.log(`[ModelBundle] Created ${allNotes.length} notes from ${windows.length} windows`);
+
+    return {
+        success: true,
+        outputs: {
+            notes_created: allNotes.length,
+            notes: allNotes,
+            windows_processed: windows.length
+        }
+    };
+});
+
+/**
  * Verify step - verify all notes in vault
  */
 registerStepExecutor('verify', async (step, inputs, vaultDir, llm, logger) => {
@@ -429,10 +701,25 @@ registerStepExecutor('verify', async (step, inputs, vaultDir, llm, logger) => {
 
     let passed = 0;
     let failed = 0;
+    let skipped = 0;
 
     await logger?.log(`[Verify] Verifying ${notes.length} notes`);
 
     for (const notePath of notes) {
+        // M4: Skip notes that were already verified during modeling
+        try {
+            const noteContent = await fs.readFile(notePath, 'utf-8');
+            if (noteContent.includes('verified: true')) {
+                skipped++;
+                await logger?.log(`[Verify] Skipping ${notePath.split('/').pop()} (already verified)`, 'DEBUG');
+                passed++; // Count as passed since it was verified earlier
+                continue;
+            }
+        } catch {
+            // File doesn't exist, skip
+            continue;
+        }
+
         const result = await runVerifier(llm, notePath, vaultDir, logger!, sourceContent);
         if (result.pass) {
             passed++;
@@ -443,13 +730,14 @@ registerStepExecutor('verify', async (step, inputs, vaultDir, llm, logger) => {
     }
 
     const pass_rate = notes.length > 0 ? passed / notes.length : 1.0;
-    await logger?.log(`[Verify] Pass rate: ${(pass_rate * 100).toFixed(1)}% (${passed}/${notes.length})`);
+    await logger?.log(`[Verify] Pass rate: ${(pass_rate * 100).toFixed(1)}% (${passed}/${notes.length}, ${skipped} skipped)`);
 
     return {
         success: true,
         outputs: {
             verified: passed,
             failed,
+            skipped,
             pass_rate
         }
     };
@@ -481,6 +769,125 @@ registerStepExecutor('link', async (step, inputs, vaultDir, llm, logger) => {
         await logger?.log(`[Link] Error: ${error.message}`, 'ERROR');
         return { success: false, outputs: { error: error.message } };
     }
+});
+
+/**
+ * Emit Candidates step (vNext M2) - create candidate notes from LINK_INTENTS
+ * This is deterministic - no LLM calls
+ */
+registerStepExecutor('emit_candidates', async (step, inputs, vaultDir, llm, logger) => {
+    const { emitCandidates } = await import('./utils/candidate-emitter.js');
+    const notes = inputs.notes as string[] || [];
+
+    if (notes.length === 0) {
+        await logger?.log(`[EmitCandidates] No notes to process`);
+        return { success: true, outputs: { candidates_created: 0, candidates_skipped: 0 } };
+    }
+
+    await logger?.log(`[EmitCandidates] Processing ${notes.length} notes for LINK_INTENTS`);
+
+    // Type for candidates
+    interface LocalLinkCandidate {
+        term: string;
+        type_guess: 'concept' | 'procedure' | 'principle' | 'misconception' | 'unknown';
+        reason: string;
+        source_note?: string;
+    }
+
+    const allCandidates: LocalLinkCandidate[] = [];
+
+    // Extract LINK_INTENTS from each note
+    for (const notePath of notes) {
+        try {
+            const content = await fs.readFile(notePath, 'utf-8');
+
+            // Find the LINK_INTENTS section using string search (regex failed on backticks)
+            const sectionIdx = content.indexOf('## LINK_INTENTS');
+            if (sectionIdx === -1) continue;
+
+            // Extract the rest of the content from the section
+            const rest = content.slice(sectionIdx);
+
+            // Find JSON block boundaries
+            const jsonStart = rest.indexOf('{');
+            const jsonEnd = rest.lastIndexOf('}');
+
+            if (jsonStart === -1 || jsonEnd === -1 || jsonEnd <= jsonStart) continue;
+
+            try {
+                const jsonStr = rest.slice(jsonStart, jsonEnd + 1);
+                const parsed = JSON.parse(jsonStr);
+                const linkIntents = parsed.link_intents || [];
+
+                await logger?.log(`[EmitCandidates] Found ${linkIntents.length} link intents in ${notePath.split('/').pop()}`, 'DEBUG');
+
+                for (const intent of linkIntents) {
+                    // Only create candidates for terms that should have stubs
+                    if (intent.stub_policy === 'create_with_ai_explanation' || intent.stub_policy === 'create_empty') {
+                        allCandidates.push({
+                            term: intent.target_title,
+                            type_guess: intent.intent_type === 'concept' ? 'concept' :
+                                intent.intent_type === 'procedure' ? 'procedure' :
+                                    intent.intent_type === 'tool' ? 'procedure' : 'concept',
+                            reason: intent.reason || `Referenced in ${notePath.split('/').pop()}`,
+                            source_note: notePath.split('/').pop()?.replace('.md', ''),
+                        });
+                    }
+                }
+            } catch (e) {
+                await logger?.log(`[EmitCandidates] Failed to parse LINK_INTENTS JSON from ${notePath}: ${e}`, 'DEBUG');
+            }
+        } catch (e) {
+            await logger?.log(`[EmitCandidates] Failed to read ${notePath}`, 'DEBUG');
+        }
+    }
+
+    await logger?.log(`[EmitCandidates] Found ${allCandidates.length} link candidates`);
+
+    if (allCandidates.length === 0) {
+        return { success: true, outputs: { candidates_created: 0, candidates_skipped: 0 } };
+    }
+
+    const result = await emitCandidates(allCandidates, vaultDir, logger);
+
+    return {
+        success: true,
+        outputs: {
+            candidates_created: result.created,
+            candidates_skipped: result.skipped,
+            candidate_paths: result.paths,
+        }
+    };
+});
+
+/**
+ * Emergent Artifacts step (vNext M5) - create strands, MOCs, bridges, trails
+ */
+registerStepExecutor('emergent_artifacts', async (step, inputs, vaultDir, llm, logger) => {
+    const { generateEmergentArtifacts } = await import('./utils/emergent-artifacts.js');
+
+    const sourceId = inputs.sourceId as string;
+    const notes = inputs.notes as string[] || [];
+
+    if (notes.length === 0) {
+        await logger?.log(`[EmergentArtifacts] No notes to process`);
+        return { success: true, outputs: { strands: 0, mocs: 0, bridges: 0, trails: 0 } };
+    }
+
+    await logger?.log(`[EmergentArtifacts] Generating emergent artifacts for ${notes.length} notes`);
+
+    const results = await generateEmergentArtifacts(vaultDir, sourceId, notes, llm, logger);
+
+    return {
+        success: true,
+        outputs: {
+            strands: results.strands.length,
+            mocs: results.mocs.length,
+            bridges: results.bridges.length,
+            trails: results.trails.length,
+            paths: [...results.strands, ...results.mocs, ...results.bridges, ...results.trails]
+        }
+    };
 });
 
 /**

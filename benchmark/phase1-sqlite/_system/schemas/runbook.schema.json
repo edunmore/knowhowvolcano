@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "VaultRunbook",
+  "type": "object",
+  "properties": {
+    "runbook_id": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "globals": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "inputs": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "agent": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "prompt": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "inputs": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "outputs": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "contracts": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "decision_points": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "allowed": {
+                  "type": "object",
+                  "additionalProperties": true
+                },
+                "objective": {
+                  "type": "string"
+                },
+                "guardrails": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              },
+              "required": [
+                "name",
+                "allowed"
+              ]
+            }
+          },
+          "conditions": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "required": [
+          "id",
+          "type"
+        ],
+        "additionalProperties": true
+      }
+    },
+    "evaluations": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "persistence": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  },
+  "required": [
+    "runbook_id",
+    "version",
+    "steps"
+  ],
+  "additionalProperties": true
+}

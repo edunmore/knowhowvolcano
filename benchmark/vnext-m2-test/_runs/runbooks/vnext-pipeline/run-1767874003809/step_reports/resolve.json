@@ -1,0 +1,66 @@
+{
+  "step_id": "resolve",
+  "step_type": "resolve",
+  "success": true,
+  "outputs": {
+    "resolved": 0,
+    "resolutionMapData": {},
+    "candidates": [
+      {
+        "type": "concept",
+        "name": "Outcome Ladder",
+        "quote": "The Outcome Ladder separates outcomes into four rungs:\n\nRung A: remember (can recall terms)  \nRung B: recognize (can pick the right option from examples)  \nRung C: perform (can do the behavior in a realistic scenario)  \nRung D: transfer (can do it later, in a different context, under stress)",
+        "reason": "It's a core framework for defining and categorizing different levels of learning success, crucial for setting microlearning goals."
+      },
+      {
+        "type": "concept",
+        "name": "Friction Budget",
+        "quote": "Every learning unit has a friction budget: the maximum mental effort a learner can spend before they quit or start guessing. Friction grows when the unit requires too many new terms at once, too many steps, or too much switching between screens.",
+        "reason": "It's a specific concept that quantifies the cognitive load a learner can tolerate, which is a key constraint in designing effective learning units."
+      },
+      {
+        "type": "procedure",
+        "name": "7-Minute Microlearning Loop",
+        "quote": "Step 1: Choose one Outcome Ladder rung as the target (A, B, C, or D).  \nStep 2: Write one “observable pass condition” (what you can see or measure).  \nStep 3: Create one short scenario with a constraint (time pressure, an annoyed colleague, missing data).  \nStep 4: Offer two actions: the intended action and a tempting wrong action.  \nStep 5: Ask for a choice *and* a one-sentence reason.  \nStep 6: Give feedback in two layers: first a short rule of thumb, then a deeper explanation.  \nStep 7: Add a “next repetition” prompt: when and how to repeat (tomorrow, next meeting, or next real case).",
+        "reason": "This is a clear, step-by-step method for designing a single microlearning unit, covering target, content, interaction, and reinforcement."
+      },
+      {
+        "type": "principle",
+        "name": "Two-Speed Feedback",
+        "quote": "Feedback should come in two speeds. The fast layer is a rule of thumb the learner can remember during a live conversation. The slow layer explains why the rule works and when it fails. The fast layer prevents overthinking; the slow layer prevents blind habit.",
+        "reason": "It's a specific guideline for structuring feedback to be immediately useful in application while also providing deeper understanding."
+      },
+      {
+        "type": "misconception",
+        "name": "More Content Means More Learning",
+        "quote": "Teams often believe that adding more examples and more theory increases learning. In reality, extra content can raise friction without improving transfer.",
+        "reason": "It directly identifies a common, specific misunderstanding about instructional design that hinders effective microlearning."
+      },
+      {
+        "type": "misconception",
+        "name": "Recognition Equals Performance",
+        "quote": "“If they understood it once, they will perform it later”\nRecognition is not performance. People can nod at a good model and still fail under stress.",
+        "reason": "It debunks a specific and common error in assessing learning, highlighting the gap between understanding and execution."
+      },
+      {
+        "type": "principle",
+        "name": "Calibration Loop",
+        "quote": "A learner calibrates by comparing their choice to an expert choice and understanding the difference. Calibration improves fastest when the learner must commit to a decision before seeing the answer, and when the feedback names the hidden variable (for example: risk, trust, time, power, or uncertainty).",
+        "reason": "It provides a specific guideline for effective learning design, focusing on the mechanism of comparison and the importance of naming key variables."
+      },
+      {
+        "type": "principle",
+        "name": "Prefer Fewer, Stronger Links",
+        "quote": "A note system should connect ideas so that a learner (or author) can move from one note to the next without reading everything. But linking every noun creates noise. Links should point to stable concepts, named models, or repeated prerequisites.",
+        "reason": "It's a clear heuristic for building knowledge networks, advising on what to link and what to avoid linking."
+      },
+      {
+        "type": "example",
+        "name": "Manager Scenario - Blocked Team Member",
+        "quote": "You are a manager. A team member says: “I keep missing deadlines because other teams block me.” You have two actions:\n\nAction A: Ask for a concrete recent example and explore constraints before proposing a solution.  \nAction B: Give advice immediately: “Just communicate earlier and set boundaries.”\n\nMany new managers choose B because it feels helpful. But B often skips the diagnostic step and can trigger defensiveness.",
+        "reason": "It's a concrete, illustrative scenario used to demonstrate the application of coaching principles, showing a common wrong action and its consequences."
+      }
+    ]
+  },
+  "duration_ms": 2
+}

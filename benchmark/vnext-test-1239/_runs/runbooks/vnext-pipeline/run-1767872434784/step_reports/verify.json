@@ -1,0 +1,8 @@
+{
+  "step_id": "verify",
+  "step_type": "verify",
+  "success": false,
+  "outputs": {},
+  "duration_ms": 12319,
+  "error": "429 Your requests to DeepSeek-V3.2 for DeepSeek-V3.2 in Sweden Central have exceeded the call rate limit for your current AIServices S0 pricing tier. This request was for ChatCompletions_Create under OpenAI Language Model Instance API. To increase your default rate limit, visit: https://aka.ms/oai/quotaincrease."
+}

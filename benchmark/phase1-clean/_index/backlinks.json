@@ -1,0 +1,94 @@
+{
+  "7-Minute Microlearning Loop": [
+    "calibration-loop",
+    "calibration-loop",
+    "outcome-ladder",
+    "outcome-ladder",
+    "managerial-scenario-missing-deadlines",
+    "managerial-scenario-missing-deadlines"
+  ],
+  "Outcome Ladder": [
+    "calibration-loop",
+    "friction-budget",
+    "managerial-scenario-missing-deadlines",
+    "recognition-equals-performance",
+    "recognition-equals-performance",
+    "two-speed-feedback",
+    "7-minute-microlearning-loop",
+    "7-minute-microlearning-loop"
+  ],
+  "Two-Speed Feedback": [
+    "calibration-loop",
+    "outcome-ladder",
+    "7-minute-microlearning-loop"
+  ],
+  "deliberate practice": [
+    "friction-budget",
+    "friction-budget"
+  ],
+  "cognitive load": [
+    "friction-budget"
+  ],
+  "Friction Budget": [
+    "outcome-ladder",
+    "prefer-fewer-stronger-links",
+    "prefer-fewer-stronger-links",
+    "two-speed-feedback",
+    "two-speed-feedback",
+    "7-minute-microlearning-loop"
+  ],
+  "Calibration Loop": [
+    "managerial-scenario-missing-deadlines",
+    "managerial-scenario-missing-deadlines"
+  ],
+  "friction-budget": [
+    "more-content-means-more-learning",
+    "moc-38e4b47a40f0",
+    "trail-38e4b47a40f0"
+  ],
+  "learning-transfer": [
+    "more-content-means-more-learning"
+  ],
+  "interference under stress": [
+    "recognition-equals-performance"
+  ],
+  "spaced repetition": [
+    "recognition-equals-performance"
+  ],
+  "outcome-ladder": [
+    "bridge-outcome-ladder-7-minute-microlearning-loop",
+    "moc-38e4b47a40f0",
+    "trail-38e4b47a40f0"
+  ],
+  "7-minute-microlearning-loop": [
+    "bridge-outcome-ladder-7-minute-microlearning-loop",
+    "moc-38e4b47a40f0",
+    "trail-38e4b47a40f0"
+  ],
+  "calibration-loop": [
+    "moc-38e4b47a40f0",
+    "trail-38e4b47a40f0"
+  ],
+  "two-speed-feedback": [
+    "moc-38e4b47a40f0",
+    "trail-38e4b47a40f0"
+  ],
+  "prefer-fewer-stronger-links": [
+    "moc-38e4b47a40f0",
+    "trail-38e4b47a40f0"
+  ],
+  "more-content-means-more-learning": [
+    "moc-38e4b47a40f0",
+    "moc-38e4b47a40f0",
+    "trail-38e4b47a40f0",
+    "trail-38e4b47a40f0"
+  ],
+  "recognition-equals-performance": [
+    "moc-38e4b47a40f0",
+    "trail-38e4b47a40f0"
+  ],
+  "managerial-scenario-missing-deadlines": [
+    "moc-38e4b47a40f0",
+    "trail-38e4b47a40f0"
+  ]
+}

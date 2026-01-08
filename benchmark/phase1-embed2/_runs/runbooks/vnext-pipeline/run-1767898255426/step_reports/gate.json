@@ -1,0 +1,14 @@
+{
+  "step_id": "gate",
+  "step_type": "gate",
+  "success": true,
+  "outputs": {
+    "sourceId": "src_38e4b47a40f0",
+    "gated_chunks": 2,
+    "full_model": 2,
+    "light_scan": 0,
+    "skip": 0,
+    "fast_mode": true
+  },
+  "duration_ms": 2
+}

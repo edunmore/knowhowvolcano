@@ -5,6 +5,7 @@ import { createAzureGPT5Nano } from '../../../core/providers/azure-gpt5-nano-pro
 import { resolveVaultPath, VAULT_LAYOUT } from '../utils/vault-utils.js';
 import type { ChunkMetadata } from '../utils/chunker.js';
 import type { RunLogger } from '../run-logger.js';
+import { withRateLimitRetry } from '../utils/rate-limit-utils.js';
 
 /**
  * Gate decision result from LLM
@@ -163,6 +164,41 @@ export async function runChunkGate(
     vaultDir: string,
     logger?: RunLogger
 ): Promise<GateDecision> {
+    // Phase 1: Pre-LLM skip pattern detection
+    // Catch obvious structural content without wasting LLM calls
+    const lowerContent = chunkContent.toLowerCase();
+    const skipPatterns = [
+        'table of contents',
+        'contents',
+        'note to the reader',
+        'notes to the reader',
+        'about the author',
+        'about the authors',
+        'acknowledgments',
+        'acknowledgements',
+        'bibliography',
+        'references',
+        'copyright',
+        '© ',
+        'all rights reserved',
+        'isbn',
+        'chapter 1.',  // ToC listing pattern
+        'chapter 2.',
+        'chapter 3.',
+    ];
+
+    const matchedPattern = skipPatterns.find(p => lowerContent.includes(p));
+    if (matchedPattern) {
+        await logger?.log(`[ChunkGate] Auto-SKIP: detected "${matchedPattern}"`, 'DEBUG');
+        return {
+            content_class: 'toc',
+            relevance_score: 0,
+            decision: 'SKIP',
+            confidence: 95,
+            reasons: [`auto_skip_pattern: ${matchedPattern}`],
+        };
+    }
+
     const snippet = extractGateSnippet(chunkContent);
     const promptTemplate = await loadGatePrompt(vaultDir);
     const prompt = renderGatePrompt(promptTemplate, snippet);
@@ -172,9 +208,21 @@ export async function runChunkGate(
         // Note: GPT-5-nano only supports temperature=1.0 (default)
         const gpt5nano = createAzureGPT5Nano({ maxTokens: 500 });
 
-        const result = await agent({ llm: gpt5nano, name: 'ChunkGate' })
-            .then({ prompt })
-            .run();
+        // Log input size for visibility
+        const inputChars = prompt.length;
+        console.log(`[ChunkGate] input: ${(inputChars / 1024).toFixed(1)}kb (~${Math.round(inputChars / 4)} tokens)`);
+
+        // Wrap LLM call with rate limit retry
+        const result = await withRateLimitRetry(
+            async () => agent({ llm: gpt5nano, name: 'ChunkGate' }).then({ prompt }).run(),
+            {
+                maxRetries: 3,
+                baseDelayMs: 2000,
+                onRetry: async (attempt, delayMs) => {
+                    await logger?.log(`[RateLimit] ChunkGate hit rate limit, waiting ${delayMs}ms before retry ${attempt}/3`, 'WARN');
+                }
+            }
+        );
 
         const response = result[0]?.llmOutput || '';
         console.log('[ChunkGate] Raw LLM response:', response.slice(0, 300));

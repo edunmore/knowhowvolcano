@@ -1,0 +1,225 @@
+[
+  {
+    "id": "concept-calibration-loop",
+    "path": "concepts/concept-calibration-loop.md",
+    "title": "concept-calibration-loop",
+    "type": "concept",
+    "outboundLinks": [
+      "7-Minute Microlearning Loop",
+      "Outcome Ladder",
+      "Friction Budget"
+    ]
+  },
+  {
+    "id": "concept-friction-budget",
+    "path": "concepts/concept-friction-budget.md",
+    "title": "concept-friction-budget",
+    "type": "concept",
+    "outboundLinks": [
+      "7-Minute Microlearning Loop",
+      "Outcome Ladder",
+      "7-Minute Microlearning Loop",
+      "interference under stress"
+    ]
+  },
+  {
+    "id": "concept-outcome-ladder",
+    "path": "concepts/concept-outcome-ladder.md",
+    "title": "concept-outcome-ladder",
+    "type": "concept",
+    "outboundLinks": [
+      "7-Minute Microlearning Loop",
+      "7-Minute Microlearning Loop",
+      "Friction Budget",
+      "interference under stress"
+    ]
+  },
+  {
+    "id": "example-manager-s-deadline-scenario",
+    "path": "examples/example-manager-s-deadline-scenario.md",
+    "title": "example-manager-s-deadline-scenario",
+    "type": "example",
+    "outboundLinks": [
+      "7-Minute Microlearning Loop",
+      "Calibration Loop",
+      "7-Minute Microlearning Loop",
+      "Calibration Loop",
+      "Outcome Ladder"
+    ]
+  },
+  {
+    "id": "misconception-more-content-means-more-learning",
+    "path": "misconceptions/misconception-more-content-means-more-learning.md",
+    "title": "misconception-more-content-means-more-learning",
+    "type": "misconception",
+    "outboundLinks": [
+      "Friction Budget",
+      "Outcome Ladder"
+    ]
+  },
+  {
+    "id": "misconception-recognition-equals-performance",
+    "path": "misconceptions/misconception-recognition-equals-performance.md",
+    "title": "misconception-recognition-equals-performance",
+    "type": "misconception",
+    "outboundLinks": [
+      "transfer",
+      "Outcome Ladder"
+    ]
+  },
+  {
+    "id": "principle-prefer-fewer-stronger-links",
+    "path": "principles/principle-prefer-fewer-stronger-links.md",
+    "title": "principle-prefer-fewer-stronger-links",
+    "type": "principle",
+    "outboundLinks": [
+      "cognitive load",
+      "Outcome Ladder",
+      "Friction Budget",
+      "cognitive load"
+    ]
+  },
+  {
+    "id": "principle-spend-friction-where-it-buys-transfer",
+    "path": "principles/principle-spend-friction-where-it-buys-transfer.md",
+    "title": "principle-spend-friction-where-it-buys-transfer",
+    "type": "principle",
+    "outboundLinks": [
+      "Outcome Ladder",
+      "Friction Budget",
+      "Two-Speed Feedback"
+    ]
+  },
+  {
+    "id": "principle-two-speed-feedback",
+    "path": "principles/principle-two-speed-feedback.md",
+    "title": "principle-two-speed-feedback",
+    "type": "principle",
+    "outboundLinks": [
+      "transfer of learning",
+      "7-Minute Microlearning Loop",
+      "Outcome Ladder",
+      "Friction Budget"
+    ]
+  },
+  {
+    "id": "procedure-7-minute-microlearning-loop",
+    "path": "procedures/procedure-7-minute-microlearning-loop.md",
+    "title": "procedure-7-minute-microlearning-loop",
+    "type": "procedure",
+    "outboundLinks": [
+      "Outcome Ladder",
+      "Friction Budget",
+      "Two-Speed Feedback"
+    ]
+  },
+  {
+    "id": "bridge-concept-outcome-ladder-procedure-7-minute-microlearni",
+    "path": "slipbox/bridges/bridge-concept-outcome-ladder-procedure-7-minute-microlearni.md",
+    "title": "bridge-concept-outcome-ladder-procedure-7-minute-microlearni",
+    "type": "bridge",
+    "outboundLinks": [
+      "concept-outcome-ladder",
+      "procedure-7-minute-microlearning-loop"
+    ]
+  },
+  {
+    "id": "moc-38e4b47a40f0",
+    "path": "slipbox/mocs/moc-38e4b47a40f0.md",
+    "title": "moc-38e4b47a40f0",
+    "type": "moc",
+    "outboundLinks": [
+      "concept-outcome-ladder",
+      "concept-friction-budget",
+      "concept-calibration-loop",
+      "procedure-7-minute-microlearning-loop",
+      "principle-spend-friction-where-it-buys-transfer",
+      "principle-two-speed-feedback",
+      "principle-prefer-fewer-stronger-links",
+      "misconception-more-content-means-more-learning",
+      "misconception-recognition-equals-performance",
+      "example-manager-s-deadline-scenario"
+    ]
+  },
+  {
+    "id": "trail-38e4b47a40f0",
+    "path": "slipbox/trails/trail-38e4b47a40f0.md",
+    "title": "trail-38e4b47a40f0",
+    "type": "trail",
+    "outboundLinks": [
+      "concept-outcome-ladder",
+      "concept-friction-budget",
+      "concept-calibration-loop",
+      "procedure-7-minute-microlearning-loop",
+      "principle-spend-friction-where-it-buys-transfer",
+      "principle-two-speed-feedback",
+      "principle-prefer-fewer-stronger-links",
+      "misconception-more-content-means-more-learning",
+      "misconception-recognition-equals-performance",
+      "example-manager-s-deadline-scenario"
+    ]
+  },
+  {
+    "id": "source-benchmark-source-nohints-38e4b47a",
+    "path": "sources/source-benchmark-source-nohints-38e4b47a.md",
+    "title": "Benchmark Source Nohints",
+    "type": "source_anchor",
+    "outboundLinks": []
+  },
+  {
+    "id": "-7-minute-microlearning-loop",
+    "path": "stubs/stub--7-minute-microlearning-loop.md",
+    "title": "-7-minute-microlearning-loop",
+    "type": "concept",
+    "outboundLinks": []
+  },
+  {
+    "id": "-calibration-loop",
+    "path": "stubs/stub--calibration-loop.md",
+    "title": "-calibration-loop",
+    "type": "concept",
+    "outboundLinks": []
+  },
+  {
+    "id": "-cognitive-load",
+    "path": "stubs/stub--cognitive-load.md",
+    "title": "-cognitive-load",
+    "type": "concept",
+    "outboundLinks": []
+  },
+  {
+    "id": "-friction-budget",
+    "path": "stubs/stub--friction-budget.md",
+    "title": "-friction-budget",
+    "type": "concept",
+    "outboundLinks": []
+  },
+  {
+    "id": "-interference-under-stress",
+    "path": "stubs/stub--interference-under-stress.md",
+    "title": "-interference-under-stress",
+    "type": "note",
+    "outboundLinks": []
+  },
+  {
+    "id": "-outcome-ladder",
+    "path": "stubs/stub--outcome-ladder.md",
+    "title": "-outcome-ladder",
+    "type": "concept",
+    "outboundLinks": []
+  },
+  {
+    "id": "-transfer-of-learning",
+    "path": "stubs/stub--transfer-of-learning.md",
+    "title": "-transfer-of-learning",
+    "type": "concept",
+    "outboundLinks": []
+  },
+  {
+    "id": "-two-speed-feedback",
+    "path": "stubs/stub--two-speed-feedback.md",
+    "title": "-two-speed-feedback",
+    "type": "note",
+    "outboundLinks": []
+  }
+]

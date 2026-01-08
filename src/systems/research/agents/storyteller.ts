@@ -3,6 +3,7 @@ import type { LLMHandle } from 'volcano-sdk';
 import { join } from 'node:path';
 import { renderPrompt } from '../prompt-renderer.js';
 import { RunLogger } from '../run-logger.js';
+import { withRateLimitRetry } from '../utils/rate-limit-utils.js';
 
 export async function runStoryteller(
     llm: LLMHandle,
@@ -46,9 +47,21 @@ export async function runStoryteller(
         related_concepts_list: related
     });
 
-    const result = await agent({ llm, name: 'Storyteller' })
-        .then({ prompt })
-        .run();
+    // Log input size for visibility
+    const inputChars = prompt.length;
+    await logger.log(`[Storyteller] ${canonicalTitle} | input: ${(inputChars / 1024).toFixed(1)}kb (~${Math.round(inputChars / 4)} tokens)`);
+
+    // Wrap LLM call with rate limit retry
+    const result = await withRateLimitRetry(
+        async () => agent({ llm, name: 'Storyteller' }).then({ prompt }).run(),
+        {
+            maxRetries: 3,
+            baseDelayMs: 2000,
+            onRetry: async (attempt, delayMs) => {
+                await logger.log(`[RateLimit] Storyteller hit rate limit, waiting ${delayMs}ms before retry ${attempt}/3`, 'WARN');
+            }
+        }
+    );
 
     await logger.log(`[prompt-storyteller-v1.md]:\n${prompt}`, 'DEBUG');
 

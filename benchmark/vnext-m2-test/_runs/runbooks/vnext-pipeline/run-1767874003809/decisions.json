@@ -1,0 +1,23 @@
+[
+  {
+    "step_id": "chunk",
+    "decision_point": "chunkSize",
+    "value": 2500,
+    "objective": "semantic_coherence",
+    "rationale": "This chunk size balances context retention and processing efficiency. At 2500 tokens, it is large enough to capture substantial context (e.g., multiple paragraphs or a complex technical explanation) for tasks like summarization or analysis, while avoiding the excessive length that can lead to high computational cost, reduced relevance in retrieved information, or token wastage. It fits well within common LLM context windows when combined with system prompts and user queries."
+  },
+  {
+    "step_id": "gate",
+    "decision_point": "strictness",
+    "value": "balanced",
+    "objective": "balanced_filtering",
+    "rationale": "A balanced approach ensures consistent enforcement of rules while allowing for reasonable flexibility in exceptional circumstances. This maintains authority and structure without being overly rigid or permissive, fostering both compliance and adaptability."
+  },
+  {
+    "step_id": "model",
+    "decision_point": "model_depth",
+    "value": "standard",
+    "objective": "quality",
+    "rationale": "The user's query is a straightforward instruction about response format with no complex reasoning or specialized domain knowledge required. Standard depth is appropriate as it balances efficiency with sufficient processing to correctly interpret the simple task and generate a compliant JSON response."
+  }
+]

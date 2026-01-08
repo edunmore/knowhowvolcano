@@ -1,0 +1,10 @@
+{
+  "step_id": "link",
+  "step_type": "link",
+  "success": true,
+  "outputs": {
+    "stubs_created": 4,
+    "links_resolved": 0
+  },
+  "duration_ms": 45346
+}

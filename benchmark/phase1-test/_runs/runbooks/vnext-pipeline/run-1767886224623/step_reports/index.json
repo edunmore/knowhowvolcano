@@ -1,0 +1,9 @@
+{
+  "step_id": "index",
+  "step_type": "index",
+  "success": true,
+  "outputs": {
+    "indexed": 71
+  },
+  "duration_ms": 28
+}

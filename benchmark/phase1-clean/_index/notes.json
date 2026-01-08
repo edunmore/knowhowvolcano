@@ -1,0 +1,187 @@
+[
+  {
+    "id": "calibration-loop",
+    "path": "concepts/calibration-loop.md",
+    "title": "calibration-loop",
+    "type": "concept",
+    "outboundLinks": [
+      "7-Minute Microlearning Loop",
+      "7-Minute Microlearning Loop",
+      "Outcome Ladder",
+      "Two-Speed Feedback"
+    ]
+  },
+  {
+    "id": "friction-budget",
+    "path": "concepts/friction-budget.md",
+    "title": "friction-budget",
+    "type": "concept",
+    "outboundLinks": [
+      "deliberate practice",
+      "Outcome Ladder",
+      "deliberate practice",
+      "cognitive load"
+    ]
+  },
+  {
+    "id": "outcome-ladder",
+    "path": "concepts/outcome-ladder.md",
+    "title": "outcome-ladder",
+    "type": "concept",
+    "outboundLinks": [
+      "7-Minute Microlearning Loop",
+      "7-Minute Microlearning Loop",
+      "Friction Budget",
+      "Two-Speed Feedback"
+    ]
+  },
+  {
+    "id": "managerial-scenario-missing-deadlines",
+    "path": "examples/managerial-scenario-missing-deadlines.md",
+    "title": "managerial-scenario-missing-deadlines",
+    "type": "example",
+    "outboundLinks": [
+      "7-Minute Microlearning Loop",
+      "Calibration Loop",
+      "7-Minute Microlearning Loop",
+      "Calibration Loop",
+      "Outcome Ladder"
+    ]
+  },
+  {
+    "id": "more-content-means-more-learning",
+    "path": "misconceptions/more-content-means-more-learning.md",
+    "title": "more-content-means-more-learning",
+    "type": "misconception",
+    "outboundLinks": [
+      "friction-budget",
+      "learning-transfer"
+    ]
+  },
+  {
+    "id": "recognition-equals-performance",
+    "path": "misconceptions/recognition-equals-performance.md",
+    "title": "recognition-equals-performance",
+    "type": "misconception",
+    "outboundLinks": [
+      "Outcome Ladder",
+      "Outcome Ladder",
+      "interference under stress",
+      "spaced repetition"
+    ]
+  },
+  {
+    "id": "prefer-fewer-stronger-links",
+    "path": "principles/prefer-fewer-stronger-links.md",
+    "title": "prefer-fewer-stronger-links",
+    "type": "principle",
+    "outboundLinks": [
+      "Friction Budget",
+      "Friction Budget"
+    ]
+  },
+  {
+    "id": "two-speed-feedback",
+    "path": "principles/two-speed-feedback.md",
+    "title": "two-speed-feedback",
+    "type": "principle",
+    "outboundLinks": [
+      "Friction Budget",
+      "Friction Budget",
+      "Outcome Ladder"
+    ]
+  },
+  {
+    "id": "7-minute-microlearning-loop",
+    "path": "procedures/7-minute-microlearning-loop.md",
+    "title": "7-minute-microlearning-loop",
+    "type": "procedure",
+    "outboundLinks": [
+      "Outcome Ladder",
+      "Outcome Ladder",
+      "Friction Budget",
+      "Two-Speed Feedback"
+    ]
+  },
+  {
+    "id": "bridge-outcome-ladder-7-minute-microlearning-loop",
+    "path": "slipbox/bridges/bridge-outcome-ladder-7-minute-microlearning-loop.md",
+    "title": "bridge-outcome-ladder-7-minute-microlearning-loop",
+    "type": "bridge",
+    "outboundLinks": [
+      "outcome-ladder",
+      "7-minute-microlearning-loop"
+    ]
+  },
+  {
+    "id": "moc-38e4b47a40f0",
+    "path": "slipbox/mocs/moc-38e4b47a40f0.md",
+    "title": "moc-38e4b47a40f0",
+    "type": "moc",
+    "outboundLinks": [
+      "outcome-ladder",
+      "friction-budget",
+      "calibration-loop",
+      "7-minute-microlearning-loop",
+      "two-speed-feedback",
+      "prefer-fewer-stronger-links",
+      "more-content-means-more-learning",
+      "more-content-means-more-learning",
+      "recognition-equals-performance",
+      "managerial-scenario-missing-deadlines"
+    ]
+  },
+  {
+    "id": "trail-38e4b47a40f0",
+    "path": "slipbox/trails/trail-38e4b47a40f0.md",
+    "title": "trail-38e4b47a40f0",
+    "type": "trail",
+    "outboundLinks": [
+      "outcome-ladder",
+      "friction-budget",
+      "calibration-loop",
+      "7-minute-microlearning-loop",
+      "two-speed-feedback",
+      "prefer-fewer-stronger-links",
+      "more-content-means-more-learning",
+      "more-content-means-more-learning",
+      "recognition-equals-performance",
+      "managerial-scenario-missing-deadlines"
+    ]
+  },
+  {
+    "id": "source-benchmark-source-nohints-38e4b47a",
+    "path": "sources/source-benchmark-source-nohints-38e4b47a.md",
+    "title": "Benchmark Source Nohints",
+    "type": "source_anchor",
+    "outboundLinks": []
+  },
+  {
+    "id": "-deliberate-practice",
+    "path": "stubs/stub--deliberate-practice.md",
+    "title": "-deliberate-practice",
+    "type": "concept",
+    "outboundLinks": []
+  },
+  {
+    "id": "-interference-under-stress",
+    "path": "stubs/stub--interference-under-stress.md",
+    "title": "-interference-under-stress",
+    "type": "concept",
+    "outboundLinks": []
+  },
+  {
+    "id": "-learning-transfer",
+    "path": "stubs/stub--learning-transfer.md",
+    "title": "-learning-transfer",
+    "type": "note",
+    "outboundLinks": []
+  },
+  {
+    "id": "-spaced-repetition",
+    "path": "stubs/stub--spaced-repetition.md",
+    "title": "-spaced-repetition",
+    "type": "concept",
+    "outboundLinks": []
+  }
+]

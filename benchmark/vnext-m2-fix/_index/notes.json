@@ -1,0 +1,339 @@
+[
+  {
+    "id": "-blind-habit",
+    "path": "concepts/-blind-habit.md",
+    "title": "-blind-habit",
+    "type": "concept",
+    "outboundLinks": []
+  },
+  {
+    "id": "-calibration-loop",
+    "path": "concepts/-calibration-loop.md",
+    "title": "-calibration-loop",
+    "type": "note",
+    "outboundLinks": []
+  },
+  {
+    "id": "-constraint",
+    "path": "concepts/-constraint.md",
+    "title": "-constraint",
+    "type": "concept",
+    "outboundLinks": []
+  },
+  {
+    "id": "-deliberate-practice",
+    "path": "concepts/-deliberate-practice.md",
+    "title": "-deliberate-practice",
+    "type": "concept",
+    "outboundLinks": []
+  },
+  {
+    "id": "-expert-judgment",
+    "path": "concepts/-expert-judgment.md",
+    "title": "-expert-judgment",
+    "type": "concept",
+    "outboundLinks": []
+  },
+  {
+    "id": "-friction-budget",
+    "path": "concepts/-friction-budget.md",
+    "title": "-friction-budget",
+    "type": "concept",
+    "outboundLinks": []
+  },
+  {
+    "id": "-interference-learning",
+    "path": "concepts/-interference-learning.md",
+    "title": "-interference-learning",
+    "type": "concept",
+    "outboundLinks": []
+  },
+  {
+    "id": "-interference",
+    "path": "concepts/-interference.md",
+    "title": "-interference",
+    "type": "concept",
+    "outboundLinks": []
+  },
+  {
+    "id": "-learning",
+    "path": "concepts/-learning.md",
+    "title": "-learning",
+    "type": "term",
+    "outboundLinks": []
+  },
+  {
+    "id": "-microlearning",
+    "path": "concepts/-microlearning.md",
+    "title": "-microlearning",
+    "type": "note",
+    "outboundLinks": []
+  },
+  {
+    "id": "-named-models",
+    "path": "concepts/-named-models.md",
+    "title": "-named-models",
+    "type": "concept",
+    "outboundLinks": []
+  },
+  {
+    "id": "-outcome-ladder",
+    "path": "concepts/-outcome-ladder.md",
+    "title": "-outcome-ladder",
+    "type": "concept",
+    "outboundLinks": []
+  },
+  {
+    "id": "-overthinking",
+    "path": "concepts/-overthinking.md",
+    "title": "-overthinking",
+    "type": "concept",
+    "outboundLinks": []
+  },
+  {
+    "id": "-power",
+    "path": "concepts/-power.md",
+    "title": "-power",
+    "type": "concept",
+    "outboundLinks": []
+  },
+  {
+    "id": "-prerequisite-concepts",
+    "path": "concepts/-prerequisite-concepts.md",
+    "title": "-prerequisite-concepts",
+    "type": "concept",
+    "outboundLinks": []
+  },
+  {
+    "id": "-rule-of-thumb",
+    "path": "concepts/-rule-of-thumb.md",
+    "title": "-rule-of-thumb",
+    "type": "concept",
+    "outboundLinks": []
+  },
+  {
+    "id": "-rung-d-transfer",
+    "path": "concepts/-rung-d-transfer.md",
+    "title": "-rung-d-transfer",
+    "type": "concept",
+    "outboundLinks": []
+  },
+  {
+    "id": "-src_38e4b47a40f0",
+    "path": "concepts/-src_38e4b47a40f0.md",
+    "title": "-src_38e4b47a40f0",
+    "type": "stub",
+    "outboundLinks": []
+  },
+  {
+    "id": "-stable-concepts",
+    "path": "concepts/-stable-concepts.md",
+    "title": "-stable-concepts",
+    "type": "concept",
+    "outboundLinks": []
+  },
+  {
+    "id": "-terminology",
+    "path": "concepts/-terminology.md",
+    "title": "-terminology",
+    "type": "glossary-term",
+    "outboundLinks": []
+  },
+  {
+    "id": "-transfer-learning",
+    "path": "concepts/-transfer-learning.md",
+    "title": "-transfer-learning",
+    "type": "note",
+    "outboundLinks": []
+  },
+  {
+    "id": "-transfer",
+    "path": "concepts/-transfer.md",
+    "title": "-transfer",
+    "type": "term",
+    "outboundLinks": []
+  },
+  {
+    "id": "-trust",
+    "path": "concepts/-trust.md",
+    "title": "-trust",
+    "type": "concept",
+    "outboundLinks": []
+  },
+  {
+    "id": "-two-speed-feedback",
+    "path": "concepts/-two-speed-feedback.md",
+    "title": "-two-speed-feedback",
+    "type": "concept",
+    "outboundLinks": []
+  },
+  {
+    "id": "-uncertainty",
+    "path": "concepts/-uncertainty.md",
+    "title": "-uncertainty",
+    "type": "concept",
+    "outboundLinks": []
+  },
+  {
+    "id": "-wiki-links",
+    "path": "concepts/-wiki-links.md",
+    "title": "-wiki-links",
+    "type": "concept",
+    "outboundLinks": []
+  },
+  {
+    "id": "-7-minute-microlearning-loop",
+    "path": "concepts/concept-7-minute-microlearning-loop.md",
+    "title": "-7-minute-microlearning-loop",
+    "type": "concept",
+    "outboundLinks": []
+  },
+  {
+    "id": "concept-friction-budget",
+    "path": "concepts/concept-friction-budget.md",
+    "title": "concept-friction-budget",
+    "type": "concept",
+    "outboundLinks": [
+      "Terminology",
+      "Deliberate Practice",
+      "src_38e4b47a40f0"
+    ]
+  },
+  {
+    "id": "concept-outcome-ladder",
+    "path": "concepts/concept-outcome-ladder.md",
+    "title": "concept-outcome-ladder",
+    "type": "concept",
+    "outboundLinks": [
+      "src_38e4b47a40f0",
+      "7-Minute Microlearning Loop",
+      "Friction Budget",
+      "Calibration Loop",
+      "Interference (Learning)"
+    ]
+  },
+  {
+    "id": "example-manager-scenario-missed-deadlines",
+    "path": "examples/example-manager-scenario-missed-deadlines.md",
+    "title": "example-manager-scenario-missed-deadlines",
+    "type": "example",
+    "outboundLinks": [
+      "7-Minute Microlearning Loop",
+      "Interference",
+      "Microlearning",
+      "7-Minute Microlearning Loop",
+      "Outcome Ladder",
+      "Calibration Loop",
+      "Two-Speed Feedback",
+      "Trust",
+      "Power",
+      "Uncertainty",
+      "src_38e4b47a40f0"
+    ]
+  },
+  {
+    "id": "misconception-more-content-means-more-learning",
+    "path": "misconceptions/misconception-more-content-means-more-learning.md",
+    "title": "misconception-more-content-means-more-learning",
+    "type": "misconception",
+    "outboundLinks": [
+      "Learning",
+      "Friction Budget",
+      "Transfer (Learning)",
+      "Outcome Ladder",
+      "src_38e4b47a40f0"
+    ]
+  },
+  {
+    "id": "misconception-understanding-guarantees-performance",
+    "path": "misconceptions/misconception-understanding-guarantees-performance.md",
+    "title": "misconception-understanding-guarantees-performance",
+    "type": "misconception",
+    "outboundLinks": [
+      "Transfer",
+      "Outcome Ladder",
+      "Deliberate Practice",
+      "7-Minute Microlearning Loop",
+      "Calibration Loop",
+      "src_38e4b47a40f0"
+    ]
+  },
+  {
+    "id": "principle-prefer-fewer-stronger-links",
+    "path": "principles/principle-prefer-fewer-stronger-links.md",
+    "title": "principle-prefer-fewer-stronger-links",
+    "type": "principle",
+    "outboundLinks": [
+      "Wiki Links",
+      "Stable Concepts",
+      "Named Models",
+      "Prerequisite Concepts",
+      "src_38e4b47a40f0"
+    ]
+  },
+  {
+    "id": "principle-spend-friction-where-it-buys-transfer",
+    "path": "principles/principle-spend-friction-where-it-buys-transfer.md",
+    "title": "principle-spend-friction-where-it-buys-transfer",
+    "type": "principle",
+    "outboundLinks": [
+      "Friction Budget",
+      "Transfer",
+      "Friction Budget",
+      "Constraint",
+      "Two-Speed Feedback",
+      "Calibration Loop",
+      "Outcome Ladder",
+      "Rung D: Transfer",
+      "src_38e4b47a40f0"
+    ]
+  },
+  {
+    "id": "principle-the-calibration-loop",
+    "path": "principles/principle-the-calibration-loop.md",
+    "title": "principle-the-calibration-loop",
+    "type": "principle",
+    "outboundLinks": [
+      "Expert Judgment",
+      "Transfer (Learning)",
+      "src_38e4b47a40f0"
+    ]
+  },
+  {
+    "id": "principle-two-speed-feedback",
+    "path": "principles/principle-two-speed-feedback.md",
+    "title": "principle-two-speed-feedback",
+    "type": "principle",
+    "outboundLinks": [
+      "Rule of Thumb",
+      "Overthinking",
+      "Blind Habit",
+      "7-Minute Microlearning Loop",
+      "src_38e4b47a40f0"
+    ]
+  },
+  {
+    "id": "procedure-7-minute-microlearning-loop",
+    "path": "procedures/procedure-7-minute-microlearning-loop.md",
+    "title": "procedure-7-minute-microlearning-loop",
+    "type": "procedure",
+    "outboundLinks": [
+      "Microlearning",
+      "Interference (Learning)",
+      "Outcome Ladder",
+      "Two-Speed Feedback",
+      "Rule of Thumb",
+      "Friction Budget",
+      "Deliberate Practice",
+      "Transfer (Learning)",
+      "src_38e4b47a40f0"
+    ]
+  },
+  {
+    "id": "source-benchmark-source-nohints-38e4b47a",
+    "path": "sources/source-benchmark-source-nohints-38e4b47a.md",
+    "title": "Benchmark Source Nohints",
+    "type": "source_anchor",
+    "outboundLinks": []
+  }
+]

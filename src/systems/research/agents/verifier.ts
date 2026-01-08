@@ -4,6 +4,7 @@ import { join } from 'node:path';
 import { renderPrompt } from '../prompt-renderer.js';
 import { RunLogger } from '../run-logger.js';
 import fs from 'node:fs/promises';
+import { withRateLimitRetry } from '../utils/rate-limit-utils.js';
 
 interface VerificationResult {
     pass: boolean;
@@ -41,9 +42,21 @@ export async function runVerifier(
         note_type: type
     });
 
-    const initialResult = await agent({ llm, name: 'QA-Verifier' })
-        .then({ prompt })
-        .run();
+    // Log input size for visibility
+    const inputChars = prompt.length;
+    await logger.log(`[QA-Verifier] ${filename} | input: ${(inputChars / 1024).toFixed(1)}kb (~${Math.round(inputChars / 4)} tokens)`);
+
+    // Wrap LLM call with rate limit retry
+    const initialResult = await withRateLimitRetry(
+        async () => agent({ llm, name: 'QA-Verifier' }).then({ prompt }).run(),
+        {
+            maxRetries: 3,
+            baseDelayMs: 2000,
+            onRetry: async (attempt, delayMs) => {
+                await logger.log(`[RateLimit] Verifier hit rate limit, waiting ${delayMs}ms before retry ${attempt}/3`, 'WARN');
+            }
+        }
+    );
 
     // Log the prompt filename
     await logger.log(`[prompt-verify-note.md]:\n${prompt}`, 'DEBUG');
@@ -71,9 +84,21 @@ export async function runVerifier(
             note_content: content
         });
 
-        const gResult = await agent({ llm, name: 'Verifier-Grounding' })
-            .then({ prompt: gPrompt })
-            .run();
+        // Log input size for visibility
+        const gInputChars = gPrompt.length;
+        await logger.log(`[Grounding] ${filename} | input: ${(gInputChars / 1024).toFixed(1)}kb (~${Math.round(gInputChars / 4)} tokens)`);
+
+        // Wrap grounding LLM call with rate limit retry
+        const gResult = await withRateLimitRetry(
+            async () => agent({ llm, name: 'Verifier-Grounding' }).then({ prompt: gPrompt }).run(),
+            {
+                maxRetries: 3,
+                baseDelayMs: 2000,
+                onRetry: async (attempt, delayMs) => {
+                    await logger.log(`[RateLimit] Grounding check hit rate limit, waiting ${delayMs}ms before retry ${attempt}/3`, 'WARN');
+                }
+            }
+        );
 
         await logger.log(`[prompt-verify-grounding.md]:\n${gPrompt}`, 'DEBUG');
 

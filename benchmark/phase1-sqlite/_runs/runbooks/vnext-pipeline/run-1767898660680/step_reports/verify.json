@@ -1,0 +1,12 @@
+{
+  "step_id": "verify",
+  "step_type": "verify",
+  "success": true,
+  "outputs": {
+    "verified": 10,
+    "failed": 0,
+    "skipped": 9,
+    "pass_rate": 1
+  },
+  "duration_ms": 1889
+}

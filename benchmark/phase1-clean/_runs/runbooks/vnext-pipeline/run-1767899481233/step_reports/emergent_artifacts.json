@@ -1,0 +1,17 @@
+{
+  "step_id": "emergent_artifacts",
+  "step_type": "emergent_artifacts",
+  "success": true,
+  "outputs": {
+    "strands": 0,
+    "mocs": 1,
+    "bridges": 1,
+    "trails": 1,
+    "paths": [
+      "/home/mac/projects/knowhow1/benchmark/phase1-clean/slipbox/mocs/moc-38e4b47a40f0.md",
+      "/home/mac/projects/knowhow1/benchmark/phase1-clean/slipbox/bridges/bridge-outcome-ladder-7-minute-microlearning-loop.md",
+      "/home/mac/projects/knowhow1/benchmark/phase1-clean/slipbox/trails/trail-38e4b47a40f0.md"
+    ]
+  },
+  "duration_ms": 3291
+}

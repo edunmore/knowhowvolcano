@@ -1,0 +1,22 @@
+{
+  "step_id": "model_bundle",
+  "step_type": "model_bundle",
+  "success": true,
+  "outputs": {
+    "notes_created": 10,
+    "notes": [
+      "/home/mac/projects/knowhow1/benchmark/phase1-embed2/concepts/concept-outcome-ladder.md",
+      "/home/mac/projects/knowhow1/benchmark/phase1-embed2/concepts/concept-friction-budget.md",
+      "/home/mac/projects/knowhow1/benchmark/phase1-embed2/principles/principle-spend-friction-where-it-buys-transfer.md",
+      "/home/mac/projects/knowhow1/benchmark/phase1-embed2/procedures/procedure-7-minute-microlearning-loop.md",
+      "/home/mac/projects/knowhow1/benchmark/phase1-embed2/principles/principle-two-speed-feedback.md",
+      "/home/mac/projects/knowhow1/benchmark/phase1-embed2/misconceptions/misconception-more-content-means-more-learning.md",
+      "/home/mac/projects/knowhow1/benchmark/phase1-embed2/misconceptions/misconception-recognition-equals-performance.md",
+      "/home/mac/projects/knowhow1/benchmark/phase1-embed2/principles/principle-the-calibration-loop.md",
+      "/home/mac/projects/knowhow1/benchmark/phase1-embed2/principles/principle-prefer-fewer-stronger-links.md",
+      "/home/mac/projects/knowhow1/benchmark/phase1-embed2/examples/example-manager-scenario-missing-deadlines.md"
+    ],
+    "windows_processed": 2
+  },
+  "duration_ms": 148734
+}

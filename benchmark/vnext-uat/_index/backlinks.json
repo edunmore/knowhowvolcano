@@ -1,0 +1,194 @@
+{
+  "7-Minute Microlearning Loop": [
+    "-7-minute-microlearning-loop",
+    "concept-calibration-loop",
+    "concept-outcome-ladder",
+    "example-managerial-coaching-scenario",
+    "misconception-understanding-guarantees-performance",
+    "principle-interference-as-a-learning-barrier",
+    "procedure-two-speed-feedback"
+  ],
+  "Calibration Loop": [
+    "concept-calibration-loop",
+    "example-managerial-coaching-scenario",
+    "misconception-understanding-guarantees-performance",
+    "principle-interference-as-a-learning-barrier"
+  ],
+  "src_38e4b47a40f0": [
+    "concept-calibration-loop",
+    "concept-friction-budget",
+    "concept-outcome-ladder",
+    "example-managerial-coaching-scenario",
+    "misconception-more-content-means-more-learning",
+    "misconception-understanding-guarantees-performance",
+    "principle-interference-as-a-learning-barrier",
+    "principle-prefer-fewer-stronger-links",
+    "principle-spend-friction-where-it-buys-transfer",
+    "principle-test-beyond-recall-for-performance",
+    "procedure-7-minute-microlearning-loop",
+    "procedure-two-speed-feedback",
+    "strand-src_38e4b47a40f0"
+  ],
+  "Transfer": [
+    "concept-friction-budget",
+    "misconception-understanding-guarantees-performance",
+    "principle-spend-friction-where-it-buys-transfer",
+    "principle-spend-friction-where-it-buys-transfer"
+  ],
+  "Deliberate Practice": [
+    "concept-friction-budget",
+    "misconception-understanding-guarantees-performance"
+  ],
+  "Microlearning": [
+    "concept-outcome-ladder",
+    "concept-outcome-ladder",
+    "example-managerial-coaching-scenario"
+  ],
+  "Outcome Ladder": [
+    "example-managerial-coaching-scenario",
+    "misconception-more-content-means-more-learning",
+    "misconception-understanding-guarantees-performance",
+    "principle-interference-as-a-learning-barrier",
+    "principle-spend-friction-where-it-buys-transfer",
+    "principle-test-beyond-recall-for-performance",
+    "procedure-7-minute-microlearning-loop"
+  ],
+  "Transfer (Learning)": [
+    "example-managerial-coaching-scenario",
+    "misconception-more-content-means-more-learning",
+    "misconception-more-content-means-more-learning",
+    "principle-interference-as-a-learning-barrier",
+    "procedure-7-minute-microlearning-loop",
+    "procedure-7-minute-microlearning-loop"
+  ],
+  "Two-Speed Feedback": [
+    "example-managerial-coaching-scenario",
+    "principle-interference-as-a-learning-barrier"
+  ],
+  "concept-friction-budget": [
+    "candidate-concept-constraint-learning-design",
+    "moc-38e4b47a40f0",
+    "strand-src_38e4b47a40f0",
+    "trail-38e4b47a40f0"
+  ],
+  "example-managerial-coaching-scenario": [
+    "candidate-concept-interference-learning",
+    "moc-38e4b47a40f0",
+    "strand-src_38e4b47a40f0",
+    "trail-38e4b47a40f0"
+  ],
+  "principle-prefer-fewer-stronger-links": [
+    "candidate-concept-named-model",
+    "candidate-concept-note-system",
+    "candidate-concept-prerequisite",
+    "candidate-concept-stable-concept",
+    "moc-38e4b47a40f0",
+    "strand-src_38e4b47a40f0",
+    "trail-38e4b47a40f0"
+  ],
+  "concept-outcome-ladder": [
+    "candidate-concept-observable-pass-condition",
+    "bridge-concept-outcome-ladder-procedure-7-minute-microlearni",
+    "moc-38e4b47a40f0",
+    "strand-src_38e4b47a40f0",
+    "trail-38e4b47a40f0"
+  ],
+  "Friction Budget": [
+    "misconception-more-content-means-more-learning",
+    "principle-interference-as-a-learning-barrier",
+    "principle-spend-friction-where-it-buys-transfer",
+    "principle-spend-friction-where-it-buys-transfer",
+    "procedure-7-minute-microlearning-loop",
+    "procedure-two-speed-feedback"
+  ],
+  "Rule Of Thumb": [
+    "misconception-more-content-means-more-learning",
+    "procedure-7-minute-microlearning-loop"
+  ],
+  "Rung A": [
+    "misconception-understanding-guarantees-performance"
+  ],
+  "Recognition": [
+    "misconception-understanding-guarantees-performance"
+  ],
+  "Performance": [
+    "misconception-understanding-guarantees-performance",
+    "misconception-understanding-guarantees-performance",
+    "principle-spend-friction-where-it-buys-transfer"
+  ],
+  "Rung C": [
+    "misconception-understanding-guarantees-performance"
+  ],
+  "Rung D": [
+    "misconception-understanding-guarantees-performance"
+  ],
+  "Constraint": [
+    "misconception-understanding-guarantees-performance"
+  ],
+  "Spaced Repetition": [
+    "misconception-understanding-guarantees-performance"
+  ],
+  "Interference": [
+    "principle-interference-as-a-learning-barrier",
+    "procedure-7-minute-microlearning-loop"
+  ],
+  "Recognition Is Not Performance": [
+    "principle-interference-as-a-learning-barrier"
+  ],
+  "Cognitive Load": [
+    "principle-prefer-fewer-stronger-links"
+  ],
+  "Scenario": [
+    "principle-test-beyond-recall-for-performance"
+  ],
+  "Rule of Thumb": [
+    "procedure-two-speed-feedback"
+  ],
+  "Overthinking": [
+    "procedure-two-speed-feedback"
+  ],
+  "Blind Habit": [
+    "procedure-two-speed-feedback"
+  ],
+  "procedure-7-minute-microlearning-loop": [
+    "bridge-concept-outcome-ladder-procedure-7-minute-microlearni",
+    "moc-38e4b47a40f0",
+    "strand-src_38e4b47a40f0",
+    "trail-38e4b47a40f0"
+  ],
+  "principle-interference-as-a-learning-barrier": [
+    "moc-38e4b47a40f0",
+    "strand-src_38e4b47a40f0",
+    "trail-38e4b47a40f0"
+  ],
+  "principle-test-beyond-recall-for-performance": [
+    "moc-38e4b47a40f0",
+    "strand-src_38e4b47a40f0",
+    "trail-38e4b47a40f0"
+  ],
+  "principle-spend-friction-where-it-buys-transfer": [
+    "moc-38e4b47a40f0",
+    "strand-src_38e4b47a40f0",
+    "trail-38e4b47a40f0"
+  ],
+  "concept-calibration-loop": [
+    "moc-38e4b47a40f0",
+    "strand-src_38e4b47a40f0",
+    "trail-38e4b47a40f0"
+  ],
+  "procedure-two-speed-feedback": [
+    "moc-38e4b47a40f0",
+    "strand-src_38e4b47a40f0",
+    "trail-38e4b47a40f0"
+  ],
+  "misconception-more-content-means-more-learning": [
+    "moc-38e4b47a40f0",
+    "strand-src_38e4b47a40f0",
+    "trail-38e4b47a40f0"
+  ],
+  "misconception-understanding-guarantees-performance": [
+    "moc-38e4b47a40f0",
+    "strand-src_38e4b47a40f0",
+    "trail-38e4b47a40f0"
+  ]
+}

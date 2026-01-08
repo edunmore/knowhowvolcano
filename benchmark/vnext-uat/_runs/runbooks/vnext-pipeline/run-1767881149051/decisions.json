@@ -1,0 +1,23 @@
+[
+  {
+    "step_id": "chunk",
+    "decision_point": "chunkSize",
+    "value": 2000,
+    "objective": "semantic_coherence",
+    "rationale": "2000 tokens balances readability with context preservation for most documents. It avoids excessive fragmentation while remaining within standard model limits, making it suitable for a general-purpose orchestration task without specific domain constraints."
+  },
+  {
+    "step_id": "gate",
+    "decision_point": "strictness",
+    "value": "balanced",
+    "objective": "balanced_filtering",
+    "rationale": "A balanced approach allows for consistent application of rules while retaining the flexibility to consider context, encouraging both structure and adaptability in orchestration."
+  },
+  {
+    "step_id": "model",
+    "decision_point": "model_depth",
+    "value": "standard",
+    "objective": "quality",
+    "rationale": "The user's message provides a clear, single instruction with a specific format requirement but no additional context about the task's complexity or domain. A 'standard' depth analysis is appropriate to process the straightforward request while ensuring reliable execution of the format specification without unnecessary overhead."
+  }
+]
