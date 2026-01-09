@@ -28,6 +28,7 @@ import { resolveLinksInVault } from './agents/link-resolver.js';
 import { getArtifactFilename } from './utils/naming.js';
 import { logVerificationFailure } from './utils/failure-log.js';
 import { assembleFilteredCorpus } from './utils/corpus-assembler.js';
+import { checkDuplicate, type DuplicateRecord } from './utils/embedding-dedup.js';
 
 /**
  * Echo step - simple test step that echoes a message
@@ -585,10 +586,16 @@ registerStepExecutor('model_bundle', async (step, inputs, vaultDir, llm, logger)
 
     // Configurable dedup threshold (can be set in step inputs)
     const dedupThreshold = (step.inputs?.dedup_threshold as number) || 0.7;
-    const dedupTopK = (step.inputs?.dedup_top_k as number) || 3;
+    const verifyAmbiguous = (step.inputs?.verify_ambiguous as boolean) ?? true;
 
     const allNotes: string[] = [];
     let skippedDueDeDup = 0;
+    let mergedDueDeDup = 0;
+
+    // Track duplicates for later link creation
+    const duplicatesFound: DuplicateRecord[] = [];
+    // Track related notes for potential linking
+    const relatedNotes: Array<{ candidateName: string; relatedNoteId: string; relatedTitle: string }> = [];
 
     for (let i = 0; i < windows.length; i++) {
         const windowCtx = windows[i];
@@ -624,20 +631,52 @@ registerStepExecutor('model_bundle', async (step, inputs, vaultDir, llm, logger)
                 // Note doesn't exist by filename, check embeddings
             }
 
-            // Check for semantic duplicates using embedding search
-            // Generate keywords from candidate name for embedding search
-            const keywords = candidate.name.toLowerCase().split(/[\s-]+/).filter((w: string) => w.length > 2);
+            // Check for semantic duplicates using improved dedup
+            const dedupResult = await checkDuplicate(candidate, vectorStore, logger!, {
+                threshold: dedupThreshold,
+                verifyAmbiguous
+            });
 
-            const existingMatch = await vectorStore.findExistingMatch(
-                candidate.name,
-                keywords,
-                dedupThreshold
-            );
-
-            if (existingMatch) {
-                await logger?.log(`[ModelBundle] Dedup: "${candidate.name}" similar to "${existingMatch.match.title}" (${(existingMatch.similarity * 100).toFixed(0)}%) - skipping`);
+            if (dedupResult.action === 'SKIP' && dedupResult.matchedNote) {
+                // Track this duplicate for later link creation
+                duplicatesFound.push({
+                    candidateName: candidate.name,
+                    candidateType: candidate.type,
+                    matchedNoteId: dedupResult.matchedNote.id,
+                    matchedNoteTitle: dedupResult.matchedNote.title,
+                    matchedFilePath: dedupResult.matchedNote.filePath,
+                    similarity: dedupResult.matchedNote.similarity,
+                    sourceChunk: windowCtx.window.current.chunkId
+                });
                 skippedDueDeDup++;
                 continue;
+            }
+
+            if (dedupResult.action === 'MERGE' && dedupResult.matchedNote) {
+                // TODO: Implement actual merge - append new context to existing note
+                // For now, skip but log differently
+                await logger?.log(`[ModelBundle] Would MERGE into ${dedupResult.matchedNote.title} (not yet implemented) - skipping`);
+                duplicatesFound.push({
+                    candidateName: candidate.name,
+                    candidateType: candidate.type,
+                    matchedNoteId: dedupResult.matchedNote.id,
+                    matchedNoteTitle: dedupResult.matchedNote.title,
+                    matchedFilePath: dedupResult.matchedNote.filePath,
+                    similarity: dedupResult.matchedNote.similarity,
+                    sourceChunk: windowCtx.window.current.chunkId
+                });
+                mergedDueDeDup++;
+                continue;
+            }
+
+            if (dedupResult.action === 'LINK_RELATED' && dedupResult.matchedNote) {
+                // Create note but track that it should be linked to related note
+                relatedNotes.push({
+                    candidateName: candidate.name,
+                    relatedNoteId: dedupResult.matchedNote.id,
+                    relatedTitle: dedupResult.matchedNote.title
+                });
+                // Continue to create the note
             }
 
             const modelResult = await runModeler(
@@ -654,6 +693,9 @@ registerStepExecutor('model_bundle', async (step, inputs, vaultDir, llm, logger)
                 await fs.writeFile(notePath, modelResult.output);
                 await logger?.log(`[ModelBundle] Created: ${notePath}`);
                 allNotes.push(notePath);
+
+                // Index newly created note for future dedup
+                await vectorStore.indexNote(notePath);
 
                 // Verify inline
                 const verification = await runVerifier(llm, notePath, vaultDir, logger!, fullContext);
@@ -675,6 +717,19 @@ registerStepExecutor('model_bundle', async (step, inputs, vaultDir, llm, logger)
         }
     }
 
+    // Log dedup summary
+    if (duplicatesFound.length > 0) {
+        await logger?.log(`[ModelBundle] Duplicate summary: ${skippedDueDeDup} skipped, ${mergedDueDeDup} merged`);
+        await logger?.log(`[ModelBundle] Duplicates found: ${duplicatesFound.map(d => `"${d.candidateName}" → "${d.matchedNoteTitle}"`).join(', ')}`, 'DEBUG');
+    }
+
+    // Save duplicates for later use by link step
+    if (duplicatesFound.length > 0) {
+        const duplicatesPath = join(vaultDir, '_index', 'duplicates-found.json');
+        await fs.writeFile(duplicatesPath, JSON.stringify(duplicatesFound, null, 2));
+        await logger?.log(`[ModelBundle] Saved ${duplicatesFound.length} duplicate records for linking`);
+    }
+
     await logger?.log(`[ModelBundle] Created ${allNotes.length} notes from ${windows.length} windows`);
 
     return {
@@ -682,7 +737,10 @@ registerStepExecutor('model_bundle', async (step, inputs, vaultDir, llm, logger)
         outputs: {
             notes_created: allNotes.length,
             notes: allNotes,
-            windows_processed: windows.length
+            windows_processed: windows.length,
+            duplicates_skipped: skippedDueDeDup,
+            duplicates_merged: mergedDueDeDup,
+            related_notes: relatedNotes.length
         }
     };
 });
