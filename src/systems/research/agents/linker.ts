@@ -241,6 +241,14 @@ export async function runLinker(
                 await logger.log(`[Link] Stub created: ${stubPath}`);
                 existingFiles.add(id);
                 stubsCreated++;
+
+                // Index stub in vector store for future dedup
+                try {
+                    await vectorStore.indexNote(stubPath);
+                    await logger.log(`[Link] Stub indexed in vector store`, 'DEBUG');
+                } catch (e: any) {
+                    await logger.log(`[Link] Failed to index stub: ${e.message}`, 'WARN');
+                }
             }
         }
     }
