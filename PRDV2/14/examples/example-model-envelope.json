@@ -1,0 +1,58 @@
+{
+  "run_id": "run-2026-01-09T15-00-00Z",
+  "source_id": "source-leading-for-performance",
+  "chunk_id": "000012",
+  "grounded_note": {
+    "enabled": true,
+    "note_id": "concept-outcome-ladder",
+    "title": "Outcome Ladder",
+    "note_type": "concept",
+    "status": "grounded",
+    "source_refs": [
+      {
+        "source_id": "source-leading-for-performance",
+        "chunk_id": "000012",
+        "start": 120,
+        "end": 620
+      }
+    ],
+    "body_md": "# Outcome Ladder\n\n..."
+  },
+  "link_candidates": [
+    {
+      "term": "rung",
+      "type_guess": "concept",
+      "intended_meaning": "A level/step in the ladder model used to describe progression.",
+      "confidence": 0.62
+    }
+  ],
+  "assets": [
+    {
+      "asset_type": "microlearning_unit",
+      "title": "Outcome Ladder (Beginner)",
+      "audience_level": "beginner",
+      "learning_goal": "Learner can identify the current rung and choose one move to the next rung.",
+      "grounding_level": "none",
+      "source_refs": [],
+      "body_text": "Hook: ...\nValue: ...\nAction: ...",
+      "signature_fields": {
+        "pattern_id": "hook-value-action",
+        "key_terms": [
+          "outcome ladder",
+          "rung",
+          "progression"
+        ],
+        "learning_goal_canonical": "identify rung and pick next move"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from_id": "concept-outcome-ladder",
+      "to_id": "asset:microlearning:outcome-ladder-beginner",
+      "relation": "teaches",
+      "rationale": "This microlearning unit teaches the core use of the Outcome Ladder.",
+      "confidence": 0.81
+    }
+  ]
+}

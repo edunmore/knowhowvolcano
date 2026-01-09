@@ -1,0 +1,13 @@
+# DB Writer Policy (single-writer queue)
+- Parallel workers MUST NOT write SQLite directly.
+- Workers write JSON envelopes to disk: _runs/<run_id>/out/*.json
+- A single writer process/thread:
+  - reads envelopes
+  - validates JSON schema
+  - computes ids + signatures
+  - upserts assets + versions + edges in one transaction batch
+  - marks envelope as processed (rename/move) to guarantee idempotency
+- Configure SQLite:
+  - WAL mode enabled
+  - busy_timeout configured
+  - batch commits (e.g., 25–200 envelopes per txn depending on size)

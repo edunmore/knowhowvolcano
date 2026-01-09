@@ -1,0 +1,109 @@
+{
+  "Two-Speed Feedback": [
+    "calibration-loop",
+    "calibration-loop",
+    "outcome-ladder",
+    "recognition-equals-performance",
+    "7-minute-microlearning-loop"
+  ],
+  "Outcome Ladder": [
+    "calibration-loop",
+    "friction-budget",
+    "manager-s-response-to-missed-deadlines",
+    "more-content-means-more-learning",
+    "more-content-means-more-learning",
+    "spend-friction-where-it-buys-transfer",
+    "two-speed-feedback",
+    "7-minute-microlearning-loop",
+    "7-minute-microlearning-loop"
+  ],
+  "Friction Budget": [
+    "calibration-loop",
+    "outcome-ladder",
+    "more-content-means-more-learning",
+    "recognition-equals-performance",
+    "prefer-fewer-stronger-links",
+    "spend-friction-where-it-buys-transfer",
+    "two-speed-feedback",
+    "7-minute-microlearning-loop"
+  ],
+  "deliberate practice": [
+    "friction-budget",
+    "friction-budget"
+  ],
+  "interference": [
+    "friction-budget"
+  ],
+  "7-Minute Microlearning Loop": [
+    "outcome-ladder",
+    "outcome-ladder",
+    "manager-s-response-to-missed-deadlines"
+  ],
+  "Calibration Loop": [
+    "manager-s-response-to-missed-deadlines",
+    "prefer-fewer-stronger-links",
+    "two-speed-feedback"
+  ],
+  "The Outcome Ladder": [
+    "recognition-equals-performance",
+    "recognition-equals-performance"
+  ],
+  "Stable Concept": [
+    "prefer-fewer-stronger-links"
+  ],
+  "Prerequisite": [
+    "prefer-fewer-stronger-links"
+  ],
+  "Transfer (Learning Outcome)": [
+    "spend-friction-where-it-buys-transfer",
+    "spend-friction-where-it-buys-transfer"
+  ],
+  "calibration": [
+    "two-speed-feedback"
+  ],
+  "transfer of learning": [
+    "two-speed-feedback"
+  ],
+  "outcome-ladder": [
+    "bridge-outcome-ladder-7-minute-microlearning-loop",
+    "moc-38e4b47a40f0",
+    "trail-38e4b47a40f0"
+  ],
+  "7-minute-microlearning-loop": [
+    "bridge-outcome-ladder-7-minute-microlearning-loop",
+    "moc-38e4b47a40f0",
+    "trail-38e4b47a40f0"
+  ],
+  "friction-budget": [
+    "moc-38e4b47a40f0",
+    "trail-38e4b47a40f0"
+  ],
+  "calibration-loop": [
+    "moc-38e4b47a40f0",
+    "trail-38e4b47a40f0"
+  ],
+  "spend-friction-where-it-buys-transfer": [
+    "moc-38e4b47a40f0",
+    "trail-38e4b47a40f0"
+  ],
+  "two-speed-feedback": [
+    "moc-38e4b47a40f0",
+    "trail-38e4b47a40f0"
+  ],
+  "prefer-fewer-stronger-links": [
+    "moc-38e4b47a40f0",
+    "trail-38e4b47a40f0"
+  ],
+  "more-content-means-more-learning": [
+    "moc-38e4b47a40f0",
+    "trail-38e4b47a40f0"
+  ],
+  "recognition-equals-performance": [
+    "moc-38e4b47a40f0",
+    "trail-38e4b47a40f0"
+  ],
+  "manager-s-response-to-missed-deadlines": [
+    "moc-38e4b47a40f0",
+    "trail-38e4b47a40f0"
+  ]
+}

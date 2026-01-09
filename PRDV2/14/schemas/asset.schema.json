@@ -1,0 +1,36 @@
+{
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "asset_type": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "audience_level": {
+      "type": "string"
+    },
+    "learning_goal": {
+      "type": "string"
+    },
+    "grounding_level": {
+      "type": "string"
+    },
+    "body_text": {
+      "type": "string"
+    },
+    "signature_fields": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "asset_type",
+    "title",
+    "audience_level",
+    "learning_goal",
+    "grounding_level",
+    "body_text",
+    "signature_fields"
+  ]
+}
