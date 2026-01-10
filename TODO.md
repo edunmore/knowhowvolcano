@@ -1,5 +1,10 @@
 # TODO - Canon Extraction Pipeline
 
+**Last Updated**: 2026-01-10  
+**Source**: Discussions + PRDV2/14
+
+---
+
 ## ✅ Completed (Jan 8, 2026)
 
 ### Phase 1 vNext Pipeline
@@ -7,6 +12,7 @@
 - [x] `model_bundle` step (extract + model + verify in one)
 - [x] Fast mode for sources < 10kb
 - [x] Stubs go to `stubs/` folder
+- [x] Runbook orchestrator (PRD-12) - main entry point
 
 ### Embedding-Based Deduplication
 - [x] Azure embed-v-4-0 provider (`azure-embedding-provider.ts`)
@@ -34,82 +40,157 @@
 
 ---
 
-## 🚧 In Progress
+## � Phase 1 Completion (HIGH PRIORITY)
 
-### Embedding Quality
-- [ ] Test embedding similarity accuracy with edge cases
+> These items MUST be done before Phase 2 (Generation). From discussion reviews.
+
+### Embedding Quality - Critical Gaps
+- [ ] **Better candidate keywords for dedup** - use `reason` + `quote`, not just title words
+  - File: `step-executors.ts:627-635`
+  - Currently: `name.split()` → just title words, no semantic context
+  - Fix: Include extractor's `reason` field + quote snippet
+- [ ] **LLM verification for ambiguous matches (0.7-0.9)**
+  - Add GPT-5-nano call: "Are A and B the same concept?"
+  - File: `step-executors.ts` after dedup check
+- [ ] **Create link when duplicate found** (BUG!)
+  - Currently: just skips → broken Zettelkasten
+  - Fix: Track skipped candidates, create wikilink to existing note
+- [ ] **Index stubs with embedding keys**
+  - Currently: stubs can't be found by semantic search
+  - File: `linker.ts` after writing stub
+
+### Dedup Threshold Tuning
+- [ ] Test edge cases: "The Calibration Loop" vs "Calibration Loop"
 - [ ] Tune threshold (0.7 may be too low/high)
-- [ ] Add LLM verification for ambiguous matches (0.7-0.9)
+- [ ] Implement tiered thresholds:
+  - ≥ 0.9 → auto-merge content
+  - 0.7-0.9 → LLM verification
+  - 0.5-0.7 → create + link as related
+  - < 0.5 → create new
+
+### Multi-Source Processing
+- [ ] **Source manifest** for folders/books
+  - Type: book, webinar, course
+  - Structure: chapters, recordings, slides
+  - Original order/hierarchy
+- [ ] **Batch ingestion** - loop through files maintaining order
+- [ ] **Sliding window extract+model** - one pass per window
 
 ---
 
-## 📋 TODO - Phase 2
+## 📋 Phase 1b - Content Index Enhancement
 
-### Embeddings Improvements
-- [ ] Index stubs with their embedding_match_keys
-- [ ] Batch embedding calls (reduce API usage)
-- [ ] Cache embeddings across runs
-- [ ] Add embedding similarity to LINK_INTENTS output
+> From discussion: embed more than just keywords
 
-### Link Resolution
-- [ ] Replace [[wikilinks]] with actual file paths after linking
-- [ ] Generate backlinks.json automatically
-- [ ] MOC generation from graph traversal
-
-### Verification
-- [ ] Duplicate detection agent (post-run fixer)
-- [ ] Grounding audit improvements
-- [ ] Track verification failures for self-learning
-
-### Performance
-- [ ] Parallel extraction for large sources
-- [ ] Streaming output for long runs
-- [ ] Resume from checkpoint
-
-### Testing
-- [ ] Integration tests for full pipeline
-- [ ] Benchmark regression tests
-- [ ] Embedding similarity unit tests
+- [ ] **Content Index** - embed definitions + full note content
+  - Better dedup: compare definitions, not just titles
+  - Semantic search: "Find notes about learning plateaus"
+  - Related notes: notes with similar key ideas
+- [ ] Store in vector DB:
+  - `definition_embedding` (first paragraph)
+  - `full_content_embedding` (entire body)
+  - `summary` (LLM-generated 1-sentence)
 
 ---
 
-## 📋 TODO - Phase 3
+## 📋 Phase 2 - Generation (After Phase 1 Complete)
 
-### Multi-Source
-- [ ] Process folder of sources
-- [ ] Cross-source linking
-- [ ] Source dependency graph
+> From PRDV2/14: SQLite Asset Store + Learning Assets
 
-### Self-Learning
+### Asset Store (PRD-14)
+- [ ] **Per-vault SQLite DB** (`_db/vault.sqlite`)
+  - Tables: `assets`, `asset_versions`, `edges`, `runs`, `prompts`, `metrics`
+  - FTS5 for full-text search
+  - Embeddings for semantic retrieval
+- [ ] **Asset types**:
+  - Microlearning units (Hook-Value-Action)
+  - Scenario sets / simulations
+  - Quiz items + rubrics
+  - Story outlines / beat sheets
+  - Podcast outlines
+  - Practice prompt sets
+- [ ] **Single-writer queue** for parallel safety
+  - Workers write JSON envelopes to `_runs/<run_id>/out/`
+  - Writer service commits to DB in batches
+  - WAL mode + busy_timeout
+
+### JSON Envelope Output (PRD-14)
+- [ ] Update modeler to output JSON envelope:
+  ```json
+  {
+    "grounded_note": {..., "source_refs": [...]},
+    "link_candidates": [...],
+    "assets": [...],
+    "edges": [...]
+  }
+  ```
+- [ ] Add `db_upsert_assets` step (no LLM)
+- [ ] Asset signatures for dedupe/merge
+
+### Retrieval API
+- [ ] Hybrid retrieval: FTS → vector rerank → edge expansion
+- [ ] Filter by: `asset_type`, `audience_level`, `domain`, `status`
+
+---
+
+## 📋 Phase 3 - Self-Learning
+
+### Feedback Loop
 - [ ] Failure analysis → prompt improvement
 - [ ] Auto-tune thresholds based on feedback
 - [ ] User corrections → training data
+- [ ] Track verification failures for learning
+
+### Multi-Source
+- [ ] Cross-source linking
+- [ ] Source dependency graph
+- [ ] Reconstruct original teaching flow from notes
+
+---
+
+## 📋 Future Ideas
+
+### SQLite Expansion
+- [ ] Use SQLite for backlinks index (not just JSON)
+- [ ] FTS5 for full-text search across vault
+- [ ] Consider notes-in-SQLite vs files (major arch change)
 
 ### Export
 - [ ] Obsidian plugin compatibility
 - [ ] Export to Anki flashcards
 - [ ] PDF generation
 
+### Performance
+- [ ] Parallel extraction for large sources
+- [ ] Streaming output for long runs
+- [ ] Resume from checkpoint
+- [ ] Batch embedding calls
+- [ ] Cache embeddings across runs
+
 ---
 
 ## 🐛 Known Issues
 
-1. **Some stubs created for existing concepts**
+1. **Stubs created for existing concepts**
    - "The Calibration Loop" vs "Calibration Loop" - slight naming difference
-   - Solution: Improve embedding keywords or add fuzzy title matching
+   - Solution: Improve embedding keywords + fuzzy title matching
 
-2. **Verifier sections mismatch**
-   - Prompt uses "Key Components" but verifier expected "Operationalization"
-   - Fixed in prompt-verify-note.md v2
+2. **No link when duplicate skipped**
+   - Currently: skip silently → loses Zettelkasten connections
+   - Solution: Create wikilink to existing note
 
-3. **LINK_INTENTS sometimes missing closing backticks**
-   - LLM truncates output
-   - Solution: Parser handles missing backticks
+3. **Candidate keywords too weak**
+   - Currently: just title words split
+   - Solution: Use extractor's reason + quote
+
+4. **Stubs not indexed**
+   - Currently: can't be found by semantic search
+   - Solution: Index with embedding_match_keys
 
 ---
 
-## 📝 Notes
+## � References
 
-- Vector DB stored at `_index/vectors.db` (SQLite-vec)
-- Embeddings generated from `embedding_keys` (notes) or title words (stubs)
-- Threshold 0.7 = 70% cosine similarity required for match
+- **Discussions**: `discussions/2026-01-08_vnext-pipeline-flow.md`, `discussions/2026-01-09_embedding-architecture.md`
+- **PRD-14**: `PRDV2/14/docs/IDEATION-PRD-SQLITE-ASSETS-CONCURRENCY-v1.4.md`
+- **Docs**: `docs/system_overview.md`, `docs/pipeline_map.md`, `docs/ops_runbook.md`

@@ -1,218 +1,131 @@
-# PRD V2 Implementation Status
+# Project Status
 
-**Date**: 2026-01-06 (Audit Update)
-**Last Run**: 2026-01-05 - Benchmark tests
-**Status Key**: ✅ Integrated & Working | 🟡 Scaffolded (Not Integrated) | ❌ Not Started
-
----
-
-## Critical Finding: Hardcoded Pipeline
-
-> [!WARNING]
-> The system runs on a **hardcoded pipeline** in `orchestrator.ts`:
-> `ingest → extract → resolve → model → verify → link → index → story`
-> 
-> Many PRD modules exist as standalone code but are **NOT integrated** into CLI or orchestrator.
+**Last Updated**: 2026-01-10  
+**Documentation Source of Truth**: `docs/` folder
 
 ---
 
-## MVP-1: Vault + Index + Stub Creation ✅ WORKING
+## ✅ Completed (Production Ready)
 
-| Feature | Status | Notes |
-|---------|--------|-------|
-| Vault layout + note schemas | ✅ | `concepts/`, `procedures/`, `principles/`, etc. |
-| Ingestion (hash-based IDs) | ✅ | `ingestor.ts` - NO LLM, uses content hash |
-| Extraction | ✅ | `extractor.ts` identifies candidates |
-| Modeling (concept/procedure/principle/misconception/example) | ✅ | `modeler.ts` with Gap Statement support |
-| Verifier (repair loop) | ✅ | `verifier.ts` - issues fed back as repair instructions |
-| Link Resolution (two-phase) | ✅ | `link-resolver.ts` + `linker.ts` for stubs |
-| Backlinks + graph index | ✅ | `indexer.ts` generates `notes.json`, `backlinks.json` |
-| Basic CLI (`ingest --file`) | ✅ | Single command available |
+### Core Pipeline
+| Feature                           | Status | Evidence                                 |
+| --------------------------------- | ------ | ---------------------------------------- |
+| Runbook-driven orchestration      | ✅ Done | `run --runbook <id>` is main entry point |
+| vNext Pipeline v2.0 (9 steps)     | ✅ Done | `vnext-pipeline.yml`                     |
+| Chunk streaming + sliding windows | ✅ Done | `chunker.ts`, `window-assembler.ts`      |
+| GPT-5-nano gating                 | ✅ Done | Fast mode for <10kb sources              |
+| Embedding-based deduplication     | ✅ Done | SQLite-vec, tiered thresholds            |
+| Phase 1 validator                 | ✅ Done | `--strict` mode                          |
+| Multi-model architecture          | ✅ Done | DeepSeek + GPT-5-nano + embed-v-4-0      |
 
----
-
-## MVP-2: Education Generation Pack 🟡 PARTIAL
-
-| Feature | Status | Notes |
-|---------|--------|-------|
-| Story fable generation | ✅ | `storyteller.ts` integrated in orchestrator |
-| Storyboard in story | ❌ | Not generated separately |
-| Microlearning in story | ❌ | Not generated separately |
-| Facilitator appendix | ❌ | Not implemented |
-| Activity generation | ❌ | Not implemented |
-| Assessment generation | ❌ | Not implemented |
-| `learning_objective` note type | ❌ | No note type definition |
-| Objective-driven retrieval | ❌ | No retrieval by objective |
-
----
-
-## MVP-3: Curation + Progressive Formalization ❌ NOT STARTED
-
-| Feature | Status | Notes |
-|---------|--------|-------|
-| Duplicate merges (aliases + redirects) | ❌ | Resolver exists but no merge workflow |
-| Stub promotion workflow | ❌ | Not implemented |
-| Taxonomy emergence reports | ❌ | Not implemented |
-
----
-
-## MVP-4: Prompt Evolution and Self-Improvement 🟡 PARTIAL
-
-| Feature | Status | Notes |
-|---------|--------|-------|
-| Prompts as vault notes | ✅ | Stored in `_system/prompts/` |
-| Promptset releases | 🟡 | `promptset-current.md` exists, no versioning |
-| In-run repair loop | ✅ | Implemented (retry with repair instructions) |
-| Evaluation corpus format | 🟡 | Schema exists, no actual corpus |
-| Regression runs | 🟡 | `step-scenario-runner.ts` exists, **NOT in CLI** |
-
----
-
-## MVP-5: Regression Harness ❌ SCAFFOLDED ONLY
-
-| Feature | Status | Notes |
-|---------|--------|-------|
-| Eval corpus with expectations | 🟡 | `step_scenario.schema.json` exists, **no CLI command** |
-| Deterministic comparators | 🟡 | `comparators.ts` exists, **not hooked to pipeline** |
-| Baseline vs candidate comparison | 🟡 | `nkm-builder.ts` exists, **no CLI command** |
-| Promotion gates | 🟡 | Logic in `runbook-runner.ts`, **not connected** |
-
----
-
-## PRD Enhancement Add-ons
-
-### PRD-05: Chunk Streaming & Gating 🟡 SCAFFOLDED
-
-| Feature | Status | Notes |
-|---------|--------|-------|
-| Evidence storage (`_sources/`) | 🟡 | `chunker.ts` exists, **NOT called by orchestrator** |
-| Chunk Gate (Ollama) | 🟡 | `chunk-gate.ts` exists, **NOT called** |
-| Sliding windows (PREV/CURRENT/NEXT) | 🟡 | `window-assembler.ts` exists, **NOT used** |
-
-**Reality**: Orchestrator reads whole file, NOT chunked. Gate never runs.
-
-### PRD-06: DBM Lens 🟡 SCAFFOLDED
-
-| Feature | Status | Notes |
-|---------|--------|-------|
-| Lens registry | 🟡 | `lens-registry.ts` exists, **not imported anywhere** |
-| DBM renditions | 🟡 | `agents/lenses/lens-dbm.ts` exists, **never called** |
-| `--lenses <list>` CLI flag | ❌ | **Does not exist** |
-| `--remodel` flag | ❌ | **Does not exist** |
-
-### PRD-09: Dynamic Vault Path + Stepwise Eval
-
-| Feature | Status | Notes |
-|---------|--------|-------|
-| `--vault <path>` CLI flag | ✅ | Works |
-| Step scenario runner | 🟡 | Module exists, **no CLI command** |
-
-### PRD-10: Round-Trip Evaluation 🟡 SCAFFOLDED
-
-| Feature | Status | Notes |
-|---------|--------|-------|
-| NKM format | 🟡 | `nkm-builder.ts` exists, **no CLI command** |
-| Round-trip comparator | 🟡 | `compareNKMs()` exists, **not connected** |
-| `vault clone` command | ❌ | **Does not exist** |
-| `compare roundtrip` command | ❌ | **Does not exist** |
-| `promote system` command | ❌ | **Does not exist** |
-
-### PRD-11: Domain Primer ✅ WORKING
-
-| Feature | Status | Notes |
-|---------|--------|-------|
-| Primer loader | ✅ | `primer-loader.ts` |
-| Step-aware injection | ✅ | `renderPrimerHeader()` |
-| Token budget enforcement | ✅ | Defaults configured |
-| Auto-create default primer | ✅ | Works on vault init |
-
-### PRD-12: Runbook Orchestrator 🟡 SCAFFOLDED
-
-| Feature | Status | Notes |
-|---------|--------|-------|
-| Runbook schema | 🟡 | `runbook.schema.json` exists |
-| Runbook loader | 🟡 | `runbook-loader.ts` exists, **not used** |
-| Runbook runner | 🟡 | `runbook-runner.ts` exists, **no CLI command** |
-| `--runbook <id>` CLI flag | ❌ | **Does not exist** |
-| Decision logging | 🟡 | Code exists, never runs |
-| Evaluation gates | 🟡 | Code exists, never runs |
-
----
-
-## Benchmark System ✅ WORKING
-
-| Feature | Status | Notes |
-|---------|--------|-------|
-| Benchmark analyzer agent | ✅ | `eval/benchmark-analyzer.ts` |
-| CLI: `analyze-benchmark.ts` | ✅ | Works as standalone script |
-| History tracking | ✅ | `benchmark/_history/` |
-| P/R/F1 metrics | ✅ | Calculated but evaluation logic needs tuning |
-
----
-
-## Summary: What Actually Runs vs What's Scaffolded
-
-### ✅ Actually Called in Production Pipeline (`cli.ts ingest`):
-
+### Pipeline Stages (all integrated)
 ```
-ingestor.ts → extractor.ts → resolver.ts → modeler.ts → verifier.ts 
-→ link-resolver.ts → linker.ts → indexer.ts → storyteller.ts
+ingest → chunk → gate → model_bundle → verify → link → emit_candidates → emergent_artifacts → index
 ```
 
-Supporting: `primer-loader.ts`, `vault-utils.ts`, `naming.ts`, `run-logger.ts`
+### Note Types (10 total)
+- **5 Extraction**: concept, procedure, principle, misconception, example
+- **5 Rendition**: MOC, bridge, trail, strand, stub
 
-### 🟡 Scaffolded but NEVER Called:
-
-| Module | Purpose | Missing Integration |
-|--------|---------|---------------------|
-| `chunker.ts` | Split large files | Orchestrator reads whole file |
-| `chunk-gate.ts` | Triage chunks via Ollama | Never invoked |
-| `window-assembler.ts` | PREV/CURRENT/NEXT context | Never imported |
-| `lens-registry.ts` | Alternative modeling | No CLI flag |
-| `lens-dbm.ts` | DBM lens implementation | Never called |
-| `runbook-loader.ts` | Load runbook YAML | No CLI command |
-| `runbook-runner.ts` | Execute runbooks | No CLI command |
-| `step-scenario-runner.ts` | Run step tests | No CLI command |
-| `nkm-builder.ts` | Round-trip eval | No CLI command |
-| `comparators.ts` | Compare outputs | Only used by nkm-builder |
+### Output Features
+| Feature                                  | Status | Notes                                                 |
+| ---------------------------------------- | ------ | ----------------------------------------------------- |
+| Clean filenames                          | ✅ Done | `friction-budget.md` not `concept-friction-budget.md` |
+| `embedding_keys` in frontmatter          | ✅ Done | 3-5 semantic keywords                                 |
+| `derived_from` with source_title         | ✅ Done | Human-readable provenance                             |
+| `link_intents` with embedding_match_keys | ✅ Done | Max 5 per note                                        |
+| Term abstraction                         | ✅ Done | Generic terms, not source-specific                    |
 
 ---
 
-## Recommended Priority for Integration
+## 🚧 In Progress
 
-1. **Chunk Streaming** (PRD-05) - Enable processing of full books
-2. **Runbook Orchestrator** (PRD-12) - Replace hardcoded pipeline with declarative workflows
-3. **Lenses** (PRD-06) - Enable DBM and other modeling approaches
-4. **Step Evaluation** (PRD-09) - CLI command for running step tests
-5. **Education Pack** (MVP-2) - Add activity/assessment/microlearning generation
-
----
-
-## Critical Fixes Applied (2026-01-04)
-1. ✅ **YAML `derived_from`**: Now required in frontmatter
-2. ✅ **Gap Statement Format**: Replaces bare "Insufficient evidence" placeholders
-3. ✅ **Context Window**: Modeler receives ±2000 chars around quote
-4. ✅ **Type Validation**: Cross-type merges blocked in orchestrator
-5. ✅ **Repair Instructions**: Verifier issues fed back as explicit fix directives
+### Embedding Quality Tuning
+- [ ] Test similarity accuracy with edge cases
+- [ ] Tune threshold (0.7 may be too low/high)
+- [ ] Add LLM verification for ambiguous matches (0.7-0.9)
 
 ---
 
-## CLI Commands Available
+## 📋 TODO - Phase 2
+
+### Embeddings Improvements
+- [ ] Index stubs with their embedding_match_keys
+- [ ] Batch embedding calls (reduce API usage)
+- [ ] Cache embeddings across runs
+
+### Link Resolution Enhancements
+- [ ] Replace `[[wikilinks]]` with actual file paths
+- [ ] Generate backlinks.json automatically (partially done)
+
+### Performance
+- [ ] Parallel extraction for large sources
+- [ ] Resume from checkpoint
+
+### Testing
+- [ ] Integration tests for full pipeline
+- [ ] Benchmark regression tests
+
+---
+
+## 📋 TODO - Phase 3
+
+### Multi-Source
+- [ ] Process folder of sources
+- [ ] Cross-source linking
+
+### Export
+- [ ] Obsidian plugin compatibility
+- [ ] Export to Anki flashcards
+
+---
+
+## 🔧 Quick Commands
 
 ```bash
-# The ONLY working command:
-npx tsx src/systems/research/cli.ts ingest --file <file> [--vault <path>] [--provider azure-gpt52|deepseek|ollama]
+# Full pipeline run
+npx tsx src/systems/research/cli.ts run \
+  --runbook vnext-pipeline \
+  --file ./content.md \
+  --vault ./vault
 
-# Benchmark (separate script):
-npx tsx scripts/analyze-benchmark.ts <benchmark_dir> <vault_dir>
+# Validate output
+npx tsx src/systems/research/utils/phase1-validator.ts ./vault --strict
+
+# Benchmark run
+npx tsx src/systems/research/cli.ts run \
+  --runbook vnext-pipeline \
+  --file ./benchmark/benchmark_source_nohints.md \
+  --vault ./benchmark/run-$(date +%Y-%m-%d-%H%M)
 ```
 
-### CLI Commands That Should Exist But Don't:
+---
 
-```bash
-# These do NOT work yet:
-npx tsx cli.ts run --runbook <id>        # Not implemented
-npx tsx cli.ts eval --step <step>        # Not implemented
-npx tsx cli.ts lens --apply dbm          # Not implemented
-npx tsx cli.ts compare --baseline A --candidate B  # Not implemented
-```
+## 📚 Documentation
+
+| Document                                                  | Purpose                            |
+| --------------------------------------------------------- | ---------------------------------- |
+| [system_overview.md](docs/system_overview.md)             | What the system does, capabilities |
+| [pipeline_map.md](docs/pipeline_map.md)                   | Stage-by-stage pipeline details    |
+| [ops_runbook.md](docs/ops_runbook.md)                     | How to run, configure, debug       |
+| [data_lineage.md](docs/data_lineage.md)                   | Data flow from source to artifacts |
+| [project-context.md](.agent/workflows/project-context.md) | Quick reference for agents         |
+
+---
+
+## 🐛 Known Issues
+
+1. **Stub naming mismatch** - "The Calibration Loop" vs "Calibration Loop" creates duplicate stubs
+   - *Fix*: Improve embedding keywords or add fuzzy title matching
+
+2. **LINK_INTENTS truncation** - LLM sometimes truncates output
+   - *Fix*: Parser handles missing backticks
+
+---
+
+## History
+
+- **Jan 8, 2026** - Phase 1 vNext pipeline completed
+- **Jan 6, 2026** - Runbook orchestrator integrated (PRD-12)
+- **Jan 5, 2026** - Embedding deduplication added
+- **Jan 4, 2026** - Gap statement format, repair instructions
