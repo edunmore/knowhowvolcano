@@ -1,7 +1,45 @@
 # TODO - Canon Extraction Pipeline
 
-**Last Updated**: 2026-01-10  
-**Source**: Discussions + PRDV2/14
+**Last Updated**: 2026-01-11  
+**Source**: Discussions + PRDV2/14  
+**Branch**: `feature/volcano`
+
+---
+
+## 🌋 Volcano SDK Refactoring (TOP PRIORITY)
+
+> Convert custom agent code to Volcano SDK composable patterns.
+
+### Setup ✅
+- [x] Create `feature/volcano` branch
+- [x] Add `volcano-sdk/` reference clone (gitignored)
+- [x] Add `volcano-docs/` reference documentation
+- [x] Create Volcano workflow files in `.agent/workflows/`
+
+### Code Organization (Next)
+- [ ] Create `src/agents/` folder following `/volcano-code-organization` pattern
+- [ ] Move agent definitions from `src/systems/research/agents/` to new structure
+- [ ] Create `src/workflows/` for orchestration
+- [ ] Separate agent definitions from workflow logic
+
+### Agent Conversion
+- [ ] Convert `ingestor.ts` to Volcano agent builder
+- [ ] Convert `extractor.ts` to Volcano agent builder
+- [ ] Convert `modeler.ts` to Volcano agent builder
+- [ ] Convert `verifier.ts` to Volcano agent builder
+- [ ] Convert `linker.ts` to Volcano agent builder
+- [ ] Convert `chunk-gate.ts` to Volcano agent builder
+
+### Provider Migration
+- [ ] Review existing providers in `src/core/providers/`
+- [ ] Create Volcano-compatible embedding provider (see `/volcano-custom-providers`)
+- [ ] Create Volcano-compatible similarity search provider
+- [ ] Update provider usage to Volcano patterns
+
+### Pipeline Conversion
+- [ ] Convert `step-executors.ts` to Volcano workflows
+- [ ] Use `.forEach()`, `.branch()`, `.parallel()` patterns
+- [ ] Implement multi-LLM cost optimization
 
 ---
 

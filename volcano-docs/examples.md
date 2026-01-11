@@ -1,0 +1,269 @@
+
+# Examples
+
+Learn Volcano SDK through hands-on examples, from simple to advanced. [View all examples on GitHub →](https://github.com/Kong/volcano-sdk/tree/main/examples)
+
+Start with the basics, then explore composition, patterns, and production features.
+
+## Basics
+
+### 01-hello-world.ts
+
+Your first agent - multi-step reasoning in ~10 lines.
+
+```bash
+npx tsx examples/01-hello-world.ts
+```
+
+**Demonstrates:** Agent creation, basic `.then()` chaining, and `.run()`
+
+```typescript
+const results = await agent({ llm })
+  .then({ prompt: "Give me 3 random words" })
+  .then({ prompt: "Write a haiku using those words" })
+  .run();
+```
+
+[View source →](https://github.com/Kong/volcano-sdk/blob/main/examples/01-hello-world.ts)
+
+### 02-with-tools.ts
+
+Automatic MCP tool selection - the agent picks the right tools automatically.
+
+```bash
+npx tsx examples/02-with-tools.ts
+```
+
+**Demonstrates:** Automatic tool discovery and selection with `mcps: [...]`
+
+**Prerequisites:** Start MCP servers first:
+```bash
+tsx examples/mcp/weather/server.ts
+tsx examples/mcp/tasks/server.ts
+```
+
+[View source →](https://github.com/Kong/volcano-sdk/blob/main/examples/02-with-tools.ts)
+
+### 02b-with-stdio.ts
+
+Use local tools via stdio transport (not HTTP).
+
+```bash
+npx tsx examples/02b-with-stdio.ts
+```
+
+**Demonstrates:** `mcpStdio()` for subprocess-based MCP servers
+
+[View source →](https://github.com/Kong/volcano-sdk/blob/main/examples/02b-with-stdio.ts)
+
+### 03-streaming.ts
+
+Stream tokens in real-time as they're generated.
+
+```bash
+npx tsx examples/03-streaming.ts
+```
+
+**Demonstrates:** Token-level streaming with `onToken` callback
+
+[View source →](https://github.com/Kong/volcano-sdk/blob/main/examples/03-streaming.ts)
+
+### 04-structured-outputs.ts
+
+Type-safe JSON extraction with guaranteed schema compliance.
+
+```bash
+npx tsx examples/04-structured-outputs.ts
+```
+
+**Demonstrates:** OpenAI Responses API for structured outputs
+
+[View source →](https://github.com/Kong/volcano-sdk/blob/main/examples/04-structured-outputs.ts)
+
+## Composition
+
+### 05-sub-agents.ts
+
+Build modular, reusable agent components with `.runAgent()`.
+
+```bash
+npx tsx examples/05-sub-agents.ts
+```
+
+**Demonstrates:** Explicit agent composition for reusable workflows
+
+```typescript
+const analyzer = agent({ llm })
+  .then({ prompt: "Analyze sentiment" })
+  .then({ prompt: "Extract topics" });
+
+await agent({ llm })
+  .then({ prompt: "Customer feedback: ..." })
+  .runAgent(analyzer)  // Compose explicitly
+  .run();
+```
+
+[View source →](https://github.com/Kong/volcano-sdk/blob/main/examples/05-sub-agents.ts)
+
+### 06-multi-agent.ts
+
+Coordinator autonomously delegates to specialist agents.
+
+```bash
+npx tsx examples/06-multi-agent.ts
+```
+
+**Demonstrates:** Autonomous agent delegation based on descriptions
+
+```typescript
+const researcher = agent({ 
+  llm, 
+  name: 'researcher',
+  description: 'Expert at finding facts and data. Use for information gathering.'
+}).then({ prompt: "Research the topic." })
+  .then({ prompt: "Summarize the research." });
+
+const writer = agent({ 
+  llm, 
+  name: 'writer',
+  description: 'Creates engaging content. Use for writing tasks.'
+}).then({ prompt: "Write content." });
+
+await agent({ llm })
+  .then({
+    prompt: "Create a blog post about JWST discoveries",
+    agents: [researcher, writer]  // Coordinator decides which to use and when
+  })
+  .run();
+```
+
+[View source →](https://github.com/Kong/volcano-sdk/blob/main/examples/06-multi-agent.ts)
+
+### 07-patterns.ts
+
+Advanced workflow primitives: parallel, branch, forEach, retryUntil.
+
+```bash
+npx tsx examples/07-patterns.ts
+```
+
+**Demonstrates:** All control flow patterns in one example
+
+[View source →](https://github.com/Kong/volcano-sdk/blob/main/examples/07-patterns.ts)
+
+## Production
+
+### 08-context.ts
+
+Manage conversation history across multiple steps.
+
+```bash
+npx tsx examples/08-context.ts
+```
+
+**Demonstrates:** Context flow, accessing previous step results
+
+[View source →](https://github.com/Kong/volcano-sdk/blob/main/examples/08-context.ts)
+
+### 09-observability.ts
+
+Production monitoring with OpenTelemetry traces and metrics.
+
+```bash
+npx tsx examples/09-observability.ts
+```
+
+**Demonstrates:** Telemetry integration, Jaeger traces, Prometheus metrics
+
+**Prerequisites:** Start observability stack:
+```bash
+cd observability-demo
+docker-compose -f docker-compose.observability.yml up
+```
+
+[View source →](https://github.com/Kong/volcano-sdk/blob/main/examples/09-observability.ts)
+
+### 10-providers.ts
+
+Use multiple LLM providers and switch between them.
+
+```bash
+npx tsx examples/10-providers.ts
+```
+
+**Demonstrates:** OpenAI, Anthropic, Mistral, Bedrock, Azure, Vertex integration
+
+[View source →](https://github.com/Kong/volcano-sdk/blob/main/examples/10-providers.ts)
+
+### 11-email-triage.ts
+
+Real-world use case: automatically classify and respond to emails.
+
+```bash
+npx tsx examples/11-email-triage.ts
+```
+
+**Demonstrates:** Complete workflow combining multiple features
+
+**Prerequisites:** Start task server:
+```bash
+tsx examples/mcp/tasks/server.ts
+```
+
+[View source →](https://github.com/Kong/volcano-sdk/blob/main/examples/11-email-triage.ts)
+
+### Prerequisites
+
+```bash
+# Clone the repository
+git clone https://github.com/Kong/volcano-sdk.git
+cd volcano-sdk
+
+# Install dependencies
+yarn install
+
+# Build the SDK
+yarn build
+```
+
+### Set Environment Variables
+
+```bash
+export OPENAI_API_KEY="your-key-here"
+```
+
+Optional for multi-provider examples:
+```bash
+export ANTHROPIC_API_KEY="your-anthropic-key"
+export MISTRAL_API_KEY="your-mistral-key"
+export AWS_BEARER_TOKEN_BEDROCK="your-bedrock-token"
+export GCP_VERTEX_API_KEY="your-vertex-key"
+export AZURE_AI_API_KEY="your-azure-key"
+```
+
+### Run an Example
+
+```bash
+npx tsx examples/01-hello-world.ts
+```
+
+**Tip:** Start with 01-04 to learn the basics, then explore 05-07 for composition patterns.
+
+## MCP Servers
+
+Some examples need MCP servers. We provide ready-to-use servers in `examples/mcp/`:
+
+```bash
+# HTTP Servers
+tsx examples/mcp/weather/server.ts    # Port 8001
+tsx examples/mcp/tasks/server.ts      # Port 8002
+
+# stdio Server (runs as subprocess)
+# Used automatically by examples/02b-with-stdio.ts
+```
+
+See [examples/mcp/README.md](https://github.com/Kong/volcano-sdk/tree/main/examples/mcp) for details.
+
+## Contributing
+
+Have a great use case? [Submit a PR](https://github.com/Kong/volcano-sdk/pulls) with your example!

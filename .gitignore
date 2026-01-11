@@ -27,3 +27,6 @@ Thumbs.db
 npm-debug.log*
 
 # Runtime
+
+# Reference SDK clone (not project code)
+volcano-sdk/

@@ -20,19 +20,19 @@ Organizations possess educational content (e.g., internal training, books, webin
 
 For each source document, the pipeline outputs:
 
-| Artifact Type | Description | Folder |
-|---------------|-------------|--------|
-| **Concepts** | Core ideas, definitions, abstractions | `concepts/` |
-| **Procedures** | Step-by-step how-to methods | `procedures/` |
-| **Principles** | Heuristics, rules of thumb | `principles/` |
-| **Misconceptions** | Common errors, myths | `misconceptions/` |
-| **Examples** | Concrete scenarios, case studies | `examples/` |
-| **Stubs** | Placeholder notes for referenced but undefined concepts | `stubs/` |
-| **MOCs** | Maps of Content linking notes from a source | `slipbox/mocs/` |
-| **Bridges** | Explicit links between two related notes | `slipbox/bridges/` |
-| **Trails** | Suggested learning sequences | `slipbox/trails/` |
-| **Source Anchors** | Metadata records of ingested sources | `sources/` |
-| **Vector Index** | SQLite-vec database for semantic search | `_index/vectors.db` |
+| Artifact Type      | Description                                             | Folder              |
+| ------------------ | ------------------------------------------------------- | ------------------- |
+| **Concepts**       | Core ideas, definitions, abstractions                   | `concepts/`         |
+| **Procedures**     | Step-by-step how-to methods                             | `procedures/`       |
+| **Principles**     | Heuristics, rules of thumb                              | `principles/`       |
+| **Misconceptions** | Common errors, myths                                    | `misconceptions/`   |
+| **Examples**       | Concrete scenarios, case studies                        | `examples/`         |
+| **Stubs**          | Placeholder notes for referenced but undefined concepts | `stubs/`            |
+| **MOCs**           | Maps of Content linking notes from a source             | `slipbox/mocs/`     |
+| **Bridges**        | Explicit links between two related notes                | `slipbox/bridges/`  |
+| **Trails**         | Suggested learning sequences                            | `slipbox/trails/`   |
+| **Source Anchors** | Metadata records of ingested sources                    | `sources/`          |
+| **Vector Index**   | SQLite-vec database for semantic search                 | `_index/vectors.db` |
 
 **Evidence:** Verified run at `benchmark/run-2026-01-09-1259/` produced 10 notes, 5 stubs, 1 MOC, 1 bridge, 1 trail.  
 **Evidence:** `utils/vault-utils.ts:37-47` — VAULT_LAYOUT constant defines folder structure.
@@ -74,7 +74,8 @@ Different LLMs handle different tasks based on complexity and cost:
 - **GPT-5-nano**: Gating, stub generation (fast, cheap)
 - **Azure embed-v-4-0**: Embeddings for deduplication
 
-**Evidence:** `README.md:72-75` — provider assignments  
+**Framework:** Volcano SDK for agent composition and multi-LLM workflows.
+
 **Evidence:** Provider files in `src/core/providers/`
 
 ### 5. Sliding Window Context
@@ -101,13 +102,13 @@ Large documents are chunked (~2500 chars), and the modeler receives sliding wind
 
 ## Technology Stack
 
-| Layer | Technology |
-|-------|------------|
-| Runtime | Node.js (TypeScript via tsx) |
-| LLM Framework | Volcano SDK |
-| Vector DB | SQLite-vec (sqlite-vec + better-sqlite3) |
-| Templating | Handlebars (for prompts) |
-| Config | YAML (js-yaml) |
-| API | Azure OpenAI (DeepSeek, GPT-5-nano, embed-v-4-0) |
+| Layer         | Technology                                       |
+| ------------- | ------------------------------------------------ |
+| Runtime       | Node.js (TypeScript via tsx)                     |
+| LLM Framework | Volcano SDK                                      |
+| Vector DB     | SQLite-vec (sqlite-vec + better-sqlite3)         |
+| Templating    | Handlebars (for prompts)                         |
+| Config        | YAML (js-yaml)                                   |
+| API           | Azure OpenAI (DeepSeek, GPT-5-nano, embed-v-4-0) |
 
 **Evidence:** `package.json:22-35` — dependencies

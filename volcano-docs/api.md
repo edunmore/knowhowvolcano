@@ -1,0 +1,501 @@
+
+# API Reference
+
+API documentation for Volcano SDK: agent creation, step types, results, and utility functions.
+
+## agent(options?): AgentBuilder
+
+Create an agent workflow builder.
+
+```typescript
+import { agent, llmOpenAI } from "volcano-sdk";
+
+const llm = llmOpenAI({ apiKey: process.env.OPENAI_API_KEY! });
+
+const myAgent = agent({
+  llm,
+  instructions: "You are a helpful assistant",
+  timeout: 60,
+  retry: { retries: 3 },
+});
+```
+
+### Options
+
+| Option                          | Type        | Default                      | Description                              |
+| ------------------------------- | ----------- | ---------------------------- | ---------------------------------------- |
+| `llm`                           | LLMHandle   | -                            | Default LLM provider for all steps       |
+| `instructions`                  | string      | -                            | Global system instructions               |
+| `timeout`                       | number      | 60                           | Default timeout per step (seconds)       |
+| `retry`                         | RetryConfig | `{ retries: 3, delay: 0 }`   | Retry configuration                      |
+| `contextMaxChars`               | number      | 20480                        | Soft cap for injected context size       |
+| `contextMaxToolResults`         | number      | 8                            | Number of recent tool results to include |
+| `maxToolIterations`             | number      | 4                            | Max tool calls per automatic step        |
+| `disableParallelToolExecution`  | boolean     | false                        | Disable automatic parallel tool execution (forces sequential) |
+| `hideProgress`                  | boolean     | false                        | Suppress progress output                 |
+| `telemetry`                     | object      | -                            | OpenTelemetry configuration              |
+| `mcpAuth`                       | object      | -                            | Agent-level MCP authentication           |
+| `name`                          | string      | -                            | Agent name (for crews/composition)       |
+| `description`                   | string      | -                            | Agent description (for crews)            |
+
+### Methods
+
+#### Basic Methods
+
+| Method                 | Description                                                    |
+| ---------------------- | -------------------------------------------------------------- |
+| `.then(step)`          | Add a sequential step to the workflow                          |
+| `.resetHistory()`      | Clear context/history for subsequent steps                     |
+| `.run(options?)`       | Execute workflow and return all results (supports onStep, onToken callbacks) |
+
+#### Advanced Pattern Methods
+
+| Method                              | Description                                     |
+| ----------------------------------- | ----------------------------------------------- |
+| `.parallel(steps)`                  | Execute steps concurrently (array or dict mode) |
+| `.branch(condition, branches)`      | Conditional if/else routing                     |
+| `.switch(selector, cases)`          | Multi-way branching with default                |
+| `.while(condition, body, opts?)`    | Loop until condition is false                   |
+| `.forEach(items, body)`             | Iterate over array of items                     |
+| `.retryUntil(body, success, opts?)` | Retry until success condition is met            |
+| `.runAgent(subAgent)`               | Compose and run sub-agents                      |
+
+## AgentResults
+
+The `run()` method returns an enhanced array with conversational analysis methods.
+
+```typescript
+interface AgentResults extends Array<StepResult> {
+  ask(llm: LLMHandle, question: string): Promise<string>;
+  summary(llm: LLMHandle): Promise<string>;
+  toolsUsed(llm: LLMHandle): Promise<string>;
+  errors(llm: LLMHandle): Promise<string>;
+}
+```
+
+### Methods
+
+#### `ask(llm, question): Promise<string>`
+
+Ask any natural language question about the workflow execution:
+
+```typescript
+const results = await agent({ llm }).then({ prompt: "..." }).run();
+
+await results.ask(llm, "What did the agent do?");
+await results.ask(llm, "Were there any failures?");
+await results.ask(llm, "How many tools were called?");
+await results.ask(llm, "Summarize in one sentence");
+```
+
+The LLM analyzes all step results (prompts, outputs, tool calls, timing) and provides contextual answers.
+
+#### `summary(llm): Promise<string>`
+
+Get a high-level overview of what the agent accomplished:
+
+```typescript
+const overview = await results.summary(llm);
+// "The agent completed 3 steps in 24.5s, analyzed 30 emails, and detected no spam."
+```
+
+#### `toolsUsed(llm): Promise<string>`
+
+Understand which MCP tools were called and why:
+
+```typescript
+const tools = await results.toolsUsed(llm);
+// "Called list_all_unread_emails to fetch emails, then called mark_as_spam for 2 suspicious messages."
+```
+
+#### `errors(llm): Promise<string>`
+
+Check if there were any errors or issues:
+
+```typescript
+const errors = await results.errors(llm);
+// "No errors detected." or "Step 2 timed out after 60 seconds..."
+```
+
+### Usage Example
+
+```typescript
+const workLlm = llmOpenAI({ model: "gpt-5" });
+const summaryLlm = llmOpenAI({ model: "gpt-4o-mini" }); // Cheaper for summaries
+
+const results = await agent({ llm: workLlm })
+  .then({ prompt: "Complex task", mcps: [tools] })
+  .run();
+
+// Use cheap model to analyze expensive model's work
+const summary = await results.summary(summaryLlm);
+const nextSteps = await results.ask(summaryLlm, "What should I do next?");
+```
+
+## Step Types
+
+Volcano SDK supports three types of steps:
+
+### LLM-Only Step
+
+Generate text with an LLM without tools:
+
+```typescript
+{
+  prompt: string;
+  llm?: LLMHandle;
+  instructions?: string;
+  timeout?: number;
+  retry?: RetryConfig;
+  contextMaxChars?: number;
+  contextMaxToolResults?: number;
+  pre?: () => void;
+  post?: () => void;
+}
+```
+
+### Automatic MCP Tool Selection
+
+Let the LLM automatically choose which tools to call:
+
+```typescript
+{
+  prompt: string;
+  mcps: MCPHandle[];
+  llm?: LLMHandle;
+  instructions?: string;
+  timeout?: number;
+  retry?: RetryConfig;
+  contextMaxChars?: number;
+  contextMaxToolResults?: number;
+  maxToolIterations?: number;
+  pre?: () => void;
+  post?: () => void;
+  onToken?: (token: string) => void;
+  onToolCall?: (toolName: string, args: any, result: any) => void;
+}
+```
+
+**Callbacks:**
+
+- `onToken`: Called for each token streamed from the LLM (real-time text output)
+- `onToolCall`: Called immediately when each tool completes (real-time tool progress)
+
+### Explicit MCP Tool Call
+
+Call a specific tool directly:
+
+```typescript
+{
+  mcp: MCPHandle;
+  tool: string;
+  args?: Record<string, any>;
+  prompt?: string;         // Optional LLM step before tool
+  llm?: LLMHandle;
+  instructions?: string;
+  timeout?: number;
+  retry?: RetryConfig;
+  contextMaxChars?: number;
+  contextMaxToolResults?: number;
+  pre?: () => void;
+  post?: () => void;
+  onToolCall?: (toolName: string, args: any, result: any) => void;
+}
+```
+
+### Multi-Agent Coordination
+
+Let a coordinator LLM autonomously delegate to specialized agents:
+
+```typescript
+{
+  prompt: string;
+  agents: AgentBuilder[];  // Array of specialized agents
+  llm?: LLMHandle;
+  instructions?: string;
+  timeout?: number;
+  retry?: RetryConfig;
+  contextMaxChars?: number;
+  contextMaxToolResults?: number;
+  pre?: () => void;
+  post?: () => void;
+}
+```
+
+**How it works:**
+- The coordinator LLM reads agent `name` and `description` fields
+- Autonomously decides which agent to delegate to based on the task
+- Continues delegating until the overall task is complete
+- Context flows between coordinator and delegated agents
+
+**Example:**
+```typescript
+const researcher = agent({ llm, name: 'researcher', description: 'Expert researcher' })
+  .then({ prompt: "Research the topic." });
+
+const writer = agent({ llm, name: 'writer', description: 'Content creator' })
+  .then({ prompt: "Write content." });
+
+await agent({ llm })
+  .then({
+    prompt: "Create a blog post about AI",
+    agents: [researcher, writer]
+  })
+  .run();
+// Coordinator autonomously uses researcher, then writer, then finalizes
+```
+
+### Common Step Fields
+
+| Field          | Type        | Description                                          |
+| -------------- | ----------- | ---------------------------------------------------- |
+| `llm`          | LLMHandle   | Override the LLM for this step                       |
+| `instructions` | string      | Override system instructions for this step           |
+| `timeout`      | number      | Step timeout in seconds (overrides agent default)    |
+| `retry`        | RetryConfig | Retry config for this step (overrides agent default) |
+| `pre`          | () => void  | Hook called before step execution                    |
+| `post`         | () => void  | Hook called after successful step execution          |
+| `onToken`      | (token: string) => void | Real-time callback for each LLM token (streaming) |
+| `onToolCall`   | (toolName: string, args: any, result: any) => void | Real-time callback when each tool completes |
+
+### Real-Time Callbacks
+
+#### `onToken` - LLM Streaming
+
+Called for each token as the LLM generates text. Perfect for showing real-time responses to users:
+
+```typescript
+await agent({ llm })
+  .then({
+    prompt: "Explain quantum computing",
+    onToken: (token) => {
+      process.stdout.write(token); // Stream to console
+      // Or: websocket.send(token);
+      // Or: res.write(`data: ${token}\n\n`); // SSE
+    }
+  })
+  .run();
+```
+
+**When it fires:** Only when the LLM is generating text (not during tool calls)
+
+#### `onToolCall` - Tool Progress
+
+Called immediately when each tool call completes. Perfect for showing progress during long operations:
+
+```typescript
+await agent({ llm })
+  .then({
+    prompt: "Analyze all emails for spam",
+    mcps: [gmail],
+    maxToolIterations: 20,
+    onToolCall: (toolName, args, result) => {
+      // Extract tool name without MCP prefix
+      const name = toolName.split('.').pop();
+      
+      if (name === 'get_message') {
+        const data = JSON.parse(result.content[0].text);
+        console.log(`📧 Analyzing: ${data.subject}`);
+      } else if (name === 'add_label') {
+        console.log(`🏷️  Marked as spam!`);
+      }
+    }
+  })
+  .run();
+```
+
+**When it fires:** Immediately after each tool call completes (real-time progress)
+
+**Use cases:**
+- Show which emails/files/items are being processed
+- Display progress bars or counters
+- Log tool activity for debugging
+- Stream progress updates to users
+
+**Combined usage:**
+```typescript
+await agent({ llm })
+  .then({
+    prompt: "Process all items",
+    mcps: [server],
+    onToken: (token) => {
+      // LLM reasoning: "Let me analyze these items..."
+      process.stdout.write(token);
+    },
+    onToolCall: (toolName, args, result) => {
+      // Tool progress: "Processing item 5 of 10..."
+      console.log(`\n✓ ${toolName}(${JSON.stringify(args)})`);
+    }
+  })
+  .run();
+```
+
+## Step Results
+
+Each step returns a `StepResult` object with execution details:
+
+```typescript
+type StepResult = {
+  // Basic fields
+  prompt?: string;
+  llmOutput?: string;
+
+  // Timing metrics (milliseconds)
+  durationMs?: number; // Total step wall time
+  llmMs?: number; // Time spent in LLM calls
+
+  // MCP tool results (explicit call)
+  mcp?: {
+    endpoint: string;
+    tool: string;
+    result: any;
+    ms?: number; // Tool execution time
+  };
+
+  // MCP tool calls (automatic selection)
+  toolCalls?: Array<{
+    name: string;
+    endpoint: string;
+    result: any;
+    ms?: number; // Tool execution time
+  }>;
+
+  // Parallel execution results
+  parallel?: Record<string, StepResult>;
+  parallelResults?: StepResult[];
+
+  // Aggregated metrics (on final step only)
+  totalDurationMs?: number;
+  totalLlmMs?: number;
+  totalMcpMs?: number;
+};
+```
+
+### Example Usage
+
+```typescript
+const results = await agent({ llm })
+  .then({ prompt: "Analyze sentiment", mcps: [analytics] })
+  .then({ prompt: "Generate summary" })
+  .run();
+
+// Access first step results
+console.log(results[0].prompt); // "Analyze sentiment"
+console.log(results[0].llmOutput); // LLM response
+console.log(results[0].toolCalls); // Tools that were called
+console.log(results[0].durationMs); // Step duration
+console.log(results[0].llmMs); // LLM time
+
+// Access aggregated metrics (on last step)
+const last = results.at(-1);
+console.log(last.totalDurationMs); // Total workflow time
+console.log(last.totalLlmMs); // Total LLM time
+console.log(last.totalMcpMs); // Total MCP time
+```
+
+## RetryConfig
+
+Configuration for retry behavior:
+
+```typescript
+type RetryConfig = {
+  delay?: number; // Seconds to wait between retries (default: 0, mutually exclusive with backoff)
+  backoff?: number; // Exponential factor (waits 1s, factor^n each retry)
+  retries?: number; // Total attempts including first (default: 3)
+};
+```
+
+### Examples
+
+```typescript
+// Immediate retry (default)
+{ retries: 3, delay: 0 }
+
+// Delayed retry (wait 20s between attempts)
+{ delay: 20, retries: 3 }
+
+// Exponential backoff (1s, 2s, 4s, 8s)
+{ backoff: 2, retries: 4 }
+```
+
+## Utility Functions
+
+### mcp(url, options?): MCPHandle
+
+Create an MCP handle for a tool server with optional authentication:
+
+```typescript
+import { mcp } from "volcano-sdk";
+
+// No authentication
+const astro = mcp("http://localhost:3211/mcp");
+
+// OAuth authentication
+const protectedMcp = mcp("https://api.example.com/mcp", {
+  auth: {
+    type: "oauth",
+    clientId: "your-client-id",
+    clientSecret: "your-client-secret",
+    tokenEndpoint: "https://api.example.com/oauth/token",
+  },
+});
+
+// Bearer token
+const bearerMcp = mcp("https://api.example.com/mcp", {
+  auth: {
+    type: "bearer",
+    token: "your-bearer-token",
+  },
+});
+```
+
+**MCP Specification:** Per the official MCP spec, authentication uses OAuth 2.1. Volcano supports OAuth (automatic token acquisition) and Bearer (custom tokens).
+
+### discoverTools(handles): Promise\<ToolDefinition\[\]\>
+
+Manually discover tools from MCP servers:
+
+```typescript
+import { discoverTools, mcp } from "volcano-sdk";
+
+const handles = [
+  mcp("http://localhost:3211/mcp"),
+  mcp("http://localhost:3212/mcp"),
+];
+
+const tools = await discoverTools(handles);
+console.log(tools); // Array of tool definitions
+```
+
+## Type Reference
+
+### LLMHandle
+
+```typescript
+type LLMHandle = {
+  model: string;
+  gen(prompt: string): Promise<string>;
+  genWithTools(prompt: string, tools: ToolDefinition[]): Promise<LLMToolResult>;
+  genStream?(prompt: string): AsyncGenerator<string, void, unknown>;
+};
+```
+
+### MCPHandle
+
+```typescript
+type MCPHandle = {
+  id: string;
+  url: string;
+};
+```
+
+### ToolDefinition
+
+```typescript
+type ToolDefinition = {
+  name: string;
+  description: string;
+  parameters: any; // JSON Schema
+  mcpHandle?: MCPHandle;
+};
+```

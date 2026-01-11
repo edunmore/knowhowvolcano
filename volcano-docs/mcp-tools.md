@@ -1,0 +1,961 @@
+
+
+# MCP Tools
+
+The Model Context Protocol (MCP) enables AI agents to securely interact with external tools and data sources. Volcano SDK provides first-class MCP integration with automatic tool discovery, selection, and authentication.
+
+**What is MCP?** The Model Context Protocol is an open standard for connecting AI systems to external data sources and tools. It enables LLMs to safely interact with databases, APIs, file systems, and other services through a unified interface.
+
+## Transport Types
+
+Volcano SDK supports two MCP transport types:
+
+### HTTP/SSE Transport
+
+Connect to remote MCP servers over HTTP with Server-Sent Events (SSE):
+
+```typescript
+import { mcp } from "volcano-sdk";
+
+// Basic HTTP connection
+const remoteMcp = mcp("https://api.example.com/mcp");
+
+// With authentication
+const authMcp = mcp("https://api.example.com/mcp", {
+  auth: {
+    type: 'bearer',
+    token: process.env.API_TOKEN!
+  }
+});
+```
+
+**Use cases:**
+- Cloud-based MCP servers (e.g., Atlassian Rovo)
+- Remote APIs and services
+- Production deployments
+- Shared infrastructure
+
+**Features:**
+- Connection pooling for performance
+- OAuth 2.1 and Bearer token auth
+- Automatic reconnection
+- TLS/HTTPS security
+
+### Stdio Transport
+
+Connect to local MCP servers via standard input/output:
+
+```typescript
+import { mcpStdio } from "volcano-sdk";
+
+// Basic stdio connection
+const localMcp = mcpStdio({
+  command: "node",
+  args: ["dist/index.js"],
+  cwd: "/path/to/mcp-server"
+});
+
+// With environment variables
+const configuredMcp = mcpStdio({
+  command: "npx",
+  args: ["-y", "@your-org/mcp-server"],
+  env: {
+    API_KEY: process.env.API_KEY!,
+    DATABASE_URL: process.env.DATABASE_URL!,
+    DEBUG: "true"
+  }
+});
+
+// Remember to cleanup when done
+await configuredMcp.cleanup?.();
+```
+
+**Use cases:**
+- Local development and testing
+- File system access
+- Command-line tools
+- Sensitive data (stays local)
+- Custom scripts and automation
+
+**Features:**
+- Process lifecycle management
+- Environment variable injection
+- No HTTP overhead (faster)
+- Automatic cleanup
+- Process pooling and reuse
+
+### Combining Transports
+
+Use both stdio and HTTP in the same workflow:
+
+```typescript
+import { agent, llmOpenAI, mcpStdio, mcp } from "volcano-sdk";
+
+const llm = llmOpenAI({ apiKey: process.env.OPENAI_API_KEY! });
+
+// Local stdio server for file access
+const filesMcp = mcpStdio({
+  command: "npx",
+  args: ["-y", "@modelcontextprotocol/server-filesystem"],
+  env: { ALLOWED_PATHS: process.cwd() }
+});
+
+// Remote HTTP server for cloud services
+const cloudMcp = mcp("https://api.example.com/mcp", {
+  auth: { type: 'bearer', token: process.env.CLOUD_TOKEN! }
+});
+
+// Use both in the same workflow
+await agent({ llm })
+  .then({
+    prompt: "Read local files and analyze them",
+    mcps: [filesMcp],
+    maxToolIterations: 3
+  })
+  .then({
+    prompt: "Upload results to cloud storage",
+    mcps: [cloudMcp],
+    maxToolIterations: 2
+  })
+  .run();
+
+// Cleanup stdio server
+await filesMcp.cleanup?.();
+```
+
+## Automatic Tool Selection
+
+Let the LLM intelligently choose which tools to call based on the prompt. This is the recommended approach for most use cases.
+
+```typescript
+import { agent, llmOpenAI, mcp } from "volcano-sdk";
+
+const weather = mcp("http://localhost:3000/mcp");
+const notifications = mcp("http://localhost:4000/mcp");
+const llm = llmOpenAI({ apiKey: process.env.OPENAI_API_KEY! });
+
+await agent({ llm })
+  .then({
+    prompt: "Check SF weather for tomorrow and send me a notification.",
+    mcps: [weather, notifications],
+  })
+  .run();
+
+// The LLM automatically:
+// 1. Discovers available tools from both servers
+// 2. Selects the appropriate tools
+// 3. Calls them with correct arguments
+// 4. Returns the results
+```
+
+### How It Works
+
+- **Tool Discovery:** Volcano fetches available tools from MCP servers (cached with TTL)
+- **LLM Selection:** The LLM analyzes the prompt and chooses relevant tools
+- **Schema Validation:** Arguments are validated against JSON Schema before execution
+- **Iterative Calling:** The LLM can make multiple tool calls in sequence (default: 4 iterations)
+- **Parallel Execution:** When safe, multiple tool calls are executed simultaneously for better performance
+- **Context Flow:** Tool results are automatically included in subsequent steps
+
+### Parallel Tool Execution
+
+Volcano automatically executes tool calls in parallel when it's safe to do so, dramatically improving performance for bulk operations.
+
+**How it works:**
+
+When the LLM requests multiple tool calls in a single iteration, Volcano analyzes them and executes in parallel if ALL these conditions are met:
+
+1. ✅ All calls are to the **same tool**
+2. ✅ All calls operate on **different resources** (different IDs)
+3. ✅ All arguments are **different** (no duplicate operations)
+
+If any condition isn't met, Volcano safely falls back to sequential execution.
+
+```typescript
+const gmail = mcp("http://localhost:3800/mcp", { auth: { /* ... */ } });
+
+// The LLM might generate these tool calls:
+// mark_as_spam(emailId: "123")
+// mark_as_spam(emailId: "456")
+// mark_as_spam(emailId: "789")
+
+// Volcano detects: same tool, different IDs → executes in parallel! ⚡
+await agent({ llm })
+  .then({
+    prompt: "Mark emails 123, 456, and 789 as spam",
+    mcps: [gmail]
+  })
+  .run();
+
+// Result: 3x faster execution (all API calls happen simultaneously)
+```
+
+**Performance example:**
+
+```typescript
+// Gmail spam detection on 50 emails
+const gmail = mcp("http://localhost:3800/mcp", { auth: { /* ... */ } });
+
+await agent({ llm })
+  .then({
+    prompt: "Get all unread emails, analyze for spam, mark any spam",
+    mcps: [gmail],
+    maxToolIterations: 20
+  })
+  .run();
+
+// Sequential execution: ~110 seconds (50 × 0.5s per call = 25s for tools)
+// Parallel execution:   ~50 seconds  (all calls in ~1-2s)
+// Speedup:              2x faster! 🚀
+```
+
+**Smart ID detection:**
+
+Volcano uses case-insensitive pattern matching to detect resource IDs automatically:
+- Any parameter named `id` (any case: `id`, `ID`, `Id`)
+- Any parameter ending with `id` (any case: `emailId`, `emailid`, `userId`, `customerId`, etc.)
+
+This flexible approach works with any MCP tool and naming convention without hardcoded field names.
+
+**Safe scenarios (will parallelize):**
+
+```typescript
+// ✅ Same tool, different email IDs
+[
+  { tool: "mark_as_spam", args: { emailId: "123" } },
+  { tool: "mark_as_spam", args: { emailId: "456" } },
+  { tool: "mark_as_spam", args: { emailId: "789" } }
+]
+
+// ✅ Same tool, different user IDs
+[
+  { tool: "fetch_profile", args: { userId: "alice" } },
+  { tool: "fetch_profile", args: { userId: "bob" } }
+]
+
+// ✅ Same tool, different item IDs
+[
+  { tool: "archive_item", args: { itemId: "x" } },
+  { tool: "archive_item", args: { itemId: "y" } }
+]
+```
+
+**Unsafe scenarios (will NOT parallelize):**
+
+```typescript
+// ❌ Different tools
+[
+  { tool: "list_emails", args: { maxResults: 50 } },
+  { tool: "mark_as_spam", args: { emailId: "123" } }
+]
+// → Sequential execution (different tools may have dependencies)
+
+// ❌ Duplicate resource IDs
+[
+  { tool: "mark_as_spam", args: { emailId: "123" } },
+  { tool: "mark_as_spam", args: { emailId: "123" } }  // Same ID!
+]
+// → Sequential execution (prevents race conditions)
+
+// ❌ No resource IDs
+[
+  { tool: "send_notification", args: { message: "Hello" } },
+  { tool: "send_notification", args: { message: "World" } }
+]
+// → Sequential execution (can't determine independence)
+```
+
+**Benefits:**
+
+- ⚡ **Automatic speedup:** No code changes needed—parallelization happens automatically
+- 🔒 **Safe by default:** Conservative approach prevents race conditions
+- 🎯 **Provider agnostic:** Works with all LLM providers (OpenAI, Anthropic, etc.)
+- 📊 **Measurable gains:** 2-10x faster for bulk operations
+- 🔧 **No configuration:** Just works out of the box
+
+**Observability:**
+
+Track parallel vs sequential execution via telemetry:
+
+```typescript
+import { createVolcanoTelemetry } from "volcano-sdk";
+
+const telemetry = createVolcanoTelemetry({ /* config */ });
+
+await agent({ llm, telemetry })
+  .then({ prompt: "Bulk operation", mcps: [mcp] })
+  .run();
+
+// Metrics recorded:
+// - tool.execution.parallel (count: number of tools)
+// - tool.execution.sequential (count: number of tools)
+```
+
+### Controlling Tool Iterations
+
+For complex tasks, the LLM may need multiple tool calls. Configure how many iterations are allowed:
+
+```typescript
+// Agent-level (default for all steps)
+await agent({
+  llm,
+  maxToolIterations: 2, // Limit to 2 iterations (faster)
+})
+  .then({ prompt: "Task", mcps: [tools] })
+  .run();
+
+// Per-step override
+await agent({ llm, maxToolIterations: 4 }) // Default 4
+  .then({
+    prompt: "Simple task",
+    mcps: [tools],
+    maxToolIterations: 1, // Fast: only 1 tool call
+  })
+  .then({
+    prompt: "Complex task",
+    mcps: [tools],
+    maxToolIterations: 4, // More iterations for complexity
+  })
+  .run();
+```
+
+### Iteration Trade-offs
+
+| maxToolIterations | Speed       | Capability           | Use Case              |
+| ----------------- | ----------- | -------------------- | --------------------- |
+| `1`               | ⚡ Fastest  | Single tool call     | Simple, direct tasks  |
+| `2`               | 🏃 Fast     | Tool + follow-up     | Two-step operations   |
+| `4` (default)     | ⏱️ Moderate | Multi-step workflows | Complex orchestration |
+
+**Performance tip:** Start with `maxToolIterations: 1` for simple tasks. Increase only if the LLM needs multiple tool calls to complete the task.
+
+### Multiple MCP Servers
+
+Provide multiple MCP servers and the LLM will use tools from any of them:
+
+```typescript
+const database = mcp("http://localhost:5000/mcp");
+const email = mcp("http://localhost:5001/mcp");
+const analytics = mcp("http://localhost:5002/mcp");
+
+await agent({ llm })
+  .then({
+    prompt:
+      "Query user data, analyze it, and email the report to admin@example.com",
+    mcps: [database, email, analytics],
+  })
+  .run();
+
+// The LLM automatically orchestrates tools across all three servers
+```
+
+## Explicit Tool Calling
+
+Call specific MCP tools directly when you know exactly which tool to use and with what arguments.
+
+```typescript
+const cafe = mcp("http://localhost:3000/mcp");
+
+await agent({ llm })
+  .then({ prompt: "Recommend a coffee for Ava from Naples" })
+  .then({
+    mcp: cafe,
+    tool: "order_item",
+    args: { item_id: "espresso", quantity: 2 },
+  })
+  .run();
+```
+
+### With LLM Step
+
+Combine LLM reasoning with explicit tool calls:
+
+```typescript
+await agent({ llm })
+  .then({
+    mcp: database,
+    tool: "query_users",
+    args: { status: "active" },
+    prompt: "Analyze the results and summarize", // LLM processes tool output
+  })
+  .run();
+```
+
+### When to Use Explicit Calling
+
+- You know exactly which tool to call
+- The arguments are predetermined
+- You want fine-grained control over execution order
+- You're building deterministic workflows
+
+## MCP Authentication
+
+Volcano SDK supports OAuth 2.1 and Bearer token authentication per the MCP specification. Authentication can be configured at the MCP handle level or centrally at the agent level.
+
+### Handle-Level Authentication
+
+Configure auth directly on the MCP handle:
+
+```typescript
+// OAuth on handle
+const protectedMcp = mcp("https://api.example.com/mcp", {
+  auth: {
+    type: "oauth",
+    clientId: process.env.MCP_CLIENT_ID!,
+    clientSecret: process.env.MCP_CLIENT_SECRET!,
+    tokenEndpoint: "https://api.example.com/oauth/token",
+  },
+});
+
+// Bearer token on handle
+const bearerMcp = mcp("https://api.example.com/mcp", {
+  auth: {
+    type: "bearer",
+    token: process.env.MCP_BEARER_TOKEN!,
+  },
+});
+```
+
+### Agent-Level Authentication
+
+Configure auth centrally at the agent level for cleaner code when using multiple authenticated servers:
+
+```typescript
+// MCP handles without auth
+const mcp1 = mcp("https://api.example.com/mcp");
+const mcp2 = mcp("https://api.other.com/mcp");
+
+// Auth configured at agent level
+await agent({
+  llm,
+  mcpAuth: {
+    "https://api.example.com/mcp": {
+      type: "oauth",
+      clientId: process.env.CLIENT_ID_1!,
+      clientSecret: process.env.CLIENT_SECRET_1!,
+      tokenEndpoint: "https://api.example.com/oauth/token",
+    },
+    "https://api.other.com/mcp": {
+      type: "bearer",
+      token: process.env.TOKEN_2!,
+    },
+  },
+})
+  .then({ prompt: "Use tools from both servers", mcps: [mcp1, mcp2] })
+  .run();
+```
+
+**Precedence:** Handle-level auth takes precedence over agent-level auth. This allows you to set defaults at the agent level and override for specific handles.
+
+### OAuth Authentication (Client Credentials)
+
+Recommended for production MCP servers. Volcano automatically acquires and refreshes tokens:
+
+```typescript
+const protectedMcp = mcp("https://api.example.com/mcp", {
+  auth: {
+    type: "oauth",
+    clientId: process.env.MCP_CLIENT_ID!,
+    clientSecret: process.env.MCP_CLIENT_SECRET!,
+    tokenEndpoint: "https://api.example.com/oauth/token",
+  },
+});
+
+await agent({ llm })
+  .then({
+    prompt: "Use protected tools",
+    mcps: [protectedMcp],
+  })
+  .run();
+
+// Volcano automatically:
+// 1. Requests OAuth token from tokenEndpoint
+// 2. Caches the token until expiration
+// 3. Refreshes automatically when needed
+// 4. Includes Authorization header in all requests
+```
+
+### Bearer Token Authentication
+
+For pre-acquired tokens or custom authentication flows:
+
+```typescript
+const authMcp = mcp("https://api.example.com/mcp", {
+  auth: {
+    type: "bearer",
+    token: process.env.MCP_BEARER_TOKEN!,
+  },
+});
+
+await agent({ llm })
+  .then({ mcp: authMcp, tool: "secure_action", args: {} })
+  .run();
+```
+
+### Automatic Token Refresh
+
+Volcano automatically refreshes expired OAuth tokens using refresh tokens. Perfect for long-running workflows and user-authenticated services like Gmail, Google Drive, or Slack.
+
+```typescript
+// With automatic token refresh
+const gmail = mcp("https://api.gmail.com/mcp", {
+  auth: {
+    type: "bearer",
+    token: process.env.GMAIL_ACCESS_TOKEN,          // Can be expired!
+    refreshToken: process.env.GMAIL_REFRESH_TOKEN,  // Long-lived refresh token
+    tokenEndpoint: "https://oauth2.googleapis.com/token",
+    clientId: process.env.GMAIL_CLIENT_ID,
+    clientSecret: process.env.GMAIL_CLIENT_SECRET,
+  },
+});
+
+// Even if your access token expires during this workflow,
+// Volcano automatically refreshes it and retries the request
+await agent({ llm })
+  .then({
+    prompt: "Analyze all my unread emails for spam",
+    mcps: [gmail],
+  })
+  .run();
+```
+
+**How it works:**
+
+1. When Volcano detects a **401 Unauthorized** error from the MCP server
+2. It checks if a `refreshToken` is configured
+3. Automatically calls the `tokenEndpoint` with `grant_type=refresh_token`
+4. Gets a fresh access token
+5. Retries the failed request with the new token
+6. Caches the new token for subsequent requests
+
+**Benefits:**
+
+- ✅ **No manual token management** - Set it once, forget about it
+- ✅ **Long-running workflows** - Run for hours without token expiration errors
+- ✅ **Production-ready** - Handles token expiration gracefully
+- ✅ **Transparent retry** - Automatic retry on 401 errors
+- ✅ **Works everywhere** - Tool discovery, explicit calls, automatic selection
+
+**Use cases:**
+
+- Gmail, Google Drive, Google Calendar (user OAuth)
+- Slack, Discord, Teams (user OAuth)
+- GitHub, GitLab (user OAuth)
+- Any service using OAuth 2.0 refresh tokens
+
+**Example: Gmail spam detector that runs forever**
+
+```typescript
+// Start with an expired token - Volcano will refresh it automatically!
+const gmail = mcp("http://localhost:3800/mcp", {
+  auth: {
+    type: "bearer",
+    token: "ya29.expired_token",  // Can be expired
+    refreshToken: "1//refresh_token_here",
+    tokenEndpoint: "https://oauth2.googleapis.com/token",
+    clientId: "your-app.apps.googleusercontent.com",
+    clientSecret: "your-client-secret",
+  },
+});
+
+// This can run for hours - tokens auto-refresh as needed
+while (true) {
+  await agent({ llm })
+    .then({ 
+      prompt: "Check for spam in new emails", 
+      mcps: [gmail] 
+    })
+    .run();
+  
+  await new Promise(resolve => setTimeout(resolve, 300000)); // Every 5 min
+}
+```
+
+### Mixed Authentication
+
+Combine authenticated and non-authenticated MCP servers in the same workflow:
+
+```typescript
+const publicMcp = mcp("http://localhost:3000/mcp"); // No auth
+const privateMcp = mcp("https://api.example.com/mcp", {
+  auth: {
+    type: "oauth",
+    clientId: process.env.CLIENT_ID!,
+    clientSecret: process.env.CLIENT_SECRET!,
+    tokenEndpoint: "https://api.example.com/oauth/token",
+  },
+});
+
+await agent({ llm })
+  .then({ mcp: publicMcp, tool: "get_public_data", args: {} })
+  .then({ mcp: privateMcp, tool: "store_private_data", args: {} })
+  .run();
+
+// Each server uses its own authentication (or none)
+```
+
+**MCP Spec Compliance:** Per the official MCP specification, servers use OAuth 2.1 for authentication. Volcano supports both OAuth (automatic token acquisition) and Bearer (bring your own token).
+
+### Authentication Configuration Reference
+
+#### `MCPAuthConfig` Type
+
+```typescript
+type MCPAuthConfig = {
+  type: 'oauth' | 'bearer';
+  token?: string;
+  clientId?: string;
+  clientSecret?: string;
+  tokenEndpoint?: string;
+  scope?: string;
+  refreshToken?: string;
+};
+```
+
+#### Field Descriptions
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `type` | `'oauth'` \| `'bearer'` | ✅ Yes | Authentication type |
+| `token` | `string` | For `bearer` | Access token for Bearer auth. Can be expired if `refreshToken` is provided. |
+| `clientId` | `string` | For `oauth` | OAuth client ID from your OAuth provider |
+| `clientSecret` | `string` | For `oauth` | OAuth client secret from your OAuth provider |
+| `tokenEndpoint` | `string` | For `oauth` | OAuth token endpoint URL (e.g., `https://oauth2.googleapis.com/token`) |
+| `scope` | `string` | Optional | OAuth scopes to request (space-separated) |
+| `refreshToken` | `string` | Optional | Long-lived refresh token for automatic token renewal. When provided with `tokenEndpoint`, `clientId`, and `clientSecret`, Volcano will automatically refresh expired access tokens. |
+
+#### Configuration Examples
+
+**OAuth (Client Credentials):**
+```typescript
+{
+  type: 'oauth',
+  clientId: 'your-client-id',
+  clientSecret: 'your-client-secret',
+  tokenEndpoint: 'https://api.example.com/oauth/token',
+  scope: 'read write'  // optional
+}
+```
+
+**Bearer Token (Simple):**
+```typescript
+{
+  type: 'bearer',
+  token: 'your-access-token'
+}
+```
+
+**Bearer Token (With Auto-Refresh):**
+```typescript
+{
+  type: 'bearer',
+  token: 'your-access-token',          // Can be expired
+  refreshToken: 'your-refresh-token',  // Long-lived
+  tokenEndpoint: 'https://oauth2.googleapis.com/token',
+  clientId: 'your-client-id',
+  clientSecret: 'your-client-secret'
+}
+```
+
+### Authentication Features
+
+- **OAuth token caching:** Tokens are cached and reused until expiration (60s buffer)
+- **Automatic token refresh:** Expired access tokens automatically refreshed using refresh tokens
+- **401 retry logic:** On authentication errors, Volcano refreshes and retries automatically
+- **Per-endpoint configuration:** Each MCP server can have different auth
+- **Connection pooling:** Authenticated connections are pooled separately
+- **Spec compliant:** Follows MCP OAuth 2.1 authentication standard
+- **Grant type support:** Both `client_credentials` and `refresh_token` grant types
+
+## Connection Pooling & Performance
+
+Volcano SDK automatically manages MCP connections for optimal performance.
+
+### Connection Pooling
+
+- **Automatic pooling:** TCP sessions are reused across steps
+- **LRU eviction:** Idle connections evicted when pool is full
+- **Per-endpoint pools:** Each MCP server has its own pool
+- **Auth-aware:** Authenticated connections pooled separately
+- **Configurable limits:** Max 16 connections, 30s idle timeout (default)
+
+### Tool Discovery Cache
+
+- **Cached with TTL:** `listTools()` results cached for 60s
+- **Per-endpoint cache:** Each MCP server cached independently
+- **Invalidation on failure:** Cache cleared if server becomes unavailable
+- **Reduced latency:** Subsequent requests use cached tool definitions
+
+### Schema Validation
+
+Tool arguments are validated against JSON Schema before execution:
+
+```typescript
+// If the MCP tool has this schema:
+{
+  "type": "object",
+  "properties": {
+    "city": { "type": "string" },
+    "units": { "type": "string", "enum": ["celsius", "fahrenheit"] }
+  },
+  "required": ["city"]
+}
+
+// This call would fail validation:
+await agent({ llm })
+  .then({
+    mcp: weather,
+    tool: "get_weather",
+    args: { units: "kelvin" }  // ❌ Missing required "city", invalid enum
+  })
+  .run();
+
+// Error: ValidationError
+// Message: "arguments failed schema validation: city is required; units must be one of..."
+```
+
+### Configuration
+
+Advanced configuration for testing or special scenarios:
+
+```typescript
+import {
+  __internal_setPoolConfig,
+  __internal_setDiscoveryTtl,
+  __internal_clearDiscoveryCache,
+  __internal_clearOAuthTokenCache,
+} from "volcano-sdk";
+
+// Configure connection pool
+__internal_setPoolConfig(32, 60_000); // max 32 connections, 60s idle
+
+// Configure tool discovery cache TTL
+__internal_setDiscoveryTtl(120_000); // 120s cache
+
+// Clear caches (useful for testing)
+__internal_clearDiscoveryCache();
+__internal_clearOAuthTokenCache();
+```
+
+**Note:** These are internal APIs for advanced use cases and testing. The default configuration works well for most applications.
+
+## Stdio Transport API Reference
+
+### `mcpStdio(config)` Function
+
+Creates an MCP handle for a stdio-based server.
+
+```typescript
+function mcpStdio(config: MCPStdioConfig): MCPHandle
+```
+
+#### `MCPStdioConfig` Type
+
+```typescript
+type MCPStdioConfig = {
+  command: string;              // Command to execute (e.g., "node", "npx", "python")
+  args?: string[];              // Command arguments
+  env?: Record<string, string>; // Environment variables to pass to the process
+  cwd?: string;                 // Working directory for the process
+};
+```
+
+#### Field Descriptions
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `command` | `string` | ✅ Yes | Executable command (e.g., `"node"`, `"npx"`, `"python3"`) |
+| `args` | `string[]` | Optional | Array of command-line arguments |
+| `env` | `Record<string, string>` | Optional | Environment variables (merged with `process.env`) |
+| `cwd` | `string` | Optional | Working directory path for the spawned process |
+
+#### Return Value
+
+Returns an `MCPHandle` with these additional properties:
+
+```typescript
+type MCPHandle = {
+  id: string;
+  url: string;
+  transport: 'stdio' | 'http';
+  listTools: () => Promise<{ tools: Tool[] }>;
+  callTool: (name: string, args: any) => Promise<any>;
+  cleanup?: () => Promise<void>;  // ⚠️ Important: Always call this when done!
+};
+```
+
+#### Example Configurations
+
+**Running a built server:**
+```typescript
+const server = mcpStdio({
+  command: "node",
+  args: ["dist/index.js"],
+  cwd: "/Users/you/projects/my-mcp-server"
+});
+```
+
+**Using npx:**
+```typescript
+const server = mcpStdio({
+  command: "npx",
+  args: ["-y", "@modelcontextprotocol/server-filesystem"],
+  env: { ALLOWED_PATHS: "/Users/you/documents" }
+});
+```
+
+**With environment variables:**
+```typescript
+const ahaMcp = mcpStdio({
+  command: "node",
+  args: ["dist/index.js"],
+  cwd: "/path/to/aha-mcp",
+  env: {
+    AHA_DOMAIN: "yourcompany.aha.io",
+    AHA_API_KEY: process.env.AHA_API_KEY!,
+    DEBUG: "true"
+  }
+});
+```
+
+**Python-based MCP server:**
+```typescript
+const pythonMcp = mcpStdio({
+  command: "python3",
+  args: ["-m", "my_mcp_server"],
+  cwd: "/path/to/python-project",
+  env: {
+    PYTHONPATH: "/path/to/python-project",
+    API_KEY: process.env.PYTHON_API_KEY!
+  }
+});
+```
+
+### Lifecycle Management
+
+**Important:** Always cleanup stdio servers when done to prevent resource leaks:
+
+```typescript
+const server = mcpStdio({ command: "node", args: ["server.js"] });
+
+try {
+  // Use the server
+  await server.listTools();
+  await server.callTool("my_tool", { arg: "value" });
+} finally {
+  // Always cleanup, even on errors
+  await server.cleanup?.();
+}
+```
+
+**In agent workflows:**
+```typescript
+const localMcp = mcpStdio({ command: "node", args: ["server.js"] });
+
+try {
+  await agent({ llm })
+    .then({ prompt: "Do something", mcps: [localMcp] })
+    .run();
+} finally {
+  await localMcp.cleanup?.();
+}
+```
+
+**Error handling:**
+```typescript
+const server = mcpStdio({
+  command: "node",
+  args: ["server.js"],
+  cwd: "/path/to/server"
+});
+
+server.process?.on('error', (err) => {
+  console.error('MCP server process error:', err);
+});
+
+server.process?.stderr?.on('data', (data) => {
+  console.error('MCP server stderr:', data.toString());
+});
+
+try {
+  const tools = await server.listTools();
+} catch (error) {
+  console.error('Failed to connect:', error);
+} finally {
+  await server.cleanup?.();
+}
+```
+
+### Process Pooling
+
+Volcano automatically pools stdio processes:
+
+- Processes are reused for the same configuration
+- Idle processes cleaned up after 30 seconds (default)
+- Multiple calls to the same server reuse the process
+- Cleanup terminates the process and removes from pool
+
+```typescript
+const server = mcpStdio({ command: "node", args: ["server.js"] });
+
+// First call spawns the process
+await server.listTools();
+
+// Subsequent calls reuse the same process (faster!)
+await server.callTool("tool1", {});
+await server.callTool("tool2", {});
+
+// Cleanup terminates the process
+await server.cleanup?.();
+```
+
+### Common Patterns
+
+**Single-use server:**
+```typescript
+const server = mcpStdio({ command: "node", args: ["server.js"] });
+try {
+  const result = await server.callTool("my_tool", { arg: "value" });
+  console.log(result);
+} finally {
+  await server.cleanup?.();
+}
+```
+
+**Long-running workflow:**
+```typescript
+const server = mcpStdio({ 
+  command: "npx", 
+  args: ["-y", "@your/mcp-server"],
+  env: { API_KEY: process.env.API_KEY! }
+});
+
+try {
+  // Use server across multiple steps
+  await agent({ llm })
+    .then({ prompt: "Step 1", mcps: [server] })
+    .then({ prompt: "Step 2", mcps: [server] })
+    .then({ prompt: "Step 3", mcps: [server] })
+    .run();
+} finally {
+  await server.cleanup?.();
+}
+```
+
+**Multiple stdio servers:**
+```typescript
+const server1 = mcpStdio({ command: "node", args: ["server1.js"] });
+const server2 = mcpStdio({ command: "node", args: ["server2.js"] });
+
+try {
+  await agent({ llm })
+    .then({ prompt: "Use both servers", mcps: [server1, server2] })
+    .run();
+} finally {
+  // Cleanup all servers
+  await Promise.all([
+    server1.cleanup?.(),
+    server2.cleanup?.()
+  ]);
+}
+```

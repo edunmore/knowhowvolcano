@@ -21,6 +21,7 @@ npx tsx src/systems/research/cli.ts run \
 
 ## Features (Jan 2026)
 
+- **Volcano SDK** - Agent composition framework (refactoring in progress)
 - **vNext Pipeline** - Single `model_bundle` step for extract+model+verify
 - **Embedding Dedup** - SQLite-vec vector DB, Azure embed-v-4-0
 - **Clean Filenames** - `friction-budget.md` not `concept-friction-budget.md`
@@ -43,11 +44,11 @@ npx tsx src/systems/research/cli.ts run \
 
 ## Commands
 
-| Command | Purpose |
-|---------|---------|
+| Command                        | Purpose                  |
+| ------------------------------ | ------------------------ |
 | `run --runbook vnext-pipeline` | Full extraction pipeline |
-| `phase1-validator.ts ./vault` | Validate output |
-| `vitest run` | Run unit tests |
+| `phase1-validator.ts ./vault`  | Validate output          |
+| `vitest run`                   | Run unit tests           |
 
 ---
 
