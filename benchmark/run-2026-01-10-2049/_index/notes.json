@@ -1,0 +1,195 @@
+[
+  {
+    "id": "calibration-loop",
+    "path": "concepts/calibration-loop.md",
+    "title": "calibration-loop",
+    "type": "concept",
+    "outboundLinks": [
+      "7-Minute Microlearning Loop",
+      "7-Minute Microlearning Loop",
+      "Two-Speed Feedback",
+      "Outcome Ladder"
+    ]
+  },
+  {
+    "id": "friction-budget",
+    "path": "concepts/friction-budget.md",
+    "title": "friction-budget",
+    "type": "concept",
+    "outboundLinks": [
+      "deliberate practice",
+      "Outcome Ladder",
+      "cognitive load",
+      "deliberate practice"
+    ]
+  },
+  {
+    "id": "outcome-ladder",
+    "path": "concepts/outcome-ladder.md",
+    "title": "outcome-ladder",
+    "type": "concept",
+    "outboundLinks": [
+      "7-Minute Microlearning Loop",
+      "7-Minute Microlearning Loop",
+      "Friction Budget",
+      "Two-Speed Feedback"
+    ]
+  },
+  {
+    "id": "manager-scenario-missed-deadlines",
+    "path": "examples/manager-scenario-missed-deadlines.md",
+    "title": "manager-scenario-missed-deadlines",
+    "type": "example",
+    "outboundLinks": [
+      "7-Minute Microlearning Loop",
+      "Two-Speed Feedback"
+    ]
+  },
+  {
+    "id": "more-content-means-more-learning",
+    "path": "misconceptions/more-content-means-more-learning.md",
+    "title": "more-content-means-more-learning",
+    "type": "misconception",
+    "outboundLinks": [
+      "Friction Budget",
+      "Outcome Ladder"
+    ]
+  },
+  {
+    "id": "recognition-equals-performance",
+    "path": "misconceptions/recognition-equals-performance.md",
+    "title": "recognition-equals-performance",
+    "type": "misconception",
+    "outboundLinks": [
+      "transfer"
+    ]
+  },
+  {
+    "id": "prefer-fewer-stronger-links",
+    "path": "principles/prefer-fewer-stronger-links.md",
+    "title": "prefer-fewer-stronger-links",
+    "type": "principle",
+    "outboundLinks": [
+      "Friction Budget",
+      "Outcome Ladder"
+    ]
+  },
+  {
+    "id": "spend-friction-where-it-buys-transfer",
+    "path": "principles/spend-friction-where-it-buys-transfer.md",
+    "title": "spend-friction-where-it-buys-transfer",
+    "type": "principle",
+    "outboundLinks": [
+      "Transfer (Level D)",
+      "Friction Budget",
+      "Outcome Ladder",
+      "Transfer (Level D)"
+    ]
+  },
+  {
+    "id": "two-speed-feedback",
+    "path": "principles/two-speed-feedback.md",
+    "title": "two-speed-feedback",
+    "type": "principle",
+    "outboundLinks": [
+      "Outcome Ladder#Transfer",
+      "Calibration Loop",
+      "Outcome Ladder",
+      "Friction Budget",
+      "Calibration Loop"
+    ]
+  },
+  {
+    "id": "7-minute-microlearning-loop",
+    "path": "procedures/7-minute-microlearning-loop.md",
+    "title": "7-minute-microlearning-loop",
+    "type": "procedure",
+    "outboundLinks": [
+      "outcome-ladder",
+      "outcome-ladder",
+      "friction-budget",
+      "two-speed-feedback"
+    ]
+  },
+  {
+    "id": "bridge-outcome-ladder-7-minute-microlearning-loop",
+    "path": "slipbox/bridges/bridge-outcome-ladder-7-minute-microlearning-loop.md",
+    "title": "bridge-outcome-ladder-7-minute-microlearning-loop",
+    "type": "bridge",
+    "outboundLinks": [
+      "outcome-ladder",
+      "7-minute-microlearning-loop"
+    ]
+  },
+  {
+    "id": "moc-38e4b47a40f0",
+    "path": "slipbox/mocs/moc-38e4b47a40f0.md",
+    "title": "moc-38e4b47a40f0",
+    "type": "moc",
+    "outboundLinks": [
+      "outcome-ladder",
+      "friction-budget",
+      "calibration-loop",
+      "spend-friction-where-it-buys-transfer",
+      "two-speed-feedback",
+      "prefer-fewer-stronger-links",
+      "7-minute-microlearning-loop",
+      "more-content-means-more-learning",
+      "recognition-equals-performance",
+      "manager-scenario-missed-deadlines"
+    ]
+  },
+  {
+    "id": "trail-38e4b47a40f0",
+    "path": "slipbox/trails/trail-38e4b47a40f0.md",
+    "title": "trail-38e4b47a40f0",
+    "type": "trail",
+    "outboundLinks": [
+      "outcome-ladder",
+      "friction-budget",
+      "calibration-loop",
+      "7-minute-microlearning-loop",
+      "spend-friction-where-it-buys-transfer",
+      "two-speed-feedback",
+      "prefer-fewer-stronger-links",
+      "more-content-means-more-learning",
+      "recognition-equals-performance",
+      "manager-scenario-missed-deadlines"
+    ]
+  },
+  {
+    "id": "source-benchmark-source-nohints-38e4b47a",
+    "path": "sources/source-benchmark-source-nohints-38e4b47a.md",
+    "title": "Benchmark Source Nohints",
+    "type": "source_anchor",
+    "outboundLinks": []
+  },
+  {
+    "id": "-cognitive-load",
+    "path": "stubs/stub--cognitive-load.md",
+    "title": "-cognitive-load",
+    "type": "concept",
+    "outboundLinks": []
+  },
+  {
+    "id": "-deliberate-practice",
+    "path": "stubs/stub--deliberate-practice.md",
+    "title": "-deliberate-practice",
+    "type": "note",
+    "outboundLinks": []
+  },
+  {
+    "id": "-transfer-level-d",
+    "path": "stubs/stub--transfer-level-d.md",
+    "title": "-transfer-level-d",
+    "type": "note",
+    "outboundLinks": []
+  },
+  {
+    "id": "-transfer",
+    "path": "stubs/stub--transfer.md",
+    "title": "-transfer",
+    "type": "concept",
+    "outboundLinks": []
+  }
+]
