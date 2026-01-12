@@ -2,197 +2,48 @@
 description: Project context and key rules for the Canon Extraction Pipeline
 ---
 
-# Knowledge Extraction Pipeline - Project Context
+# Canon Extraction Pipeline
 
-## 🎯 What This Project Does
-Extracts structured knowledge from educational content using AI, creating a Zettelkasten-style vault with linked notes (concepts, procedures, principles, misconceptions, examples).
+## Project Overview
+Research-grade knowledge extraction system using Volcano SDK for multi-agent workflows. Processes documents through: ingest → chunk → extract → model → verify.
 
-**Current State:** vNext pipeline with embedding-based deduplication, clean filenames, and SQLite-vec vector storage.
+## Tech Stack
+- **Volcano SDK**: Agent composition and multi-LLM workflows
+- **LLM Providers**: Azure DeepSeek (fast), GPT-5-nano (simple, less expensive, can be tricky, for low level tasks)
+- **Storage**: Vault-based file system for artifacts
 
-**Next Phase:** Volcano SDK refactoring - converting custom agent code to Volcano's composable patterns.
+## Key Volcano Patterns
 
----
-
-## ⚠️ UPCOMING REFACTORING
-
-> [!IMPORTANT]
-> This codebase is being refactored to use **Volcano SDK patterns**. See workflow files:
-> - `/volcano-agents` - Mandatory agent patterns (WRONG/RIGHT examples)
-> - `/volcano-code-organization` - File structure rules
-> - `/volcano-custom-providers` - Building embedding/search providers
-> - `/volcano-providers` - Our configured providers (Gemini, DeepSeek, Ollama)
-
----
-
-## ✅ Quick Test Command (ALWAYS START HERE)
-```bash
-npx tsx src/systems/research/cli.ts run \
-  --runbook vnext-pipeline \
-  --file ./benchmark/benchmark_source_nohints.md \
-  --vault ./test-$(date +%H%M)
+### Code Steps (Custom Feature)
+```typescript
+.then({ code: async () => ({
+    result: { data },
+    message: 'Completed: X items'  // Coordinator visibility
+}) })
 ```
 
-**Expected:** 
-- `✅ Copied template vault to...`
-- 10 notes created (concepts, principles, procedures, etc.)
-- `Runbook completed`
-- Vector index created at `_index/vectors.db`
+### Multi-Agent Crews
+- Agent `name` MUST match task in prompt
+- Use `{result, message}` for coordinator visibility
+- Clean prompts - no redundant USE/DONE instructions
 
----
-
-## 📊 Phase 1 Validation (After Running Pipeline)
-
-```bash
-# Validate Phase 1 requirements
-npx tsx src/systems/research/utils/phase1-validator.ts ./vault-path
-
-# Strict mode (warnings = failures)
-npx tsx src/systems/research/utils/phase1-validator.ts ./vault-path --strict
+### File Organization
+```
+src/volcanosix/
+├── agents/      # Agent definitions
+├── sidecars/    # Pure functions
+└── orchestrator.ts
 ```
 
-**Checks:**
-- `embedding_keys` present (3-5 items)
-- `derived_from` has human-readable `source_title`
-- `link_intents` max 5 with `embedding_match_keys`
-- No unabstracted domain terms
+## Workflow References
+- `/volcano-agents` - Complete SDK patterns
+- `/volcano-providers` - LLM setup
+- `/volcano-code-organization` - Structure rules
+- `/volcano-custom-providers` - Embeddings, search
 
----
-
-## 🚨 Critical Facts (READ FIRST)
-
-1. **ONE execution path:** `run --runbook <id>` - Runbooks drive everything
-2. **Vaults auto-create** - NO manual setup needed
-3. **Volcano SDK** - Use Volcano patterns, NOT custom agent scripts
-4. **Provider defaults:**
-   - **DeepSeek-V3.2** for extraction, modeling, verification
-   - **Azure GPT-5-nano** for gating, stub generation
-   - **Azure embed-v-4-0** for embeddings/deduplication
-5. **10 note types** - 5 extraction + 5 rendition
-6. **Embedding-based deduplication** - Before modeling AND before stub creation
-7. **Clean filenames** - Type NOT in filename (e.g., `friction-budget.md` not `concept-friction-budget.md`)
-
-> [!CAUTION]
-> **NO PROMPTS IN CODE - EVER!** All prompts live in `_system/prompts/*.md`.
-
----
-
-## 📁 Key File Locations
-
-### Template Vault
-```
-src/systems/research/vault/
-└── _system/
-    ├── runbooks/vnext-pipeline.yml  # Main runbook
-    ├── prompts/                      # All agent prompts
-    └── schemas/
-```
-
-### Core Code (Pre-Refactor)
-```
-src/systems/research/
-├── cli.ts                      # Entry point
-├── runbook-runner.ts           # Runbook execution
-├── step-executors.ts           # Step handlers
-├── agents/
-│   ├── ingestor.ts             # Source ingestion
-│   ├── extractor.ts            # Candidate extraction
-│   ├── modeler.ts              # Note modeling
-│   ├── verifier.ts             # Note verification
-│   ├── linker.ts               # Link resolution + stub creation
-│   ├── link-resolver.ts        # Link resolution utilities
-│   └── chunk-gate.ts           # GPT-5-nano gating
-└── utils/
-    ├── vector-store.ts         # SQLite-vec embeddings
-    ├── phase1-validator.ts     # Output validation
-    ├── naming.ts               # ID/filename generation
-    └── note-embedding-index.ts # Legacy JSON index
-```
-
-### Providers
-```
-src/core/providers/
-├── azure-deepseek-provider.ts   # DeepSeek V3.2 (extraction, modeling)
-├── azure-gpt5-nano-provider.ts  # GPT-5-nano (gating, stubs)
-├── azure-gpt52-provider.ts      # GPT-5-2
-├── azure-embedding-provider.ts  # embed-v-4-0 (embeddings)
-├── gemini-cli-provider.ts       # Gemini CLI wrapper
-├── deepseek-tools-provider.ts   # DeepSeek with tool calling
-└── ollama-provider.ts           # Local Ollama
-```
-
----
-
-## 🔧 vNext Pipeline Steps
-
-1. **ingest** - Create source anchor (no LLM)
-2. **chunk** - Split into ~2000 char chunks
-3. **gate** - Classify with GPT-5-nano (FULL_MODEL/SKIP)
-4. **model_bundle** - Extract + model with embedding dedup
-5. **verify** - Validate against source
-6. **link** - Resolve links, create stubs (embedding search)
-7. **emit_candidates** - Extract LINK_INTENTS
-8. **emergent_artifacts** - MOCs, bridges, trails
-9. **index** - Build vault graph
-
----
-
-## 💻 Common Commands
-
-### Run vNext Pipeline
-```bash
-npx tsx src/systems/research/cli.ts run \
-  --runbook vnext-pipeline \
-  --file ./content.md \
-  --vault ./vault
-```
-
-### Validate Output
-```bash
-npx tsx src/systems/research/utils/phase1-validator.ts ./vault --strict
-```
-
-### Run Unit Tests
-```bash
-npx vitest run src/systems/research/__tests__/phase1-validation.test.ts
-```
-
-### Test Providers
-```bash
-# turbo-all
-npm test                              # Test Gemini CLI provider
-npx tsx src/test-azure.ts             # Test Azure DeepSeek
-npx tsx src/test-ollama.ts            # Test Ollama
-```
-
----
-
-## 🔑 Provider Configuration
-
-**API Keys:** `api-keys.json` in project root (gitignored)
-```json
-{
-  "azure": { "apiKey": "your-key" },
-  "deepseek": { "apiKey": "your-key" }
-}
-```
-
----
-
-## 📚 Recent Changes (Jan 11, 2026)
-
-### Volcano SDK Integration ✅
-- Added Volcano workflow files to `.agent/workflows/`
-- Created `feature/volcano` branch for refactoring
-- Reference SDK in `volcano-sdk/` (gitignored)
-- Reference docs in `volcano-docs/`
-
-### Phase 1 vNext Pipeline ✅
-- New `vnext-pipeline.yml` runbook (v2.0)
-- `model_bundle` step combines extract+model+verify
-- Fast mode for small sources (<10kb)
-
-### Embedding-Based Deduplication ✅
-- SQLite-vec vector database (`_index/vectors.db`)
-- Azure embed-v-4-0 for embeddings
-- Dedup before modeling AND before stub creation
-- Configurable threshold (default 0.7)
+## Current Status
+- ✅ Code step feature (custom SDK modification)
+- ✅ Multi-agent crew patterns validated
+- ✅ Loop-until-completion tested
+- ✅ DeepSeek + GPT-5-nano working
+- [ ] Migrate research pipeline agents

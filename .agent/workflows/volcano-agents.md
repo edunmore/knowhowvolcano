@@ -1,342 +1,219 @@
 ---
-description: Volcano SDK agent patterns and mandatory rules (Always-on)
+activation: always-on
 ---
 
 # AI Agent Instructions for Volcano SDK
 
 **CRITICAL:** Use Volcano's composable patterns. NO custom scripts around agents. Everything flows through the fluent API.
 
-**Full Documentation:** See `volcano-docs/` folder for api.md, patterns.md, features.md, providers.md, mcp-tools.md
+**Full Documentation:** @volcano-docs/api.md, @volcano-docs/patterns.md, @volcano-docs/features.md, @volcano-docs/providers.md, @volcano-docs/mcp-tools.md
+**Additional Rules:** /volcano-code-organization, /volcano-providers, /volcano-custom-providers
+
+## Step Types
+
+### LLM Step
+```typescript
+.then({ prompt: 'Analyze this text', llm })
+```
+
+### MCP Step (Tool Calling)
+```typescript
+// Auto-select tools
+.then({ prompt: 'Read file.txt', mcps: [filesystem] })
+
+// Explicit (no LLM)
+.then({ mcp: filesystem, tool: 'read_file', args: { path: 'file.txt' } })
+```
+
+### Code Step (Custom - edunmore/marcus@edunmore.de)
+```typescript
+// Fast deterministic execution
+.then({ code: async (history) => ({ result: data }) })
+
+// With coordinator visibility (for multi-agent crews)
+.then({ code: async () => ({
+    result: { count: 42 },           // Data for context
+    message: 'Completed: 42 items'   // Visible to coordinator
+}) })
+```
+
+### Agent Delegation
+```typescript
+.runAgent(mySubAgent)  // Composition
+.then({ prompt: 'Task', agents: [a1, a2, a3] })  // Crew
+```
 
 ## Agent Configuration
 
 ```typescript
 agent({
-  llm,                    // Default LLM (can override per-step)
+  llm,                    // Default LLM
   instructions,           // System prompt for ALL steps
-  name,                   // Agent name (for multi-agent crews)
-  description,            // MCP-like tool description (for orchestrator to select this agent)
-  timeout: 60,            // Default timeout per step (seconds)
-  retry: { retries: 3 },  // Retry config
-  telemetry: { ... }      // OpenTelemetry for production
+  name,                   // Agent name (MUST match task in crew prompts)
+  description,            // Helps coordinator select agent
+  timeout: 60,
+  retry: { retries: 3 },
+  telemetry: { ... }
 })
 ```
 
-**Key concepts:**
-- `instructions` = system prompt (applies to every step)
-- `name` + `description` = make agent usable as tool in crews (see Pattern 7)
-- Set defaults at agent level, override per-step with `.then({ llm, timeout, ... })`
-
-## Core Philosophy
-
-Agents compose agents. Each can use different LLMs. Context flows automatically. No manual data passing.
-
 ## Mandatory Patterns
 
-### 1. Multi-Step Workflows → Use .then() Chaining
-
-**WRONG ❌** - Don't do this:
+### 1. Multi-Step → .then() Chaining
 ```typescript
-// NO! Don't create separate function calls
-async function processDocument(doc) {
-  const summary = await agent().then({ prompt: "Summarize" }).run();
-  const analysis = await agent().then({ prompt: "Analyze: " + summary[0].llmOutput }).run();
-  return analysis;
-}
-```
-
-**RIGHT ✅** - Do this:
-```typescript
-// YES! Context flows automatically between steps
-const results = await agent({ llm })
-  .then({ prompt: "Summarize this document" })
-  .then({ prompt: "Analyze the summary for key insights" })
-  .then({ prompt: "Create a final report" })
+// Context flows automatically
+await agent({ llm })
+  .then({ prompt: "Summarize" })
+  .then({ prompt: "Analyze the summary" })
   .run();
 ```
 
-**Why:** Context flows automatically. No manual variable passing needed.
-
-### 2. Looping Over Items → Use .forEach()
-
-**WRONG ❌:**
+### 2. Looping → .forEach()
 ```typescript
-// NO! Don't use for loops with agent calls
-const results = [];
-for (const doc of documents) {
-  const result = await agent().then({ prompt: `Process ${doc}` }).run();
-  results.push(result);
-}
-```
-
-**RIGHT ✅:**
-```typescript
-// YES! Use .forEach() - it's built for this
-const results = await agent({ llm })
+await agent({ llm })
   .forEach(documents, (doc, a) => 
     a.then({ prompt: `Process: ${doc}` })
-     .then({ prompt: "Extract key points" })
-  )
-  .then({ prompt: "Combine all results" })
-  .run();
-```
-
-### 3. Conditional Logic → Use .branch()
-
-**WRONG ❌:**
-```typescript
-// NO! Don't pull results out and use if/else
-const classify = await agent().then({ prompt: "Classify" }).run();
-if (classify[0].llmOutput.includes("urgent")) {
-  await agent().then({ prompt: "Handle urgent" }).run();
-}
-```
-
-**RIGHT ✅:**
-```typescript
-// YES! Use .branch()
-const results = await agent({ llm })
-  .then({ prompt: "Classify as urgent or normal" })
-  .branch(
-    (h) => h[0].llmOutput?.includes("urgent") || false,
-    {
-      true: (a) => a.then({ prompt: "Create alert", mcps: [notifications] }),
-      false: (a) => a.then({ prompt: "Add to queue" })
-    }
   )
   .run();
 ```
 
-### 4. Multiple Independent Tasks → Use .parallel()
-
-**WRONG ❌:**
+### 3. Conditional → .branch()
 ```typescript
-// NO! Don't await sequentially
-const sentiment = await agent().then({ prompt: "Sentiment?" }).run();
-const entities = await agent().then({ prompt: "Entities?" }).run();
+await agent({ llm })
+  .then({ prompt: "Classify urgent/normal" })
+  .branch((h) => h[0].llmOutput?.includes("urgent"), {
+    true: (a) => a.then({ prompt: "Create alert" }),
+    false: (a) => a.then({ prompt: "Add to queue" })
+  })
+  .run();
 ```
 
-**RIGHT ✅:**
+### 4. Parallel Tasks → .parallel()
 ```typescript
-// YES! Use .parallel()
-const results = await agent({ llm })
+await agent({ llm })
   .parallel({
     sentiment: { prompt: "Analyze sentiment" },
-    entities: { prompt: "Extract entities" },
-    summary: { prompt: "Summarize" }
+    entities: { prompt: "Extract entities" }
   })
-  .then({ prompt: "Combine results" })
   .run();
 ```
 
-### 5. Reusable Components → Define Agent Builders
-
-**WRONG ❌:**
+### 5. Reusable → .runAgent()
 ```typescript
-// NO! Don't copy-paste prompts
-async function analyzeDoc1() {
-  return agent().then({ prompt: "Extract..." }).then({ prompt: "Analyze..." }).run();
-}
-async function analyzeDoc2() {
-  return agent().then({ prompt: "Extract..." }).then({ prompt: "Analyze..." }).run();
-}
-```
+const extractor = agent({ llm }).then({ prompt: "Extract" });
+const analyzer = agent({ llm }).then({ prompt: "Analyze" });
 
-**RIGHT ✅:**
-```typescript
-// YES! Define reusable components
-const extractor = agent({ llm })
-  .then({ prompt: "Extract key data" })
-  .then({ prompt: "Structure as JSON" });
-
-const analyzer = agent({ llm })
-  .then({ prompt: "Analyze patterns" })
-  .then({ prompt: "Generate insights" });
-
-// Compose
-const results = await agent({ llm })
-  .then({ prompt: "Document: ..." })
+await agent({ llm })
   .runAgent(extractor)
   .runAgent(analyzer)
   .run();
 ```
 
-### 6. Multi-LLM Pipelines → Cost Optimization
-
-**WRONG ❌:**
+### 6. Multi-LLM → Cost Optimization
 ```typescript
-// NO! Don't use expensive model everywhere
-const llm = llmOpenAI({ model: "gpt-4o" });
-await agent({ llm })
-  .then({ prompt: "Preprocess" }) // Overkill
-  .then({ prompt: "Complex reasoning" })
-  .then({ prompt: "Format" }) // Overkill
-  .run();
-```
-
-**RIGHT ✅:**
-```typescript
-// YES! Use cost-optimized workflow
-const cheap = llmOpenAI({ model: "gpt-4o-mini" });
-const expensive = llmOpenAI({ model: "gpt-4o" });
-const local = llmLlama({ model: "llama3.2:3b" });
+const cheap = createDeepSeek({ maxTokens: 200 });
+const expensive = createAzureGPT5Nano({ maxTokens: 1000 });
 
 await agent()
-  .then({ llm: local, prompt: "Preprocess" })
+  .then({ llm: cheap, prompt: "Preprocess" })
   .then({ llm: expensive, prompt: "Deep reasoning" })
-  .then({ llm: cheap, prompt: "Format output" })
   .run();
 ```
 
-### 7. Multi-Agent Crews → Autonomous Delegation
-
-**WRONG ❌:**
+### 7. Multi-Agent Crews
 ```typescript
-// NO! Don't manually orchestrate
-async function processTask(task) {
-  if (task.includes("research")) return await researcher.run();
-  if (task.includes("write")) return await writer.run();
-}
-```
+const ingestAgent = agent({
+  name: 'Ingest',  // MUST match prompt task
+  description: 'Read files'
+}).then({ code: async () => ({
+  result: { files: 5 },
+  message: 'Completed: Ingested 5 files'  // Coordinator sees this
+}) });
 
-**RIGHT ✅:**
-```typescript
-// YES! Let coordinator delegate
-const researcher = agent({
-  llm, name: "researcher",
-  description: "Finds facts. Use for information gathering."
-}).then({ prompt: "Research thoroughly" });
-
-const writer = agent({
-  llm, name: "writer",
-  description: "Creates content. Use for writing."
-}).then({ prompt: "Write compelling content" });
-
-// Coordinator picks right agents
-const results = await agent({ llm })
+await agent({ llm })
   .then({
-    prompt: "Create a blog post about AI",
-    agents: [researcher, writer]
+    prompt: `Execute: 1. Ingest 2. Chunk 3. Extract`,
+    agents: [ingestAgent, chunkAgent, extractAgent]
   })
   .run();
 ```
 
-### 8. MCP Tools → Automatic Selection
-
-**WRONG ❌:**
-```typescript
-// NO! Don't manually call tools
-const weatherData = await callMcpTool("get_weather", { city: "Seattle" });
-const result = await agent().then({ 
-  prompt: `Weather: ${weatherData}. What to do?` 
-}).run();
+**Crew Prompting:**
+```
+✅ Execute: 1. Ingest 2. Chunk 3. Extract
+❌ Execute steps. When done say DONE.  ← SDK handles USE/DONE
 ```
 
-**RIGHT ✅:**
-```typescript
-// YES! Let agent auto-select
-const weather = mcp("http://localhost:8001/mcp");
-const tasks = mcp("http://localhost:8002/mcp");
+### 8. Crew Loop (Agent Retry Until Completion)
 
-const results = await agent({ llm })
-  .then({
-    prompt: "Check Seattle weather. If rain, create umbrella task.",
-    mcps: [weather, tasks]
-  })
+In a multi-agent crew, the coordinator can repeat an agent until it signals completion:
+
+```typescript
+// Crew prompt with loop instruction
+prompt: `Execute:
+1. Ingest
+2. Chunk - REPEAT until "Completed:" in output
+   - If "Working on it...", call Chunk again
+   - If "Completed:", move to next step
+3. Extract`
+
+// Agent that reports progress
+const chunkAgent = agent({ name: 'Chunk', description: 'Chunk files' })
+  .then({ code: async () => {
+    if (++attempts < 3) {
+      return { result: {}, message: 'Working on it...' };
+    }
+    return { result: { chunks: 42 }, message: 'Completed: Created 42 chunks' };
+  } });
+```
+
+### 9. MCP Tools
+```typescript
+const filesystem = mcpStdio({
+  command: 'npx',
+  args: ['-y', '@modelcontextprotocol/server-filesystem', process.cwd()]
+});
+
+await agent({ llm })
+  .then({ prompt: "Read config.json", mcps: [filesystem] })
   .run();
 ```
 
-### 9. Embeddings → Custom Providers
-
-Use custom providers for embeddings, vector search, APIs, parsing. A provider is just: text input → text output. See `/volcano-custom-providers` workflow for complete guide.
-
-### 10. Error Handling → Use Built-in Patterns
-
-**WRONG ❌:**
+### 10. Error Handling
 ```typescript
-// NO! Don't write custom retry
-let attempts = 0;
-while (attempts < 3) {
-  try {
-    const result = await agent().then({ prompt: "..." }).run();
-    if (isValid(result)) break;
-  } catch (e) { attempts++; }
-}
-```
-
-**RIGHT ✅:**
-```typescript
-// YES! Use built-in retry
-const results = await agent({ 
-  llm,
-  retry: { retries: 3, delay: 1000 }
-})
+await agent({ llm, retry: { retries: 3 } })
   .retryUntil(
     (a) => a.then({ prompt: "Generate valid JSON" }),
-    (h) => {
-      try {
-        JSON.parse(h.at(-1)?.llmOutput || "");
-        return true;
-      } catch {
-        return false;
-      }
-    },
+    (h) => { try { JSON.parse(h.at(-1)?.llmOutput!); return true; } catch { return false; } },
     { maxRetries: 5 }
   )
   .run();
 ```
 
-### 11. Observability → Use Hooks
-
-**RIGHT ✅:**
-```typescript
-// Use hooks
-const results = await agent({ llm })
-  .then({ prompt: "Step 1" })
-  .then({ prompt: "Step 2" })
-  .run({
-    onStep: (result, index) => {
-      console.log(`✓ Step ${index + 1}: ${result.durationMs}ms`);
-    },
-    onToken: (token) => process.stdout.write(token)
-  });
-
-// Or OpenTelemetry
-const results = await agent({ 
-  llm,
-  telemetry: {
-    serviceName: "pipeline",
-    endpoint: "http://localhost:4318/v1/traces"
-  }
-}).then({ prompt: "..." }).run();
-```
-
 ## Decision Tree
 
 ```
-Process multiple items? → .forEach() or .parallel()
-Conditional logic? → .branch() or .switch()
-Loop until condition? → .while() or .retryUntil()
-Reuse logic? → Create agent builder, compose with .runAgent()
-Multiple LLMs? → Set default, override per-step
-Autonomous delegation? → Define agents (name/description), use crews
-External tools? → Add mcps, let LLM auto-select
-Observability? → Use hooks or telemetry
+Multiple items? → .forEach() or .parallel()
+Conditional? → .branch() or .switch()
+Loop until? → .while() or .retryUntil()
+Reuse logic? → .runAgent()
+Multiple LLMs? → Override per-step
+Autonomous? → agents: [] (crew)
+Tools? → mcps: []
+Fast deterministic? → code: async () => {}
 ```
 
 ## Anti-Patterns
 
-❌ **Breaking out of flow:** Don't pull data and process manually
-❌ **Nested runs:** Don't call `.run()` multiple times
-❌ **Manual tools:** Don't orchestrate tool calls yourself
-❌ **Custom retries:** Use built-in retry patterns
-❌ **Manual data passing:** Context flows automatically
-❌ **Inline definitions:** Don't define all agents in main file
+❌ Breaking out of flow to process data manually
+❌ Multiple `.run()` calls with variable passing
+❌ Manual tool orchestration
+❌ Custom retry loops
+❌ Redundant USE/DONE instructions in prompts
+❌ Inline agent definitions in main file
 
 ## Summary
 
-✅ **DO:** Chain `.then()`, use `.forEach()`, `.branch()`, `.parallel()`, define reusable components, compose with `.runAgent()`, use multi-LLM, auto-select tools, built-in retry, hooks/telemetry
+**DO:** Chain `.then()`, use control flow, compose with `.runAgent()`, multi-LLM, code steps for speed, clean crew prompts
 
-❌ **DON'T:** Script around agents, break flow, call `.run()` sequentially, manually orchestrate, pass data manually, use for/while outside Volcano
-
-**Remember:** If scripting around agents, you're missing a pattern. Everything flows through the chain.
+**DON'T:** Script around agents, manual data passing, overexplain to coordinator

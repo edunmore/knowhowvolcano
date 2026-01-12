@@ -24,6 +24,8 @@ export interface AzureDeepSeekConfig {
     temperature?: number;
     /** Max tokens for response */
     maxTokens?: number;
+    /** Enable debug logging of prompts and responses */
+    debug?: boolean;
 }
 
 /**
@@ -99,7 +101,7 @@ export function createAzureProvider(cfg: AzureDeepSeekConfig = {}): LLMHandle {
     const baseURL = 'https://aineu-marcus.services.ai.azure.com/openai/v1';
 
     // Use llmOpenAI with Azure endpoint (OpenAI-compatible format)
-    return llmOpenAI({
+    const baseLlm = llmOpenAI({
         apiKey,
         model: 'DeepSeek-V3.2',
         baseURL,
@@ -108,6 +110,56 @@ export function createAzureProvider(cfg: AzureDeepSeekConfig = {}): LLMHandle {
             max_tokens: cfg.maxTokens,
         },
     });
+
+    // If debug is enabled, wrap with logging
+    if (cfg.debug) {
+        let callCount = 0;
+        const getTimestamp = () => new Date().toISOString();
+
+        return {
+            ...baseLlm,
+            gen: async (prompt: string) => {
+                callCount++;
+                console.log('\n' + '='.repeat(80));
+                const ts = getTimestamp();
+                console.log(`[${ts}] [DeepSeek Call #${callCount}]`);
+                console.log('='.repeat(80));
+                console.log('PROMPT:');
+                console.log(prompt);
+                console.log('-'.repeat(80));
+
+                const response = await baseLlm.gen(prompt);
+
+                console.log('RESPONSE:');
+                console.log(response);
+                console.log('='.repeat(80) + '\n');
+
+                return response;
+            },
+            genStream: baseLlm.genStream ? async function* (prompt: string) {
+                callCount++;
+                console.log('\n' + '='.repeat(80));
+                const ts = getTimestamp();
+                console.log(`[${ts}] [DeepSeek Stream #${callCount}]`);
+                console.log('='.repeat(80));
+                console.log('PROMPT:');
+                console.log(prompt);
+                console.log('-'.repeat(80));
+                console.log('RESPONSE (streaming):');
+
+                const tokens: string[] = [];
+                for await (const token of baseLlm.genStream!(prompt)) {
+                    tokens.push(token);
+                    process.stdout.write(token);
+                    yield token;
+                }
+
+                console.log('\n' + '='.repeat(80) + '\n');
+            } : undefined
+        };
+    }
+
+    return baseLlm;
 }
 
 export default createAzureProvider;
