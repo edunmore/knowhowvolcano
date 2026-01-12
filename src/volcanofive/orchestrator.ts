@@ -2,40 +2,25 @@
  * Orchestrator Agent
  * 
  * Uses mcpStdio to connect to pipeline tools MCP server.
- * LLM decides which tools to call based on runbook.
+ * Uses explicit tool calls (no LLM overhead for deterministic steps).
  */
 
 import { agent, mcpStdio } from 'volcano-sdk';
-import { createAzureGPT5Nano } from '../core/providers/azure-gpt5-nano-provider.js';
 import * as fs from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 
 /**
- * Run the extraction pipeline
+ * Run the extraction pipeline using explicit MCP tool calls
+ * 
+ * No LLM needed for deterministic pipeline steps!
  */
 export async function runPipeline(sourcePath: string, vaultDir: string) {
-    console.log('🌋 volcanofive - MCP Pipeline');
+    console.log('🌋 volcanofive - MCP Pipeline (Explicit Tool Calls)');
     console.log(`Source: ${sourcePath}`);
     console.log(`Vault: ${vaultDir}`);
 
     // Ensure vault structure
     await fs.mkdir(join(vaultDir, '_sources'), { recursive: true });
-    await fs.mkdir(join(vaultDir, '_system', 'runbooks'), { recursive: true });
-
-    // Load runbook
-    let runbook: string;
-    const runbookPath = join(vaultDir, '_system', 'runbooks', 'extraction.md');
-    try {
-        runbook = await fs.readFile(runbookPath, 'utf-8');
-    } catch {
-        // Create default runbook
-        runbook = `# Extraction Pipeline
-
-1. Ingest the source file
-2. Chunk the document into smaller pieces
-`;
-        await fs.writeFile(runbookPath, runbook, 'utf-8');
-    }
 
     // Connect to MCP server via stdio
     const pipelineTools = mcpStdio({
@@ -45,45 +30,56 @@ export async function runPipeline(sourcePath: string, vaultDir: string) {
     });
 
     console.log('\n[Orchestrator] Connected to MCP server');
-    console.log('[Orchestrator] Available tools: ingest, chunk');
 
-    // Test with GPT-5-nano
-    const llm = createAzureGPT5Nano({ maxTokens: 500 });
-    // For testing: const { dummyLLM } = await import('./providers/dummy-llm.js');
-    // const llm = dummyLLM();
-
-    const result = await agent({ llm, name: 'orchestrator' })
-        // Use automatic tool selection
+    // Use explicit tool calls - NO LLM for deterministic operations!
+    const result = await agent({})
+        // Step 1: Ingest (explicit call, no LLM)
         .then({
-            prompt: `You are a pipeline executor. Execute these steps:
-
-SOURCE FILE: ${sourcePath}
-VAULT DIR: ${vaultDir}
-
-1. Call 'ingest' with sourcePath and vaultDir
-2. Then call 'chunk' with the returned sourceId and vaultDir`,
-            mcps: [pipelineTools],
-            maxToolIterations: 3
+            mcp: pipelineTools,
+            tool: 'ingest',
+            args: { sourcePath, vaultDir }
         })
+        // Step 2: Chunk (needs sourceId from step 1)
+        // For now, we parse the result manually
         .run((step, idx) => {
             console.log(`\n[Step ${idx + 1}]`);
-            if (step.toolCalls && step.toolCalls.length > 0) {
-                for (const call of step.toolCalls) {
-                    console.log(`  Tool called: ${call.name}`);
-                    console.log(`  Result: ${JSON.stringify(call.result).slice(0, 300)}`);
-                }
-            } else {
-                console.log('  No tool calls');
+            if (step.mcp) {
+                console.log(`  Tool: ${step.mcp.tool}`);
+                console.log(`  Result: ${JSON.stringify(step.mcp.result).slice(0, 300)}`);
             }
-            if (step.llmOutput) {
-                console.log(`  LLM: ${step.llmOutput.slice(0, 200)}`);
-            }
+            console.log(`  Duration: ${step.durationMs}ms`);
+            console.log(`  LLM used: ${step.llmOutput ? 'yes' : 'no'}`);
         });
+
+    // Extract sourceId from ingest result and call chunk
+    const ingestResult = result[0]?.mcp?.result;
+    let sourceId: string | undefined;
+
+    if (ingestResult?.content?.[0]?.text) {
+        const parsed = JSON.parse(ingestResult.content[0].text);
+        sourceId = parsed.sourceId;
+    }
+
+    if (sourceId) {
+        console.log(`\n[Orchestrator] Chunking sourceId: ${sourceId}`);
+
+        const chunkResult = await agent({})
+            .then({
+                mcp: pipelineTools,
+                tool: 'chunk',
+                args: { sourceId, vaultDir }
+            })
+            .run((step) => {
+                if (step.mcp) {
+                    console.log(`  Tool: ${step.mcp.tool}`);
+                    console.log(`  Result: ${JSON.stringify(step.mcp.result).slice(0, 300)}`);
+                }
+            });
+    }
 
     // Cleanup MCP server
     await pipelineTools.cleanup?.();
 
-    console.log('\n✅ Pipeline complete');
+    console.log('\n✅ Pipeline complete (no LLM tokens used!)');
     return result;
 }
-
