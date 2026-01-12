@@ -1,85 +1,59 @@
 /**
  * Orchestrator Agent
  * 
- * Uses mcpStdio to connect to pipeline tools MCP server.
- * Uses explicit tool calls (no LLM overhead for deterministic steps).
+ * Uses code steps for direct function execution - no MCP/LLM overhead.
  */
 
-import { agent, mcpStdio } from 'volcano-sdk';
+import { agent } from 'volcano-sdk';
+import { ingest } from './mcp-server/tools/ingest.js';
+import { chunk } from './mcp-server/tools/chunk.js';
 import * as fs from 'node:fs/promises';
-import { join, resolve } from 'node:path';
+import { join } from 'node:path';
 
 /**
- * Run the extraction pipeline using explicit MCP tool calls
+ * Run the extraction pipeline using code steps
  * 
- * No LLM needed for deterministic pipeline steps!
+ * Direct function calls - no MCP subprocess, no LLM tokens!
  */
 export async function runPipeline(sourcePath: string, vaultDir: string) {
-    console.log('🌋 volcanofive - MCP Pipeline (Explicit Tool Calls)');
+    console.log('🌋 volcanofive - Code Step Pipeline');
     console.log(`Source: ${sourcePath}`);
     console.log(`Vault: ${vaultDir}`);
 
     // Ensure vault structure
     await fs.mkdir(join(vaultDir, '_sources'), { recursive: true });
 
-    // Connect to MCP server via stdio
-    const pipelineTools = mcpStdio({
-        command: 'npx',
-        args: ['tsx', resolve('src/volcanofive/mcp-server/index.ts')],
-        env: {}
-    });
+    console.log('\n[Orchestrator] Starting pipeline...');
 
-    console.log('\n[Orchestrator] Connected to MCP server');
-
-    // Use explicit tool calls - NO LLM for deterministic operations!
+    // Use code steps - direct function execution!
     const result = await agent({})
-        // Step 1: Ingest (explicit call, no LLM)
+        // Step 1: Ingest
         .then({
-            mcp: pipelineTools,
-            tool: 'ingest',
-            args: { sourcePath, vaultDir }
+            code: async () => {
+                return await ingest({ sourcePath, vaultDir });
+            },
+            name: 'ingest'
         })
-        // Step 2: Chunk (needs sourceId from step 1)
-        // For now, we parse the result manually
+        // Step 2: Chunk (uses sourceId from step 1)
+        .then({
+            code: async (history) => {
+                const prev = history[history.length - 1];
+                const prevResult = JSON.parse(prev.mcp!.result.content[0].text);
+                return await chunk({ sourceId: prevResult.sourceId, vaultDir });
+            },
+            name: 'chunk'
+        })
         .run((step, idx) => {
-            console.log(`\n[Step ${idx + 1}]`);
+            console.log(`\n[Step ${idx + 1}] ${step.mcp?.tool}`);
             if (step.mcp) {
-                console.log(`  Tool: ${step.mcp.tool}`);
-                console.log(`  Result: ${JSON.stringify(step.mcp.result).slice(0, 300)}`);
+                const result = JSON.parse(step.mcp.result.content[0].text);
+                console.log(`  Success: ${result.success}`);
+                if (result.sourceId) console.log(`  SourceId: ${result.sourceId}`);
+                if (result.totalChunks) console.log(`  Chunks: ${result.totalChunks}`);
             }
             console.log(`  Duration: ${step.durationMs}ms`);
-            console.log(`  LLM used: ${step.llmOutput ? 'yes' : 'no'}`);
         });
 
-    // Extract sourceId from ingest result and call chunk
-    const ingestResult = result[0]?.mcp?.result;
-    let sourceId: string | undefined;
-
-    if (ingestResult?.content?.[0]?.text) {
-        const parsed = JSON.parse(ingestResult.content[0].text);
-        sourceId = parsed.sourceId;
-    }
-
-    if (sourceId) {
-        console.log(`\n[Orchestrator] Chunking sourceId: ${sourceId}`);
-
-        const chunkResult = await agent({})
-            .then({
-                mcp: pipelineTools,
-                tool: 'chunk',
-                args: { sourceId, vaultDir }
-            })
-            .run((step) => {
-                if (step.mcp) {
-                    console.log(`  Tool: ${step.mcp.tool}`);
-                    console.log(`  Result: ${JSON.stringify(step.mcp.result).slice(0, 300)}`);
-                }
-            });
-    }
-
-    // Cleanup MCP server
-    await pipelineTools.cleanup?.();
-
-    console.log('\n✅ Pipeline complete (no LLM tokens used!)');
+    console.log('\n✅ Pipeline complete (0 LLM tokens, 0 MCP overhead!)');
     return result;
 }
